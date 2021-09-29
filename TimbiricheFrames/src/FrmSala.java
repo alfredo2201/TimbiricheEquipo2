@@ -20,17 +20,17 @@ public class FrmSala extends javax.swing.JFrame {
     Graphics g;
     JPanel lienzo;
 
-<<<<<<< Updated upstream
+
     String pepe = "pica papas con un pico";
     String again = "volvi a actualizar";
     String awa = "awa de uwu";
     String uwu = "Chanchito feliz uwuwu";
 
 
-    public FrmSala() {
-=======
+
+
     private FrmSala(int tamanio) {
->>>>>>> Stashed changes
+
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
         configuracionLienzo(tamanio);
@@ -66,13 +66,13 @@ public class FrmSala extends javax.swing.JFrame {
         lblINombreJugador3 = new javax.swing.JLabel();
         lblIconoJugador4 = new javax.swing.JLabel();
         lblNombreJugador4 = new javax.swing.JLabel();
-        lblConfiguracion = new javax.swing.JLabel();
-        lblConfiguracion1 = new javax.swing.JLabel();
-        lblConfiguracion2 = new javax.swing.JLabel();
-        lblConfiguracion3 = new javax.swing.JLabel();
+        iconConfiguracion4 = new javax.swing.JLabel();
+        iconConfiguracion1 = new javax.swing.JLabel();
+        iconConfiguracion2 = new javax.swing.JLabel();
+        iconConfiguracion3 = new javax.swing.JLabel();
         pnTurno = new javax.swing.JPanel();
+        lblTurnoNombreJugador = new javax.swing.JLabel();
         lblTurno = new javax.swing.JLabel();
-        txtTurno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Timbiriche");
@@ -124,56 +124,54 @@ public class FrmSala extends javax.swing.JFrame {
         lblNombreJugador4.setText("Nombre Jugador");
         pnJugadores.add(lblNombreJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, 60));
 
-        lblConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
-        pnJugadores.add(lblConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
+        iconConfiguracion4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
+        pnJugadores.add(iconConfiguracion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
 
-        lblConfiguracion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
-        pnJugadores.add(lblConfiguracion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+        iconConfiguracion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
+        pnJugadores.add(iconConfiguracion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
 
-        lblConfiguracion2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
-        pnJugadores.add(lblConfiguracion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
+        iconConfiguracion2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
+        pnJugadores.add(iconConfiguracion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
 
-        lblConfiguracion3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
-        pnJugadores.add(lblConfiguracion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
+        iconConfiguracion3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
+        pnJugadores.add(iconConfiguracion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
         pnTurno.setBackground(new java.awt.Color(153, 204, 255));
         pnTurno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255)));
+
+        lblTurnoNombreJugador.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
+        lblTurnoNombreJugador.setForeground(new java.awt.Color(255, 255, 255));
+        lblTurnoNombreJugador.setText("Nombre Jugador");
 
         lblTurno.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
         lblTurno.setForeground(new java.awt.Color(255, 255, 255));
         lblTurno.setText("Turno: ");
 
-        txtTurno.setBackground(new java.awt.Color(153, 204, 255));
-        txtTurno.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
-        txtTurno.setForeground(new java.awt.Color(255, 255, 255));
-        txtTurno.setText("Nombre Jugador");
-        txtTurno.setBorder(null);
-
         javax.swing.GroupLayout pnTurnoLayout = new javax.swing.GroupLayout(pnTurno);
         pnTurno.setLayout(pnTurnoLayout);
         pnTurnoLayout.setHorizontalGroup(
             pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTurnoLayout.createSequentialGroup()
-                .addGap(103, 103, 103)
-                .addComponent(lblTurno)
-                .addContainerGap(291, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnoLayout.createSequentialGroup()
+                .addContainerGap(205, Short.MAX_VALUE)
+                .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(25, 25, 25))
             .addGroup(pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnoLayout.createSequentialGroup()
-                    .addContainerGap(208, Short.MAX_VALUE)
-                    .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 213, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(50, Short.MAX_VALUE)))
+                .addGroup(pnTurnoLayout.createSequentialGroup()
+                    .addGap(113, 113, 113)
+                    .addComponent(lblTurno)
+                    .addContainerGap(281, Short.MAX_VALUE)))
         );
         pnTurnoLayout.setVerticalGroup(
             pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnTurnoLayout.createSequentialGroup()
-                .addGap(26, 26, 26)
-                .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(27, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnoLayout.createSequentialGroup()
+                .addContainerGap(33, Short.MAX_VALUE)
+                .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
             .addGroup(pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnoLayout.createSequentialGroup()
-                    .addContainerGap(34, Short.MAX_VALUE)
-                    .addComponent(txtTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 49, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(30, Short.MAX_VALUE)))
+                    .addContainerGap(36, Short.MAX_VALUE)
+                    .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap()))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -200,10 +198,10 @@ public class FrmSala extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblConfiguracion;
-    private javax.swing.JLabel lblConfiguracion1;
-    private javax.swing.JLabel lblConfiguracion2;
-    private javax.swing.JLabel lblConfiguracion3;
+    private javax.swing.JLabel iconConfiguracion1;
+    private javax.swing.JLabel iconConfiguracion2;
+    private javax.swing.JLabel iconConfiguracion3;
+    private javax.swing.JLabel iconConfiguracion4;
     private javax.swing.JLabel lblINombreJugador3;
     private javax.swing.JLabel lblIconoJugador1;
     private javax.swing.JLabel lblIconoJugador2;
@@ -212,9 +210,9 @@ public class FrmSala extends javax.swing.JFrame {
     private javax.swing.JLabel lblNombreJugador1;
     private javax.swing.JLabel lblNombreJugador4;
     private javax.swing.JLabel lblTurno;
+    private javax.swing.JLabel lblTurnoNombreJugador;
     private javax.swing.JLabel lbllNombreJugador2;
     private javax.swing.JPanel pnJugadores;
     private javax.swing.JPanel pnTurno;
-    private javax.swing.JTextField txtTurno;
     // End of variables declaration//GEN-END:variables
 }
