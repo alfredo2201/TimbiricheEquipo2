@@ -19,24 +19,25 @@ public class FrmSala extends javax.swing.JFrame {
     Graphics g;
     JPanel lienzo;
     String pepe = "pica papas con un pico";
+    String again = "volvi a actualizar";
 
     public FrmSala() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH); 
+        this.setExtendedState(MAXIMIZED_BOTH);
         configuracionLienzo(20);
         g = lienzo.getGraphics();
-      
+
     }
 
-       private void configuracionLienzo(int tamanio)
-     {
-       lienzo = new pnJuego(tamanio);//se inicializa el lienzo
-       lienzo.setLocation(-5, 0); //se establece su posición
-       lienzo.setSize(1400, 1000); //establece el tamaño del panel
-       lienzo.setVisible(true);
-       add(lienzo); //se agrega al frame principal
-       pack();
-     }
+    private void configuracionLienzo(int tamanio) {
+        lienzo = new pnJuego(tamanio);//se inicializa el lienzo
+        lienzo.setLocation(-5, 0); //se establece su posición
+        lienzo.setSize(1400, 1000); //establece el tamaño del panel
+        lienzo.setVisible(true);
+        add(lienzo); //se agrega al frame principal
+        pack();
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
