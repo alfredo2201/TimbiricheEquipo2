@@ -21,6 +21,7 @@ public class FrmSala extends javax.swing.JFrame {
 
     String pepe = "pica papas con un pico";
     String again = "volvi a actualizar";
+    String awa = "awa de uwu";
 
 
     public FrmSala() {
