@@ -60,13 +60,13 @@ public class FrmSala extends javax.swing.JFrame {
         lblINombreJugador3 = new javax.swing.JLabel();
         lblIconoJugador4 = new javax.swing.JLabel();
         lblNombreJugador4 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
         pnTurno = new javax.swing.JPanel();
         lblTurno = new javax.swing.JLabel();
         txtTurno = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Timbiriche");
-        setPreferredSize(new java.awt.Dimension(1650, 1080));
 
         pnJugadores.setBackground(new java.awt.Color(0, 102, 255));
         pnJugadores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -115,6 +115,9 @@ public class FrmSala extends javax.swing.JFrame {
         lblNombreJugador4.setText("Nombre Jugador");
         pnJugadores.add(lblNombreJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, 60));
 
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
+        pnJugadores.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+
         pnTurno.setBackground(new java.awt.Color(153, 204, 255));
         pnTurno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255)));
 
@@ -135,7 +138,7 @@ public class FrmSala extends javax.swing.JFrame {
             .addGroup(pnTurnoLayout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(lblTurno)
-                .addContainerGap(283, Short.MAX_VALUE))
+                .addContainerGap(291, Short.MAX_VALUE))
             .addGroup(pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnoLayout.createSequentialGroup()
                     .addContainerGap(208, Short.MAX_VALUE)
@@ -211,6 +214,7 @@ public class FrmSala extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel lblINombreJugador3;
     private javax.swing.JLabel lblIconoJugador1;
     private javax.swing.JLabel lblIconoJugador2;
