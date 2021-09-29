@@ -60,7 +60,7 @@ public class FrmSala extends javax.swing.JFrame {
         lblINombreJugador3 = new javax.swing.JLabel();
         lblIconoJugador4 = new javax.swing.JLabel();
         lblNombreJugador4 = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
+        lblConfiguracion = new javax.swing.JLabel();
         pnTurno = new javax.swing.JPanel();
         lblTurno = new javax.swing.JLabel();
         txtTurno = new javax.swing.JTextField();
@@ -115,8 +115,8 @@ public class FrmSala extends javax.swing.JFrame {
         lblNombreJugador4.setText("Nombre Jugador");
         pnJugadores.add(lblNombreJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, 60));
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
-        pnJugadores.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+        lblConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
+        pnJugadores.add(lblConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
 
         pnTurno.setBackground(new java.awt.Color(153, 204, 255));
         pnTurno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255)));
@@ -214,7 +214,7 @@ public class FrmSala extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel lblConfiguracion;
     private javax.swing.JLabel lblINombreJugador3;
     private javax.swing.JLabel lblIconoJugador1;
     private javax.swing.JLabel lblIconoJugador2;
