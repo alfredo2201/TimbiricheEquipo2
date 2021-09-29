@@ -60,7 +60,10 @@ public class FrmSala extends javax.swing.JFrame {
         lblINombreJugador3 = new javax.swing.JLabel();
         lblIconoJugador4 = new javax.swing.JLabel();
         lblNombreJugador4 = new javax.swing.JLabel();
-        lblConfiguracion = new javax.swing.JLabel();
+        lblConfiguracion4 = new javax.swing.JLabel();
+        lblConfiguracion1 = new javax.swing.JLabel();
+        lblConfiguracion2 = new javax.swing.JLabel();
+        lblConfiguracion3 = new javax.swing.JLabel();
         pnTurno = new javax.swing.JPanel();
         lblTurno = new javax.swing.JLabel();
         txtTurno = new javax.swing.JTextField();
@@ -115,8 +118,17 @@ public class FrmSala extends javax.swing.JFrame {
         lblNombreJugador4.setText("Nombre Jugador");
         pnJugadores.add(lblNombreJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, 60));
 
-        lblConfiguracion.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
-        pnJugadores.add(lblConfiguracion, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+        lblConfiguracion4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
+        pnJugadores.add(lblConfiguracion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
+
+        lblConfiguracion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
+        pnJugadores.add(lblConfiguracion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
+
+        lblConfiguracion2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
+        pnJugadores.add(lblConfiguracion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
+
+        lblConfiguracion3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icon-Confi.png"))); // NOI18N
+        pnJugadores.add(lblConfiguracion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 280, -1, -1));
 
         pnTurno.setBackground(new java.awt.Color(153, 204, 255));
         pnTurno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255)));
@@ -214,7 +226,10 @@ public class FrmSala extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel lblConfiguracion;
+    private javax.swing.JLabel lblConfiguracion1;
+    private javax.swing.JLabel lblConfiguracion2;
+    private javax.swing.JLabel lblConfiguracion3;
+    private javax.swing.JLabel lblConfiguracion4;
     private javax.swing.JLabel lblINombreJugador3;
     private javax.swing.JLabel lblIconoJugador1;
     private javax.swing.JLabel lblIconoJugador2;
