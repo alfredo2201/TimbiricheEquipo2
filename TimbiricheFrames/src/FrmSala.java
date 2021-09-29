@@ -20,15 +20,6 @@ public class FrmSala extends javax.swing.JFrame {
     Graphics g;
     JPanel lienzo;
 
-
-    String pepe = "pica papas con un pico";
-    String again = "volvi a actualizar";
-    String awa = "awa de uwu";
-    String uwu = "Chanchito feliz uwuwu";
-
-
-
-
     private FrmSala(int tamanio) {
 
         initComponents();

@@ -22,6 +22,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         initComponents();
         this.setTitle("El Juego de Timbiriche");
         this.setLocationRelativeTo(null);
+        
 
     }
 
@@ -44,14 +45,22 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         pnPrincipal = new javax.swing.JPanel();
         btnImgresar = new javax.swing.JButton();
+        lblTitulo = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(760, 520));
+
+        pnPrincipal.setBackground(new java.awt.Color(255, 255, 255));
+        pnPrincipal.setPreferredSize(new java.awt.Dimension(760, 520));
+        pnPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         btnImgresar.setBackground(new java.awt.Color(0, 51, 255));
         btnImgresar.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
         btnImgresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnImgresar.setText("Ingresar");
+        btnImgresar.setText("Crear Partida");
         btnImgresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)
         );
         btnImgresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
@@ -60,43 +69,34 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnImgresarActionPerformed(evt);
             }
         });
+        pnPrincipal.add(btnImgresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 397, 199, 56));
 
-        jLabel1.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
-        jLabel1.setText("Titulo");
+        lblTitulo.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
+        lblTitulo.setText("Titulo");
+        pnPrincipal.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 93, -1, -1));
 
-        javax.swing.GroupLayout pnPrincipalLayout = new javax.swing.GroupLayout(pnPrincipal);
-        pnPrincipal.setLayout(pnPrincipalLayout);
-        pnPrincipalLayout.setHorizontalGroup(
-            pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnPrincipalLayout.createSequentialGroup()
-                .addGroup(pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(pnPrincipalLayout.createSequentialGroup()
-                        .addGap(267, 267, 267)
-                        .addComponent(btnImgresar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnPrincipalLayout.createSequentialGroup()
-                        .addGap(328, 328, 328)
-                        .addComponent(jLabel1)))
-                .addContainerGap(292, Short.MAX_VALUE))
-        );
-        pnPrincipalLayout.setVerticalGroup(
-            pnPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnPrincipalLayout.createSequentialGroup()
-                .addGap(93, 93, 93)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 272, Short.MAX_VALUE)
-                .addComponent(btnImgresar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
-        );
+        jLabel1.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel1.setText("Nombre:");
+        pnPrincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 233, -1, -1));
+
+        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
+        jTextField1.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
+        jTextField1.setToolTipText("Ingresa tu nickname");
+        jTextField1.setBorder(null);
+        pnPrincipal.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 198, -1));
+        pnPrincipal.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 210, 10));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
         );
 
         pack();
@@ -105,7 +105,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnImgresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgresarActionPerformed
       
         
-        int size = 1;
+        int size = 10;
         FrmSala sala = FrmSala.getInstance(size);
         sala.setVisible(true);
         
@@ -116,6 +116,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnImgresar;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnPrincipal;
     // End of variables declaration//GEN-END:variables
 }
