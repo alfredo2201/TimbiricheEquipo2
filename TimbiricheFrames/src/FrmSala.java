@@ -18,7 +18,6 @@ public class FrmSala extends javax.swing.JFrame {
      */
     Graphics g;
     JPanel lienzo;
-    String pepe = "pica papas con un pico";
 
     public FrmSala() {
         initComponents();
@@ -130,7 +129,7 @@ public class FrmSala extends javax.swing.JFrame {
             .addGroup(pnTurnoLayout.createSequentialGroup()
                 .addGap(103, 103, 103)
                 .addComponent(lblTurno)
-                .addContainerGap(291, Short.MAX_VALUE))
+                .addContainerGap(283, Short.MAX_VALUE))
             .addGroup(pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnoLayout.createSequentialGroup()
                     .addContainerGap(208, Short.MAX_VALUE)
