@@ -1,3 +1,5 @@
+package Presentacion;
+
 
 import javax.swing.JOptionPane;
 
@@ -44,49 +46,48 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         pnPrincipal = new javax.swing.JPanel();
-        btnImgresar = new javax.swing.JButton();
+        btnIngresar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
-        jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jSeparator1 = new javax.swing.JSeparator();
+        btnIngresar1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(760, 520));
 
         pnPrincipal.setBackground(new java.awt.Color(255, 255, 255));
         pnPrincipal.setPreferredSize(new java.awt.Dimension(760, 520));
         pnPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
-        btnImgresar.setBackground(new java.awt.Color(0, 51, 255));
-        btnImgresar.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
-        btnImgresar.setForeground(new java.awt.Color(255, 255, 255));
-        btnImgresar.setText("Crear Partida");
-        btnImgresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)
+        btnIngresar.setBackground(new java.awt.Color(0, 51, 255));
+        btnIngresar.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
+        btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresar.setText("Unirse");
+        btnIngresar.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)
         );
-        btnImgresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnImgresar.addActionListener(new java.awt.event.ActionListener() {
+        btnIngresar.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnImgresarActionPerformed(evt);
+                btnIngresarActionPerformed(evt);
             }
         });
-        pnPrincipal.add(btnImgresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(267, 397, 199, 56));
+        pnPrincipal.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 199, 56));
 
         lblTitulo.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
+        lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("Titulo");
         pnPrincipal.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 93, -1, -1));
 
-        jLabel1.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel1.setText("Nombre:");
-        pnPrincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(171, 233, -1, -1));
-
-        jTextField1.setBackground(new java.awt.Color(255, 255, 255));
-        jTextField1.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
-        jTextField1.setForeground(new java.awt.Color(0, 0, 0));
-        jTextField1.setToolTipText("Ingresa tu nickname");
-        jTextField1.setBorder(null);
-        pnPrincipal.add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 198, -1));
-        pnPrincipal.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 260, 210, 10));
+        btnIngresar1.setBackground(new java.awt.Color(0, 51, 255));
+        btnIngresar1.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
+        btnIngresar1.setForeground(new java.awt.Color(255, 255, 255));
+        btnIngresar1.setText("Crear Partida");
+        btnIngresar1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.LOWERED)
+        );
+        btnIngresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnIngresar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnIngresar1ActionPerformed(evt);
+            }
+        });
+        pnPrincipal.add(btnIngresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 199, 56));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -102,22 +103,26 @@ public class FrmPrincipal extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnImgresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImgresarActionPerformed
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
       
         
         int size = 10;
-        FrmSala sala = FrmSala.getInstance(size);
+        FrmPartida sala = FrmPartida.getInstance(size);
         sala.setVisible(true);
         
         this.dispose();
-    }//GEN-LAST:event_btnImgresarActionPerformed
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
+    private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
+        frmCrearPartida crearPartida = frmCrearPartida.getInstance();
+        crearPartida.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnIngresar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnImgresar;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTextField jTextField1;
+    private javax.swing.JButton btnIngresar;
+    private javax.swing.JButton btnIngresar1;
     private javax.swing.JLabel lblTitulo;
     private javax.swing.JPanel pnPrincipal;
     // End of variables declaration//GEN-END:variables

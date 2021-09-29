@@ -1,3 +1,5 @@
+package Presentacion;
+
 
 import java.awt.Graphics;
 import javax.swing.JPanel;
@@ -11,16 +13,16 @@ import javax.swing.JPanel;
  *
  * @author crist
  */
-public class FrmSala extends javax.swing.JFrame {
+public class FrmPartida extends javax.swing.JFrame {
 
     /**
      * Creates new form FrmSala
      */
-    private static FrmSala instance ;
+    private static FrmPartida instance ;
     Graphics g;
     JPanel lienzo;
 
-    private FrmSala(int tamanio) {
+    private FrmPartida(int tamanio) {
 
         initComponents();
         this.setExtendedState(MAXIMIZED_BOTH);
@@ -37,9 +39,9 @@ public class FrmSala extends javax.swing.JFrame {
         add(lienzo); //se agrega al frame principal
         pack();
     }
-    public static FrmSala getInstance(int tamanio){
+    public static FrmPartida getInstance(int tamanio){
         if (instance == null) {
-            instance = new FrmSala(tamanio);
+            instance = new FrmPartida(tamanio);
         }
         return instance;
     }
