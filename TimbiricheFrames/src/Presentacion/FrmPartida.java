@@ -28,7 +28,7 @@ public class FrmPartida extends javax.swing.JFrame {
 
     private FrmPartida(Tablero tablero) {
         initComponents();
-        control = new Control();
+        control = Control.getInstance();
         this.setExtendedState(MAXIMIZED_BOTH);
         configuracionLienzo(tablero);
         g = lienzo.getGraphics();
@@ -47,9 +47,8 @@ public class FrmPartida extends javax.swing.JFrame {
     
     
     private void cargaJugador(){
-        control.simulaCargaJuagadores();
-        lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(control.getJ1().getAvatar())));
-        lblNombreJugador1.setText(control.getJ1().getNombre());
+        lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(control.getJ4().getAvatar())));
+        lblNombreJugador1.setText(control.getJ4().getNombre());
     }
     
     
@@ -118,14 +117,14 @@ public class FrmPartida extends javax.swing.JFrame {
             pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnJugadoresLayout.createSequentialGroup()
                 .addGap(62, 62, 62)
-                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(lblIconoJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnJugadoresLayout.createSequentialGroup()
                         .addGap(40, 40, 40)
                         .addComponent(btnCambiaColor, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnJugadoresLayout.createSequentialGroup()
                         .addGap(32, 32, 32)
-                        .addComponent(lblNombreJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(lblNombreJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(lblIconoJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(529, Short.MAX_VALUE))
         );
 

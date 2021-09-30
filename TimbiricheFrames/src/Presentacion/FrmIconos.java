@@ -5,9 +5,8 @@
  */
 package Presentacion;
 
-import java.awt.Image;
-import javax.swing.ImageIcon;
-import javax.swing.JFrame;
+import Control.Control;
+
 
 /**
  *
@@ -18,9 +17,11 @@ public class FrmIconos extends javax.swing.JFrame {
     /**
      * Creates new form FrmIconos
      */
+    private final Control ct;
     public FrmIconos() {
         initComponents();
         this.setLocationRelativeTo(null);
+        ct = Control.getInstance();
     }
 
     /**
@@ -33,7 +34,7 @@ public class FrmIconos extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel2 = new javax.swing.JLabel();
+        lblFondo = new javax.swing.JLabel();
         btnOpcionIcono4 = new javax.swing.JButton();
         btnOpcionIcono1 = new javax.swing.JButton();
         btnOpcionIcono2 = new javax.swing.JButton();
@@ -43,13 +44,11 @@ public class FrmIconos extends javax.swing.JFrame {
         btnOpcionIcono6 = new javax.swing.JButton();
         btnOpcionIcono7 = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
-        lblFondo = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jLabel2.setFont(new java.awt.Font("OCR A Extended", 1, 22)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel2.setText("Selecione un avatar");
+        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoIconos.png"))); // NOI18N
 
         btnOpcionIcono4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnIcono4.png"))); // NOI18N
         btnOpcionIcono4.setBorder(null);
@@ -134,7 +133,9 @@ public class FrmIconos extends javax.swing.JFrame {
             }
         });
 
-        lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoIconos.png"))); // NOI18N
+        jLabel2.setFont(new java.awt.Font("OCR A Extended", 1, 22)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Selecione un avatar");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -206,80 +207,52 @@ public class FrmIconos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpcionIcono4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono4ActionPerformed
-        // TODO add your handling code here:
+        System.out.println(ct.getJ3().getAvatar());
+        ct.getJ4().setAvatar("/img/btnIcono4.png");
+       dispose();
     }//GEN-LAST:event_btnOpcionIcono4ActionPerformed
 
     private void btnOpcionIcono1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono1ActionPerformed
-//        ImageIcon imageIcon = new ImageIcon(new ImageIcon("src/img/btnIcono1.png").getImage());
-//        FrmPartida fP = new FrmPartida(imageIcon);
-//        fP.setVisible(true);
-//        dispose();
+       ct.getJ4().setAvatar("/img/btnIcono1.png");
+       dispose();
     }//GEN-LAST:event_btnOpcionIcono1ActionPerformed
 
     private void btnOpcionIcono2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono2ActionPerformed
-        // TODO add your handling code here:
+       ct.getJ4().setAvatar("/img/btnIcono2.png");
+       dispose();
     }//GEN-LAST:event_btnOpcionIcono2ActionPerformed
 
     private void btnOpcionIcono3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono3ActionPerformed
-        // TODO add your handling code here:
+       ct.getJ4().setAvatar("/img/btnIcono3.png");
+       dispose();
     }//GEN-LAST:event_btnOpcionIcono3ActionPerformed
 
     private void btnOpcionIcono8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono8ActionPerformed
-        // TODO add your handling code here:
+       ct.getJ4().setAvatar("/img/btnIcono8.png");
+       dispose();
     }//GEN-LAST:event_btnOpcionIcono8ActionPerformed
 
     private void btnOpcionIcono5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono5ActionPerformed
-        // TODO add your handling code here:
+       ct.getJ4().setAvatar("/img/btnIcono5.png");
+       dispose();
     }//GEN-LAST:event_btnOpcionIcono5ActionPerformed
 
     private void btnOpcionIcono6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono6ActionPerformed
-        // TODO add your handling code here:
+       ct.getJ4().setAvatar("/img/btnIcono6.png");
+       dispose();
     }//GEN-LAST:event_btnOpcionIcono6ActionPerformed
 
     private void btnOpcionIcono7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono7ActionPerformed
-        // TODO add your handling code here:
+       ct.getJ4().setAvatar("/img/btnIcono7.png");
+       dispose();
     }//GEN-LAST:event_btnOpcionIcono7ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        FrmPrincipal fP = new FrmPrincipal();
+        FrmPrincipal fP = FrmPrincipal.getInstance();
         fP.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(FrmIconos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(FrmIconos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(FrmIconos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(FrmIconos.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new FrmIconos().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;

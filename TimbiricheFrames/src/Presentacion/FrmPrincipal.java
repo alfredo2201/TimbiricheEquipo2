@@ -1,7 +1,8 @@
 package Presentacion;
 
+import Control.Control;
+import Control.Jugador;
 import Control.Tablero;
-import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -17,13 +18,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form FrnPrincipal
      */
+    private Control ct;
     private static FrmPrincipal instancia;
 
     FrmPrincipal() {
         initComponents();
         this.setTitle("El Juego de Timbiriche");
         this.setLocationRelativeTo(null);
-
+        this.ct = Control.getInstance();
     }
 
     public static FrmPrincipal getInstance() {
@@ -44,7 +46,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void initComponents() {
 
         panelPrincipal = new javax.swing.JPanel();
-        lbNombre = new javax.swing.JTextField();
+        txtNombre = new javax.swing.JTextField();
         btnAvatar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
         btnIngresar1 = new javax.swing.JButton();
@@ -54,13 +56,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
         panelPrincipal.setBackground(new java.awt.Color(33, 33, 33));
 
-        lbNombre.setBackground(new java.awt.Color(41, 43, 47));
-        lbNombre.setFont(new java.awt.Font("OCR A Extended", 1, 18)); // NOI18N
-        lbNombre.setForeground(new java.awt.Color(255, 255, 255));
-        lbNombre.setBorder(null);
-        lbNombre.addActionListener(new java.awt.event.ActionListener() {
+        txtNombre.setBackground(new java.awt.Color(41, 43, 47));
+        txtNombre.setFont(new java.awt.Font("OCR A Extended", 1, 18)); // NOI18N
+        txtNombre.setForeground(new java.awt.Color(255, 255, 255));
+        txtNombre.setBorder(null);
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                lbNombreActionPerformed(evt);
+                txtNombreActionPerformed(evt);
             }
         });
 
@@ -120,7 +122,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(290, 290, 290)
-                .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(lblImagen)
         );
         panelPrincipalLayout.setVerticalGroup(
@@ -136,7 +138,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(282, 282, 282)
-                .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
@@ -156,6 +158,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
 
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
         frmCrearPartida crearPartida = frmCrearPartida.getInstance();
+        ct.getJ4().setNombre(txtNombre.getText());
         crearPartida.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnIngresar1ActionPerformed
@@ -169,14 +172,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
-    private void lbNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lbNombreActionPerformed
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_lbNombreActionPerformed
+    }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatarActionPerformed
         FrmIconos fi = new FrmIconos();
         fi.setVisible(true);
-        dispose();
+
     }//GEN-LAST:event_btnAvatarActionPerformed
 
 
@@ -184,8 +187,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAvatar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnIngresar1;
-    private javax.swing.JTextField lbNombre;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JPanel panelPrincipal;
+    private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }
