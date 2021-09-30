@@ -59,7 +59,7 @@
                   <EmptySpace min="290" pref="290" max="-2" attributes="0"/>
                   <Component id="lbNombre" min="-2" pref="300" max="-2" attributes="0"/>
               </Group>
-              <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+              <Component id="lblImagen" min="-2" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -80,7 +80,7 @@
                   <EmptySpace min="282" pref="282" max="-2" attributes="0"/>
                   <Component id="lbNombre" min="-2" pref="30" max="-2" attributes="0"/>
               </Group>
-              <Component id="jLabel1" min="-2" pref="540" max="-2" attributes="0"/>
+              <Component id="lblImagen" min="-2" pref="540" max="-2" attributes="0"/>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -182,7 +182,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresar1ActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel1">
+        <Component class="javax.swing.JLabel" name="lblImagen">
           <Properties>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/img/fondoPrincipal.png"/>

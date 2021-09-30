@@ -48,7 +48,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
         btnAvatar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
         btnIngresar1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        lblImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -103,7 +103,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoPrincipal.png"))); // NOI18N
+        lblImagen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoPrincipal.png"))); // NOI18N
 
         javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
         panelPrincipal.setLayout(panelPrincipalLayout);
@@ -121,7 +121,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(290, 290, 290)
                 .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel1)
+            .addComponent(lblImagen)
         );
         panelPrincipalLayout.setVerticalGroup(
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -137,7 +137,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(282, 282, 282)
                 .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -184,8 +184,8 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton btnAvatar;
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnIngresar1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField lbNombre;
+    private javax.swing.JLabel lblImagen;
     private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }
