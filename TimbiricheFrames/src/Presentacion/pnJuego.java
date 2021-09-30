@@ -11,6 +11,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
+import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 
 /**
@@ -27,9 +28,10 @@ public class pnJuego extends javax.swing.JPanel {
     private int posicion_y;
     private int w;
     private int h;
-    Punto p1;
-    Punto p2;
-
+    private Punto p1;
+    private Punto p2;
+    private Graphics2D g2d;
+    
     public pnJuego(Tablero tablero) {
         initComponents();
         this.tamanio = tablero.getTamanio();
@@ -38,11 +40,13 @@ public class pnJuego extends javax.swing.JPanel {
         this.posicion_y = tablero.getPuntos().getY();
         this.w = tablero.getPuntos().getWeidt();
         this.h = tablero.getPuntos().getHigh();
+        this.p1 = new Punto();
+        this.p2 = new Punto();
     }
 
     @Override
     public void paintComponent(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
+         g2d = (Graphics2D) g;
         super.paintComponent(g);
         Punto punto;
         g2d.setPaint(Color.YELLOW);
@@ -60,14 +64,20 @@ public class pnJuego extends javax.swing.JPanel {
             posicion_y += separacion;
         }
         posicion_y = puntoInicialy;
-        for (Punto punto1 : puntosList) {
-            System.out.println(punto1);
-        }
+
     }
 
+    
+    
     public void dibujarLinea() {
-        for (Punto punto : puntosList) {
-
+        // g2d = (Graphics2D) g;
+        if(p1.getY() == p2.getY()){
+            Rectangle2D rec = new Rectangle2D.Double(p1.getX(), p1.getY(), 15, 0);
+            g2d.fill(rec);
+        }else{
+            Rectangle2D rec = new Rectangle2D.Double(p1.getX(), p1.getY(), 15, 0);
+            g2d.setColor(Color.red);
+            g2d.fill(rec);
         }
     }
 
@@ -95,13 +105,55 @@ public class pnJuego extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        if (pulsacion == 1) {
-            p1 = new Punto(evt.getX(), evt.getY(), 15, 0);
-            pulsacion++;
-        } else {
-            p2 = new Punto(evt.getX(), evt.getY(), 15, 0);
-            pulsacion--;
+
+        for (Punto punto : puntosList) {
+
+            if (pulsacion == 1) {
+                if (punto.getX() <= evt.getX()) {
+                    if (punto.getY() <= evt.getY()) {
+                        pulsacion++;
+                        p1.setX(punto.getX());
+                        p1.setY(punto.getY());
+                        
+                    }
+                }
+            } else {
+                if (punto.getX() <= evt.getX()) {
+                    if (punto.getY() <= evt.getY()) {
+                        pulsacion--;
+                        p2.setX(punto.getX());
+                        p2.setY(punto.getY());
+                       
+                    }
+                }
+            }
+
+//            if(pulsacion == 1){
+//                if(punto.getX() == evt.getX() || punto.getY() == evt.getY()){
+//                    pulsacion++;
+//                    dibujar++;
+//                } 
+//            }else{
+//                if(punto.getX() == evt.getX() || punto.getY() == evt.getY()){
+//                    pulsacion--;
+//                    dibujar++;
+//                    break;
+//                } 
+//            }
         }
+        System.out.println("Punto1: "+p1.toString());
+        System.out.println("Punto2: "+p2.toString());
+        //Graphics g = new Graphics();
+        this.dibujarLinea();
+        
+            //System.out.println(p1.toString());
+//            if (pulsacion == 1) {
+//                p1 = new Punto(evt.getX(), evt.getY(), 15, 0);
+//                pulsacion++;
+//            } else {
+//                p2 = new Punto(evt.getX(), evt.getY(), 15, 0);
+//                pulsacion--;
+//            }
     }//GEN-LAST:event_formMouseClicked
 
 
