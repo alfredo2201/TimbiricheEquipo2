@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package Presentacion;
+package Control;
 
 /**
  *
@@ -13,6 +13,10 @@ public class Punto {
     private int y = 0;
     private int weidt = 0;
     private int high = 0;
+
+    public Punto() {
+    }
+    
     
     public Punto(int x, int y, int weidt, int high){
         this.x = x;
@@ -51,6 +55,11 @@ public class Punto {
 
     public void setHigh(int high) {
         this.high = high;
+    }
+
+    @Override
+    public String toString() {
+        return "x=" + x + ", y=" + y + ", weidt=" + weidt;
     }
 
     

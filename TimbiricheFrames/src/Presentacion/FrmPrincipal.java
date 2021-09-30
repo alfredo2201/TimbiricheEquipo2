@@ -1,5 +1,6 @@
 package Presentacion;
 
+import Control.Tablero;
 import javax.swing.JOptionPane;
 
 /*
@@ -52,7 +53,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         panelPrincipal.setBackground(new java.awt.Color(33, 33, 33));
-        panelPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         lbNombre.setBackground(new java.awt.Color(41, 43, 47));
         lbNombre.setFont(new java.awt.Font("OCR A Extended", 1, 18)); // NOI18N
@@ -63,7 +63,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 lbNombreActionPerformed(evt);
             }
         });
-        panelPrincipal.add(lbNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 282, 300, 30));
 
         btnAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/escogeIconosBtn.png"))); // NOI18N
         btnAvatar.setBorder(null);
@@ -75,7 +74,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnAvatarActionPerformed(evt);
             }
         });
-        panelPrincipal.add(btnAvatar, new org.netbeans.lib.awtextra.AbsoluteConstraints(540, 320, 80, 60));
 
         btnIngresar.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
         btnIngresar.setForeground(new java.awt.Color(255, 255, 255));
@@ -90,7 +88,6 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        panelPrincipal.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(396, 390, 199, 56));
 
         btnIngresar1.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
         btnIngresar1.setForeground(new java.awt.Color(255, 255, 255));
@@ -105,10 +102,43 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnIngresar1ActionPerformed(evt);
             }
         });
-        panelPrincipal.add(btnIngresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(185, 390, 199, 56));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoPrincipal.png"))); // NOI18N
-        panelPrincipal.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, 540));
+
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addComponent(btnIngresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(540, 540, 540)
+                .addComponent(btnAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(396, 396, 396)
+                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(290, 290, 290)
+                .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1)
+        );
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(btnIngresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(btnAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(282, 282, 282)
+                .addComponent(lbNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 540, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -131,11 +161,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresar1ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        
-//        lbNombre.getText();
-//        
-        int size = 10;
-        FrmPartida sala = FrmPartida.getInstance(size);
+        Tablero tablero = new Tablero();
+        tablero.setTamanio(20);
+        FrmPartida sala = FrmPartida.getInstance(tablero);
         sala.setVisible(true);
 
         this.dispose();

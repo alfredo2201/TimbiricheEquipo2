@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import Control.Tablero;
 import javax.swing.DefaultComboBoxModel;
 
 /**
@@ -18,29 +19,32 @@ public class frmCrearPartida extends javax.swing.JFrame {
      */
     private static frmCrearPartida instancia;
     private DefaultComboBoxModel cmbModelTamanio = this.cmbModelTamanio;
-    private final int[]lista;
+    private final int[] lista;
+
     private frmCrearPartida() {
         this.lista = new int[]{10, 20, 40};
         initComponents();
         agregarTamanioLista();
         this.setLocationRelativeTo(null);
     }
-    
-    public static frmCrearPartida getInstance(){
+
+    public static frmCrearPartida getInstance() {
         if (instancia == null) {
             instancia = new frmCrearPartida();
         }
         return instancia;
     }
-    public int tamanioTablero(){
-        return (int)cmbTamanio.getSelectedItem();
+
+    public int tamanioTablero() {
+        return (int) cmbTamanio.getSelectedItem();
     }
-    private void agregarTamanioLista(){
+
+    private void agregarTamanioLista() {
         for (int i = 0; i < lista.length; i++) {
             cmbTamanio.addItem(lista[i]);
         }
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -54,12 +58,9 @@ public class frmCrearPartida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Configuracion");
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         lblTamanio.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
         lblTamanio.setForeground(new java.awt.Color(255, 255, 255));
         lblTamanio.setText("Tamaño del tablero:");
-        jPanel1.add(lblTamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 130, -1, -1));
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmarBtn.png"))); // NOI18N
         btnAceptar.setBorder(null);
@@ -71,13 +72,39 @@ public class frmCrearPartida extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 200, 140, 50));
 
         cmbTamanio.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
-        jPanel1.add(cmbTamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 130, 150, -1));
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoIconos.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 620, 320));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(btnAceptar))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(lblTamanio))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(lblTamanio))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -96,7 +123,9 @@ public class frmCrearPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        FrmPartida partida = FrmPartida.getInstance(this.tamanioTablero());
+        Tablero tablero = new Tablero();
+        tablero.setTamanio(this.tamanioTablero());
+        FrmPartida partida = FrmPartida.getInstance(tablero);
         partida.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed

@@ -5,6 +5,8 @@
  */
 package Presentacion;
 
+import Control.Punto;
+import Control.Tablero;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -18,14 +20,24 @@ import java.util.ArrayList;
 public class pnJuego extends javax.swing.JPanel {
 
     private final int tamanio;
-    private ArrayList<Punto> puntosList = new ArrayList();
-    private int pulsacion=1;
+    private final ArrayList<Punto> puntosList = new ArrayList();
+    private final int separacion;
+    private int pulsacion = 1;
+    private int posicion_x;
+    private int posicion_y;
+    private int w;
+    private int h;
     Punto p1;
     Punto p2;
-    public pnJuego(int tamanio) {
-        initComponents();
-        this.tamanio = tamanio;
 
+    public pnJuego(Tablero tablero) {
+        initComponents();
+        this.tamanio = tablero.getTamanio();
+        this.separacion = tablero.getSeparacion();
+        this.posicion_x = tablero.getPuntos().getX();
+        this.posicion_y = tablero.getPuntos().getY();
+        this.w = tablero.getPuntos().getWeidt();
+        this.h = tablero.getPuntos().getHigh();
     }
 
     @Override
@@ -33,28 +45,30 @@ public class pnJuego extends javax.swing.JPanel {
         Graphics2D g2d = (Graphics2D) g;
         super.paintComponent(g);
         Punto punto;
-        g2d.setPaint(Color.BLACK);
-
-        int posicion_x = 15;
-        int posicion_y = 15;
+        g2d.setPaint(Color.YELLOW);
+        int puntoInicialx = posicion_x;
+        int puntoInicialy = posicion_y;
         for (int i = 0; i < tamanio; i++) {
             for (int j = 0; j < tamanio; j++) {
-                Ellipse2D e1 = new Ellipse2D.Double(posicion_x, posicion_y, 15, 15);
-                punto = new Punto(posicion_x, posicion_y, 15, 15);
+                Ellipse2D e1 = new Ellipse2D.Double(posicion_x, posicion_y, w, h);
+                punto = new Punto(posicion_x, posicion_y, w, h);
                 puntosList.add(punto);
                 g2d.fill(e1);
-                posicion_x += 50;
-
+                posicion_x += separacion;
             }
-            posicion_x = 15;
-            posicion_y += 50;
+            posicion_x = puntoInicialx;
+            posicion_y += separacion;
+        }
+        posicion_y = puntoInicialy;
+        for (Punto punto1 : puntosList) {
+            System.out.println(punto1);
         }
     }
 
     public void dibujarLinea() {
         for (Punto punto : puntosList) {
-            
-        }        
+
+        }
     }
 
     @SuppressWarnings("unchecked")
@@ -81,10 +95,10 @@ public class pnJuego extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        if (pulsacion == 1 ) {
+        if (pulsacion == 1) {
             p1 = new Punto(evt.getX(), evt.getY(), 15, 0);
             pulsacion++;
-        }else{
+        } else {
             p2 = new Punto(evt.getX(), evt.getY(), 15, 0);
             pulsacion--;
         }
