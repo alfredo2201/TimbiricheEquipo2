@@ -45,40 +45,25 @@ public class frmCrearPartida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnConfiguracion = new javax.swing.JPanel();
-        lblTamanio = new javax.swing.JLabel();
         txtNickname = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         cmbTamanio = new javax.swing.JComboBox<>();
         lblNombre = new javax.swing.JLabel();
         btnAceptar = new javax.swing.JButton();
+        lblTamanio = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Configuracion");
-
-        pnConfiguracion.setBackground(new java.awt.Color(255, 255, 255));
-        pnConfiguracion.setPreferredSize(new java.awt.Dimension(520, 400));
-        pnConfiguracion.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblTamanio.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
-        lblTamanio.setForeground(new java.awt.Color(0, 0, 0));
-        lblTamanio.setText("Tamaño:");
-        pnConfiguracion.add(lblTamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, -1, -1));
 
         txtNickname.setBackground(new java.awt.Color(255, 255, 255));
         txtNickname.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
         txtNickname.setForeground(new java.awt.Color(0, 0, 0));
         txtNickname.setToolTipText("Ingresa tu nickname");
         txtNickname.setBorder(null);
-        pnConfiguracion.add(txtNickname, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 140, 210, -1));
-        pnConfiguracion.add(jSeparator1, new org.netbeans.lib.awtextra.AbsoluteConstraints(170, 170, 210, 10));
-
-        pnConfiguracion.add(cmbTamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 190, -1, -1));
 
         lblNombre.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
         lblNombre.setForeground(new java.awt.Color(0, 0, 0));
         lblNombre.setText("Nombre:");
-        pnConfiguracion.add(lblNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 140, -1, -1));
 
         btnAceptar.setText("Aceptar");
         btnAceptar.addActionListener(new java.awt.event.ActionListener() {
@@ -86,17 +71,50 @@ public class frmCrearPartida extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        pnConfiguracion.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 280, -1, -1));
+
+        lblTamanio.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
+        lblTamanio.setForeground(new java.awt.Color(0, 0, 0));
+        lblTamanio.setText("Tamaño:");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnConfiguracion, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 512, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 111, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblNombre)
+                        .addGap(5, 5, 5)
+                        .addComponent(txtNickname, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(80, 80, 80)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 210, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(lblTamanio)
+                        .addGap(11, 11, 11)
+                        .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(130, 130, 130)
+                        .addComponent(btnAceptar)))
+                .addGap(0, 111, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnConfiguracion, javax.swing.GroupLayout.DEFAULT_SIZE, 386, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 112, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblNombre)
+                    .addComponent(txtNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(3, 3, 3)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(10, 10, 10)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblTamanio)
+                    .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(63, 63, 63)
+                .addComponent(btnAceptar)
+                .addGap(0, 113, Short.MAX_VALUE))
         );
 
         pack();
@@ -114,7 +132,6 @@ public class frmCrearPartida extends javax.swing.JFrame {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JLabel lblNombre;
     private javax.swing.JLabel lblTamanio;
-    private javax.swing.JPanel pnConfiguracion;
     private javax.swing.JTextField txtNickname;
     // End of variables declaration//GEN-END:variables
 }

@@ -45,16 +45,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnPrincipal = new javax.swing.JPanel();
+        panelPrincipal = new javax.swing.JPanel();
         btnIngresar = new javax.swing.JButton();
         lblTitulo = new javax.swing.JLabel();
         btnIngresar1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        pnPrincipal.setBackground(new java.awt.Color(255, 255, 255));
-        pnPrincipal.setPreferredSize(new java.awt.Dimension(760, 520));
-        pnPrincipal.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+        panelPrincipal.setBackground(new java.awt.Color(33, 33, 33));
 
         btnIngresar.setBackground(new java.awt.Color(0, 51, 255));
         btnIngresar.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
@@ -68,12 +67,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnIngresarActionPerformed(evt);
             }
         });
-        pnPrincipal.add(btnIngresar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 400, 199, 56));
 
         lblTitulo.setFont(new java.awt.Font("Gadugi", 0, 24)); // NOI18N
         lblTitulo.setForeground(new java.awt.Color(0, 0, 0));
         lblTitulo.setText("Titulo");
-        pnPrincipal.add(lblTitulo, new org.netbeans.lib.awtextra.AbsoluteConstraints(328, 93, -1, -1));
 
         btnIngresar1.setBackground(new java.awt.Color(0, 51, 255));
         btnIngresar1.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
@@ -87,31 +84,66 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 btnIngresar1ActionPerformed(evt);
             }
         });
-        pnPrincipal.add(btnIngresar1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 330, 199, 56));
+
+        jButton2.setBackground(new java.awt.Color(102, 153, 255));
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/userAvatar.png"))); // NOI18N
+        jButton2.setBorder(BorderFactory.createEmptyBorder(0,0,0,0));
+
+        javax.swing.GroupLayout panelPrincipalLayout = new javax.swing.GroupLayout(panelPrincipal);
+        panelPrincipal.setLayout(panelPrincipalLayout);
+        panelPrincipalLayout.setHorizontalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addGap(185, 185, 185)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jButton2)
+                    .addGroup(panelPrincipalLayout.createSequentialGroup()
+                        .addComponent(btnIngresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(166, Short.MAX_VALUE))
+            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPrincipalLayout.createSequentialGroup()
+                    .addGap(68, 68, Short.MAX_VALUE)
+                    .addComponent(lblTitulo)
+                    .addGap(0, 70, Short.MAX_VALUE)))
+        );
+        panelPrincipalLayout.setVerticalGroup(
+            panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(panelPrincipalLayout.createSequentialGroup()
+                .addContainerGap(274, Short.MAX_VALUE)
+                .addComponent(jButton2)
+                .addGap(93, 93, 93)
+                .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnIngresar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnIngresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(105, 105, 105))
+            .addGroup(panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(panelPrincipalLayout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(lblTitulo)
+                    .addGap(0, 410, Short.MAX_VALUE)))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 758, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(pnPrincipal, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(panelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-      
-        
-        int size = 10;
-        FrmPartida sala = FrmPartida.getInstance(size);
-        sala.setVisible(true);
-        
-        this.dispose();
-    }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
         frmCrearPartida crearPartida = frmCrearPartida.getInstance();
@@ -119,11 +151,21 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_btnIngresar1ActionPerformed
 
+    private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+
+        int size = 10;
+        FrmPartida sala = FrmPartida.getInstance(size);
+        sala.setVisible(true);
+
+        this.dispose();
+    }//GEN-LAST:event_btnIngresarActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnIngresar;
     private javax.swing.JButton btnIngresar1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel lblTitulo;
-    private javax.swing.JPanel pnPrincipal;
+    private javax.swing.JPanel panelPrincipal;
     // End of variables declaration//GEN-END:variables
 }

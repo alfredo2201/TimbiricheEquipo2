@@ -50,121 +50,175 @@ public class FrmPartida extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        pnJugadores = new javax.swing.JPanel();
-        lblNombreJugador1 = new javax.swing.JLabel();
-        lblIconoJugador1 = new javax.swing.JLabel();
-        lblIconoJugador2 = new javax.swing.JLabel();
-        lbllNombreJugador2 = new javax.swing.JLabel();
-        lblIconoJugador3 = new javax.swing.JLabel();
-        lblINombreJugador3 = new javax.swing.JLabel();
+        jPanel2 = new javax.swing.JPanel();
         lblIconoJugador4 = new javax.swing.JLabel();
+        lblIconoJugador3 = new javax.swing.JLabel();
+        lblIconoJugador2 = new javax.swing.JLabel();
+        lblIconoJugador1 = new javax.swing.JLabel();
+        lblNombreJugador1 = new javax.swing.JLabel();
+        lbllNombreJugador2 = new javax.swing.JLabel();
+        lblINombreJugador3 = new javax.swing.JLabel();
         lblNombreJugador4 = new javax.swing.JLabel();
         iconConfiguracion4 = new javax.swing.JLabel();
-        iconConfiguracion1 = new javax.swing.JLabel();
-        iconConfiguracion2 = new javax.swing.JLabel();
         iconConfiguracion3 = new javax.swing.JLabel();
-        pnTurno = new javax.swing.JPanel();
-        lblTurnoNombreJugador = new javax.swing.JLabel();
+        iconConfiguracion2 = new javax.swing.JLabel();
+        iconConfiguracion1 = new javax.swing.JLabel();
+        jPanel3 = new javax.swing.JPanel();
         lblTurno = new javax.swing.JLabel();
+        lblTurnoNombreJugador = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Timbiriche");
 
-        pnJugadores.setBackground(new java.awt.Color(0, 102, 255));
-        pnJugadores.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
-        lblNombreJugador1.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
-        lblNombreJugador1.setForeground(new java.awt.Color(255, 255, 255));
-        lblNombreJugador1.setText("Nombre Jugador");
-        pnJugadores.add(lblNombreJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 85, -1, 60));
-
-        lblIconoJugador1.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
-        lblIconoJugador1.setForeground(new java.awt.Color(255, 255, 255));
-        lblIconoJugador1.setText("   Icono");
-        lblIconoJugador1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnJugadores.add(lblIconoJugador1, new org.netbeans.lib.awtextra.AbsoluteConstraints(78, 85, 70, 60));
-
-        lblIconoJugador2.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
-        lblIconoJugador2.setForeground(new java.awt.Color(255, 255, 255));
-        lblIconoJugador2.setText("   Icono");
-        lblIconoJugador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnJugadores.add(lblIconoJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(79, 178, 70, 60));
-
-        lbllNombreJugador2.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
-        lbllNombreJugador2.setForeground(new java.awt.Color(255, 255, 255));
-        lbllNombreJugador2.setText("Nombre Jugador");
-        pnJugadores.add(lbllNombreJugador2, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 178, -1, 60));
-
-        lblIconoJugador3.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
-        lblIconoJugador3.setForeground(new java.awt.Color(255, 255, 255));
-        lblIconoJugador3.setText("   Icono");
-        lblIconoJugador3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnJugadores.add(lblIconoJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 270, 70, 60));
-
-        lblINombreJugador3.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
-        lblINombreJugador3.setForeground(new java.awt.Color(255, 255, 255));
-        lblINombreJugador3.setText("Nombre Jugador");
-        pnJugadores.add(lblINombreJugador3, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 270, -1, 60));
+        jPanel2.setBackground(new java.awt.Color(102, 255, 102));
 
         lblIconoJugador4.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
         lblIconoJugador4.setForeground(new java.awt.Color(255, 255, 255));
         lblIconoJugador4.setText("   Icono");
         lblIconoJugador4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
-        pnJugadores.add(lblIconoJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(80, 360, 70, 60));
+
+        lblIconoJugador3.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
+        lblIconoJugador3.setForeground(new java.awt.Color(255, 255, 255));
+        lblIconoJugador3.setText("   Icono");
+        lblIconoJugador3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblIconoJugador2.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
+        lblIconoJugador2.setForeground(new java.awt.Color(255, 255, 255));
+        lblIconoJugador2.setText("   Icono");
+        lblIconoJugador2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblIconoJugador1.setFont(new java.awt.Font("Fugaz One", 0, 18)); // NOI18N
+        lblIconoJugador1.setForeground(new java.awt.Color(255, 255, 255));
+        lblIconoJugador1.setText("   Icono");
+        lblIconoJugador1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+
+        lblNombreJugador1.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
+        lblNombreJugador1.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombreJugador1.setText("Nombre Jugador");
+
+        lbllNombreJugador2.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
+        lbllNombreJugador2.setForeground(new java.awt.Color(255, 255, 255));
+        lbllNombreJugador2.setText("Nombre Jugador");
+
+        lblINombreJugador3.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
+        lblINombreJugador3.setForeground(new java.awt.Color(255, 255, 255));
+        lblINombreJugador3.setText("Nombre Jugador");
 
         lblNombreJugador4.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
         lblNombreJugador4.setForeground(new java.awt.Color(255, 255, 255));
         lblNombreJugador4.setText("Nombre Jugador");
-        pnJugadores.add(lblNombreJugador4, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 360, -1, 60));
 
         iconConfiguracion4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
-        pnJugadores.add(iconConfiguracion4, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 370, -1, -1));
-
-        iconConfiguracion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
-        pnJugadores.add(iconConfiguracion1, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 100, -1, -1));
-
-        iconConfiguracion2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
-        pnJugadores.add(iconConfiguracion2, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 190, -1, -1));
 
         iconConfiguracion3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
-        pnJugadores.add(iconConfiguracion3, new org.netbeans.lib.awtextra.AbsoluteConstraints(360, 290, -1, -1));
 
-        pnTurno.setBackground(new java.awt.Color(153, 204, 255));
-        pnTurno.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED, new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255), new java.awt.Color(51, 153, 255)));
+        iconConfiguracion2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
 
-        lblTurnoNombreJugador.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
-        lblTurnoNombreJugador.setForeground(new java.awt.Color(255, 255, 255));
-        lblTurnoNombreJugador.setText("Nombre Jugador");
+        iconConfiguracion1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confi.png"))); // NOI18N
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(lblIconoJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(12, 12, 12)
+                        .addComponent(lblNombreJugador1)
+                        .addGap(4, 4, 4)
+                        .addComponent(iconConfiguracion1))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(1, 1, 1)
+                        .addComponent(lblIconoJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(11, 11, 11)
+                        .addComponent(lbllNombreJugador2)
+                        .addGap(4, 4, 4)
+                        .addComponent(iconConfiguracion2))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(lblIconoJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(lblINombreJugador3)
+                        .addGap(4, 4, 4)
+                        .addComponent(iconConfiguracion3))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(2, 2, 2)
+                        .addComponent(lblIconoJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(10, 10, 10)
+                        .addComponent(lblNombreJugador4)
+                        .addGap(4, 4, 4)
+                        .addComponent(iconConfiguracion4)))
+                .addContainerGap(62, Short.MAX_VALUE))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(115, 115, 115)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIconoJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(15, 15, 15)
+                        .addComponent(iconConfiguracion1)))
+                .addGap(33, 33, 33)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIconoJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lbllNombreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(12, 12, 12)
+                        .addComponent(iconConfiguracion2)))
+                .addGap(32, 32, 32)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIconoJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblINombreJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(20, 20, 20)
+                        .addComponent(iconConfiguracion3)))
+                .addGap(30, 30, 30)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblIconoJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblNombreJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
+                        .addComponent(iconConfiguracion4)))
+                .addContainerGap(161, Short.MAX_VALUE))
+        );
+
+        jPanel3.setBackground(new java.awt.Color(204, 255, 204));
 
         lblTurno.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
-        lblTurno.setForeground(new java.awt.Color(255, 255, 255));
+        lblTurno.setForeground(new java.awt.Color(0, 0, 0));
         lblTurno.setText("Turno: ");
 
-        javax.swing.GroupLayout pnTurnoLayout = new javax.swing.GroupLayout(pnTurno);
-        pnTurno.setLayout(pnTurnoLayout);
-        pnTurnoLayout.setHorizontalGroup(
-            pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnoLayout.createSequentialGroup()
-                .addContainerGap(205, Short.MAX_VALUE)
-                .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(25, 25, 25))
-            .addGroup(pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnTurnoLayout.createSequentialGroup()
-                    .addGap(113, 113, 113)
+        lblTurnoNombreJugador.setFont(new java.awt.Font("Fugaz One", 0, 24)); // NOI18N
+        lblTurnoNombreJugador.setForeground(new java.awt.Color(0, 0, 0));
+        lblTurnoNombreJugador.setText("Nombre Jugador");
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 376, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(13, 13, 13)
                     .addComponent(lblTurno)
-                    .addContainerGap(281, Short.MAX_VALUE)))
+                    .addGap(15, 15, 15)
+                    .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 249, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(14, Short.MAX_VALUE)))
         );
-        pnTurnoLayout.setVerticalGroup(
-            pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnoLayout.createSequentialGroup()
-                .addContainerGap(33, Short.MAX_VALUE)
-                .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(pnTurnoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnoLayout.createSequentialGroup()
-                    .addContainerGap(36, Short.MAX_VALUE)
-                    .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 65, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap()))
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 112, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel3Layout.createSequentialGroup()
+                    .addGap(21, 21, 21)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addContainerGap(21, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -172,19 +226,20 @@ public class FrmPartida extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(1189, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(pnJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 475, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25))
+                .addContainerGap(1271, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(46, 46, 46))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(pnJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 699, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 96, Short.MAX_VALUE)
-                .addComponent(pnTurno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(88, 88, 88))
+                .addGap(81, 81, 81)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 102, Short.MAX_VALUE)
+                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(94, 94, 94))
         );
 
         pack();
@@ -195,6 +250,8 @@ public class FrmPartida extends javax.swing.JFrame {
     private javax.swing.JLabel iconConfiguracion2;
     private javax.swing.JLabel iconConfiguracion3;
     private javax.swing.JLabel iconConfiguracion4;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JLabel lblINombreJugador3;
     private javax.swing.JLabel lblIconoJugador1;
     private javax.swing.JLabel lblIconoJugador2;
@@ -205,7 +262,5 @@ public class FrmPartida extends javax.swing.JFrame {
     private javax.swing.JLabel lblTurno;
     private javax.swing.JLabel lblTurnoNombreJugador;
     private javax.swing.JLabel lbllNombreJugador2;
-    private javax.swing.JPanel pnJugadores;
-    private javax.swing.JPanel pnTurno;
     // End of variables declaration//GEN-END:variables
 }
