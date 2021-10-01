@@ -17,7 +17,7 @@ public class Control {
     private Jugador j4;
     private static Control instancia;
 
-    private Control() {
+    public Control() {
         j1 = new Jugador("JuanG");
         j1.setAvatar("/img/btnIcono1.png");
         j2 = new Jugador("Alex");
@@ -26,8 +26,6 @@ public class Control {
         j3.setAvatar("/img/btnIcono2.png");
         j4 = new Jugador();
     }
-
-
 
     public Jugador getJ1() {
         return j1;

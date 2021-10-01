@@ -66,6 +66,11 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 txtNombreActionPerformed(evt);
             }
         });
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtNombreKeyTyped(evt);
+            }
+        });
 
         btnAvatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/escogeIconosBtn.png"))); // NOI18N
         btnAvatar.setBorder(null);
@@ -171,6 +176,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresar1ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+
         Tablero tablero = new Tablero();
         tablero.setTamanio(40);
         ct.getJ4().setNombre(txtNombre.getText());
@@ -187,7 +193,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatarActionPerformed
@@ -195,6 +201,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
         fi.setVisible(true);
 
     }//GEN-LAST:event_btnAvatarActionPerformed
+
+    private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
+
+        if (txtNombre.getText().length() == 10) {
+            evt.consume();
+            JOptionPane.showMessageDialog(this, "Solo se permiten 10 caracteres");
+        }
+    }//GEN-LAST:event_txtNombreKeyTyped
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

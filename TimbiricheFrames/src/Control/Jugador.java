@@ -5,14 +5,17 @@
  */
 package Control;
 
+import java.awt.Color;
+
 /**
  *
  * @author crist
  */
 public class Jugador {
+
     private String nombre;
     private String avatar;
-    private String color;
+    private Color color;
 
     public Jugador(String nombre) {
         this.nombre = nombre;
@@ -21,7 +24,6 @@ public class Jugador {
     public Jugador() {
     }
 
-    
     public String getNombre() {
         return nombre;
     }
@@ -38,14 +40,12 @@ public class Jugador {
         this.avatar = avatar;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(Color color) {
         this.color = color;
     }
-    
-    
-}
 
+}

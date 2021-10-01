@@ -1,6 +1,7 @@
 package Presentacion;
 
 import Control.Control;
+import Control.Jugador;
 import Control.Tablero;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -25,7 +26,6 @@ public class FrmPartida extends javax.swing.JFrame {
     private final Graphics g;
     private JPanel lienzo;
     private final Control control;
-    
 
     private FrmPartida(Tablero tablero) {
         initComponents();
@@ -33,35 +33,32 @@ public class FrmPartida extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         configuracionLienzo(tablero);
         g = lienzo.getGraphics();
-        
+
         cargaJugador();
     }
 
-
     private void configuracionLienzo(Tablero tablero) {
         lienzo = new pnJuego(tablero);//se inicializa el lienzo
-        
+
         lienzo.setLocation(200, 0); //se establece su posición
         lienzo.setSize(1010, 1010); //establece el tamaño del panel
         lienzo.setVisible(true);
         add(lienzo); //se agrega al frame principal
-        
         pack();
     }
-    
-    
-    private void cargaJugador(){
+
+    private void cargaJugador() {
         lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(control.getJ4().getAvatar())));
         lblNombreJugador1.setText(control.getJ4().getNombre());
+        lblTurnoNombreJugador.setText(control.getJ4().getNombre());
     }
-    
+
     public static FrmPartida getInstance(Tablero tablero) {
         if (instance == null) {
             instance = new FrmPartida(tablero);
         }
         return instance;
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -146,26 +143,20 @@ public class FrmPartida extends javax.swing.JFrame {
         pnTurnosLayout.setHorizontalGroup(
             pnTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnosLayout.createSequentialGroup()
-                .addContainerGap(164, Short.MAX_VALUE)
+                .addGap(25, 25, 25)
+                .addComponent(lblTurno)
+                .addGap(18, 18, 18)
                 .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
-            .addGroup(pnTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnTurnosLayout.createSequentialGroup()
-                    .addGap(13, 13, 13)
-                    .addComponent(lblTurno)
-                    .addContainerGap(255, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         pnTurnosLayout.setVerticalGroup(
             pnTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnTurnosLayout.createSequentialGroup()
-                .addGap(22, 22, 22)
-                .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(19, 19, 19)
+                .addGroup(pnTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 68, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(22, Short.MAX_VALUE))
-            .addGroup(pnTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(pnTurnosLayout.createSequentialGroup()
-                    .addGap(21, 21, 21)
-                    .addComponent(lblTurno, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(21, Short.MAX_VALUE)))
         );
 
         btnAbandonaPartida.setBackground(new java.awt.Color(153, 153, 153));
@@ -175,22 +166,27 @@ public class FrmPartida extends javax.swing.JFrame {
         btnAbandonaPartida.setContentAreaFilled(false);
         btnAbandonaPartida.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonar.png"))); // NOI18N
         btnAbandonaPartida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonarC.png"))); // NOI18N
+        btnAbandonaPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbandonaPartidaActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(1318, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(pnTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(pnJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(27, 27, 27))
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                            .addComponent(btnAbandonaPartida)
-                            .addGap(89, 89, 89)))))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(pnJugadores, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(pnTurnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(27, 27, 27))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(btnAbandonaPartida)
+                        .addGap(97, 97, 97))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -211,8 +207,19 @@ public class FrmPartida extends javax.swing.JFrame {
         Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
         if (c != null) {
             lblNombreJugador1.setForeground(c);
+            Jugador jugador = new Jugador();
+            Control ct = Control.getInstance();
+            ct.getJ4().setColor(c);
+            jugador.setColor(c);
+
         }
     }//GEN-LAST:event_btnCambiaColorActionPerformed
+
+    private void btnAbandonaPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonaPartidaActionPerformed
+        FrmPrincipal pr = FrmPrincipal.getInstance();
+        pr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAbandonaPartidaActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbandonaPartida;
