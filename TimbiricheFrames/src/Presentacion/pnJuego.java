@@ -68,14 +68,14 @@ public class pnJuego extends javax.swing.JPanel {
             posicion_y += separacion;
         }
         posicion_y = puntoInicialy;
-        
+
     }
 
     public void setG(Graphics g) {
         this.g = g;
     }
-    
-    private void grosor(){            
+
+    private void grosor() {
         switch (tabla.getTamanio()) {
             case 10:
                 grosor = 10;
@@ -94,15 +94,27 @@ public class pnJuego extends javax.swing.JPanel {
     public void dibujarLinea(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         if (p1.getY() == p2.getY()) {
-            //                                       x   y  ancho altura
-            Rectangle2D rec = new Rectangle2D.Double(p1.getX()+(p1.getWeidt()/2), p1.getY()+(p1.getWeidt()/2)-(grosor/2), tabla.getSeparacion(), grosor);
-            g2d.setColor(Color.red);
-            g2d.fill(rec);
-
+            if (p1.getX() > p2.getX()) {
+                Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
+                g2d.setColor(Color.MAGENTA);
+                g2d.fill(rec);
+            } else {
+                //                                       x   y  ancho altura
+                Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
+                g2d.setColor(Color.green);
+                g2d.fill(rec);
+            }
         } else {
-            Rectangle2D rec = new Rectangle2D.Double(p2.getX()+(p1.getWeidt()/2), p2.getY()+(p2.getWeidt()/2)-(grosor/2), grosor, tabla.getSeparacion());
-            g2d.setColor(Color.blue);
-            g2d.fill(rec);
+            if (p1.getY() > p2.getY()) {
+                //                                       x   y  ancho altura
+                Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
+                g2d.setColor(Color.red);
+                g2d.fill(rec);
+            } else {
+                Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
+                g2d.setColor(Color.blue);
+                g2d.fill(rec);
+            }
         }
     }
 
@@ -159,11 +171,12 @@ public class pnJuego extends javax.swing.JPanel {
 
             }
             pulsacion--;
+            System.out.println("Turno");
             System.out.println("P1: " + p1.toString());
             System.out.println("P2: " + p2.toString());
             this.dibujarLinea(this.getGraphics());
         }
-        
+
 
     }//GEN-LAST:event_formMouseClicked
 
