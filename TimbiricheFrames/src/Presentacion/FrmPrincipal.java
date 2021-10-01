@@ -160,23 +160,30 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
         ct.getJ4().setNombre(txtNombre.getText());
         String icono = ct.getJ4().getAvatar();
-        if(txtNombre.getText().equalsIgnoreCase("")||icono==null){
+        if (txtNombre.getText().equalsIgnoreCase("") || icono == null) {
             JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
                     "Error", JOptionPane.ERROR_MESSAGE);
-        }else{
-        frmCrearPartida crearPartida = frmCrearPartida.getInstance(); 
-        crearPartida.setVisible(true);
-        this.dispose();
+        } else {
+            frmCrearPartida crearPartida = frmCrearPartida.getInstance();
+            crearPartida.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btnIngresar1ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
         Tablero tablero = new Tablero();
-        tablero.setTamanio(20);
-        FrmPartida sala = FrmPartida.getInstance(tablero);
-        sala.setVisible(true);
+        tablero.setTamanio(40);
+        ct.getJ4().setNombre(txtNombre.getText());
+        String icono = ct.getJ4().getAvatar();
+        if (txtNombre.getText().equalsIgnoreCase("") || icono == null) {
+            JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        } else {
+            FrmPartida sala = FrmPartida.getInstance(tablero);
+            sala.setVisible(true);
+            this.dispose();
+        }
 
-        this.dispose();
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
@@ -186,7 +193,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatarActionPerformed
         FrmIconos fi = new FrmIconos();
         fi.setVisible(true);
-        
+
     }//GEN-LAST:event_btnAvatarActionPerformed
 
 
