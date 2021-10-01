@@ -25,6 +25,7 @@ public class FrmPartida extends javax.swing.JFrame {
     private final Graphics g;
     private JPanel lienzo;
     private final Control control;
+    
 
     private FrmPartida(Tablero tablero) {
         initComponents();
@@ -32,16 +33,19 @@ public class FrmPartida extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         configuracionLienzo(tablero);
         g = lienzo.getGraphics();
+        
         cargaJugador();
     }
 
 
     private void configuracionLienzo(Tablero tablero) {
         lienzo = new pnJuego(tablero);//se inicializa el lienzo
+        
         lienzo.setLocation(200, 0); //se establece su posición
         lienzo.setSize(1010, 1010); //establece el tamaño del panel
         lienzo.setVisible(true);
         add(lienzo); //se agrega al frame principal
+        
         pack();
     }
     

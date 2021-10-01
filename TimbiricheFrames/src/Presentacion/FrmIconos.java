@@ -48,8 +48,6 @@ public class FrmIconos extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         btnOpcionIcono4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnIcono4.png"))); // NOI18N
         btnOpcionIcono4.setBorder(null);
         btnOpcionIcono4.setContentAreaFilled(false);
@@ -60,7 +58,6 @@ public class FrmIconos extends javax.swing.JFrame {
                 btnOpcionIcono4ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOpcionIcono4, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 110, 150, 140));
 
         btnOpcionIcono1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnIcono1.png"))); // NOI18N
         btnOpcionIcono1.setBorder(null);
@@ -72,7 +69,6 @@ public class FrmIconos extends javax.swing.JFrame {
                 btnOpcionIcono1ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOpcionIcono1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 110, 150, 140));
 
         btnOpcionIcono2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnIcono2.png"))); // NOI18N
         btnOpcionIcono2.setBorder(null);
@@ -84,7 +80,6 @@ public class FrmIconos extends javax.swing.JFrame {
                 btnOpcionIcono2ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOpcionIcono2, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 110, 150, 140));
 
         btnOpcionIcono3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnIcono3.png"))); // NOI18N
         btnOpcionIcono3.setBorder(null);
@@ -96,7 +91,6 @@ public class FrmIconos extends javax.swing.JFrame {
                 btnOpcionIcono3ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOpcionIcono3, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 110, 150, 140));
 
         btnOpcionIcono8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnIcono8.png"))); // NOI18N
         btnOpcionIcono8.setBorder(null);
@@ -108,7 +102,6 @@ public class FrmIconos extends javax.swing.JFrame {
                 btnOpcionIcono8ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOpcionIcono8, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 250, 150, 140));
 
         btnOpcionIcono5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnIcono5.png"))); // NOI18N
         btnOpcionIcono5.setBorder(null);
@@ -120,7 +113,6 @@ public class FrmIconos extends javax.swing.JFrame {
                 btnOpcionIcono5ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOpcionIcono5, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 250, 150, 140));
 
         btnOpcionIcono6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnIcono6.png"))); // NOI18N
         btnOpcionIcono6.setBorder(null);
@@ -132,7 +124,6 @@ public class FrmIconos extends javax.swing.JFrame {
                 btnOpcionIcono6ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOpcionIcono6, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 250, 150, 140));
 
         btnOpcionIcono7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnIcono7.png"))); // NOI18N
         btnOpcionIcono7.setBorder(null);
@@ -144,7 +135,6 @@ public class FrmIconos extends javax.swing.JFrame {
                 btnOpcionIcono7ActionPerformed(evt);
             }
         });
-        jPanel1.add(btnOpcionIcono7, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 250, 150, 140));
 
         btnCancelar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/cancelarBtn.png"))); // NOI18N
         btnCancelar.setBorder(null);
@@ -156,15 +146,64 @@ public class FrmIconos extends javax.swing.JFrame {
                 btnCancelarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnCancelar, new org.netbeans.lib.awtextra.AbsoluteConstraints(320, 410, 140, 60));
 
         jLabel2.setFont(new java.awt.Font("OCR A Extended", 1, 22)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Selecione un avatar");
-        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(270, 60, -1, -1));
 
         lblFondo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoIconos.png"))); // NOI18N
-        jPanel1.add(lblFondo, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, -1, -1));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(btnOpcionIcono1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnOpcionIcono2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnOpcionIcono3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnOpcionIcono4, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(btnOpcionIcono5, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnOpcionIcono6, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnOpcionIcono7, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(btnOpcionIcono8, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(320, 320, 320)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(270, 270, 270)
+                .addComponent(jLabel2))
+            .addComponent(lblFondo)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnOpcionIcono1, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOpcionIcono2, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOpcionIcono3, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOpcionIcono4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnOpcionIcono5, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOpcionIcono6, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOpcionIcono7, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnOpcionIcono8, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(20, 20, 20)
+                .addComponent(btnCancelar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addComponent(jLabel2))
+            .addComponent(lblFondo)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

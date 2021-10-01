@@ -30,8 +30,10 @@ public class pnJuego extends javax.swing.JPanel {
     private int h;
     private Punto p1;
     private Punto p2;
-    private Graphics2D g2d;
-    
+    private Graphics g;
+    private Tablero tabla;
+    private int grosor;
+
     public pnJuego(Tablero tablero) {
         initComponents();
         this.tamanio = tablero.getTamanio();
@@ -42,11 +44,13 @@ public class pnJuego extends javax.swing.JPanel {
         this.h = tablero.getPuntos().getHigh();
         this.p1 = new Punto();
         this.p2 = new Punto();
+        this.tabla = tablero;
+        grosor();
     }
 
     @Override
     public void paintComponent(Graphics g) {
-         g2d = (Graphics2D) g;
+        Graphics2D g2d = (Graphics2D) g;
         super.paintComponent(g);
         Punto punto;
         g2d.setPaint(Color.DARK_GRAY);
@@ -64,19 +68,40 @@ public class pnJuego extends javax.swing.JPanel {
             posicion_y += separacion;
         }
         posicion_y = puntoInicialy;
-
+        
     }
 
+    public void setG(Graphics g) {
+        this.g = g;
+    }
     
-    
-    public void dibujarLinea() {
-        // g2d = (Graphics2D) g;
-        if(p1.getY() == p2.getY()){
-            Rectangle2D rec = new Rectangle2D.Double(p1.getX(), p1.getY(), 15, 0);
-            g2d.fill(rec);
-        }else{
-            Rectangle2D rec = new Rectangle2D.Double(p1.getX(), p1.getY(), 15, 0);
+    private void grosor(){            
+        switch (tabla.getTamanio()) {
+            case 10:
+                grosor = 10;
+                break;
+            case 20:
+                grosor = 8;
+                break;
+            case 40:
+                grosor = 4;
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void dibujarLinea(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+        if (p1.getY() == p2.getY()) {
+            //                                       x   y  ancho altura
+            Rectangle2D rec = new Rectangle2D.Double(p1.getX()+(p1.getWeidt()/2), p1.getY()+(p1.getWeidt()/2)-(grosor/2), tabla.getSeparacion(), grosor);
             g2d.setColor(Color.red);
+            g2d.fill(rec);
+
+        } else {
+            Rectangle2D rec = new Rectangle2D.Double(p2.getX()+(p1.getWeidt()/2), p2.getY()+(p2.getWeidt()/2)-(grosor/2), grosor, tabla.getSeparacion());
+            g2d.setColor(Color.blue);
             g2d.fill(rec);
         }
     }
@@ -112,6 +137,8 @@ public class pnJuego extends javax.swing.JPanel {
                     if (punto.getY() <= evt.getY()) {
                         p1.setX(punto.getX());
                         p1.setY(punto.getY());
+                        p1.setWeidt(punto.getWeidt());
+                        p1.setHigh(punto.getHigh());
                     }
                 }
 
@@ -125,15 +152,19 @@ public class pnJuego extends javax.swing.JPanel {
                     if (punto.getY() <= evt.getY()) {
                         p2.setX(punto.getX());
                         p2.setY(punto.getY());
+                        p2.setWeidt(punto.getWeidt());
+                        p2.setHigh(punto.getHigh());
                     }
                 }
 
             }
             pulsacion--;
+            System.out.println("P1: " + p1.toString());
+            System.out.println("P2: " + p2.toString());
+            this.dibujarLinea(this.getGraphics());
         }
-        System.out.println("Punto1: " + p1.toString());
-        System.out.println("Punto2: " + p2.toString());
-        this.dibujarLinea();
+        
+
     }//GEN-LAST:event_formMouseClicked
 
 
