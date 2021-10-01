@@ -105,55 +105,35 @@ public class pnJuego extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+        if (pulsacion == 1) {
+            for (Punto punto : puntosList) {
 
-        for (Punto punto : puntosList) {
-
-            if (pulsacion == 1) {
                 if (punto.getX() <= evt.getX()) {
                     if (punto.getY() <= evt.getY()) {
-                        pulsacion++;
                         p1.setX(punto.getX());
                         p1.setY(punto.getY());
-                        
                     }
                 }
-            } else {
+
+            }
+            pulsacion++;
+        } else {
+
+            for (Punto punto : puntosList) {
+
                 if (punto.getX() <= evt.getX()) {
                     if (punto.getY() <= evt.getY()) {
-                        pulsacion--;
                         p2.setX(punto.getX());
                         p2.setY(punto.getY());
-                       
                     }
                 }
-            }
 
-//            if(pulsacion == 1){
-//                if(punto.getX() == evt.getX() || punto.getY() == evt.getY()){
-//                    pulsacion++;
-//                    dibujar++;
-//                } 
-//            }else{
-//                if(punto.getX() == evt.getX() || punto.getY() == evt.getY()){
-//                    pulsacion--;
-//                    dibujar++;
-//                    break;
-//                } 
-//            }
+            }
+            pulsacion--;
         }
-        System.out.println("Punto1: "+p1.toString());
-        System.out.println("Punto2: "+p2.toString());
-        //Graphics g = new Graphics();
+        System.out.println("Punto1: " + p1.toString());
+        System.out.println("Punto2: " + p2.toString());
         this.dibujarLinea();
-        
-            //System.out.println(p1.toString());
-//            if (pulsacion == 1) {
-//                p1 = new Punto(evt.getX(), evt.getY(), 15, 0);
-//                pulsacion++;
-//            } else {
-//                p2 = new Punto(evt.getX(), evt.getY(), 15, 0);
-//                pulsacion--;
-//            }
     }//GEN-LAST:event_formMouseClicked
 
 
