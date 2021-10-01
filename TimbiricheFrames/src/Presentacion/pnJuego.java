@@ -6,7 +6,7 @@
 package Presentacion;
 
 import Control.Control;
-import Control.Jugador;
+import Control.Linea;
 import Control.Punto;
 import Control.Tablero;
 import java.awt.Color;
@@ -35,6 +35,7 @@ public class pnJuego extends javax.swing.JPanel {
     private Graphics g;
     private Tablero tabla;
     private int grosor;
+    private Control control;
 
     public pnJuego(Tablero tablero) {
         initComponents();
@@ -47,6 +48,7 @@ public class pnJuego extends javax.swing.JPanel {
         this.p1 = new Punto();
         this.p2 = new Punto();
         this.tabla = tablero;
+        control = Control.getInstance();
         grosor();
     }
 
@@ -102,11 +104,13 @@ public class pnJuego extends javax.swing.JPanel {
                 Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
                 g2d.setColor(con.getJ4().getColor());
                 g2d.fill(rec);
+                control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             } else {
                 //                                       x   y  ancho altura
                 Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
                 g2d.setColor(con.getJ4().getColor());
                 g2d.fill(rec);
+                control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             }
         } else {
             if (p1.getY() > p2.getY()) {
@@ -114,12 +118,15 @@ public class pnJuego extends javax.swing.JPanel {
                 Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
                 g2d.setColor(con.getJ4().getColor());
                 g2d.fill(rec);
+                control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             } else {
                 Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
                 g2d.setColor(con.getJ4().getColor());
                 g2d.fill(rec);
+                control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             }
         }
+        System.out.println(control.getJ4().getLineas().toString());
     }
 
     @SuppressWarnings("unchecked")
