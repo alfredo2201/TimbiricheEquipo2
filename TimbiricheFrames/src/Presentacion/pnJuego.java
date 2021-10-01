@@ -49,7 +49,7 @@ public class pnJuego extends javax.swing.JPanel {
          g2d = (Graphics2D) g;
         super.paintComponent(g);
         Punto punto;
-        g2d.setPaint(Color.YELLOW);
+        g2d.setPaint(Color.DARK_GRAY);
         int puntoInicialx = posicion_x;
         int puntoInicialy = posicion_y;
         for (int i = 0; i < tamanio; i++) {

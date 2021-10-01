@@ -51,9 +51,6 @@ public class FrmPartida extends javax.swing.JFrame {
         lblNombreJugador1.setText(control.getJ4().getNombre());
     }
     
-    
-    
-
     public static FrmPartida getInstance(Tablero tablero) {
         if (instance == null) {
             instance = new FrmPartida(tablero);
@@ -77,6 +74,7 @@ public class FrmPartida extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Timbiriche");
+        setBackground(new java.awt.Color(255, 255, 255));
 
         pnJugadores.setBackground(new java.awt.Color(41, 43, 47));
         pnJugadores.setPreferredSize(new java.awt.Dimension(400, 720));
@@ -105,7 +103,7 @@ public class FrmPartida extends javax.swing.JFrame {
         pnJugadoresLayout.setHorizontalGroup(
             pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
+                .addContainerGap(26, Short.MAX_VALUE)
                 .addComponent(lblIconoJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(lblNombreJugador1)
@@ -144,14 +142,14 @@ public class FrmPartida extends javax.swing.JFrame {
         pnTurnosLayout.setHorizontalGroup(
             pnTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnTurnosLayout.createSequentialGroup()
-                .addContainerGap(128, Short.MAX_VALUE)
+                .addContainerGap(164, Short.MAX_VALUE)
                 .addComponent(lblTurnoNombreJugador, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addGroup(pnTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnTurnosLayout.createSequentialGroup()
                     .addGap(13, 13, 13)
                     .addComponent(lblTurno)
-                    .addContainerGap(213, Short.MAX_VALUE)))
+                    .addContainerGap(255, Short.MAX_VALUE)))
         );
         pnTurnosLayout.setVerticalGroup(
             pnTurnosLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -168,25 +166,27 @@ public class FrmPartida extends javax.swing.JFrame {
 
         btnAbandonaPartida.setBackground(new java.awt.Color(153, 153, 153));
         btnAbandonaPartida.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
-        btnAbandonaPartida.setForeground(new java.awt.Color(0, 0, 0));
-        btnAbandonaPartida.setText("Abandonar Partida");
+        btnAbandonaPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonar.png"))); // NOI18N
+        btnAbandonaPartida.setBorder(null);
+        btnAbandonaPartida.setContentAreaFilled(false);
+        btnAbandonaPartida.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonar.png"))); // NOI18N
+        btnAbandonaPartida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonarC.png"))); // NOI18N
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(1318, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(pnJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(pnTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(47, 47, 47))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAbandonaPartida)
-                        .addGap(115, 115, 115))))
+                    .addComponent(pnTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(pnJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGap(27, 27, 27))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                            .addComponent(btnAbandonaPartida)
+                            .addGap(89, 89, 89)))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -197,7 +197,7 @@ public class FrmPartida extends javax.swing.JFrame {
                 .addComponent(pnTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(37, 37, 37)
                 .addComponent(btnAbandonaPartida)
-                .addContainerGap(58, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();

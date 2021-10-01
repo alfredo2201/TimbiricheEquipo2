@@ -74,6 +74,11 @@ public class frmCrearPartida extends javax.swing.JFrame {
         });
 
         cmbTamanio.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
+        cmbTamanio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTamanioActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoIconos.png"))); // NOI18N
 
@@ -129,6 +134,10 @@ public class frmCrearPartida extends javax.swing.JFrame {
         partida.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void cmbTamanioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTamanioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTamanioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
