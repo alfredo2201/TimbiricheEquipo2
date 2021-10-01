@@ -3,6 +3,7 @@ package Presentacion;
 import Control.Control;
 import Control.Jugador;
 import Control.Tablero;
+import javax.swing.JOptionPane;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -157,10 +158,16 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
-        frmCrearPartida crearPartida = frmCrearPartida.getInstance();
         ct.getJ4().setNombre(txtNombre.getText());
+        String icono = ct.getJ4().getAvatar();
+        if(txtNombre.getText().equalsIgnoreCase("")||icono==null){
+            JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
+                    "Error", JOptionPane.ERROR_MESSAGE);
+        }else{
+        frmCrearPartida crearPartida = frmCrearPartida.getInstance(); 
         crearPartida.setVisible(true);
         this.dispose();
+        }
     }//GEN-LAST:event_btnIngresar1ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -179,7 +186,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private void btnAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatarActionPerformed
         FrmIconos fi = new FrmIconos();
         fi.setVisible(true);
-
+        
     }//GEN-LAST:event_btnAvatarActionPerformed
 
 

@@ -207,7 +207,7 @@ public class FrmIconos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpcionIcono4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono4ActionPerformed
-        System.out.println(ct.getJ3().getAvatar());
+
         ct.getJ4().setAvatar("/img/btnIcono4.png");
        dispose();
     }//GEN-LAST:event_btnOpcionIcono4ActionPerformed
@@ -215,6 +215,7 @@ public class FrmIconos extends javax.swing.JFrame {
     private void btnOpcionIcono1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono1ActionPerformed
        ct.getJ4().setAvatar("/img/btnIcono1.png");
        dispose();
+       
     }//GEN-LAST:event_btnOpcionIcono1ActionPerformed
 
     private void btnOpcionIcono2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono2ActionPerformed
