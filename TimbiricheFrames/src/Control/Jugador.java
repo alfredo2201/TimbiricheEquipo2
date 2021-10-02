@@ -17,7 +17,6 @@ public class Jugador {
     private String nombre;
     private String avatar;
     private Color color;
-    private ArrayList<Linea> lineas = new ArrayList();
 
     public Jugador(String nombre) {
         this.nombre = nombre;
@@ -50,17 +49,8 @@ public class Jugador {
     public void setColor(Color color) {
         this.color = color;
     }
-
-    public ArrayList<Linea> getLineas() {
-        //if(lineaas ==)
-        return lineas!=null? lineas:null;
-    }
-
-    public void setLineas(ArrayList<Linea> lineas) {
-        this.lineas = lineas;
-    }
     
-    public void addLinea(Linea lin){
-        this.lineas.add(lin);
-    }
+    
+
+  
 }

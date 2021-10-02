@@ -15,6 +15,7 @@ import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
 import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -36,6 +37,7 @@ public class pnJuego extends javax.swing.JPanel {
     private Tablero tabla;
     private int grosor;
     private Control control;
+    private ArrayList<Linea> lineasList; 
 
     public pnJuego(Tablero tablero) {
         initComponents();
@@ -48,6 +50,7 @@ public class pnJuego extends javax.swing.JPanel {
         this.p1 = new Punto();
         this.p2 = new Punto();
         this.tabla = tablero;
+        this.lineasList = new ArrayList<>();
         control = Control.getInstance();
         grosor();
     }
@@ -94,39 +97,83 @@ public class pnJuego extends javax.swing.JPanel {
                 break;
         }
     }
+    
+    //Se comprueba que no se vaya a crear la misma linea
+    private boolean comprobarLinea(Linea lin){
+        for (Linea l : lineasList) {
+            if(l.equals(lin)){
+                JOptionPane.showMessageDialog(null, "Linea ya existente",
+                    "", JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+        }
+        return false;
+    }
+    
+    //Se comprueba que no se hayan seleccionado dos veces el mismo punto
+    private boolean comprobarPunto(){
+        if(p1.equals(p2)){
+            JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
+                    "", JOptionPane.ERROR_MESSAGE);
+                return true;
+        }
+        return false;
+    }
 
     public void dibujarLinea(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         Control con = Control.getInstance();
-       
+       //Se comprueba que no se hayan seleccionado dos veces el mismo punto
+        if(comprobarPunto()){
+            return;
+        }
+        
+        
         if (p1.getY() == p2.getY()) {
             if (p1.getX() > p2.getX()) {
                 Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
-                g2d.setColor(con.getJ4().getColor());
-                g2d.fill(rec);
-                control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+                Linea linea = new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight(),control.getJ4());
+                if(!comprobarLinea(linea)){
+                    lineasList.add(linea);
+                     g2d.setColor(con.getJ4().getColor());
+                     g2d.fill(rec);
+                }
+               
+                //control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             } else {
                 //                                       x   y  ancho altura
                 Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
-                g2d.setColor(con.getJ4().getColor());
-                g2d.fill(rec);
-                control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+                Linea linea = new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight(),control.getJ4());
+                if(!comprobarLinea(linea)){
+                    lineasList.add(linea);
+                     g2d.setColor(con.getJ4().getColor());
+                     g2d.fill(rec);
+                }
+               // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             }
         } else {
             if (p1.getY() > p2.getY()) {
                 //                                       x   y  ancho altura
                 Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
-                g2d.setColor(con.getJ4().getColor());
-                g2d.fill(rec);
-                control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+               Linea linea = new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight(),control.getJ4());
+               if(!comprobarLinea(linea)){
+                    lineasList.add(linea);
+                     g2d.setColor(con.getJ4().getColor());
+                     g2d.fill(rec);
+                }
+               // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             } else {
                 Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
-                g2d.setColor(con.getJ4().getColor());
-                g2d.fill(rec);
-                control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+               Linea linea = new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight(),control.getJ4());
+                if(!comprobarLinea(linea)){
+                    lineasList.add(linea);
+                     g2d.setColor(con.getJ4().getColor());
+                     g2d.fill(rec);
+                }
+               // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             }
         }
-        System.out.println(control.getJ4().getLineas().toString());
+       // System.out.println(control.getJ4().getLineas().toString());
     }
 
     @SuppressWarnings("unchecked")
