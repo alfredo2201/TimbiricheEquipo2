@@ -121,6 +121,8 @@ public class pnJuego extends javax.swing.JPanel {
         return false;
     }
 
+
+
     public void dibujarLinea(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         Control con = Control.getInstance();
@@ -136,49 +138,83 @@ public class pnJuego extends javax.swing.JPanel {
         else if (p1.getY() == p2.getY()) {
             if (p1.getX() > p2.getX()) {
                 Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
-                Linea linea = new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight(),control.getJ4());
-                if(!comprobarLinea(linea)){
+                Linea linea = new Linea(rec.getX(), rec.getY(), (p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), rec.getWidth(), rec.getHeight(), control.getJ4());
+                if (!comprobarLinea(linea)) {
                     lineasList.add(linea);
-                     g2d.setColor(con.getJ4().getColor());
-                     g2d.fill(rec);
+                    System.out.println(linea);
+                    g2d.setColor(con.getJ4().getColor());
+                    g2d.fill(rec);
+                    verificarCuadro(linea);
                 }
-               
+
                 //control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             } else {
                 //                                       x   y  ancho altura
                 Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
-                Linea linea = new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight(),control.getJ4());
-                if(!comprobarLinea(linea)){
+                Linea linea = new Linea(rec.getX(), rec.getY(), (p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), rec.getWidth(), rec.getHeight(), control.getJ4());
+                if (!comprobarLinea(linea)) {
                     lineasList.add(linea);
-                     g2d.setColor(con.getJ4().getColor());
-                     g2d.fill(rec);
+                    System.out.println(linea);
+                    g2d.setColor(con.getJ4().getColor());
+                    g2d.fill(rec);
+                    verificarCuadro(linea);
                 }
-               // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+                // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             }
         } else {
             if (p1.getY() > p2.getY()) {
                 //                                       x   y  ancho altura
                 Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
-               Linea linea = new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight(),control.getJ4());
-               if(!comprobarLinea(linea)){
+                Linea linea = new Linea(rec.getX(), rec.getY(), (p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), rec.getWidth(), rec.getHeight(), control.getJ4());
+                if (!comprobarLinea(linea)) {
                     lineasList.add(linea);
-                     g2d.setColor(con.getJ4().getColor());
-                     g2d.fill(rec);
+                    System.out.println(linea);
+                    g2d.setColor(con.getJ4().getColor());
+                    g2d.fill(rec);
+                    verificarCuadro(linea);
                 }
-               // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+                // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             } else {
                 Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
-               Linea linea = new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight(),control.getJ4());
-                if(!comprobarLinea(linea)){
+                Linea linea = new Linea(rec.getX(), rec.getY(), (p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), rec.getWidth(), rec.getHeight(), control.getJ4());
+                if (!comprobarLinea(linea)) {
                     lineasList.add(linea);
-                     g2d.setColor(con.getJ4().getColor());
-                     g2d.fill(rec);
+                    System.out.println(linea);
+                    g2d.setColor(con.getJ4().getColor());
+                    g2d.fill(rec);
+                    verificarCuadro(linea);
                 }
-               // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+                // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             }
         }
-       // System.out.println(control.getJ4().getLineas().toString());
+        // System.out.println(control.getJ4().getLineas().toString());
     }
+
+    public void verificarCuadro(Linea linea) {
+        ArrayList<Linea> listaLineasPositivas;
+        listaLineasPositivas = new ArrayList<>();
+        listaLineasPositivas.add(linea);
+        for (Linea line : lineasList) {
+            if (       linea.getX() == line.getX() && linea.getX() + 100 == line.getX2() && linea.getY() == line.getY()
+                    || linea.getX() + 100 == line.getX() && linea.getX() == line.getX2() && linea.getY() == line.getY()
+                    || linea.getX2() == line.getX() && linea.getX2() + 100 == line.getX2() && linea.getY() == line.getY()
+                    || linea.getX2() + 100 == line.getX() && linea.getX2() == line.getX2() && linea.getY() == line.getY()
+                    || linea.getX() == line.getX() && linea.getX() - 100 == line.getX2() && linea.getY() == line.getY()
+                    || linea.getX() - 100 == line.getX() && linea.getX() == line.getX2() && linea.getY() == line.getY()
+                    || linea.getX2() == line.getX() && linea.getX2() - 100 == line.getX2() && linea.getY() == line.getY()
+                    || linea.getX2() - 100 == line.getX() && linea.getX2() == line.getX2() && linea.getY() == line.getY()
+                    || linea.getX() + 100 == line.getX() && linea.getX2() + 100 == line.getX2()
+                    || linea.getX() + 100 == line.getX2() && linea.getX2() + 100 == line.getX()
+                    || linea.getX() - 100 == line.getX() && linea.getX2() - 100 == line.getX2()
+                    || linea.getX() - 100 == line.getX2() && linea.getX2() - 100 == line.getX()) {
+                listaLineasPositivas.add(line);
+                System.out.println("");
+                System.out.println(line.toString()+" cacaguate");
+            }
+
+        }
+    }
+    
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -233,9 +269,9 @@ public class pnJuego extends javax.swing.JPanel {
 
             }
             pulsacion--;
-            System.out.println("Turno");
-            System.out.println("P1: " + p1.toString());
-            System.out.println("P2: " + p2.toString());
+//            System.out.println("Turno");
+//            System.out.println("P1: " + p1.toString());
+//            System.out.println("P2: " + p2.toString());
             this.dibujarLinea(this.getGraphics());
         }
 

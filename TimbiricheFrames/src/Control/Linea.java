@@ -10,34 +10,56 @@ package Control;
  * @author Angel
  */
 public class Linea {
-    private double x;
-    private double y;
+    private double x1;
+    private double y1;
+    private double x2;
+    private double y2;  
     private double w;
     private double h;
     private Jugador jugador;
 
-    public Linea(double x, double y, double w, double h, Jugador jugador) {
-        this.x = x;
-        this.y = y;
+    public Linea(double x1, double y1, double x2, double y2, double w, double h, Jugador jugador) {
+        this.x1 = x1;
+        this.y1 = y1;
+        this.x2 = x2;
+        this.y2 = y2;
         this.w = w;
         this.h = h;
         this.jugador = jugador;
     }
 
+   
+    
     public double getX() {
-        return x;
+        return x1;
     }
 
     public void setX(double x) {
-        this.x = x;
+        this.x1 = x;
     }
 
     public double getY() {
-        return y;
+        return y1;
     }
 
     public void setY(double y) {
-        this.y = y;
+        this.y1 = y;
+    }
+
+    public double getX2() {
+        return x2;
+    }
+
+    public void setX2(double x2) {
+        this.x2 = x2;
+    }
+
+    public double getY2() {
+        return y2;
+    }
+
+    public void setY2(double y2) {
+        this.y2 = y2;
     }
 
     public double getW() {
@@ -54,6 +76,10 @@ public class Linea {
 
     public void setH(double h) {
         this.h = h;
+    }
+    
+    public void getLineas(){
+        System.out.println(x1+""+y1+"-"+x2+""+y2);
     }
 
     public Jugador getJugador() {
@@ -82,10 +108,10 @@ public class Linea {
             return false;
         }
         final Linea other = (Linea) obj;
-        if (Double.doubleToLongBits(this.x) != Double.doubleToLongBits(other.x)) {
+        if (Double.doubleToLongBits(this.x1) != Double.doubleToLongBits(other.x1)) {
             return false;
         }
-        if (Double.doubleToLongBits(this.y) != Double.doubleToLongBits(other.y)) {
+        if (Double.doubleToLongBits(this.y1) != Double.doubleToLongBits(other.y1)) {
             return false;
         }
         if (Double.doubleToLongBits(this.w) != Double.doubleToLongBits(other.w)) {
@@ -102,7 +128,7 @@ public class Linea {
     
     @Override
     public String toString() {
-        return "Linea{" + "x=" + x + ", y=" + y + ", w=" + w + ", h=" + h + '}';
+        return "Linea{" + "x=" + x1 + ", y=" + y1 + ", x2=" + x2 + ", y2=" + y2 + ", w=" + w + ", h=" + h + '}';
     }
     
     
