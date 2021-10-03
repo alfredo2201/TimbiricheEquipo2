@@ -53,6 +53,7 @@ public class pnJuego extends javax.swing.JPanel {
         this.lineasList = new ArrayList<>();
         control = Control.getInstance();
         grosor();
+//        dibujaCirculos(this.getGraphics());
     }
 
     @Override
@@ -128,8 +129,11 @@ public class pnJuego extends javax.swing.JPanel {
             return;
         }
         
-        
-        if (p1.getY() == p2.getY()) {
+        if (p1.getX()!=p2.getX() && p1.getY()!=p2.getY()){
+            JOptionPane.showMessageDialog(null, "Puntos seleccionados no válidos",
+                    "", JOptionPane.ERROR_MESSAGE);
+        }
+        else if (p1.getY() == p2.getY()) {
             if (p1.getX() > p2.getX()) {
                 Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
                 Linea linea = new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight(),control.getJ4());
