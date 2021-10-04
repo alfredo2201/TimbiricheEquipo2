@@ -18,6 +18,7 @@ public class Linea {
     private double h;
     private Jugador jugador;
 
+
     public Linea(double x1, double y1, double x2, double y2, double w, double h, Jugador jugador) {
         this.x1 = x1;
         this.y1 = y1;
@@ -114,6 +115,12 @@ public class Linea {
         if (Double.doubleToLongBits(this.y1) != Double.doubleToLongBits(other.y1)) {
             return false;
         }
+        if (Double.doubleToLongBits(this.x2) != Double.doubleToLongBits(other.x2)) {
+            return false;
+        }
+        if (Double.doubleToLongBits(this.y2) != Double.doubleToLongBits(other.y2)) {
+            return false;
+        }
         if (Double.doubleToLongBits(this.w) != Double.doubleToLongBits(other.w)) {
             return false;
         }
@@ -122,9 +129,7 @@ public class Linea {
         }
         return true;
     }
-    
-    
-    
+ 
     
     @Override
     public String toString() {
