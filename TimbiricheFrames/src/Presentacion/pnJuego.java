@@ -134,6 +134,7 @@ public class pnJuego extends javax.swing.JPanel {
                     "", JOptionPane.ERROR_MESSAGE);
         } else if (p1.getY() == p2.getY()) {
             if (p1.getX() > p2.getX()) {
+                //Linea de derecha a izquierda
                 Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
                 Linea linea = new Linea(p1.getX(), p1.getY(), p2.getX(), p2.getY(), grosor, tabla.getSeparacion(), control.getJ4());
                 if (!comprobarLinea(linea)) {
@@ -141,12 +142,16 @@ public class pnJuego extends javax.swing.JPanel {
                     System.out.println(linea);
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
-                    verificarCuadro(linea);
+                    if (verificarCuadro(linea).size() == 4) {
+                        rec.setRect(p2.getX() + (p2.getWeidt() / 2), p2.getY() + (p2.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
+                        g2d.setColor(con.getJ4().getColor());
+                        g2d.fill(rec);
+                    }
                 }
 
-                //control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+                
             } else {
-                //                                       x   y  ancho altura
+                // Linea de izquierda a derecha
                 Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
                 Linea linea = new Linea(p1.getX(), p1.getY(), p2.getX(), p2.getY(), grosor, tabla.getSeparacion(), control.getJ4());
                 if (!comprobarLinea(linea)) {
@@ -154,39 +159,53 @@ public class pnJuego extends javax.swing.JPanel {
                     System.out.println(linea);
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
-                    verificarCuadro(linea);
+                    if (verificarCuadro(linea).size() == 4) {
+                        rec.setRect(p1.getX() + (p1.getWeidt() / 2), p1.getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
+                        g2d.setColor(con.getJ4().getColor());
+                        g2d.fill(rec);
+                    }
                 }
-                // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+                
             }
         } else {
             if (p1.getY() > p2.getY()) {
-                //                                       x   y  ancho altura
+            // Linea de abajo para arriba
+            
                 Rectangle2D rec = new Rectangle2D.Double((p2.getX() + (p2.getWeidt() / 2)), ((p2.getY() + (p2.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
                 Linea linea = new Linea(p1.getX(), p1.getY(), p2.getX(), p2.getY(), grosor, tabla.getSeparacion(), control.getJ4());
                 if (!comprobarLinea(linea)) {
                     lineasList.add(linea);
                     System.out.println(linea);
-                    verificarCuadro(linea);
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
-                    
+                    if (verificarCuadro(linea).size() == 4) {
+                        rec.setRect(p2.getX() + (p2.getWeidt() / 2)-tabla.getSeparacion(), p2.getY() + (p2.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
+                        g2d.setColor(con.getJ4().getColor());
+                        g2d.fill(rec);
+                    }
+
                 }
-                // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
+                
             } else {
+                // Linea de arriba para abajo
                 Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
                 Linea linea = new Linea(p1.getX(), p1.getY(), p2.getX(), p2.getY(), grosor, tabla.getSeparacion(), control.getJ4());
                 if (!comprobarLinea(linea)) {
                     lineasList.add(linea);
                     System.out.println(linea);
-                    verificarCuadro(linea);
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
-                    
+
+                    if (verificarCuadro(linea).size() == 4) {
+                        rec.setRect(p1.getX() + (p1.getWeidt() / 2)-tabla.getSeparacion(), p1.getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
+                        g2d.setColor(con.getJ4().getColor());
+                        g2d.fill(rec);
+                    }
+
                 }
-                // control.getJ4().addLinea(new Linea(rec.getX(),rec.getY(), rec.getWidth(), rec.getHeight()));
             }
         }
-        // System.out.println(control.getJ4().getLineas().toString());
+       
     }
 
     public ArrayList<Linea> verificarCuadro(Linea linea) {
@@ -195,29 +214,43 @@ public class pnJuego extends javax.swing.JPanel {
         listaLineasPositivasHorizontales.add(linea);
         for (Linea line : lineasList) {
             // -->
-            if ((linea.getX() == line.getX() && linea.getY() == line.getY()) && linea.getX() + 100 == line.getX2()
-                    || (linea.getX() == line.getX() && linea.getY() == line.getY()) && line.getX() - 100 == line.getX2()
-                    || (linea.getX2() == line.getX() && linea.getY2() == line.getY2()) && linea.getX2() + 100 == line.getX2()
-                    || (linea.getX2() == line.getX() && linea.getY2() == line.getY2()) && linea.getX2() - 100 == line.getX2()
-                    || (linea.getX() == line.getX2() && linea.getY() == line.getY()) && linea.getX() + 100 == line.getX()
-                    || (linea.getX() == line.getX2() && linea.getY() == line.getY()) && linea.getX() - 100 == line.getX()
-                    || (linea.getX2() == line.getX2() && linea.getY2() == line.getY2()) && linea.getX2() + 100 == line.getX()
-                    || (linea.getX2() == line.getX2() && linea.getY2() == line.getY2()) && linea.getX2() - 100 == line.getX()
-                    || linea.getX() + 100 == line.getX() && linea.getX2() + 100 == line.getX2()
-                    || linea.getX() + 100 == line.getX2() && linea.getX2() + 100 == line.getX()
-                    || linea.getX() - 100 == line.getX() && linea.getX2() - 100 == line.getX2()
-                    || linea.getX() - 100 == line.getX2() && linea.getX2() - 100 == line.getX()) {
+            if (       (linea.getX() == line.getX() && linea.getY() == line.getY()) && linea.getX() + tabla.getSeparacion() == line.getX2()
+                    || (linea.getX() == line.getX() && linea.getY() == line.getY()) && linea.getX() - tabla.getSeparacion() == line.getX2()
+                    || (linea.getX2() == line.getX() && linea.getY2() == line.getY2()) && linea.getX2() + tabla.getSeparacion() == line.getX2()
+                    || (linea.getX2() == line.getX() && linea.getY2() == line.getY2()) && linea.getX2() - tabla.getSeparacion() == line.getX2()
+                    || (linea.getX() == line.getX2() && linea.getY() == line.getY()) && linea.getX() + tabla.getSeparacion() == line.getX()
+                    || (linea.getX() == line.getX2() && linea.getY() == line.getY()) && linea.getX() - tabla.getSeparacion() == line.getX()
+                    || (linea.getX2() == line.getX2() && linea.getY2() == line.getY2()) && linea.getX2() + tabla.getSeparacion() == line.getX()
+                    || (linea.getX2() == line.getX2() && linea.getY2() == line.getY2()) && linea.getX2() - tabla.getSeparacion() == line.getX()
+                    || linea.getX() + tabla.getSeparacion() == line.getX() && linea.getX2() + tabla.getSeparacion() == line.getX2()
+                    || linea.getX() + tabla.getSeparacion() == line.getX2() && linea.getX2() + tabla.getSeparacion() == line.getX()
+                    || linea.getX() - tabla.getSeparacion() == line.getX() && linea.getX2() - tabla.getSeparacion() == line.getX2()
+                    || linea.getX() - tabla.getSeparacion() == line.getX2() && linea.getX2() - tabla.getSeparacion() == line.getX()
+                    || (linea.getY() == line.getY() && linea.getX() == line.getX()) && linea.getY() + tabla.getSeparacion() == line.getY2()
+//                    || (linea.getY() == line.getY() && linea.getX() == line.getX()) && linea.getY() - tabla.getSeparacion() == line.getY2()
+//                    || (linea.getY2() == line.getY() && linea.getX2() == line.getX2()) && linea.getY2() + tabla.getSeparacion() == line.getY2()
+//                    || (linea.getY2() == line.getY() && linea.getX2() == line.getX2()) && linea.getY2() - tabla.getSeparacion() == line.getY2()
+//                    || (linea.getY() == line.getY2() && linea.getX() == line.getX()) && linea.getY() + tabla.getSeparacion() == line.getY()
+//                    || (linea.getY() == line.getY2() && linea.getX() == line.getX()) && linea.getY() - tabla.getSeparacion() == line.getY()
+//                    || (linea.getY2() == line.getY2() && linea.getX2() == line.getX2()) && linea.getY2() + tabla.getSeparacion() == line.getY()
+//                    || (linea.getY2() == line.getY2() && linea.getX2() == line.getX2()) && linea.getY2() - tabla.getSeparacion() == line.getY()
+//                    || linea.getY() + tabla.getSeparacion() == line.getY() && linea.getY2() + tabla.getSeparacion() == line.getY2()
+//                    || linea.getY() + tabla.getSeparacion() == line.getY2() && linea.getY2() + tabla.getSeparacion() == line.getY()
+//                    || linea.getY() - tabla.getSeparacion() == line.getY() && linea.getY2() - tabla.getSeparacion() == line.getY2()
+//                    || linea.getY() - tabla.getSeparacion() == line.getY2() && linea.getY2() - tabla.getSeparacion() == line.getY()
+                    ) {
 
-//                listaLineasPositivasHorizontales.add(line);
+                listaLineasPositivasHorizontales.add(line);
 //                System.out.println("-------lineas positiva-------");
 //                System.out.println(line.toString() + " cacaguate");
             }
 
         }
-//        System.out.println("----------------Lista lineas positivas------------------");
-//        for (Linea listaLineasPositiva : listaLineasPositivasHorizontales) {
-//            System.out.println(listaLineasPositiva.toString());
-//        }
+        System.out.println("----------------Lista lineas positivas------------------");
+        for (Linea listaLineasPositiva : listaLineasPositivasHorizontales) {
+            System.out.println(listaLineasPositiva.toString());
+        }
+        System.out.println(listaLineasPositivasHorizontales.size());
         return listaLineasPositivasHorizontales;
     }
 
