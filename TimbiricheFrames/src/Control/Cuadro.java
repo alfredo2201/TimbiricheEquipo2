@@ -7,58 +7,83 @@ package Control;
 public class Cuadro {
 //    aja, si, muy bien, excelente
 
-    Linea linea1;
-    Linea linea2;
-    Linea linea3;
-    Linea linea4;
+    Linea superior;
+    Linea inferior;
+    Linea izq;
+    Linea der;
+    Linea linea;
     Jugador jugador;
 
-    public Cuadro(Linea linea1, Linea linea2, Linea linea3, Linea linea4, Jugador jugador) {
-        this.linea1 = linea1;
-        this.linea2 = linea2;
-        this.linea3 = linea3;
-        this.linea4 = linea4;
+    public Cuadro(Linea superior, Linea inferior, Linea izq, Linea der, Jugador jugador) {
+        this.superior = superior;
+        this.inferior = inferior;
+        this.izq = izq;
+        this.der = der;
         this.jugador = jugador;
     }
 
-    public Linea getLinea1() {
-        return linea1;
+    public Cuadro() {
+        
     }
 
-    public void setLinea1(Linea linea1) {
-        this.linea1 = linea1;
+    public Linea getLinea() {
+        return linea;
     }
 
-    public Linea getLinea2() {
-        return linea2;
+    public void setLinea(Linea linea) {
+        this.linea = linea;
     }
 
-    public void setLinea2(Linea linea2) {
-        this.linea2 = linea2;
+    public Linea getSuperior() {
+        return superior;
     }
 
-    public Linea getLinea3() {
-        return linea3;
+    public void setSuperior(Linea superior) {
+        this.superior = superior;
     }
 
-    public void setLinea3(Linea linea3) {
-        this.linea3 = linea3;
+    public Linea getInferior() {
+        return inferior;
     }
 
-    public Linea getLinea4() {
-        return linea4;
+    public void setInferior(Linea inferior) {
+        this.inferior = inferior;
     }
 
-    public void setLinea4(Linea linea4) {
-        this.linea4 = linea4;
+    public Linea getIzq() {
+        return izq;
     }
 
+    public void setIzq(Linea izq) {
+        this.izq = izq;
+    }
+
+    public Linea getDer() {
+        return der;
+    }
+
+    public void setDer(Linea der) {
+        this.der = der;
+    }
+
+  
     public Jugador getJugador() {
         return jugador;
     }
 
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
+    }
+    public boolean esCuadrado(){
+        if (this.superior.getX2() == this.der.getX() && this.superior.getX() == this.izq.getX()) {
+            
+        }
+        return false;
+    }
+
+    @Override
+    public String toString() {
+        return "Cuadro{" + "superior=" + superior + ", inferior=" + inferior + ", izq=" + izq + ", der=" + der + '}';
     }
 
     

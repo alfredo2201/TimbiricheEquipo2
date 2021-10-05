@@ -133,7 +133,7 @@ public class Linea {
     
     @Override
     public String toString() {
-        return "Linea{" + "x=" + x1 + ", y=" + y1 + ", x2=" + x2 + ", y2=" + y2 + ", w=" + w + ", h=" + h + '}';
+        return "x=" + x1 + ", y=" + y1 + ", x2=" + x2 + ", y2=" + y2 ;
     }
     
     
