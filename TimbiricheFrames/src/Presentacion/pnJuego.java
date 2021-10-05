@@ -145,8 +145,8 @@ public class pnJuego extends javax.swing.JPanel {
                 g2d.setColor(con.getJ4().getColor());
                 g2d.fill(rec);
                 cd = verificarCuadro(linea);
-                if ((cd.getInferior()!=null && cd.getSuperior()!=null &&(cd.getDer()!=null && cd.getIzq()!=null))) {
-                    rec.setRect(cd.getSuperior().getX()+(p1.getWeidt() / 2), cd.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
+                if ((cd.getInferior() != null && cd.getSuperior() != null && (cd.getDer() != null && cd.getIzq() != null))) {
+                    rec.setRect(cd.getSuperior().getX() + (p1.getWeidt() / 2), cd.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
                 }
@@ -163,8 +163,8 @@ public class pnJuego extends javax.swing.JPanel {
                 g2d.setColor(con.getJ4().getColor());
                 g2d.fill(rec);
                 cd = verificarCuadro(linea);
-                if ((cd.getInferior()!=null && cd.getSuperior()!=null &&(cd.getDer()!=null && cd.getIzq()!=null))) {
-                    rec.setRect(cd.getSuperior().getX()+(p1.getWeidt() / 2), cd.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
+                if ((cd.getInferior() != null && cd.getSuperior() != null && (cd.getDer() != null && cd.getIzq() != null))) {
+                    rec.setRect(cd.getSuperior().getX() + (p1.getWeidt() / 2), cd.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
                 }
@@ -175,7 +175,7 @@ public class pnJuego extends javax.swing.JPanel {
     }
 
     public Cuadro verificarCuadro(Linea linea) {
-        ArrayList<Linea> listaLineasPositivas = new ArrayList<>();
+
         Cuadro cuadro = new Cuadro();
         //listaLineasPositivasHorizontales.add(linea);
         for (Linea line : lineasList) {
@@ -190,7 +190,7 @@ public class pnJuego extends javax.swing.JPanel {
                     || linea.getX() == line.getX() && linea.getY() - tabla.getSeparacion() == line.getY() && linea.getX2() == line.getX2() && linea.getY2() - tabla.getSeparacion() == line.getY2()
                     || linea.getX2() == line.getX2() && linea.getY2() == line.getY2() && linea.getX2() - tabla.getSeparacion() == line.getX() && linea.getY2() == line.getY()
                     || linea.getX2() == line.getX() && linea.getY2() == line.getY() && linea.getX2() + tabla.getSeparacion() == line.getX2() && linea.getY2() == line.getY2()) {
-                
+
                 cuadro.setInferior(line);
                 if (cuadro.getInferior() == cuadro.getSuperior()) {
                     for (Linea ln1 : lineasList) {
@@ -206,12 +206,45 @@ public class pnJuego extends javax.swing.JPanel {
                     }
                 }
             }
-//            // Si es la linea izquierda
-            if (cuadro.getSuperior() != null && cuadro.getInferior() != null) {
+////            // Si es la linea izquierda
+//            if (cuadro.getSuperior() != null && cuadro.getInferior() != null) {
+//
+//                if (line.getX() == cuadro.getSuperior().getX() && line.getY() == cuadro.getSuperior().getY()
+//                        && line.getX2() == cuadro.getInferior().getX() && line.getY2() == cuadro.getInferior().getY()) {
+//                    cuadro.setIzq(line);
+//                } else if (linea.getX() == cuadro.getSuperior().getX() && linea.getY() == cuadro.getSuperior().getY()
+//                        && linea.getX2() == cuadro.getInferior().getX() && linea.getY2() == cuadro.getInferior().getY()) {
+//                    if (cuadro.getIzq() == null) {
+//                        for (Linea ln2 : lineasList) {
+//                            if (ln2.getX() == cuadro.getSuperior().getX() && ln2.getY() == cuadro.getSuperior().getY()
+//                                    && ln2.getX2() == cuadro.getInferior().getX() && ln2.getY2() == cuadro.getInferior().getY()) {
+//                                cuadro.setIzq(ln2);
+//                            }
+//                        }
+//                    }
+//                    cuadro.setIzq(linea);
+//                }
+//                if (line.getX() == cuadro.getSuperior().getX2() && line.getY() == cuadro.getSuperior().getY2()
+//                        && line.getX2() == cuadro.getInferior().getX2() && line.getY2() == cuadro.getInferior().getY2()) {
+//                    cuadro.setDer(line);
+//                } else if (linea.getX() == cuadro.getSuperior().getX2() && linea.getY() == cuadro.getSuperior().getY2()
+//                        && linea.getX2() == cuadro.getInferior().getX2() && linea.getY2() == cuadro.getInferior().getY2()) {
+//                    cuadro.setDer(linea);
+//                }
+//            }
+        }
 
-                if (line.getX() == cuadro.getSuperior().getX() && line.getY() == cuadro.getSuperior().getY()
-                        && line.getX2() == cuadro.getInferior().getX() && line.getY2() == cuadro.getInferior().getY()) {
-                    cuadro.setIzq(line);
+        if (cuadro.getSuperior() != null && cuadro.getInferior() != null) {
+            if (cuadro.getInferior().getY() < cuadro.getSuperior().getY()) {
+                Linea aux = cuadro.getInferior();
+                cuadro.setInferior(cuadro.getSuperior());
+                cuadro.setSuperior(aux);
+            }
+            for (Linea lnl : lineasList) {
+
+                if (lnl.getX() == cuadro.getSuperior().getX() && lnl.getY() == cuadro.getSuperior().getY()
+                        && lnl.getX2() == cuadro.getInferior().getX() && lnl.getY2() == cuadro.getInferior().getY()) {
+                    cuadro.setIzq(lnl);
                 } else if (linea.getX() == cuadro.getSuperior().getX() && linea.getY() == cuadro.getSuperior().getY()
                         && linea.getX2() == cuadro.getInferior().getX() && linea.getY2() == cuadro.getInferior().getY()) {
                     if (cuadro.getIzq() == null) {
@@ -224,9 +257,9 @@ public class pnJuego extends javax.swing.JPanel {
                     }
                     cuadro.setIzq(linea);
                 }
-                if (line.getX() == cuadro.getSuperior().getX2() && line.getY() == cuadro.getSuperior().getY2()
-                        && line.getX2() == cuadro.getInferior().getX2() && line.getY2() == cuadro.getInferior().getY2()) {
-                    cuadro.setDer(line);
+                if (lnl.getX() == cuadro.getSuperior().getX2() && lnl.getY() == cuadro.getSuperior().getY2()
+                        && lnl.getX2() == cuadro.getInferior().getX2() && lnl.getY2() == cuadro.getInferior().getY2()) {
+                    cuadro.setDer(lnl);
                 } else if (linea.getX() == cuadro.getSuperior().getX2() && linea.getY() == cuadro.getSuperior().getY2()
                         && linea.getX2() == cuadro.getInferior().getX2() && linea.getY2() == cuadro.getInferior().getY2()) {
                     cuadro.setDer(linea);
