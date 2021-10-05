@@ -3,7 +3,10 @@ package Presentacion;
 import Control.Control;
 import Control.Jugador;
 import Control.Tablero;
+import com.sun.xml.internal.ws.util.StringUtils;
+import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -21,6 +24,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
      */
     private Control ct;
     private static FrmPrincipal instancia;
+    Timer tiempo;
 
     FrmPrincipal() {
         initComponents();
@@ -163,9 +167,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
-        ct.getJ4().setNombre(txtNombre.getText());
+        String nombre = txtNombre.getText();
+        if (txtNombre.getText().length() < 10) {
+            String padded = String.format("%-10s", nombre);
+            nombre = (padded);
+        }
+
+        ct.getJ4().setNombre(nombre);
         String icono = ct.getJ4().getAvatar();
-        if (txtNombre.getText().equalsIgnoreCase("") || icono == null) {
+        if (nombre.equalsIgnoreCase("") || icono == null) {
             JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
@@ -176,19 +186,42 @@ public class FrmPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_btnIngresar1ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
+        tiempo = new Timer(2000, null);
+        tiempo.start();
+
+        String nombre = txtNombre.getText();
+        if (txtNombre.getText().length() < 10) {
+            String padded = String.format("%-10s", nombre);
+            nombre = (padded);
+        }
 
         Tablero tablero = new Tablero();
         tablero.setTamanio(40);
-        ct.getJ4().setNombre(txtNombre.getText());
+        ct.getJ4().setNombre(nombre);
         String icono = ct.getJ4().getAvatar();
-        if (txtNombre.getText().equalsIgnoreCase("") || icono == null) {
+        if (nombre.equalsIgnoreCase("") || icono == null) {
             JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
                     "Error", JOptionPane.ERROR_MESSAGE);
         } else {
-            FrmPartida sala = FrmPartida.getInstance(tablero);
-            sala.setVisible(true);
-            this.dispose();
+            tiempo.addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    operacion();
+                }
+
+                private void operacion() {
+                    JOptionPane.showMessageDialog(null, "Has sido aceptado en el juego",
+                            "", JOptionPane.INFORMATION_MESSAGE);
+                    FrmPartida sala = FrmPartida.getInstance(tablero);
+                    sala.setVisible(true);
+                    tiempo.stop();
+                    dispose();
+                }
+
+            });
+
         }
+
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
