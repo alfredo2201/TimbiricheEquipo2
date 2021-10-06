@@ -5,8 +5,11 @@ import Control.Jugador;
 import Control.Tablero;
 import java.awt.Color;
 import java.awt.Graphics;
+import java.awt.event.ActionEvent;
 import javax.swing.JColorChooser;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.Timer;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,6 +29,8 @@ public class FrmPartida extends javax.swing.JFrame {
     private final Graphics g;
     private JPanel lienzo;
     private final Control control;
+    private Timer tiempo;
+    
 
     private FrmPartida(Tablero tablero) {
         initComponents();
@@ -35,11 +40,11 @@ public class FrmPartida extends javax.swing.JFrame {
         g = lienzo.getGraphics();
         this.setResizable(false);
         cargaJugador();
+         btnPreparado.setEnabled(false);
     }
 
     private void configuracionLienzo(Tablero tablero) {
         lienzo = new pnJuego(tablero);//se inicializa el lienzo
-
         lienzo.setLocation(200, 0); //se establece su posición
         lienzo.setSize(1010, 1010); //establece el tamaño del panel
         lienzo.setVisible(true);
@@ -51,11 +56,18 @@ public class FrmPartida extends javax.swing.JFrame {
         lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(control.getJ4().getAvatar())));
         lblNombreJugador1.setText(control.getJ4().getNombre());
         lblTurnoNombreJugador.setText(control.getJ4().getNombre());
-        
-        control.cargarJugador(lblIconoJugador2,lblNombreJugador2 ,control.getJ1(), 2000);
-        control.cargarJugador(lblIconoJugador3,lblNombreJugador3 ,control.getJ2(),3000);
-        control.cargarJugador(lblIconoJugador4,lblNombreJugador4 ,control.getJ3(),4000);
-        
+        control.cargarJugador(lblIconoJugador2, lblNombreJugador2, control.getJ1(), 2000);
+        control.cargarJugador(lblIconoJugador3, lblNombreJugador3, control.getJ2(), 3000);
+        control.cargarJugador(lblIconoJugador4, lblNombreJugador4, control.getJ3(), 4000);
+    }
+
+    public void boton(boolean tipoJugador) {
+        if (tipoJugador == false) {
+            btnComenzarPartida.setEnabled(false);
+        } else {
+           
+            btnComenzarPartida.setEnabled(true);
+        }
     }
 
     public static FrmPartida getInstance(Tablero tablero) {
@@ -85,7 +97,9 @@ public class FrmPartida extends javax.swing.JFrame {
         pnTurnos = new javax.swing.JPanel();
         lblTurno = new javax.swing.JLabel();
         lblTurnoNombreJugador = new javax.swing.JLabel();
-        btnAbandonaPartida = new javax.swing.JButton();
+        btnComenzarPartida = new javax.swing.JButton();
+        btnAbandonarPartida = new javax.swing.JButton();
+        btnPreparado = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Timbiriche");
@@ -175,35 +189,34 @@ public class FrmPartida extends javax.swing.JFrame {
         pnJugadoresLayout.setHorizontalGroup(
             pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(pnJugadoresLayout.createSequentialGroup()
-                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(lblNombreJugador1)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnCambiaColor, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(pnJugadoresLayout.createSequentialGroup()
+                            .addGap(43, 43, 43)
+                            .addComponent(lblIconoJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(lblNombreJugador2)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                            .addComponent(btnCambiaColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(lblNombreJugador1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnCambiaColor, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnJugadoresLayout.createSequentialGroup()
-                        .addGap(43, 43, 43)
-                        .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblIconoJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblIconoJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6)
+                        .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnJugadoresLayout.createSequentialGroup()
-                                .addComponent(lblIconoJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(lblNombreJugador2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(btnCambiaColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(lblNombreJugador3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCambiaColor2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(pnJugadoresLayout.createSequentialGroup()
-                                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(lblIconoJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(lblIconoJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGap(6, 6, 6)
-                                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(pnJugadoresLayout.createSequentialGroup()
-                                        .addComponent(lblNombreJugador3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(btnCambiaColor2, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(pnJugadoresLayout.createSequentialGroup()
-                                        .addComponent(lblNombreJugador4)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btnCambiaColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))))
+                                .addComponent(lblNombreJugador4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnCambiaColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap())
             .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnJugadoresLayout.createSequentialGroup()
@@ -222,27 +235,26 @@ public class FrmPartida extends javax.swing.JFrame {
                     .addGroup(pnJugadoresLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(lblIconoJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(pnJugadoresLayout.createSequentialGroup()
-                        .addGap(65, 65, 65)
-                        .addComponent(btnCambiaColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblNombreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(41, 41, 41)))
+                        .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
+                                .addComponent(lblNombreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(41, 41, 41))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
+                                .addComponent(btnCambiaColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(49, 49, 49)))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnJugadoresLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblIconoJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(lblIconoJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(pnJugadoresLayout.createSequentialGroup()
+                        .addGap(36, 36, 36)
                         .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(pnJugadoresLayout.createSequentialGroup()
-                                .addGap(36, 36, 36)
-                                .addComponent(lblNombreJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnJugadoresLayout.createSequentialGroup()
-                                .addGap(27, 27, 27)
-                                .addComponent(btnCambiaColor2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(lblNombreJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(btnCambiaColor2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(pnJugadoresLayout.createSequentialGroup()
                                 .addGap(95, 95, 95)
@@ -250,12 +262,12 @@ public class FrmPartida extends javax.swing.JFrame {
                             .addGroup(pnJugadoresLayout.createSequentialGroup()
                                 .addGap(103, 103, 103)
                                 .addComponent(btnCambiaColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(99, Short.MAX_VALUE))
+                .addContainerGap(30, Short.MAX_VALUE))
             .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnJugadoresLayout.createSequentialGroup()
                     .addGap(72, 72, 72)
                     .addComponent(lblIconoJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(519, Short.MAX_VALUE)))
+                    .addContainerGap(452, Short.MAX_VALUE)))
         );
 
         pnTurnos.setBackground(new java.awt.Color(41, 43, 47));
@@ -290,16 +302,42 @@ public class FrmPartida extends javax.swing.JFrame {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
 
-        btnAbandonaPartida.setBackground(new java.awt.Color(153, 153, 153));
-        btnAbandonaPartida.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
-        btnAbandonaPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonar.png"))); // NOI18N
-        btnAbandonaPartida.setBorder(null);
-        btnAbandonaPartida.setContentAreaFilled(false);
-        btnAbandonaPartida.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonar.png"))); // NOI18N
-        btnAbandonaPartida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonarC.png"))); // NOI18N
-        btnAbandonaPartida.addActionListener(new java.awt.event.ActionListener() {
+        btnComenzarPartida.setBackground(new java.awt.Color(153, 153, 153));
+        btnComenzarPartida.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        btnComenzarPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnComenzar.png"))); // NOI18N
+        btnComenzarPartida.setBorder(null);
+        btnComenzarPartida.setContentAreaFilled(false);
+        btnComenzarPartida.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnComenzar.png"))); // NOI18N
+        btnComenzarPartida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnComenzarC.png"))); // NOI18N
+        btnComenzarPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbandonaPartidaActionPerformed(evt);
+                btnComenzarPartidaActionPerformed(evt);
+            }
+        });
+
+        btnAbandonarPartida.setBackground(new java.awt.Color(153, 153, 153));
+        btnAbandonarPartida.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        btnAbandonarPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonar.png"))); // NOI18N
+        btnAbandonarPartida.setBorder(null);
+        btnAbandonarPartida.setContentAreaFilled(false);
+        btnAbandonarPartida.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonar.png"))); // NOI18N
+        btnAbandonarPartida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAbandonarC.png"))); // NOI18N
+        btnAbandonarPartida.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbandonarPartidaActionPerformed(evt);
+            }
+        });
+
+        btnPreparado.setBackground(new java.awt.Color(153, 153, 153));
+        btnPreparado.setFont(new java.awt.Font("OCR A Extended", 0, 14)); // NOI18N
+        btnPreparado.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnPreparado.png"))); // NOI18N
+        btnPreparado.setBorder(null);
+        btnPreparado.setContentAreaFilled(false);
+        btnPreparado.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnPreparado.png"))); // NOI18N
+        btnPreparado.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnPreparadoC.png"))); // NOI18N
+        btnPreparado.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPreparadoActionPerformed(evt);
             }
         });
 
@@ -307,28 +345,34 @@ public class FrmPartida extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(1301, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(1292, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(pnJugadores, javax.swing.GroupLayout.DEFAULT_SIZE, 417, Short.MAX_VALUE)
-                            .addComponent(pnTurnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(27, 27, 27))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addComponent(btnAbandonaPartida)
-                        .addGap(97, 97, 97))))
+                    .addComponent(btnAbandonarPartida)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                            .addComponent(btnComenzarPartida)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(btnPreparado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(pnJugadores, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                        .addComponent(pnTurnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(27, 27, 27))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(pnJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(44, 44, 44)
-                .addComponent(pnTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(37, 37, 37)
-                .addComponent(btnAbandonaPartida)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pnJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 653, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(pnTurnos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnComenzarPartida))
+                    .addComponent(btnPreparado))
+                .addGap(2, 2, 2)
+                .addComponent(btnAbandonarPartida)
+                .addContainerGap(19, Short.MAX_VALUE))
         );
 
         pack();
@@ -346,30 +390,119 @@ public class FrmPartida extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
-    private void btnAbandonaPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonaPartidaActionPerformed
-        FrmPrincipal pr = FrmPrincipal.getInstance();
-        pr.setVisible(true);
-        dispose();
-    }//GEN-LAST:event_btnAbandonaPartidaActionPerformed
+    private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
+        tiempo = new Timer(5000, null);
+        tiempo.start();
+        Color myWhite = new Color(255, 255, 255); // Color white
+
+        if (lblNombreJugador1.getForeground().equals(myWhite) || lblNombreJugador2.getForeground().equals(myWhite)
+                || lblNombreJugador3.getForeground().equals(myWhite) || lblNombreJugador4.getForeground().equals(myWhite)) {
+            JOptionPane.showMessageDialog(null, "Escoge el color de tus contrincantes",
+                    "", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "Cargando...",
+                    "", JOptionPane.INFORMATION_MESSAGE);
+            tiempo.addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    operacion();
+                }
+
+                private void operacion() {
+                    tiempo.stop();
+                    btnPreparado.setEnabled(false);
+                    btnCambiaColor1.setEnabled(false);
+                    btnCambiaColor2.setEnabled(false);
+                    btnCambiaColor3.setEnabled(false);
+                    btnCambiaColor.setEnabled(false);
+
+                }
+            });
+        }
+    }//GEN-LAST:event_btnComenzarPartidaActionPerformed
 
     private void btnCambiaColor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColor1ActionPerformed
-        // TODO add your handling code here:
+        Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
+        if (c != null) {
+            lblNombreJugador2.setForeground(c);
+            Jugador jugador = new Jugador();
+            Control ct = Control.getInstance();
+            ct.getJ1().setColor(c);
+            jugador.setColor(c);
+        }
+
     }//GEN-LAST:event_btnCambiaColor1ActionPerformed
 
     private void btnCambiaColor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColor2ActionPerformed
-        // TODO add your handling code here:
+
+        Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
+        if (c != null) {
+            lblNombreJugador3.setForeground(c);
+            Jugador jugador = new Jugador();
+            Control ct = Control.getInstance();
+            ct.getJ2().setColor(c);
+            jugador.setColor(c);
+        }
     }//GEN-LAST:event_btnCambiaColor2ActionPerformed
 
     private void btnCambiaColor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColor3ActionPerformed
-        // TODO add your handling code here:
+        Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
+        if (c != null) {
+            lblNombreJugador4.setForeground(c);
+            Jugador jugador = new Jugador();
+            Control ct = Control.getInstance();
+            ct.getJ3().setColor(c);
+            jugador.setColor(c);
+
+        }
     }//GEN-LAST:event_btnCambiaColor3ActionPerformed
 
+    private void btnAbandonarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaActionPerformed
+        FrmPrincipal pr = FrmPrincipal.getInstance();
+        pr.setVisible(true);
+        dispose();
+    }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
+
+    private void btnPreparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreparadoActionPerformed
+        tiempo = new Timer(5000, null);
+        tiempo.start();
+        Color myWhite = new Color(255, 255, 255); // Color white
+
+        if (lblNombreJugador1.getForeground().equals(myWhite) || lblNombreJugador2.getForeground().equals(myWhite)
+                || lblNombreJugador3.getForeground().equals(myWhite) || lblNombreJugador4.getForeground().equals(myWhite)) {
+            JOptionPane.showMessageDialog(null, "Escoge el color de tus contrincantes",
+                    "", JOptionPane.ERROR_MESSAGE);
+        } else {
+            JOptionPane.showMessageDialog(null, "El juego comenzará en breve cuando los demás participantes estén preparados",
+                    "", JOptionPane.INFORMATION_MESSAGE);
+            tiempo.addActionListener(new java.awt.event.ActionListener() {
+                @Override
+                public void actionPerformed(ActionEvent ae) {
+                    operacion();
+                }
+
+                private void operacion() {
+                    tiempo.stop();
+                    btnPreparado.setEnabled(false);
+                    btnCambiaColor1.setEnabled(false);
+                    btnCambiaColor2.setEnabled(false);
+                    btnCambiaColor3.setEnabled(false);
+                    btnCambiaColor.setEnabled(false);
+
+                }
+            });
+        }
+
+    }//GEN-LAST:event_btnPreparadoActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbandonaPartida;
+    private javax.swing.JButton btnAbandonarPartida;
     private javax.swing.JButton btnCambiaColor;
     private javax.swing.JButton btnCambiaColor1;
     private javax.swing.JButton btnCambiaColor2;
     private javax.swing.JButton btnCambiaColor3;
+    private javax.swing.JButton btnComenzarPartida;
+    private javax.swing.JButton btnPreparado;
     private javax.swing.JLabel lblIconoJugador1;
     private javax.swing.JLabel lblIconoJugador2;
     private javax.swing.JLabel lblIconoJugador3;

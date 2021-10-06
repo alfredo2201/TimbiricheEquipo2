@@ -50,27 +50,28 @@ public class Control {
     public void setJ4(Jugador j4) {
         this.j4 = j4;
     }
-    
+
     /**
      * Carga a los jugadores faltantes en un determinado tiempo
+     *
      * @param icono ícono que se le pondrá al jugador
      * @param nombre Nombre del jugador
      * @param j Jugador el cual será cargado
      * @param time Tiempo que dardará en ser cargado
      */
-    public void cargarJugador(JLabel icono,JLabel nombre, Jugador j, int time){
+    public void cargarJugador(JLabel icono, JLabel nombre, Jugador j, int time) {
         Timer timer = new Timer();
 
         TimerTask jugador = new TimerTask() {
             @Override
             public void run() {
-               icono.setIcon(new javax.swing.ImageIcon(getClass().getResource(j.getAvatar())));
-               String n =String.format("%-10s", j.getNombre());
-               
-               nombre.setText(n);
+                icono.setIcon(new javax.swing.ImageIcon(getClass().getResource(j.getAvatar())));
+                String n = String.format("%-10s", j.getNombre());
+
+                nombre.setText(n);
             }
         };
-        
+
         timer.schedule(jugador, time);
     }
 

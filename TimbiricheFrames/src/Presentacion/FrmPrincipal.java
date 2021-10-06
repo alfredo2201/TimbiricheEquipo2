@@ -172,7 +172,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
             String padded = String.format("%-10s", nombre);
             nombre = (padded);
         }
-
+        
         ct.getJ4().setNombre(nombre);
         String icono = ct.getJ4().getAvatar();
         if (nombre.equalsIgnoreCase("") || icono == null) {
@@ -215,13 +215,13 @@ public class FrmPrincipal extends javax.swing.JFrame {
                     FrmPartida sala = FrmPartida.getInstance(tablero);
                     sala.setVisible(true);
                     tiempo.stop();
+                    sala.boton(false);
                     dispose();
                 }
 
             });
 
         }
-
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
