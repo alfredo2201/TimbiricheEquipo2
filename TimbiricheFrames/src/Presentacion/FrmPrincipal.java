@@ -1,12 +1,11 @@
 package Presentacion;
 
-import Control.Control;
-import Control.Jugador;
-import Control.Tablero;
-import com.sun.xml.internal.ws.util.StringUtils;
+
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import negocios.Fabrica;
+import negocios.iConexion;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,15 +21,14 @@ public class FrmPrincipal extends javax.swing.JFrame {
     /**
      * Creates new form FrnPrincipal
      */
-    private Control ct;
     private static FrmPrincipal instancia;
     Timer tiempo;
+    private iConexion conexion = Fabrica.getInstance();
 
     FrmPrincipal() {
         initComponents();
         this.setTitle("El Juego de Timbiriche");
         this.setLocationRelativeTo(null);
-        this.ct = Control.getInstance();
     }
 
     public static FrmPrincipal getInstance() {
@@ -173,8 +171,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
             nombre = (padded);
         }
         
-        ct.getJ4().setNombre(nombre);
-        String icono = ct.getJ4().getAvatar();
+        //ct.getJ4().setNombre(nombre);
+        conexion.getJugador().setNombre(nombre);
+        String icono = conexion.getJugador().getAvatar();
         if (nombre.equalsIgnoreCase("") || icono == null) {
             JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -195,10 +194,15 @@ public class FrmPrincipal extends javax.swing.JFrame {
             nombre = (padded);
         }
 
-        Tablero tablero = new Tablero();
-        tablero.setTamanio(40);
-        ct.getJ4().setNombre(nombre);
-        String icono = ct.getJ4().getAvatar();
+//        Tablero tablero = new Tablero();
+//        tablero.setTamanio(40);
+        
+        conexion.getTablero().setTamanio(40);
+//        ct.getJ4().setNombre(nombre);
+//        String icono = ct.getJ4().getAvatar();
+
+        conexion.getJugador().setNombre(nombre);
+        String icono = conexion.getJugador().getAvatar();
         if (nombre.equalsIgnoreCase("") || icono == null) {
             JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
                     "Error", JOptionPane.ERROR_MESSAGE);
@@ -212,7 +216,7 @@ public class FrmPrincipal extends javax.swing.JFrame {
                 private void operacion() {
                     JOptionPane.showMessageDialog(null, "Has sido aceptado en el juego",
                             "", JOptionPane.INFORMATION_MESSAGE);
-                    FrmPartida sala = FrmPartida.getInstance(tablero);
+                    FrmPartida sala = FrmPartida.getInstance(conexion.getTablero());
                     sala.setVisible(true);
                     tiempo.stop();
                     sala.boton(false);

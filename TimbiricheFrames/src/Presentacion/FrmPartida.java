@@ -1,8 +1,8 @@
 package Presentacion;
 
 import Control.Control;
-import Control.Jugador;
-import Control.Tablero;
+import dominio.Jugador;
+import dominio.Tablero;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -10,6 +10,8 @@ import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import negocios.Fabrica;
+import negocios.iConexion;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -28,34 +30,36 @@ public class FrmPartida extends javax.swing.JFrame {
     private static FrmPartida instance;
     private final Graphics g;
     private JPanel lienzo;
-    private final Control control;
     private Timer tiempo;
-    
+    private final Control control;
+    private iConexion conexion = Fabrica.getInstance();
 
     private FrmPartida(Tablero tablero) {
         initComponents();
-        control = Control.getInstance();
         this.setExtendedState(MAXIMIZED_BOTH);
         configuracionLienzo(tablero);
         g = lienzo.getGraphics();
         this.setResizable(false);
+        control = new Control();
         cargaJugador();
-         btnPreparado.setEnabled(false);
+        btnPreparado.setEnabled(false);
     }
 
     private void configuracionLienzo(Tablero tablero) {
+
         lienzo = new pnJuego(tablero);//se inicializa el lienzo
         lienzo.setLocation(200, 0); //se establece su posición
         lienzo.setSize(1010, 1010); //establece el tamaño del panel
         lienzo.setVisible(true);
-        add(lienzo); //se agrega al frame principal
+         add(lienzo); //se agrega al frame principal
         pack();
     }
 
     private void cargaJugador() {
-        lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(control.getJ4().getAvatar())));
-        lblNombreJugador1.setText(control.getJ4().getNombre());
-        lblTurnoNombreJugador.setText(control.getJ4().getNombre());
+        lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(conexion.getJugador().getAvatar())));
+        lblNombreJugador1.setText(conexion.getJugador().getNombre());
+        lblTurnoNombreJugador.setText(conexion.getJugador().getNombre());
+
         control.cargarJugador(lblIconoJugador2, lblNombreJugador2, control.getJ1(), 2000);
         control.cargarJugador(lblIconoJugador3, lblNombreJugador3, control.getJ2(), 3000);
         control.cargarJugador(lblIconoJugador4, lblNombreJugador4, control.getJ3(), 4000);
@@ -65,7 +69,7 @@ public class FrmPartida extends javax.swing.JFrame {
         if (tipoJugador == false) {
             btnComenzarPartida.setEnabled(false);
         } else {
-           
+
             btnComenzarPartida.setEnabled(true);
         }
     }
@@ -382,6 +386,7 @@ public class FrmPartida extends javax.swing.JFrame {
         Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
         if (c != null) {
             lblNombreJugador1.setForeground(c);
+            
             Jugador jugador = new Jugador();
             Control ct = Control.getInstance();
             ct.getJ4().setColor(c);
@@ -425,10 +430,8 @@ public class FrmPartida extends javax.swing.JFrame {
         Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
         if (c != null) {
             lblNombreJugador2.setForeground(c);
-            Jugador jugador = new Jugador();
-            Control ct = Control.getInstance();
-            ct.getJ1().setColor(c);
-            jugador.setColor(c);
+            conexion.getJugador().setColor(c);
+
         }
 
     }//GEN-LAST:event_btnCambiaColor1ActionPerformed

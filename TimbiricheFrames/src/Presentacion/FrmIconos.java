@@ -5,7 +5,9 @@
  */
 package Presentacion;
 
-import Control.Control;
+import negocios.Fabrica;
+import negocios.iConexion;
+
 
 /**
  *
@@ -16,12 +18,10 @@ public class FrmIconos extends javax.swing.JFrame {
     /**
      * Creates new form FrmIconos
      */
-    private final Control ct;
-
+    private iConexion conexion = Fabrica.getInstance();
     public FrmIconos() {
         initComponents();
         this.setLocationRelativeTo(null);
-        ct = Control.getInstance();
     }
 
     /**
@@ -220,44 +220,43 @@ public class FrmIconos extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpcionIcono4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono4ActionPerformed
-
-        ct.getJ4().setAvatar("/img/btnIcono4.png");
+        conexion.getJugador().setAvatar("/img/btnIcono4.png");
         dispose();
     }//GEN-LAST:event_btnOpcionIcono4ActionPerformed
 
     private void btnOpcionIcono1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono1ActionPerformed
-        ct.getJ4().setAvatar("/img/btnIcono1.png");
+        conexion.getJugador().setAvatar("/img/btnIcono1.png");
         dispose();
 
     }//GEN-LAST:event_btnOpcionIcono1ActionPerformed
 
     private void btnOpcionIcono2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono2ActionPerformed
-        ct.getJ4().setAvatar("/img/btnIcono2.png");
+        conexion.getJugador().setAvatar("/img/btnIcono2.png");
         dispose();
     }//GEN-LAST:event_btnOpcionIcono2ActionPerformed
 
     private void btnOpcionIcono3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono3ActionPerformed
-        ct.getJ4().setAvatar("/img/btnIcono3.png");
+        conexion.getJugador().setAvatar("/img/btnIcono3.png");
         dispose();
     }//GEN-LAST:event_btnOpcionIcono3ActionPerformed
 
     private void btnOpcionIcono8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono8ActionPerformed
-        ct.getJ4().setAvatar("/img/btnIcono8.png");
+        conexion.getJugador().setAvatar("/img/btnIcono8.png");
         dispose();
     }//GEN-LAST:event_btnOpcionIcono8ActionPerformed
 
     private void btnOpcionIcono5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono5ActionPerformed
-        ct.getJ4().setAvatar("/img/btnIcono5.png");
+       conexion.getJugador().setAvatar("/img/btnIcono5.png");
         dispose();
     }//GEN-LAST:event_btnOpcionIcono5ActionPerformed
 
     private void btnOpcionIcono6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono6ActionPerformed
-        ct.getJ4().setAvatar("/img/btnIcono6.png");
+        conexion.getJugador().setAvatar("/img/btnIcono6.png");
         dispose();
     }//GEN-LAST:event_btnOpcionIcono6ActionPerformed
 
     private void btnOpcionIcono7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono7ActionPerformed
-        ct.getJ4().setAvatar("/img/btnIcono7.png");
+        conexion.getJugador().setAvatar("/img/btnIcono7.png");
         dispose();
     }//GEN-LAST:event_btnOpcionIcono7ActionPerformed
 

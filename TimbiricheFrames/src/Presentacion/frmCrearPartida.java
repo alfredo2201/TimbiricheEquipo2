@@ -5,8 +5,9 @@
  */
 package Presentacion;
 
-import Control.Tablero;
 import javax.swing.DefaultComboBoxModel;
+import negocios.Fabrica;
+import negocios.iConexion;
 
 /**
  *
@@ -20,7 +21,8 @@ public class frmCrearPartida extends javax.swing.JFrame {
     private static frmCrearPartida instancia;
     private DefaultComboBoxModel cmbModelTamanio = this.cmbModelTamanio;
     private final int[] lista;
-
+    private iConexion conexion = Fabrica.getInstance();
+    
     private frmCrearPartida() {
         this.lista = new int[]{10, 20, 40};
         initComponents();
@@ -128,9 +130,8 @@ public class frmCrearPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        Tablero tablero = new Tablero();
-        tablero.setTamanio(this.tamanioTablero());
-        FrmPartida partida = FrmPartida.getInstance(tablero);
+        conexion.getTablero().setTamanio(this.tamanioTablero());
+        FrmPartida partida = FrmPartida.getInstance(conexion.getTablero());
         partida.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
