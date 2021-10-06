@@ -58,6 +58,10 @@ public class pnJuego extends javax.swing.JPanel {
 //        dibujaCirculos(this.getGraphics());
     }
 
+    /**
+     * Dibuja los puntos en la tabla
+     * @param g Graphics
+     */
     @Override
     public void paintComponent(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
@@ -81,10 +85,17 @@ public class pnJuego extends javax.swing.JPanel {
 
     }
 
+    /**
+     * Asigna el valor de Graphics
+     * @param g Valor que tendrá Graphics
+     */
     public void setG(Graphics g) {
         this.g = g;
     }
 
+    /**
+     * Asina el grosor de la linea
+     */
     private void grosor() {
         switch (conexion.getTablero().getTamanio()) {
             case 10:
@@ -101,29 +112,20 @@ public class pnJuego extends javax.swing.JPanel {
         }
     }
 
-    //Se comprueba que no se vaya a crear la misma linea
+    /**
+     * Se verifica que no se cree la misma linea
+     * @param lin Linea a verificar
+     * @return Verdadero si existe y falso en caso contrario
+     */
     private boolean comprobarLinea(Linea lin) {
-//        for (Linea l : lineasList) {
-//            if (l.equals(lin)) {
-//                JOptionPane.showMessageDialog(null, "Linea ya existente",
-//                        "", JOptionPane.ERROR_MESSAGE);
-//                return true;
-//            }
-//        }
-//        return false;
-        //if()
-        
+
         return conexion.compruebaLinea(lin, lineasList) ;
     }
-    //Se comprueba que no se hayan seleccionado dos veces el mismo punto
-//    private boolean comprobarPunto() {
-//        if (p1.equals(p2)) {
-//            JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
-//                    "", JOptionPane.ERROR_MESSAGE);
-//            return true;
-//        }
-//        return false;
-//    }
+
+    /**
+     * Dibuja la linea en la tabla y crea los cuadros
+     * @param g Grágico del panel
+     */
     public void dibujarLinea(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         Control con = Control.getInstance();
@@ -217,15 +219,28 @@ public class pnJuego extends javax.swing.JPanel {
 
     }
 
+    /**
+     * Verifica que se haya creado un cuadrado
+     * @param linea Linea a verificar si crea el cuadro 
+     * @return true si se crea y false en caso contrario
+     */
     public Cuadro verificarCuadro(Linea linea) {
 
         return conexion.verificarCuadro(linea, lineasList, conexion.getTablero());
     }
 
+    /**
+     * Verifica si se han creado dos cuadrados
+     * @param cuadro Cuadrado a verificar
+     * @return true si se creó y false en caso contrario
+     */
     public Cuadro verificaCuadroDoble(Cuadro cuadro) {
         return conexion.verificarCuadroDoble(cuadro, lineasList, conexion.getTablero());
     }
 
+    /**
+     * Ordena los puntos en la tabla
+     */
     private void ordenaPuntos() {
         if (p1.getX() == p2.getX()) {
             if (p1.getY() > p2.getY()) {

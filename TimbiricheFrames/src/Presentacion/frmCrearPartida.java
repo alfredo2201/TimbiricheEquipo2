@@ -30,6 +30,10 @@ public class frmCrearPartida extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * Crea una instancia de frmCrearPartida
+     * @return Regresa una instancia de frmCrearPartida
+     */
     public static frmCrearPartida getInstance() {
         if (instancia == null) {
             instancia = new frmCrearPartida();
@@ -37,10 +41,17 @@ public class frmCrearPartida extends javax.swing.JFrame {
         return instancia;
     }
 
+    /**
+     * Regresa el tamaño del tablero
+     * @return Regresa el tamaño del tablero
+     */
     public int tamanioTablero() {
         return (int) cmbTamanio.getSelectedItem();
     }
 
+    /**
+     * Agrega los tamaños de la tabla en una lista
+     */
     private void agregarTamanioLista() {
         for (int i = 0; i < lista.length; i++) {
             cmbTamanio.addItem(lista[i]);
