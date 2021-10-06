@@ -1,9 +1,5 @@
 package Control;
 
-/**
- *
- * @author crist
- */
 public class Tablero {
 
     private int tamanio;

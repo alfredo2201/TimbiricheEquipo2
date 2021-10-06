@@ -1,11 +1,6 @@
 package Control;
 
-/**
- *
- * @author Angel
- */
 public class Cuadro {
-//    aja, si, muy bien, excelente
 
     Linea superior;
     Linea inferior;

@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import Control.Control;
@@ -18,10 +13,6 @@ import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
-/**
- *
- * @author crist
- */
 public class pnJuego extends javax.swing.JPanel {
 
     private final int tamanio;
@@ -55,7 +46,6 @@ public class pnJuego extends javax.swing.JPanel {
         this.lineasList = new ArrayList<>();
         control = Control.getInstance();
         grosor();
-//        dibujaCirculos(this.getGraphics());
     }
 
     @Override
@@ -78,7 +68,6 @@ public class pnJuego extends javax.swing.JPanel {
             posicion_y += separacion;
         }
         posicion_y = puntoInicialy;
-
     }
 
     public void setG(Graphics g) {
@@ -101,7 +90,6 @@ public class pnJuego extends javax.swing.JPanel {
         }
     }
 
-    //Se comprueba que no se vaya a crear la misma linea
     private boolean comprobarLinea(Linea lin) {
         for (Linea l : lineasList) {
             if (l.equals(lin)) {
@@ -113,7 +101,6 @@ public class pnJuego extends javax.swing.JPanel {
         return false;
     }
 
-    //Se comprueba que no se hayan seleccionado dos veces el mismo punto
     private boolean comprobarPunto() {
         if (p1.equals(p2)) {
             JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
@@ -126,7 +113,6 @@ public class pnJuego extends javax.swing.JPanel {
     public void dibujarLinea(Graphics g) {
         Graphics2D g2d = (Graphics2D) g;
         Control con = Control.getInstance();
-        //Se comprueba que no se hayan seleccionado dos veces el mismo punto
         Cuadro cd;
         if (comprobarPunto()) {
             return;
@@ -136,8 +122,6 @@ public class pnJuego extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Puntos seleccionados no válidos",
                     "", JOptionPane.ERROR_MESSAGE);
         } else if (p1.getY() == p2.getY()) {
-
-            // Linea de izquierda a derecha
             Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), tabla.getSeparacion(), grosor);
             Linea linea = new Linea(p1.getX(), p1.getY(), p2.getX(), p2.getY(), grosor, tabla.getSeparacion(), control.getJ4());
             if (!comprobarLinea(linea)) {
@@ -147,7 +131,7 @@ public class pnJuego extends javax.swing.JPanel {
                 g2d.fill(rec);
                 cd = verificarCuadro(linea);
 
-                if (cd !=null) {
+                if (cd != null) {
                     listCuadro.add(cd);
                     rec.setRect(cd.getSuperior().getX() + (p1.getWeidt() / 2), cd.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
                     g2d.setColor(con.getJ4().getColor());
@@ -158,7 +142,6 @@ public class pnJuego extends javax.swing.JPanel {
                                 && cdDoble.getInferior() != null
                                 && cdDoble.getDer() != null
                                 && cdDoble.getIzq() != null) {
-                            System.out.println(cdDoble);
                             rec.setRect(cdDoble.getSuperior().getX() + (p1.getWeidt() / 2), cdDoble.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
                             g2d.setColor(con.getJ4().getColor());
                             g2d.fill(rec);
@@ -170,7 +153,6 @@ public class pnJuego extends javax.swing.JPanel {
 
         } else {
 
-            // Linea de arriba para abajo
             Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), grosor, tabla.getSeparacion());
             Linea linea = new Linea(p1.getX(), p1.getY(), p2.getX(), p2.getY(), grosor, tabla.getSeparacion(), control.getJ4());
             if (!comprobarLinea(linea)) {
@@ -179,7 +161,7 @@ public class pnJuego extends javax.swing.JPanel {
                 g2d.setColor(con.getJ4().getColor());
                 g2d.fill(rec);
                 cd = verificarCuadro(linea);
-                if (cd !=null) {
+                if (cd != null) {
                     rec.setRect(cd.getSuperior().getX() + (p1.getWeidt() / 2), cd.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
@@ -189,7 +171,6 @@ public class pnJuego extends javax.swing.JPanel {
                                 && cdDoble.getInferior() != null
                                 && cdDoble.getDer() != null
                                 && cdDoble.getIzq() != null) {
-                            System.out.println(cdDoble);
                             rec.setRect(cdDoble.getSuperior().getX() + (p1.getWeidt() / 2), cdDoble.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
                             g2d.setColor(con.getJ4().getColor());
                             g2d.fill(rec);
@@ -207,21 +188,17 @@ public class pnJuego extends javax.swing.JPanel {
     public Cuadro verificarCuadro(Linea linea) {
 
         Cuadro cuadro = new Cuadro();
-        //listaLineasPositivasHorizontales.add(linea);
         for (Linea line : lineasList) {
-            // Si es linea superior
             if (linea.getX() == line.getX2() && linea.getY() == line.getY2() && linea.getX() - tabla.getSeparacion() == line.getX2() && linea.getY2() == line.getY()
                     || linea.getX2() == line.getX2() && linea.getY2() - tabla.getSeparacion() == line.getY2() && linea.getX() - tabla.getSeparacion() == line.getX() && linea.getY() == line.getY()
                     || linea.getX() == line.getX() && linea.getY() == line.getY() && linea.getX() + tabla.getSeparacion() == line.getX2() && linea.getY() == line.getY2()) {
 
                 cuadro.setSuperior(line);
             }
-            // Si es linea inferior 
             if (linea.getX() == line.getX() && linea.getY() + tabla.getSeparacion() == line.getY() && linea.getX2() == line.getX2() && linea.getY2() + tabla.getSeparacion() == line.getY2()
                     || linea.getX() == line.getX() && linea.getY() - tabla.getSeparacion() == line.getY() && linea.getX2() == line.getX2() && linea.getY2() - tabla.getSeparacion() == line.getY2()
                     || linea.getX2() == line.getX2() && linea.getY2() == line.getY2() && linea.getX2() - tabla.getSeparacion() == line.getX() && linea.getY2() == line.getY()
-                    || linea.getX2() == line.getX() && linea.getY2() == line.getY() && linea.getX2() + tabla.getSeparacion() == line.getX2() && linea.getY2() == line.getY2()
-                    ) {
+                    || linea.getX2() == line.getX() && linea.getY2() == line.getY() && linea.getX2() + tabla.getSeparacion() == line.getX2() && linea.getY2() == line.getY2()) {
                 if (cuadro.getSuperior() != null && !cuadro.getSuperior().equals(line)) {
                     cuadro.setInferior(line);
                 }
@@ -288,9 +265,6 @@ public class pnJuego extends javax.swing.JPanel {
 
             }
         }
-
-        System.out.println("---------------------------------------------------------------------------------------------------------------------------");
-        System.out.println("S: " + cuadro.getSuperior() + "< - > I: " + cuadro.getInferior() + "\nIzq: " + cuadro.getIzq() + " < - > Der:" + cuadro.getDer() + "\n");
 
         return null;
     }
@@ -387,7 +361,6 @@ public class pnJuego extends javax.swing.JPanel {
             }
             pulsacion--;
             ordenaPuntos();
-            System.out.println(p1 + " - " + p2);
             this.dibujarLinea(this.getGraphics());
         }
 
