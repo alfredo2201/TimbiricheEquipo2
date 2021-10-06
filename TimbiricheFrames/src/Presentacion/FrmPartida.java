@@ -32,7 +32,7 @@ public class FrmPartida extends javax.swing.JFrame {
     private JPanel lienzo;
     private Timer tiempo;
     private final Control control;
-    private iConexion conexion = Fabrica.getInstance();
+    private final iConexion conexion = Fabrica.getInstance();
 
     private FrmPartida(Tablero tablero) {
         initComponents();
@@ -51,7 +51,7 @@ public class FrmPartida extends javax.swing.JFrame {
         lienzo.setLocation(200, 0); //se establece su posición
         lienzo.setSize(1010, 1010); //establece el tamaño del panel
         lienzo.setVisible(true);
-         add(lienzo); //se agrega al frame principal
+        add(lienzo); //se agrega al frame principal
         pack();
     }
 
@@ -386,11 +386,7 @@ public class FrmPartida extends javax.swing.JFrame {
         Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
         if (c != null) {
             lblNombreJugador1.setForeground(c);
-            
-            Jugador jugador = new Jugador();
-            Control ct = Control.getInstance();
-            ct.getJ4().setColor(c);
-            jugador.setColor(c);
+            conexion.getJugador().setColor(c);
 
         }
     }//GEN-LAST:event_btnCambiaColorActionPerformed
@@ -430,8 +426,8 @@ public class FrmPartida extends javax.swing.JFrame {
         Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
         if (c != null) {
             lblNombreJugador2.setForeground(c);
-            conexion.getJugador().setColor(c);
-
+            Control ct = Control.getInstance();
+            ct.getJ2().setColor(c);
         }
 
     }//GEN-LAST:event_btnCambiaColor1ActionPerformed

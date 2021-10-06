@@ -34,15 +34,15 @@ public class pnJuego extends javax.swing.JPanel {
     private int pulsacion = 1;
     private int posicion_x;
     private int posicion_y;
-    private int w;
-    private int h;
+    private final int w;
+    private final int h;
     private Punto p1;
     private Punto p2;
     private Graphics g;
     private int grosor;
-    private Control control;
-    private ArrayList<Linea> lineasList;
-    private iConexion conexion = Fabrica.getInstance();
+    private final Control control;
+    private final ArrayList<Linea> lineasList;
+    private final iConexion conexion = Fabrica.getInstance();
 
     public pnJuego(Tablero tablero) {
         initComponents();
@@ -52,8 +52,6 @@ public class pnJuego extends javax.swing.JPanel {
         this.posicion_y = tablero.getPuntos().getY();
         this.w = tablero.getPuntos().getWeidt();
         this.h = tablero.getPuntos().getHigh();
-        this.p1 = new Punto();
-        this.p2 = new Punto();
         this.lineasList = new ArrayList<>();
         control = Control.getInstance();
         grosor();
@@ -104,19 +102,19 @@ public class pnJuego extends javax.swing.JPanel {
     }
 
     //Se comprueba que no se vaya a crear la misma linea
-//    private boolean comprobarLinea(Linea lin) {
-////        for (Linea l : lineasList) {
-////            if (l.equals(lin)) {
-////                JOptionPane.showMessageDialog(null, "Linea ya existente",
-////                        "", JOptionPane.ERROR_MESSAGE);
-////                return true;
-////            }
-////        }
-////        return false;
-//        //if()
-//        
-//        return conexion.compruebaLinea(lin, lineasList) ;
-//    }
+    private boolean comprobarLinea(Linea lin) {
+//        for (Linea l : lineasList) {
+//            if (l.equals(lin)) {
+//                JOptionPane.showMessageDialog(null, "Linea ya existente",
+//                        "", JOptionPane.ERROR_MESSAGE);
+//                return true;
+//            }
+//        }
+//        return false;
+        //if()
+        
+        return conexion.compruebaLinea(lin, lineasList) ;
+    }
     //Se comprueba que no se hayan seleccionado dos veces el mismo punto
 //    private boolean comprobarPunto() {
 //        if (p1.equals(p2)) {
@@ -145,17 +143,18 @@ public class pnJuego extends javax.swing.JPanel {
             // Linea de izquierda a derecha
             Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), conexion.getTablero().getSeparacion(), grosor);
             Linea linea = new Linea(p1, p2, grosor, conexion.getTablero().getSeparacion(), conexion.getJugador());
-            if (!conexion.compruebaLinea(linea, lineasList)) {
+            System.out.println(linea);
+            if (!comprobarLinea(linea)) {
                 lineasList.add(linea);
 
-                g2d.setColor(con.getJ4().getColor());
+                g2d.setColor(conexion.getJugador().getColor());
                 g2d.fill(rec);
-                cd = verificarCuadro(linea);
+                cd = conexion.verificarCuadro(linea, lineasList, conexion.getTablero());
 
                 if (cd != null) {
                     listCuadro.add(cd);
                     rec.setRect(cd.getSuperior().getP1().getX() + (p1.getWeidt() / 2), cd.getSuperior().getP1().getY() + (p1.getWeidt() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
-                    g2d.setColor(con.getJ4().getColor());
+                    g2d.setColor(conexion.getJugador().getColor());
                     g2d.fill(rec);
                     Cuadro cdDoble = verificaCuadroDoble(cd);
                     if (cdDoble != null) {
@@ -181,10 +180,13 @@ public class pnJuego extends javax.swing.JPanel {
             // Linea de arriba para abajo
             Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), grosor, conexion.getTablero().getSeparacion());
              Linea linea = new Linea(p1, p2, grosor, conexion.getTablero().getSeparacion(), conexion.getJugador());
-            if (!conexion.compruebaLinea(linea, lineasList)) {
+             for (Linea linea1 : lineasList) {
+                System.out.println(linea1);
+            }
+            if (!comprobarLinea(linea)) {
                 lineasList.add(linea);
 
-                g2d.setColor(con.getJ4().getColor());
+                g2d.setColor(conexion.getJugador().getColor());
                 g2d.fill(rec);
                 cd = verificarCuadro(linea);
                 if (cd != null) {
@@ -199,7 +201,7 @@ public class pnJuego extends javax.swing.JPanel {
                                 && cdDoble.getIzq() != null) {
                             System.out.println(cdDoble);
                             rec.setRect(cdDoble.getSuperior().getP1().getX() + (p1.getWeidt() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getWeidt() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
-                            g2d.setColor(con.getJ4().getColor());
+                            g2d.setColor(conexion.getJugador().getColor());
                             g2d.fill(rec);
 
                         }
@@ -272,6 +274,7 @@ public class pnJuego extends javax.swing.JPanel {
 
                 if (punto.getX() <= evt.getX()) {
                     if (punto.getY() <= evt.getY()) {
+                        p1= new Punto();
                         p1.setX(punto.getX());
                         p1.setY(punto.getY());
                         p1.setWeidt(punto.getWeidt());
@@ -287,6 +290,7 @@ public class pnJuego extends javax.swing.JPanel {
 
                 if (punto.getX() <= evt.getX()) {
                     if (punto.getY() <= evt.getY()) {
+                        p2= new Punto();
                         p2.setX(punto.getX());
                         p2.setY(punto.getY());
                         p2.setWeidt(punto.getWeidt());
