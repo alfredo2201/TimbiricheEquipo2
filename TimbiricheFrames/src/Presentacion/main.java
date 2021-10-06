@@ -12,9 +12,6 @@ package Presentacion;
  */
 public class main {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
         FrmPrincipal pPrincipal = FrmPrincipal.getInstance();
         pPrincipal.setVisible(true);

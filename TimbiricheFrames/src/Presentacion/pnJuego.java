@@ -26,6 +26,7 @@ public class pnJuego extends javax.swing.JPanel {
 
     private final int tamanio;
     private final ArrayList<Punto> puntosList = new ArrayList();
+    private final ArrayList<Cuadro> listCuadro = new ArrayList();
     private final int separacion;
     private int pulsacion = 1;
     private int posicion_x;
@@ -145,10 +146,25 @@ public class pnJuego extends javax.swing.JPanel {
                 g2d.setColor(con.getJ4().getColor());
                 g2d.fill(rec);
                 cd = verificarCuadro(linea);
-                if ((cd.getInferior() != null && cd.getSuperior() != null && (cd.getDer() != null && cd.getIzq() != null))) {
+
+                if (cd !=null) {
+                    listCuadro.add(cd);
                     rec.setRect(cd.getSuperior().getX() + (p1.getWeidt() / 2), cd.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
+                    Cuadro cdDoble = verificaCuadroDoble(cd);
+                    if (cdDoble != null) {
+                        if (cdDoble.getSuperior() != null
+                                && cdDoble.getInferior() != null
+                                && cdDoble.getDer() != null
+                                && cdDoble.getIzq() != null) {
+                            System.out.println(cdDoble);
+                            rec.setRect(cdDoble.getSuperior().getX() + (p1.getWeidt() / 2), cdDoble.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
+                            g2d.setColor(con.getJ4().getColor());
+                            g2d.fill(rec);
+
+                        }
+                    }
                 }
             }
 
@@ -163,10 +179,24 @@ public class pnJuego extends javax.swing.JPanel {
                 g2d.setColor(con.getJ4().getColor());
                 g2d.fill(rec);
                 cd = verificarCuadro(linea);
-                if ((cd.getInferior() != null && cd.getSuperior() != null && (cd.getDer() != null && cd.getIzq() != null))) {
+                if (cd !=null) {
                     rec.setRect(cd.getSuperior().getX() + (p1.getWeidt() / 2), cd.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
+                    Cuadro cdDoble = verificaCuadroDoble(cd);
+                    if (cdDoble != null) {
+                        if (cdDoble.getSuperior() != null
+                                && cdDoble.getInferior() != null
+                                && cdDoble.getDer() != null
+                                && cdDoble.getIzq() != null) {
+                            System.out.println(cdDoble);
+                            rec.setRect(cdDoble.getSuperior().getX() + (p1.getWeidt() / 2), cdDoble.getSuperior().getY() + (p1.getWeidt() / 2), tabla.getSeparacion(), tabla.getSeparacion());
+                            g2d.setColor(con.getJ4().getColor());
+                            g2d.fill(rec);
+
+                        }
+                    }
+
                 }
 
             }
@@ -183,15 +213,18 @@ public class pnJuego extends javax.swing.JPanel {
             if (linea.getX() == line.getX2() && linea.getY() == line.getY2() && linea.getX() - tabla.getSeparacion() == line.getX2() && linea.getY2() == line.getY()
                     || linea.getX2() == line.getX2() && linea.getY2() - tabla.getSeparacion() == line.getY2() && linea.getX() - tabla.getSeparacion() == line.getX() && linea.getY() == line.getY()
                     || linea.getX() == line.getX() && linea.getY() == line.getY() && linea.getX() + tabla.getSeparacion() == line.getX2() && linea.getY() == line.getY2()) {
+
                 cuadro.setSuperior(line);
             }
             // Si es linea inferior 
             if (linea.getX() == line.getX() && linea.getY() + tabla.getSeparacion() == line.getY() && linea.getX2() == line.getX2() && linea.getY2() + tabla.getSeparacion() == line.getY2()
                     || linea.getX() == line.getX() && linea.getY() - tabla.getSeparacion() == line.getY() && linea.getX2() == line.getX2() && linea.getY2() - tabla.getSeparacion() == line.getY2()
                     || linea.getX2() == line.getX2() && linea.getY2() == line.getY2() && linea.getX2() - tabla.getSeparacion() == line.getX() && linea.getY2() == line.getY()
-                    || linea.getX2() == line.getX() && linea.getY2() == line.getY() && linea.getX2() + tabla.getSeparacion() == line.getX2() && linea.getY2() == line.getY2()) {
-
-                cuadro.setInferior(line);
+                    || linea.getX2() == line.getX() && linea.getY2() == line.getY() && linea.getX2() + tabla.getSeparacion() == line.getX2() && linea.getY2() == line.getY2()
+                    ) {
+                if (cuadro.getSuperior() != null && !cuadro.getSuperior().equals(line)) {
+                    cuadro.setInferior(line);
+                }
                 if (cuadro.getInferior() == cuadro.getSuperior()) {
                     for (Linea ln1 : lineasList) {
                         if (linea.getX() == ln1.getX() && linea.getY() + tabla.getSeparacion() == ln1.getY() && linea.getX2() == ln1.getX2() && linea.getY2() + tabla.getSeparacion() == ln1.getY2()
@@ -206,32 +239,7 @@ public class pnJuego extends javax.swing.JPanel {
                     }
                 }
             }
-////            // Si es la linea izquierda
-//            if (cuadro.getSuperior() != null && cuadro.getInferior() != null) {
-//
-//                if (line.getX() == cuadro.getSuperior().getX() && line.getY() == cuadro.getSuperior().getY()
-//                        && line.getX2() == cuadro.getInferior().getX() && line.getY2() == cuadro.getInferior().getY()) {
-//                    cuadro.setIzq(line);
-//                } else if (linea.getX() == cuadro.getSuperior().getX() && linea.getY() == cuadro.getSuperior().getY()
-//                        && linea.getX2() == cuadro.getInferior().getX() && linea.getY2() == cuadro.getInferior().getY()) {
-//                    if (cuadro.getIzq() == null) {
-//                        for (Linea ln2 : lineasList) {
-//                            if (ln2.getX() == cuadro.getSuperior().getX() && ln2.getY() == cuadro.getSuperior().getY()
-//                                    && ln2.getX2() == cuadro.getInferior().getX() && ln2.getY2() == cuadro.getInferior().getY()) {
-//                                cuadro.setIzq(ln2);
-//                            }
-//                        }
-//                    }
-//                    cuadro.setIzq(linea);
-//                }
-//                if (line.getX() == cuadro.getSuperior().getX2() && line.getY() == cuadro.getSuperior().getY2()
-//                        && line.getX2() == cuadro.getInferior().getX2() && line.getY2() == cuadro.getInferior().getY2()) {
-//                    cuadro.setDer(line);
-//                } else if (linea.getX() == cuadro.getSuperior().getX2() && linea.getY() == cuadro.getSuperior().getY2()
-//                        && linea.getX2() == cuadro.getInferior().getX2() && linea.getY2() == cuadro.getInferior().getY2()) {
-//                    cuadro.setDer(linea);
-//                }
-//            }
+
         }
 
         if (cuadro.getSuperior() != null && cuadro.getInferior() != null) {
@@ -266,10 +274,44 @@ public class pnJuego extends javax.swing.JPanel {
                 }
             }
         }
+        if (cuadro.getSuperior() != null & cuadro.getInferior() != null && cuadro.getIzq() != null && cuadro.getDer() != null) {
+            if (cuadro.getSuperior().getX() == cuadro.getInferior().getX()
+                    && cuadro.getSuperior().getY() + tabla.getSeparacion() == cuadro.getInferior().getY()
+                    && cuadro.getSuperior().getX2() == cuadro.getInferior().getX2()
+                    && cuadro.getSuperior().getY2() + tabla.getSeparacion() == cuadro.getInferior().getY2()) {
+                if (cuadro.getIzq().getX() + tabla.getSeparacion() == cuadro.getDer().getX()
+                        && cuadro.getIzq().getY() == cuadro.getDer().getY()
+                        && cuadro.getIzq().getX2() + tabla.getSeparacion() == cuadro.getDer().getX2()
+                        && cuadro.getIzq().getY2() == cuadro.getDer().getY2()) {
+                    return cuadro;
+                }
+
+            }
+        }
+
         System.out.println("---------------------------------------------------------------------------------------------------------------------------");
         System.out.println("S: " + cuadro.getSuperior() + "< - > I: " + cuadro.getInferior() + "\nIzq: " + cuadro.getIzq() + " < - > Der:" + cuadro.getDer() + "\n");
 
-        return cuadro;
+        return null;
+    }
+
+    public Cuadro verificaCuadroDoble(Cuadro cuadro) {
+        for (Linea line : lineasList) {
+            if (cuadro.getSuperior().getY() - tabla.getSeparacion() == line.getY() && cuadro.getSuperior().getX() == line.getX()
+                    && cuadro.getSuperior().getY2() - tabla.getSeparacion() == line.getY2() && cuadro.getSuperior().getX2() == line.getX2()) {
+                return verificarCuadro(line);
+            } else if (cuadro.getInferior().getY() + tabla.getSeparacion() == line.getY() && cuadro.getInferior().getX() == line.getX()
+                    && cuadro.getInferior().getY2() + tabla.getSeparacion() == line.getY2() && cuadro.getInferior().getX2() == line.getX2()) {
+                return verificarCuadro(line);
+            } else if (cuadro.getIzq().getX() - tabla.getSeparacion() == line.getX() && cuadro.getIzq().getY() == line.getY()
+                    && cuadro.getIzq().getX2() - tabla.getSeparacion() == line.getX2() && cuadro.getIzq().getY2() == line.getY2()) {
+                return verificarCuadro(line);
+            } else if (cuadro.getDer().getX() + tabla.getSeparacion() == line.getX() && cuadro.getDer().getY() == line.getY()
+                    && cuadro.getDer().getX2() + tabla.getSeparacion() == line.getX2() && cuadro.getDer().getY2() == line.getY2()) {
+                return verificarCuadro(line);
+            }
+        }
+        return null;
     }
 
     private void ordenaPuntos() {

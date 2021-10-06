@@ -33,7 +33,7 @@ public class FrmPartida extends javax.swing.JFrame {
         this.setExtendedState(MAXIMIZED_BOTH);
         configuracionLienzo(tablero);
         g = lienzo.getGraphics();
-
+        this.setResizable(false);
         cargaJugador();
     }
 
