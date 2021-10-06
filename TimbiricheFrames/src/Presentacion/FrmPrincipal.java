@@ -31,6 +31,10 @@ public class FrmPrincipal extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
     }
 
+    /**
+     * crea una instancia de FrmPrincipal
+     * @return Regresa una instancia de FrmPrincipal
+     */
     public static FrmPrincipal getInstance() {
         if (instancia == null) {
             instancia = new FrmPrincipal();

@@ -22,6 +22,9 @@ public class Control {
     private Jugador j4;
     private static Control instancia;
 
+    /**
+     * Constructor de control de jugadores
+     */
     public Control() {
         j1 = new Jugador("JuanG");
         j1.setAvatar("/img/btnIcono1.png");
@@ -32,22 +35,46 @@ public class Control {
         j4 = new Jugador();
     }
 
+    /**
+     * Obtiene al jugador 1
+     *
+     * @return Devuelve al jugador 1
+     */
     public Jugador getJ1() {
         return j1;
     }
 
+    /**
+     * Obtiene al jugador 2
+     *
+     * @return Devuelve al jugador 2
+     */
     public Jugador getJ2() {
         return j2;
     }
 
+    /**
+     * Obtiene al jugador 3
+     *
+     * @return Devuelve al jugador 3
+     */
     public Jugador getJ3() {
         return j3;
     }
 
+    /**
+     * Obtiene al jugador 4
+     *
+     * @return Devuelve al jugador 4
+     */
     public Jugador getJ4() {
         return j4;
     }
 
+    /**
+     * Envia al jugador 4
+     * @param j4 recibe a jugador 4
+     */
     public void setJ4(Jugador j4) {
         this.j4 = j4;
     }
@@ -62,7 +89,6 @@ public class Control {
      */
     public void cargarJugador(JLabel icono, JLabel nombre, Jugador j, int time) {
         Timer timer = new Timer();
-
         TimerTask jugador = new TimerTask() {
             @Override
             public void run() {
@@ -76,6 +102,11 @@ public class Control {
         timer.schedule(jugador, time);
     }
 
+    /**
+     * Crea una instancia de control
+     *
+     * @return devuelve la instancia de control
+     */
     public static Control getInstance() {
         if (instancia == null) {
             instancia = new Control();

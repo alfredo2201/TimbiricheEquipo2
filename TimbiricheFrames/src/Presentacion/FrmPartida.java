@@ -45,6 +45,10 @@ public class FrmPartida extends javax.swing.JFrame {
         btnPreparado.setEnabled(false);
     }
 
+    /**
+     * Configura el tablero
+     * @param tablero tablero con las caracteristicas
+     */
     private void configuracionLienzo(Tablero tablero) {
 
         lienzo = new pnJuego(tablero);//se inicializa el lienzo
@@ -55,6 +59,9 @@ public class FrmPartida extends javax.swing.JFrame {
         pack();
     }
 
+    /**
+     * Carga a los jugadores
+     */
     private void cargaJugador() {
         lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(conexion.getJugador().getAvatar())));
         lblNombreJugador1.setText(conexion.getJugador().getNombre());
@@ -65,6 +72,10 @@ public class FrmPartida extends javax.swing.JFrame {
         control.cargarJugador(lblIconoJugador4, lblNombreJugador4, control.getJ3(), 4000);
     }
 
+    /**
+     * Verifica el tipo de jugador
+     * @param tipoJugador Tipo de jugador
+     */
     public void boton(boolean tipoJugador) {
         if (tipoJugador == false) {
             btnComenzarPartida.setEnabled(false);
@@ -74,6 +85,11 @@ public class FrmPartida extends javax.swing.JFrame {
         }
     }
 
+    /**
+     * Crea instancia de FrmPartida
+     * @param tablero Tablero que tendrá
+     * @return regresa una instancia de FrmPartida
+     */
     public static FrmPartida getInstance(Tablero tablero) {
         if (instance == null) {
             instance = new FrmPartida(tablero);
