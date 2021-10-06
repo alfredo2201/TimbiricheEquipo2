@@ -11,13 +11,26 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+/**
+ *
+ * @author crist
+ */
 public class FrmPartida extends javax.swing.JFrame {
 
+    /**
+     * Creates new form FrmSala
+     */
     private static FrmPartida instance;
     private final Graphics g;
     private JPanel lienzo;
     private final Control control;
     private Timer tiempo;
+    
 
     private FrmPartida(Tablero tablero) {
         initComponents();
@@ -27,15 +40,15 @@ public class FrmPartida extends javax.swing.JFrame {
         g = lienzo.getGraphics();
         this.setResizable(false);
         cargaJugador();
-        btnPreparado.setEnabled(false);
+         btnPreparado.setEnabled(false);
     }
 
     private void configuracionLienzo(Tablero tablero) {
-        lienzo = new pnJuego(tablero);
-        lienzo.setLocation(200, 0);
-        lienzo.setSize(1010, 1010);
+        lienzo = new pnJuego(tablero);//se inicializa el lienzo
+        lienzo.setLocation(200, 0); //se establece su posición
+        lienzo.setSize(1010, 1010); //establece el tamaño del panel
         lienzo.setVisible(true);
-        add(lienzo);
+        add(lienzo); //se agrega al frame principal
         pack();
     }
 
@@ -52,7 +65,7 @@ public class FrmPartida extends javax.swing.JFrame {
         if (tipoJugador == false) {
             btnComenzarPartida.setEnabled(false);
         } else {
-
+           
             btnComenzarPartida.setEnabled(true);
         }
     }
@@ -380,7 +393,7 @@ public class FrmPartida extends javax.swing.JFrame {
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
         tiempo = new Timer(5000, null);
         tiempo.start();
-        Color myWhite = new Color(255, 255, 255);
+        Color myWhite = new Color(255, 255, 255); // Color white
 
         if (lblNombreJugador1.getForeground().equals(myWhite) || lblNombreJugador2.getForeground().equals(myWhite)
                 || lblNombreJugador3.getForeground().equals(myWhite) || lblNombreJugador4.getForeground().equals(myWhite)) {
@@ -453,7 +466,7 @@ public class FrmPartida extends javax.swing.JFrame {
     private void btnPreparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreparadoActionPerformed
         tiempo = new Timer(5000, null);
         tiempo.start();
-        Color myWhite = new Color(255, 255, 255);
+        Color myWhite = new Color(255, 255, 255); // Color white
 
         if (lblNombreJugador1.getForeground().equals(myWhite) || lblNombreJugador2.getForeground().equals(myWhite)
                 || lblNombreJugador3.getForeground().equals(myWhite) || lblNombreJugador4.getForeground().equals(myWhite)) {

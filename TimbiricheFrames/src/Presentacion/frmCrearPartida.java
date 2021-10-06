@@ -1,10 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Presentacion;
 
 import Control.Tablero;
 import javax.swing.DefaultComboBoxModel;
 
+/**
+ *
+ * @author crist
+ */
 public class frmCrearPartida extends javax.swing.JFrame {
 
+    /**
+     * Creates new form frmCrearPartida
+     */
     private static frmCrearPartida instancia;
     private DefaultComboBoxModel cmbModelTamanio = this.cmbModelTamanio;
     private final int[] lista;
@@ -46,12 +58,9 @@ public class frmCrearPartida extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Configuracion");
 
-        jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
-
         lblTamanio.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
         lblTamanio.setForeground(new java.awt.Color(255, 255, 255));
         lblTamanio.setText("Tamaño del tablero:");
-        jPanel1.add(lblTamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 130, -1, -1));
 
         btnAceptar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/confirmarBtn.png"))); // NOI18N
         btnAceptar.setBorder(null);
@@ -63,13 +72,44 @@ public class frmCrearPartida extends javax.swing.JFrame {
                 btnAceptarActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAceptar, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 200, -1, 50));
 
         cmbTamanio.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
-        jPanel1.add(cmbTamanio, new org.netbeans.lib.awtextra.AbsoluteConstraints(390, 130, 150, -1));
+        cmbTamanio.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbTamanioActionPerformed(evt);
+            }
+        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoIconos.png"))); // NOI18N
-        jPanel1.add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(-40, 0, 620, 320));
+
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(260, 260, 260)
+                .addComponent(btnAceptar))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(390, 390, 390)
+                .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(110, 110, 110)
+                .addComponent(lblTamanio))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 620, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(200, 200, 200)
+                .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(lblTamanio))
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,6 +134,10 @@ public class frmCrearPartida extends javax.swing.JFrame {
         partida.setVisible(true);
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void cmbTamanioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTamanioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cmbTamanioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

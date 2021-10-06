@@ -1,9 +1,18 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package Control;
 
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.JLabel;
 
+/**
+ *
+ * @author crist
+ */
 public class Control {
 
     private Jugador j1;
@@ -21,7 +30,7 @@ public class Control {
         j3.setAvatar("/img/btnIcono2.png");
         j4 = new Jugador();
     }
-    
+
     public Jugador getJ1() {
         return j1;
     }
@@ -66,7 +75,6 @@ public class Control {
         timer.schedule(jugador, time);
     }
 
-    
     public static Control getInstance() {
         if (instancia == null) {
             instancia = new Control();
