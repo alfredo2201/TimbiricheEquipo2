@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.Timer;
 import negocios.Fabrica;
 import negocios.iConexion;
+import observador.IObserver;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -22,7 +23,7 @@ import negocios.iConexion;
  *
  * @author crist
  */
-public class FrmPartida extends javax.swing.JFrame {
+public class FrmPartida extends javax.swing.JFrame implements IObserver{
 
     /**
      * Creates new form FrmSala
@@ -531,4 +532,9 @@ public class FrmPartida extends javax.swing.JFrame {
     private javax.swing.JPanel pnJugadores;
     private javax.swing.JPanel pnTurnos;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

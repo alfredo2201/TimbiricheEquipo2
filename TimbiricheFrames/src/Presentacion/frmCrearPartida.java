@@ -8,12 +8,13 @@ package Presentacion;
 import javax.swing.DefaultComboBoxModel;
 import negocios.Fabrica;
 import negocios.iConexion;
+import observador.IObserver;
 
 /**
  *
  * @author crist
  */
-public class frmCrearPartida extends javax.swing.JFrame {
+public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
 
     /**
      * Creates new form frmCrearPartida
@@ -158,4 +159,9 @@ public class frmCrearPartida extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTamanio;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -7,13 +7,14 @@ package Presentacion;
 
 import negocios.Fabrica;
 import negocios.iConexion;
+import observador.IObserver;
 
 
 /**
  *
  * @author palom
  */
-public class FrmIconos extends javax.swing.JFrame {
+public class FrmIconos extends javax.swing.JFrame implements IObserver{
 
     /**
      * Creates new form FrmIconos
@@ -281,4 +282,9 @@ public class FrmIconos extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblFondo;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

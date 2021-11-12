@@ -6,6 +6,7 @@ import javax.swing.JOptionPane;
 import javax.swing.Timer;
 import negocios.Fabrica;
 import negocios.iConexion;
+import observador.IObserver;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -16,7 +17,7 @@ import negocios.iConexion;
  *
  * @author crist
  */
-public class FrmPrincipal extends javax.swing.JFrame {
+public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
 
     /**
      * Creates new form FrnPrincipal
@@ -260,4 +261,9 @@ public class FrmPrincipal extends javax.swing.JFrame {
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
