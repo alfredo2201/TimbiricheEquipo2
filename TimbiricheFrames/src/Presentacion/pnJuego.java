@@ -34,8 +34,7 @@ public class pnJuego extends javax.swing.JPanel {
     private int pulsacion = 1;
     private int posicion_x;
     private int posicion_y;
-    private final int w;
-    private final int h;
+    private final int radio;
     private Punto p1;
     private Punto p2;
     private Graphics g;
@@ -50,8 +49,7 @@ public class pnJuego extends javax.swing.JPanel {
         this.separacion = tablero.getSeparacion();
         this.posicion_x = tablero.getPuntos().getX();
         this.posicion_y = tablero.getPuntos().getY();
-        this.w = tablero.getPuntos().getWeidt();
-        this.h = tablero.getPuntos().getHigh();
+        this.radio = tablero.getPuntos().getRadio();
         this.lineasList = new ArrayList<>();
         control = Control.getInstance();
         grosor();
@@ -72,8 +70,8 @@ public class pnJuego extends javax.swing.JPanel {
         int puntoInicialy = posicion_y;
         for (int i = 0; i < tamanio; i++) {
             for (int j = 0; j < tamanio; j++) {
-                Ellipse2D e1 = new Ellipse2D.Double(posicion_x, posicion_y, w, h);
-                punto = new Punto(posicion_x, posicion_y, w, h);
+                Ellipse2D e1 = new Ellipse2D.Double(posicion_x, posicion_y, radio, radio);
+                punto = new Punto(posicion_x, posicion_y, radio);
                 puntosList.add(punto);
                 g2d.fill(e1);
                 posicion_x += separacion;
@@ -143,8 +141,8 @@ public class pnJuego extends javax.swing.JPanel {
         } else if (p1.getY() == p2.getY()) {
 
             // Linea de izquierda a derecha
-            Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), conexion.getTablero().getSeparacion(), grosor);
-            Linea linea = new Linea(p1, p2, grosor, conexion.getTablero().getSeparacion(), conexion.getJugador());
+            Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), conexion.getTablero().getSeparacion(), grosor);
+            Linea linea = new Linea(p1, p2, grosor, conexion.getTablero().getSeparacion(), conexion.getTablero());
             System.out.println(linea);
             if (!comprobarLinea(linea)) {
                 lineasList.add(linea);
@@ -155,7 +153,7 @@ public class pnJuego extends javax.swing.JPanel {
 
                 if (cd != null) {
                     listCuadro.add(cd);
-                    rec.setRect(cd.getSuperior().getP1().getX() + (p1.getWeidt() / 2), cd.getSuperior().getP1().getY() + (p1.getWeidt() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
+                    rec.setRect(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
                     g2d.setColor(conexion.getJugador().getColor());
                     g2d.fill(rec);
                     Cuadro cdDoble = verificaCuadroDoble(cd);
@@ -165,7 +163,7 @@ public class pnJuego extends javax.swing.JPanel {
                                 && cdDoble.getDer() != null
                                 && cdDoble.getIzq() != null) {
                             System.out.println(cdDoble);
-                            rec.setRect(cdDoble.getSuperior().getP1().getX() + (p1.getWeidt() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getWeidt() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
+                            rec.setRect(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
                             g2d.setColor(con.getJ4().getColor());
                             g2d.fill(rec);
 
@@ -180,8 +178,8 @@ public class pnJuego extends javax.swing.JPanel {
         } else {
 
             // Linea de arriba para abajo
-            Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)), ((p1.getY() + (p1.getWeidt() / 2)) - (grosor / 2)), grosor, conexion.getTablero().getSeparacion());
-             Linea linea = new Linea(p1, p2, grosor, conexion.getTablero().getSeparacion(), conexion.getJugador());
+            Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, conexion.getTablero().getSeparacion());
+             Linea linea = new Linea(p1, p2, grosor, conexion.getTablero().getSeparacion(), conexion.getTablero());
              for (Linea linea1 : lineasList) {
                 System.out.println(linea1);
             }
@@ -192,7 +190,7 @@ public class pnJuego extends javax.swing.JPanel {
                 g2d.fill(rec);
                 cd = verificarCuadro(linea);
                 if (cd != null) {
-                    rec.setRect(cd.getSuperior().getP1().getX() + (p1.getWeidt() / 2), cd.getSuperior().getP1().getY() + (p1.getWeidt() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
+                    rec.setRect(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
                     g2d.setColor(con.getJ4().getColor());
                     g2d.fill(rec);
                     Cuadro cdDoble = verificaCuadroDoble(cd);
@@ -202,7 +200,7 @@ public class pnJuego extends javax.swing.JPanel {
                                 && cdDoble.getDer() != null
                                 && cdDoble.getIzq() != null) {
                             System.out.println(cdDoble);
-                            rec.setRect(cdDoble.getSuperior().getP1().getX() + (p1.getWeidt() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getWeidt() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
+                            rec.setRect(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion());
                             g2d.setColor(conexion.getJugador().getColor());
                             g2d.fill(rec);
 
@@ -292,8 +290,7 @@ public class pnJuego extends javax.swing.JPanel {
                         p1= new Punto();
                         p1.setX(punto.getX());
                         p1.setY(punto.getY());
-                        p1.setWeidt(punto.getWeidt());
-                        p1.setHigh(punto.getHigh());
+                        p1.setRadio(punto.getRadio());
                     }
                 }
 
@@ -308,8 +305,7 @@ public class pnJuego extends javax.swing.JPanel {
                         p2= new Punto();
                         p2.setX(punto.getX());
                         p2.setY(punto.getY());
-                        p2.setWeidt(punto.getWeidt());
-                        p2.setHigh(punto.getHigh());
+                        p2.setRadio(punto.getRadio());
                     }
                 }
 

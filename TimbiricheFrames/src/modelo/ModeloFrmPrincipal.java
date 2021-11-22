@@ -16,6 +16,9 @@ import observador.IObserver;
  */
 public class ModeloFrmPrincipal implements IObservable{
     private ArrayList<IObserver> observadores;
+    
+    
+    
     public void agregar(){
         observadores = new ArrayList<IObserver>();
     }

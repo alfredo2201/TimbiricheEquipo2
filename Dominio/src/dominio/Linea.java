@@ -5,120 +5,65 @@
  */
 package dominio;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 import java.util.Objects;
 
-public class Linea {
+/**
+ *
+ * @author Equipo Gatazo
+ */
+public class Linea implements Forma {
 
     private Punto p1;
     private Punto p2;
-    private double w;
-    private double h;
-    private Jugador jugador;
+    private double ancho;
+    private double alto;
+    private Tablero tablero;
 
-    /**
-     *
-     * @param p1 parametro que recibe punto uno
-     * @param p2 parametro que recibe punto dos
-     * @param w parametro que recibe lo anchura
-     * @param h parametro que recibe a la altura
-     * @param jugador parametro que recibe al jugador
-     */
-    public Linea(Punto p1, Punto p2, double w, double h, Jugador jugador) {
+    public Linea(Punto p1, Punto p2, double w, double h, Tablero tablero) {
         this.p1 = p1;
         this.p2 = p2;
-        this.w = w;
-        this.h = h;
-        this.jugador = jugador;
+        this.ancho = w;
+        this.alto = h;
+        this.tablero = tablero;
     }
 
-    /**
-     * Obtiene el punto inicial que usa para dibujar la línea
-     *
-     * @return devuelve el punto inicial
-     */
+    public void setTablero(Tablero tablero) {
+        this.tablero = tablero;
+    }
+
     public Punto getP1() {
         return p1;
     }
 
-    /**
-     * Envia el punto inicial que usa para dibujar la línea
-     *
-     * @param p1 parametro que recibe el punto uno
-     */
     public void setP1(Punto p1) {
         this.p1 = p1;
     }
 
-    /**
-     * Obtiene el punto secundario que usa para dibujar la línea
-     *
-     * @return devuelve el punto dos
-     */
     public Punto getP2() {
         return p2;
     }
 
-    /**
-     * Envia el punto inicial que usa para dibujar la línea
-     *
-     * @param p2 parametro que recibe el punto uno
-     */
     public void setP2(Punto p2) {
         this.p2 = p2;
     }
 
-    /**
-     * Obtiene la anchura que usa para dibujar la línea
-     *
-     * @return devuelve anchura
-     */
     public double getW() {
-        return w;
+        return ancho;
     }
 
-    /**
-     * Envia la anchura que usa para dibujar la línea
-     *
-     * @param w parametro que recibe la anchura
-     */
     public void setW(double w) {
-        this.w = w;
+        this.ancho = w;
     }
 
-    /**
-     * Obtiene la altura que usa para dibujar la línea
-     *
-     * @return devuelve altura
-     */
     public double getH() {
-        return h;
+        return alto;
     }
 
-    /**
-     * Envia la altura que usa para dibujar la línea
-     *
-     * @param h parametro que recibe la altura
-     */
     public void setH(double h) {
-        this.h = h;
-    }
-
-    /**
-     * Obtiene al jugador que usa de la línea
-     *
-     * @return devuelve al jugador
-     */
-    public Jugador getJugador() {
-        return jugador;
-    }
-
-    /**
-     * Envia al jugador que usa de la línea
-     *
-     * @param jugador parametro que recibe la altura
-     */
-    public void setJugador(Jugador jugador) {
-        this.jugador = jugador;
+        this.alto = h;
     }
 
     @Override
@@ -150,7 +95,15 @@ public class Linea {
 
     @Override
     public String toString() {
-        return "Linea{" + "p1=" + p1 + ", p2=" + p2 + ", jugador=" + jugador + '}';
+        return "Linea{" + "p1=" + p1 + ", p2=" + p2;
+    }
+
+    @Override
+    public void dibujar(Graphics g) {
+        Graphics2D g2d = (Graphics2D) g;
+//        Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)),
+//                ((p1.getY() + (p1.getWeidt() / 2)) - (Double.valueOf(tablero.getGrosor()) / 2)), 
+//                Double.valueOf(tablero.getSeparacion()), Double.valueOf(tablero.getGrosor()));
     }
 
 }

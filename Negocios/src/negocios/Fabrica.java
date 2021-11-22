@@ -7,15 +7,11 @@ package negocios;
 
 /**
  *
- * @author Angel
+ * @author Equipo Gatazo
  */
 public class Fabrica {
    private static iConexion instancia;
    
-   /**
-    * Metodo que te regresa la instancia de la fachada
-    * @return instancia
-    */
    public static  iConexion getInstance(){
        if(instancia ==null){
            instancia = new Fachada();

@@ -6,34 +6,24 @@
 package negocios;
 
 import dominio.Jugador;
+import java.awt.Color;
 
 /**
  *
- * @author Angel
+ * @author Equipo Gatazo
  */
 public class CtrlJugador {
 
     private Jugador jugador;
 
-    /**
-     * Constructor por defecto que inicializa jugador
-     */
     public CtrlJugador() {
         jugador = new Jugador();
     }
 
-    /**
-     * Metodo para obtener el jugador
-     * @return un objeto tipo jugador
-     */
     public Jugador getJugador() {
         return jugador;
     }
 
-    /**
-     * Otorga el valor del parametro jugador al jugador de la clase
-     * @param jugador 
-     */
     public void setJugador(Jugador jugador) {
         this.jugador = jugador;
     }
