@@ -13,5 +13,8 @@ import Presentacion.FrmPrincipal;
  */
 public interface IObservable {
      
+    
+     public void attach();
+     public void detach();
      public void notificar();
 }

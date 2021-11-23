@@ -35,8 +35,9 @@ public class ControlFrmCrearPartida {
     
     /**
      * Método que muestra mensaje cuando haya algún error
+     * @param mensaje Mensaje que será desplegado 
      */
-    public void muestraMensaje() {
+    public void muestraMensaje(String mensaje) {
 
     }
 

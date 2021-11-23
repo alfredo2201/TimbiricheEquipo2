@@ -33,5 +33,15 @@ public class ModeloFrmPrincipal implements IObservable{
             o.update();
         }
     }
+
+    @Override
+    public void attach() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void detach() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
     
 }
