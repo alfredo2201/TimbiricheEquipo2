@@ -10,5 +10,34 @@ package control;
  * @author Angel
  */
 public class ControlFrmCrearPartida {
+
+    /**
+     * Método para crea el deminio de partida
+     */
+    public void crearPartida() {
+
+    }
+
+    /**
+     * Método que despliega el drame de crear partida, para configurar la
+     * partida y crearla
+     */
+    public void despliegaPantallaCrearPartida() {
+
+    }
     
+    /**
+     * Método para mostrar el frame de partida
+     */
+    public void mostrarPartida() {
+
+    }
+    
+    /**
+     * Método que muestra mensaje cuando haya algún error
+     */
+    public void muestraMensaje() {
+
+    }
+
 }

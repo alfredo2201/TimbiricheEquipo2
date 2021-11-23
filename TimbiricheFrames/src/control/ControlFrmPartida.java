@@ -10,5 +10,7 @@ package control;
  * @author Angel
  */
 public class ControlFrmPartida {
+   
+    
     
 }
