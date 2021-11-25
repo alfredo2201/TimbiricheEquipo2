@@ -5,24 +5,34 @@
  */
 package control;
 
+import Presentacion.FrmIconos;
+import javax.swing.JOptionPane;
+import modelo.ModeloFrmPrincipal;
+
 /**
  *
- * @author Angel
+ * @author Equipo gatazo
  */
 public class ControlFrmIconos {
     
+    ModeloFrmPrincipal princpial = ModeloFrmPrincipal.getInstance();
+    
     /**
-     * Metodo que añade los iconos al menu de iconos
+     * Metodo que añade ícono al jugador
+     * @param avatar avatar que tendrá el jugador
      */
-    public void añadirIconos(){
-
+    public void añadirIconos(String avatar){
+        princpial.getJugador().setAvatar(avatar);
+        System.out.println(princpial.getJugador().getAvatar());
+        System.out.println(princpial.getJugador().getNombre());
     }
 
     /**
      * Metodo que despliega el frame de Iconos
      */
     public void despliegaPantalla(){
-
+        FrmIconos iconos = new FrmIconos();
+        iconos.setVisible(true);
     }
 
     /**
@@ -30,7 +40,8 @@ public class ControlFrmIconos {
      * @param mensaje Mensaje que será desplegado 
      */
     public void muestraMensaje(String mensaje){
-
+        JOptionPane.showMessageDialog(null,mensaje,
+                            "", JOptionPane.INFORMATION_MESSAGE);
     }
     
 }

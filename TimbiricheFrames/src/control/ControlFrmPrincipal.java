@@ -5,61 +5,82 @@
  */
 package control;
 
+import Presentacion.FrmPrincipal;
+import javax.swing.JOptionPane;
+import modelo.ModeloFrmPrincipal;
+import javax.swing.JOptionPane;
 /**
  *
- * @author Angel
+ * @author Equipo gatazo
  */
 public class ControlFrmPrincipal {
+
+    //de momento poongo esto, posiblemente se elimine la variable
+//    public static ModeloFrmPrincipal instancia;
+//    private String nombre = "";
+    private ModeloFrmPrincipal principal = ModeloFrmPrincipal.getInstance();
+
     
+
     /**
      * Método que asigna nombre al jugador
-     * @param nombre 
+     *
+     * @param nombre
      */
-    public void asignaNombre(String nombre){
-        
+    public void asignaNombre(String nombre) {
+        principal.getJugador().setNombre(nombre);
+
     }
-    
+
     /**
      * Método que valida que el jugador haya seleccionado un ícono
-     * @return true si eligió ícono, false en caso contrario
+     *
+     * @return true si eligió ícono y nombre, false en caso contrario
      */
-    public boolean validaApodoIcono(){
+    public boolean validaApodoIcono() {
+        if (principal.getJugador().getAvatar() == null || 
+                principal.getJugador().getNombre() == null) {
+            return false;
+        }
         return true;
     }
-    
+
     /**
      * Método que envía solicitud para ingresar a la partida
      */
-    public void enviaSolicitud(){
-        
+    public void enviaSolicitud() {
+        // i don't know
     }
-    
+
     /**
      * Método que recupera la partida cuando se acepta la solicitud
      */
-    public void recuperarPartida(){
-        
+    public void recuperarPartida() {
+        //Recuperar la clase de partida
     }
-    
+
     /**
      * Método que despliega el frame de partida
      */
-    public void despliegaPartida(){
-        
+    public void despliegaPartida() {
+        //llamr control de partida
     }
-    
+
     /**
      * Método que despliega frame de Principal
      */
-    public void despliegaPantallaPrincipal(){
-        
+    public void despliegaPantallaPrincipal() {
+        FrmPrincipal prin = FrmPrincipal.getInstance();
+        prin.setVisible(true);
     }
-    
+
     /**
      * Método que muestra mensaje cuando haya algún error
-     * @param mensaje Mensaje que será desplegado 
+     *
+     * @param mensaje Mensaje que será desplegado
      */
-    public void muestraMensaje(String mensaje){
-        
+    public void muestraMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(null,mensaje,
+                            "", JOptionPane.INFORMATION_MESSAGE);
     }
 }

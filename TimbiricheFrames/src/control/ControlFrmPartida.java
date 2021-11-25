@@ -7,7 +7,7 @@ package control;
 
 /**
  *
- * @author Angel
+ * @author Equipo gatazo
  */
 public class ControlFrmPartida {
    
@@ -15,21 +15,21 @@ public class ControlFrmPartida {
      * Método que despliega el frame de Partida
      */
     public void despliegaPantallaPartida(){
-
+        
     }
 
     /**
      * Método que muestra la configuración de los contrincantes 
      */
     public void muestraConfigurarContrincantes(){
-
+        
     }
 
     /**
      * Metodo que muestra la partida con los jugadores
      */
     public void muestraPartida(){
-
+        
     }
 
     /**
@@ -51,35 +51,35 @@ public class ControlFrmPartida {
      * Metodo que elimina la informacion del usuario de la pantalla
      */
     public void quitarInforamcionPantalla(){
-
+        
     }
 
     /**
      * Metodo que borra los datos del jugador 
      */
     public void borrarDatosJugador(){
-
+        
     }
 
     /**
      * Metodo que confirma la selección de inicio del jugador
      */
     public void confirmarInicioJugador(){
-
+        
     }
 
     /**
      * Metodo que muestra el frame Pantalla Principal
      */
     public void mostrarPantallaPrincipal(){
-
+        
     }
 
     /**
      * Metodo que muestra la informacion de los jugadores de la partida
      */
     public void muestraInformacionJugadores(){
-
+        
     }
 
     /**
@@ -94,7 +94,7 @@ public class ControlFrmPartida {
      * Metodo que dibuja la linea en el tablero
      */
     public void dibujaLinea(){
-
+        
     }
 
     /**

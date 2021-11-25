@@ -9,7 +9,7 @@ import observador.IObservable;
 
 /**
  *
- * @author Angel
+ * @author Equipo gatazo
  */
 public class ModeloFrmIcono implements IObservable{
 

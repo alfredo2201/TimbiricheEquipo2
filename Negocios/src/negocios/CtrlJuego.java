@@ -17,7 +17,6 @@ import javax.swing.JOptionPane;
  * @author Equipo Gatazo
  */
 public class CtrlJuego {
-
     public CtrlJuego() {
 
     }

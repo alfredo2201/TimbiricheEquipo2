@@ -7,7 +7,7 @@ package control;
 
 /**
  *
- * @author Angel
+ * @author Equipo gatazo
  */
 public class ControlFrmCrearPartida {
 
@@ -15,7 +15,7 @@ public class ControlFrmCrearPartida {
      * Método para crea el deminio de partida
      */
     public void crearPartida() {
-
+         
     }
 
     /**

@@ -10,6 +10,7 @@ import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import modelo.ModeloFrmPrincipal;
 import negocios.Fabrica;
 import negocios.iConexion;
 import observador.IObserver;
@@ -21,7 +22,7 @@ import observador.IObserver;
  */
 /**
  *
- * @author crist
+ * @author Equipo gatazo
  */
 public class FrmPartida extends javax.swing.JFrame implements IObserver{
 
@@ -33,6 +34,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver{
     private JPanel lienzo;
     private Timer tiempo;
     private final Control control;
+    private final ModeloFrmPrincipal principal = ModeloFrmPrincipal.getInstance();
     private final iConexion conexion = Fabrica.getInstance();
 
     private FrmPartida(Tablero tablero) {

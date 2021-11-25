@@ -9,10 +9,9 @@ import observador.IObservable;
 
 /**
  *
- * @author Angel
+ * @author Equipo Gatazo
  */
 public class ModeloFrmPartida implements IObservable{
-
     @Override
     public void notificar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
