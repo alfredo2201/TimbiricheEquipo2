@@ -5,7 +5,6 @@
  */
 package modelo;
 
-import Presentacion.FrmPartida;
 import dominio.Jugador;
 import java.util.ArrayList;
 import observador.IObservable;
@@ -20,6 +19,7 @@ public class ModeloFrmPrincipal implements IObservable {
     private static ModeloFrmPrincipal instancia;
     private ArrayList<IObserver> observadores;
     private Jugador jugador = new Jugador();
+    private String mensaje;
 
     public static ModeloFrmPrincipal getInstance() {
         if (instancia == null) {
@@ -32,10 +32,16 @@ public class ModeloFrmPrincipal implements IObservable {
         return jugador;
     }
 
-    public void setJugador(Jugador jugador) {
-        this.jugador = jugador;
+    public String getMensaje() {
+        return mensaje;
     }
 
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
+    
+    
+    
     @Override
     public void attach() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -49,8 +55,9 @@ public class ModeloFrmPrincipal implements IObservable {
     @Override
     public void notificar() {
         for (IObserver o : observadores) {
-            o.update();
+            
         }
     }
+    
 
 }

@@ -6,21 +6,25 @@
 package control;
 
 import Presentacion.FrmPrincipal;
-import javax.swing.JOptionPane;
+import dominio.Jugador;
 import modelo.ModeloFrmPrincipal;
 import javax.swing.JOptionPane;
+
 /**
  *
  * @author Equipo gatazo
  */
 public class ControlFrmPrincipal {
 
-    //de momento poongo esto, posiblemente se elimine la variable
-//    public static ModeloFrmPrincipal instancia;
-//    private String nombre = "";
-    private ModeloFrmPrincipal principal = ModeloFrmPrincipal.getInstance();
+    private static ControlFrmPrincipal instance;
+    private ModeloFrmPrincipal modPrincipal = ModeloFrmPrincipal.getInstance();
 
-    
+    public static ControlFrmPrincipal getInstance() {
+        if (instance == null) {
+            instance = new ControlFrmPrincipal();
+        }
+        return instance;
+    }
 
     /**
      * Método que asigna nombre al jugador
@@ -28,8 +32,12 @@ public class ControlFrmPrincipal {
      * @param nombre
      */
     public void asignaNombre(String nombre) {
-        principal.getJugador().setNombre(nombre);
 
+        if (nombre.length() < 10) {
+            String padded = String.format("%-10s", nombre);
+            nombre = (padded);
+        }
+        modPrincipal.getJugador().setNombre(nombre);
     }
 
     /**
@@ -38,11 +46,8 @@ public class ControlFrmPrincipal {
      * @return true si eligió ícono y nombre, false en caso contrario
      */
     public boolean validaApodoIcono() {
-        if (principal.getJugador().getAvatar() == null || 
-                principal.getJugador().getNombre() == null) {
-            return false;
-        }
-        return true;
+        return !(modPrincipal.getJugador().getAvatar() == null
+                || modPrincipal.getJugador().getNombre() == null);
     }
 
     /**
@@ -80,7 +85,17 @@ public class ControlFrmPrincipal {
      * @param mensaje Mensaje que será desplegado
      */
     public void muestraMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(null,mensaje,
-                            "", JOptionPane.INFORMATION_MESSAGE);
+        
+        JOptionPane.showMessageDialog(null, mensaje,
+                "", JOptionPane.INFORMATION_MESSAGE);
+    }
+
+    /**
+     * Método que regresa al jugador del modelo de principal
+     *
+     * @return jugador Jugador del modelo.
+     */
+    public Jugador getJugador() {
+        return modPrincipal.getJugador();
     }
 }

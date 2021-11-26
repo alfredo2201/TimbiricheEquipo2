@@ -1,6 +1,6 @@
 package Presentacion;
 
-
+import control.ControlFrmCrearPartida;
 import control.ControlFrmPrincipal;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -26,8 +26,10 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
     private static FrmPrincipal instancia;
     Timer tiempo;
     private iConexion conexion = Fabrica.getInstance();
-    private ControlFrmPrincipal control = new ControlFrmPrincipal();
-    FrmPrincipal() {
+    private ControlFrmPrincipal ctlPrincipal = new ControlFrmPrincipal();
+    private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
+
+    private FrmPrincipal() {
         initComponents();
         this.setTitle("El Juego de Timbiriche");
         this.setLocationRelativeTo(null);
@@ -35,6 +37,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
 
     /**
      * crea una instancia de FrmPrincipal
+     *
      * @return Regresa una instancia de FrmPrincipal
      */
     public static FrmPrincipal getInstance() {
@@ -172,32 +175,14 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
 
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
         String nombre = txtNombre.getText();
-        if (txtNombre.getText().length() < 10) {
-            String padded = String.format("%-10s", nombre);
-            nombre = (padded);
-        }
-        
-        control.asignaNombre(nombre);
-        
-        //ct.getJ4().setNombre(nombre);
-//        conexion.getJugador().setNombre(nombre);
-//        String icono = conexion.getJugador().getAvatar();
-        
-        if(control.validaApodoIcono()){
-            frmCrearPartida crearPartida = frmCrearPartida.getInstance();
-            crearPartida.setVisible(true);
+        ctlPrincipal.asignaNombre(nombre);
+
+        if (ctlPrincipal.validaApodoIcono()) {
+            ctlCrearPartida.despliegaPantallaCrearPartida();
             this.dispose();
-        }else{
-            control.muestraMensaje("Debe de poner su nombre y seleccionar un icono");
+        } else {
+            ctlPrincipal.muestraMensaje("Debe de poner su nombre y seleccionar un icono");
         }
-//        if (nombre.equalsIgnoreCase("") || icono == null) {
-//            JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
-//                    "Error", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            frmCrearPartida crearPartida = frmCrearPartida.getInstance();
-//            crearPartida.setVisible(true);
-//            this.dispose();
-//        }
     }//GEN-LAST:event_btnIngresar1ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -212,7 +197,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
 
 //        Tablero tablero = new Tablero();
 //        tablero.setTamanio(40);
-        
         conexion.getTablero().setTamanio(40);
 //        ct.getJ4().setNombre(nombre);
 //        String icono = ct.getJ4().getAvatar();
@@ -246,7 +230,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
-        
+
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatarActionPerformed

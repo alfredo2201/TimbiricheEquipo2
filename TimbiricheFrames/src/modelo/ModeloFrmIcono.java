@@ -11,7 +11,9 @@ import observador.IObservable;
  *
  * @author Equipo gatazo
  */
-public class ModeloFrmIcono implements IObservable{
+public class ModeloFrmIcono implements IObservable {
+
+    private ModeloFrmIcono instancia;
 
     @Override
     public void notificar() {
@@ -27,5 +29,11 @@ public class ModeloFrmIcono implements IObservable{
     public void detach() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
+    public ModeloFrmIcono getInstance() {
+        if (instancia == null) {
+            instancia = new ModeloFrmIcono();
+        }
+        return instancia;
+    }
 }

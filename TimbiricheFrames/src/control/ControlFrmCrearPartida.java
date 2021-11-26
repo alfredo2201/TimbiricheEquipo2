@@ -5,25 +5,36 @@
  */
 package control;
 
+import Presentacion.frmCrearPartida;
+import dominio.Partida;
+import dominio.Tablero;
+import javax.swing.JComboBox;
+import modelo.ModeloFrmCrearPartida;
+
 /**
  *
  * @author Equipo gatazo
  */
 public class ControlFrmCrearPartida {
-
-    /**
+    private static ControlFrmCrearPartida instance;
+    private ControlFrmPartida ctlPartida = ControlFrmPartida.getInstance();
+    private ModeloFrmCrearPartida modCrearPartida = ModeloFrmCrearPartida.getInstance();
+    /** 
      * Método para crea el deminio de partida
+     * @param tamanioTablero
      */
-    public void crearPartida() {
-         
+    public void crearPartida(int tamanioTablero) {
+        Tablero tableroNuevo = new Tablero();
+        tableroNuevo.setTamanio(tamanioTablero);       
     }
 
     /**
-     * Método que despliega el drame de crear partida, para configurar la
+     * Método que despliega el frame de crear partida, para configurar la
      * partida y crearla
      */
     public void despliegaPantallaCrearPartida() {
-
+        frmCrearPartida crearPartida = frmCrearPartida.getInstance();
+        crearPartida.setVisible(true);
     }
     
     /**
@@ -39,6 +50,28 @@ public class ControlFrmCrearPartida {
      */
     public void muestraMensaje(String mensaje) {
 
+    }
+    
+    /**
+     * Método que regresa la instancia de esta clase
+     * @return instance Instancia de ControlFrmCrearPartida
+     */
+    public static ControlFrmCrearPartida getInstance(){
+        if (instance ==null) {
+            instance = new ControlFrmCrearPartida();
+        }
+        return instance;
+    }
+    
+    /**
+     * Método que agrega los tamaños disponibles para el tablero.
+     * @param cmbTamanio La lista de selección para seleccionar
+     * el tamaño del tablero
+     */
+    public void agregarTamanioLista(JComboBox<Integer> cmbTamanio) {
+        for (int i = 0; i < modCrearPartida.getTamanioTabla().length; i++) {
+            cmbTamanio.addItem(modCrearPartida.getTamanioTabla()[i]);
+        }
     }
 
 }

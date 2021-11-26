@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import dominio.Partida;
 import observador.IObservable;
 
 /**
@@ -12,6 +13,9 @@ import observador.IObservable;
  * @author Equipo Gatazo
  */
 public class ModeloFrmPartida implements IObservable{
+    private static ModeloFrmPartida instancia;
+    private Partida partida;
+    private String mensaje;
     @Override
     public void notificar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
@@ -26,5 +30,29 @@ public class ModeloFrmPartida implements IObservable{
     public void detach() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    public Partida getPartida() {
+        return partida;
+    }
+
+    public String getMensaje() {
+        return mensaje;
+    }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
+
+    public void setMensaje(String mensaje) {
+        this.mensaje = mensaje;
+    }
     
+    
+    
+    public static ModeloFrmPartida getInstance(){
+        if (instancia==null) {
+            instancia = new ModeloFrmPartida();
+        }
+        return instancia;
+    }
 }

@@ -5,6 +5,7 @@
  */
 package Presentacion;
 
+import control.ControlFrmCrearPartida;
 import javax.swing.DefaultComboBoxModel;
 import negocios.Fabrica;
 import negocios.iConexion;
@@ -21,13 +22,12 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
      */
     private static frmCrearPartida instancia;
     private DefaultComboBoxModel cmbModelTamanio = this.cmbModelTamanio;
-    private final int[] lista;
+    private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
     private iConexion conexion = Fabrica.getInstance();
     
     private frmCrearPartida() {
-        this.lista = new int[]{10, 20, 40};
         initComponents();
-        agregarTamanioLista();
+        ctlCrearPartida.agregarTamanioLista(cmbTamanio);
         this.setLocationRelativeTo(null);
     }
 
@@ -42,22 +42,7 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
         return instancia;
     }
 
-    /**
-     * Regresa el tamaño del tablero
-     * @return Regresa el tamaño del tablero
-     */
-    public int tamanioTablero() {
-        return (int) cmbTamanio.getSelectedItem();
-    }
 
-    /**
-     * Agrega los tamaños de la tabla en una lista
-     */
-    private void agregarTamanioLista() {
-        for (int i = 0; i < lista.length; i++) {
-            cmbTamanio.addItem(lista[i]);
-        }
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -118,11 +103,11 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(130, 130, 130)
-                .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
                 .addComponent(lblTamanio))
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -142,7 +127,8 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        conexion.getTablero().setTamanio(this.tamanioTablero());
+        ctlCrearPartida.crearPartida((int) cmbTamanio.getSelectedItem());
+        
         FrmPartida partida = FrmPartida.getInstance(conexion.getTablero());
         partida.setVisible(true);
         dispose();

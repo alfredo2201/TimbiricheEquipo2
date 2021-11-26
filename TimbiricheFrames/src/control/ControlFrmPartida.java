@@ -5,140 +5,169 @@
  */
 package control;
 
+import dominio.Partida;
+import modelo.ModeloFrmPartida;
+
 /**
  *
  * @author Equipo gatazo
  */
 public class ControlFrmPartida {
-   
-     /**
-     * Método que despliega el frame de Partida
-     */
-    public void despliegaPantallaPartida(){
-        
+
+    private static ControlFrmPartida instance;
+    private ModeloFrmPartida modeloPartida = ModeloFrmPartida.getInstance();
+
+    public static ControlFrmPartida getInstance() {
+        if (instance == null) {
+            instance = new ControlFrmPartida();
+        }
+        return instance;
     }
 
     /**
-     * Método que muestra la configuración de los contrincantes 
+     * Método que despliega el frame de Partida
      */
-    public void muestraConfigurarContrincantes(){
-        
+    public void despliegaPantallaPartida() {
+
+    }
+
+    /**
+     * Método que muestra la configuración de los contrincantes
+     */
+    public void muestraConfigurarContrincantes() {
+
     }
 
     /**
      * Metodo que muestra la partida con los jugadores
      */
-    public void muestraPartida(){
-        
+    public void muestraPartida() {
+
     }
 
     /**
      * Método que valida la configuración del los usuarios
+     *
      * @return true si se vaido con exito, false si no se acepto la validación
      */
-    public boolean validaConfiguracion(){
+    public boolean validaConfiguracion() {
         return true;
     }
 
     /**
      * Método que guarda la configuración de los usuarios
      */
-    public void guardaConfiguracion(){
+    public void guardaConfiguracion() {
 
     }
 
     /**
      * Metodo que elimina la informacion del usuario de la pantalla
      */
-    public void quitarInforamcionPantalla(){
-        
+    public void quitarInforamcionPantalla() {
+
     }
 
     /**
-     * Metodo que borra los datos del jugador 
+     * Metodo que borra los datos del jugador
      */
-    public void borrarDatosJugador(){
-        
+    public void borrarDatosJugador() {
+
     }
 
     /**
      * Metodo que confirma la selección de inicio del jugador
      */
-    public void confirmarInicioJugador(){
-        
+    public void confirmarInicioJugador() {
+
     }
 
     /**
      * Metodo que muestra el frame Pantalla Principal
      */
-    public void mostrarPantallaPrincipal(){
-        
+    public void mostrarPantallaPrincipal() {
+
     }
 
     /**
      * Metodo que muestra la informacion de los jugadores de la partida
      */
-    public void muestraInformacionJugadores(){
-        
+    public void muestraInformacionJugadores() {
+
     }
 
     /**
      * Metodo que valida que una linea pueda ser dibujada
+     *
      * @return True si es posible dibujar la linea, false si no es posible
      */
-    public boolean validaLinea(){
+    public boolean validaLinea() {
         return true;
     }
 
     /**
      * Metodo que dibuja la linea en el tablero
      */
-    public void dibujaLinea(){
-        
+    public void dibujaLinea() {
+
     }
 
     /**
      * Metodo que valida que un cuadro pueda ser rellenado
+     *
      * @return True si es posible rellenar el cuadro, false si no es posible
      */
-    public boolean verificaCuadro(){
+    public boolean verificaCuadro() {
         return true;
     }
 
     /**
-    * Metodo que dibuja la cuadro en el tablero
-    */
-    public void dibujaCuadro(){
+     * Metodo que dibuja la cuadro en el tablero
+     */
+    public void dibujaCuadro() {
 
     }
 
     /**
      * Metodo que verifica el numero de cuadros restantes
+     *
      * @return True en caso de que queden cuadros, False si ya no quedan
      */
-    public boolean validaNumeroCuadros(){
+    public boolean validaNumeroCuadros() {
         return true;
     }
 
     /**
      * Metodo que reasigna el turno a otro jugador
      */
-    public void cambiaTurno(){
+    public void cambiaTurno() {
 
     }
 
     /**
      * Metodo para actualizar los estados de la partida
      */
-    public void actualizaEstado(){
+    public void actualizaEstado() {
 
     }
 
     /**
      * Metodo que despliega un mensaje
      */
-    public void muestraMensaje(){
+    public void muestraMensaje() {
 
     }
-    
+
+    public Partida getPartida() {
+        return modeloPartida.getPartida();
+    }
+
+    public void setPartida(Partida partida) {
+        this.modeloPartida.setPartida(partida);
+    }
+
+    public void setMensaje(String mensaje) {
+        this.modeloPartida.setMensaje(mensaje);
+    }
+
 }
