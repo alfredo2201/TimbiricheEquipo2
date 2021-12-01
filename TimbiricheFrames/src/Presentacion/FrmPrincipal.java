@@ -5,6 +5,10 @@ import control.ControlFrmPrincipal;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
 import javax.swing.Timer;
+import modelo.ModeloFrmCrearPartida;
+import modelo.ModeloFrmIcono;
+import modelo.ModeloFrmPartida;
+import modelo.ModeloFrmPrincipal;
 import negocios.Fabrica;
 import negocios.iConexion;
 import observador.IObserver;
@@ -28,6 +32,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
     private iConexion conexion = Fabrica.getInstance();
     private ControlFrmPrincipal ctlPrincipal = new ControlFrmPrincipal();
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
+    private ModeloFrmPrincipal modeloPrincipal = ModeloFrmPrincipal.getInstance();
 
     private FrmPrincipal() {
         initComponents();
@@ -175,7 +180,8 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
 
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
         String nombre = txtNombre.getText();
-        ctlPrincipal.asignaNombre(nombre);
+        System.out.println("nombre: "+nombre);
+        ctlPrincipal.asignaNombre(txtNombre.getText());
 
         if (ctlPrincipal.validaApodoIcono()) {
             ctlCrearPartida.despliegaPantallaCrearPartida();
@@ -257,8 +263,32 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
+   
+    
     @Override
-    public void update() {
+    public void update(ModeloFrmIcono modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmPrincipal modelo) {
+        this.modeloPrincipal = modelo;
+        actualizar();
+    }
+    
+    //
+    
+    public void actualizar(){
+        
+    }
+
+    @Override
+    public void update(ModeloFrmPartida modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmCrearPartida modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

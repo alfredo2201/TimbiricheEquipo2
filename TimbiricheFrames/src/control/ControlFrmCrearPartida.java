@@ -9,6 +9,7 @@ import Presentacion.frmCrearPartida;
 import dominio.Partida;
 import dominio.Tablero;
 import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
 import modelo.ModeloFrmCrearPartida;
 
 /**
@@ -23,9 +24,10 @@ public class ControlFrmCrearPartida {
      * Método para crea el deminio de partida
      * @param tamanioTablero
      */
-    public void crearPartida(int tamanioTablero) {
+    public Tablero crearPartida(int tamanioTablero) {
         Tablero tableroNuevo = new Tablero();
-        tableroNuevo.setTamanio(tamanioTablero);       
+        tableroNuevo.setTamanio(tamanioTablero);  
+        return tableroNuevo;
     }
 
     /**
@@ -39,17 +41,19 @@ public class ControlFrmCrearPartida {
     
     /**
      * Método para mostrar el frame de partida
-     */
-    public void mostrarPartida() {
-
-    }
+     * POR SI ACADO
+     */ 
+//    public void mostrarPartida() {
+//        
+//    }
     
     /**
      * Método que muestra mensaje cuando haya algún error
      * @param mensaje Mensaje que será desplegado 
      */
     public void muestraMensaje(String mensaje) {
-
+        JOptionPane.showMessageDialog(null,mensaje,
+                            "", JOptionPane.INFORMATION_MESSAGE);
     }
     
     /**

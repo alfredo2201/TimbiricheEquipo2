@@ -32,12 +32,13 @@ public class ControlFrmPrincipal {
      * @param nombre
      */
     public void asignaNombre(String nombre) {
-
-        if (nombre.length() < 10) {
+        
+        if (!nombre.isEmpty()) {
             String padded = String.format("%-10s", nombre);
             nombre = (padded);
+            modPrincipal.getJugador().setNombre(nombre);
         }
-        modPrincipal.getJugador().setNombre(nombre);
+        
     }
 
     /**

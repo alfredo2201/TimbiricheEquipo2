@@ -6,6 +6,10 @@
 package Presentacion;
 
 import control.ControlFrmIconos;
+import modelo.ModeloFrmCrearPartida;
+import modelo.ModeloFrmIcono;
+import modelo.ModeloFrmPartida;
+import modelo.ModeloFrmPrincipal;
 import negocios.Fabrica;
 import negocios.iConexion;
 import observador.IObserver;
@@ -294,7 +298,24 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update() {
+    public void update(ModeloFrmIcono modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
+    @Override
+    public void update(ModeloFrmPrincipal modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmPartida modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmCrearPartida modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 }

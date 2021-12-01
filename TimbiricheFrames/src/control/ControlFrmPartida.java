@@ -5,7 +5,9 @@
  */
 package control;
 
+import Presentacion.FrmPartida;
 import dominio.Partida;
+import dominio.Tablero;
 import modelo.ModeloFrmPartida;
 
 /**
@@ -16,7 +18,8 @@ public class ControlFrmPartida {
 
     private static ControlFrmPartida instance;
     private ModeloFrmPartida modeloPartida = ModeloFrmPartida.getInstance();
-
+    private FrmPartida partida;
+    
     public static ControlFrmPartida getInstance() {
         if (instance == null) {
             instance = new ControlFrmPartida();
@@ -26,9 +29,12 @@ public class ControlFrmPartida {
 
     /**
      * Método que despliega el frame de Partida
+     * Aquí se le agregó el parámetro
      */
-    public void despliegaPantallaPartida() {
-
+    public void despliegaPantallaPartida(Tablero tablero) {
+        tablero.setTamanio(10);
+        partida = FrmPartida.getInstance(tablero);
+        partida.setVisible(true);
     }
 
     /**

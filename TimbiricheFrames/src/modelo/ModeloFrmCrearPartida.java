@@ -5,7 +5,9 @@
  */
 package modelo;
 
+import java.util.Observer;
 import observador.IObservable;
+import observador.IObserver;
 
 /**
  *
@@ -29,25 +31,27 @@ public class ModeloFrmCrearPartida implements IObservable{
         return listaIconos;
     } 
     
-    @Override
-    public void notificar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void attach() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void detach() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-    
     public static ModeloFrmCrearPartida getInstance(){
         if (instancia==null) {
             instancia = new ModeloFrmCrearPartida();
         }
         return instancia;
     }
+
+    @Override
+    public void attach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void detach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notificar() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+
 }

@@ -10,6 +10,9 @@ import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import modelo.ModeloFrmCrearPartida;
+import modelo.ModeloFrmIcono;
+import modelo.ModeloFrmPartida;
 import modelo.ModeloFrmPrincipal;
 import negocios.Fabrica;
 import negocios.iConexion;
@@ -44,7 +47,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver{
         g = lienzo.getGraphics();
         this.setResizable(false);
         control = new Control();
-        cargaJugador();
+//        cargaJugador();
         btnPreparado.setEnabled(false);
     }
 
@@ -402,12 +405,13 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCambiaColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColorActionPerformed
+        
         Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
         if (c != null) {
             lblNombreJugador1.setForeground(c);
             conexion.getJugador().setColor(c);
-
         }
+        
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
@@ -536,7 +540,22 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update() {
+    public void update(ModeloFrmIcono modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmPrincipal modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmPartida modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmCrearPartida modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

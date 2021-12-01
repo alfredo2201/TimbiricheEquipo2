@@ -6,14 +6,20 @@
 package Presentacion;
 
 import control.ControlFrmCrearPartida;
+import control.ControlFrmPartida;
+import dominio.Tablero;
 import javax.swing.DefaultComboBoxModel;
+import modelo.ModeloFrmCrearPartida;
+import modelo.ModeloFrmIcono;
+import modelo.ModeloFrmPartida;
+import modelo.ModeloFrmPrincipal;
 import negocios.Fabrica;
 import negocios.iConexion;
 import observador.IObserver;
 
 /**
  *
- * @author crist
+ * @author Equipo gatazo
  */
 public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
 
@@ -24,6 +30,7 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
     private DefaultComboBoxModel cmbModelTamanio = this.cmbModelTamanio;
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
     private iConexion conexion = Fabrica.getInstance();
+    private ControlFrmPartida partida = ControlFrmPartida.getInstance();
     
     private frmCrearPartida() {
         initComponents();
@@ -127,10 +134,7 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        ctlCrearPartida.crearPartida((int) cmbTamanio.getSelectedItem());
-        
-        FrmPartida partida = FrmPartida.getInstance(conexion.getTablero());
-        partida.setVisible(true);
+        partida.despliegaPantallaPartida(ctlCrearPartida.crearPartida((int) cmbTamanio.getSelectedItem()));   
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 
@@ -147,7 +151,22 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update() {
+    public void update(ModeloFrmIcono modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmPrincipal modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmPartida modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(ModeloFrmCrearPartida modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }
