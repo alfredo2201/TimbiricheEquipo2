@@ -1,6 +1,7 @@
 package Presentacion;
 
 import control.ControlFrmCrearPartida;
+import control.ControlFrmIconos;
 import control.ControlFrmPrincipal;
 import java.awt.event.ActionEvent;
 import javax.swing.JOptionPane;
@@ -22,7 +23,7 @@ import observador.IObserver;
  *
  * @author Equipo gatazo
  */
-public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
+public class FrmPrincipal extends javax.swing.JFrame implements IObserver<ModeloFrmPrincipal> {
 
     /**
      * Creates new form FrnPrincipal
@@ -33,6 +34,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
     private ControlFrmPrincipal ctlPrincipal = new ControlFrmPrincipal();
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
     private ModeloFrmPrincipal modeloPrincipal = ModeloFrmPrincipal.getInstance();
+    private ControlFrmIconos controlIconos = ControlFrmIconos.getInstance();
 
     private FrmPrincipal() {
         initComponents();
@@ -179,16 +181,8 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
-        String nombre = txtNombre.getText();
-        System.out.println("nombre: "+nombre);
-        ctlPrincipal.asignaNombre(txtNombre.getText());
-
-        if (ctlPrincipal.validaApodoIcono()) {
-            ctlCrearPartida.despliegaPantallaCrearPartida();
-            this.dispose();
-        } else {
-            ctlPrincipal.muestraMensaje("Debe de poner su nombre y seleccionar un icono");
-        }
+       
+        ctlPrincipal.asignaNombre(txtNombre.getText().trim());
     }//GEN-LAST:event_btnIngresar1ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -201,8 +195,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
             nombre = (padded);
         }
 
-//        Tablero tablero = new Tablero();
-//        tablero.setTamanio(40);
         conexion.getTablero().setTamanio(40);
 //        ct.getJ4().setNombre(nombre);
 //        String icono = ct.getJ4().getAvatar();
@@ -228,7 +220,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
                     sala.boton(false);
                     dispose();
                 }
-
             });
 
         }
@@ -240,17 +231,17 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
     }//GEN-LAST:event_txtNombreActionPerformed
 
     private void btnAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatarActionPerformed
-        FrmIconos fi = new FrmIconos();
-        fi.setVisible(true);
+        controlIconos.despliegaPantalla();
 
     }//GEN-LAST:event_btnAvatarActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
-
-        if (txtNombre.getText().length() == 10) {
-            evt.consume();
-            JOptionPane.showMessageDialog(this, "Solo se permiten 10 caracteres");
-        }
+        ctlPrincipal.validaTamanio(evt, txtNombre.getText().trim());
+//        if (txtNombre.getText().length() == 10) {
+//            evt.consume();
+////            ctlPrincipal.asignarMensaje("Solo se permiten 10 caracteres uwu");
+////            JOptionPane.showMessageDialog(this, "Solo se permiten 10 caracteres");
+//        }
     }//GEN-LAST:event_txtNombreKeyTyped
 
 
@@ -264,31 +255,23 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver {
     // End of variables declaration//GEN-END:variables
 
    
-    
-    @Override
-    public void update(ModeloFrmIcono modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+ 
+//    public void uwu(ModeloFrmPrincipal modelo) {
+//        this.modeloPrincipal = modelo;
+//        actualizar();
+//    }
 
     @Override
     public void update(ModeloFrmPrincipal modelo) {
         this.modeloPrincipal = modelo;
-        actualizar();
+        this.actualizar();
     }
-    
-    //
     
     public void actualizar(){
-        
+        if(modeloPrincipal.getMensaje() != null){
+            ctlCrearPartida.muestraMensaje(modeloPrincipal.getMensaje());
+        }
     }
 
-    @Override
-    public void update(ModeloFrmPartida modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
-    @Override
-    public void update(ModeloFrmCrearPartida modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 }

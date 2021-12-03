@@ -25,12 +25,21 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver {
      */
     private iConexion conexion = Fabrica.getInstance();
     private ControlFrmIconos control = new ControlFrmIconos();
+    private static ModeloFrmIcono instancia;
+     
 
     public FrmIconos() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
+    
+    public static ModeloFrmIcono getInstance() {
+        if (instancia == null) {
+            instancia = new ModeloFrmIcono();
+        }
+        return instancia;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -298,22 +307,7 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(ModeloFrmIcono modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(ModeloFrmPrincipal modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(ModeloFrmPartida modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(ModeloFrmCrearPartida modelo) {
+    public void update(Object modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

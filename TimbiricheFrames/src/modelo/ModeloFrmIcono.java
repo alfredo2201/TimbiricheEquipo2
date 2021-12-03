@@ -15,7 +15,7 @@ import observador.IObserver;
  */
 public class ModeloFrmIcono implements IObservable {
 
-    private ModeloFrmIcono instancia;
+    private static ModeloFrmIcono instancia;
 
     @Override
     public void attach(IObserver observer) {
@@ -32,7 +32,7 @@ public class ModeloFrmIcono implements IObservable {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
     
-    public ModeloFrmIcono getInstance() {
+    public static ModeloFrmIcono getInstance() {
         if (instancia == null) {
             instancia = new ModeloFrmIcono();
         }

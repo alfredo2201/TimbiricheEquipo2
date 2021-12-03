@@ -8,6 +8,7 @@ package control;
 import Presentacion.FrmPartida;
 import dominio.Partida;
 import dominio.Tablero;
+import javax.swing.JOptionPane;
 import modelo.ModeloFrmPartida;
 
 /**
@@ -99,7 +100,7 @@ public class ControlFrmPartida {
      * Metodo que muestra la informacion de los jugadores de la partida
      */
     public void muestraInformacionJugadores() {
-
+        
     }
 
     /**
@@ -160,8 +161,8 @@ public class ControlFrmPartida {
     /**
      * Metodo que despliega un mensaje
      */
-    public void muestraMensaje() {
-
+    public void muestraMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje, "", JOptionPane.INFORMATION_MESSAGE);
     }
 
     public Partida getPartida() {

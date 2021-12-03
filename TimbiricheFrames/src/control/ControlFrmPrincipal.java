@@ -5,6 +5,7 @@
  */
 package control;
 
+import Presentacion.FrmIconos;
 import Presentacion.FrmPrincipal;
 import dominio.Jugador;
 import modelo.ModeloFrmPrincipal;
@@ -18,6 +19,7 @@ public class ControlFrmPrincipal {
 
     private static ControlFrmPrincipal instance;
     private ModeloFrmPrincipal modPrincipal = ModeloFrmPrincipal.getInstance();
+    private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
 
     public static ControlFrmPrincipal getInstance() {
         if (instance == null) {
@@ -32,13 +34,22 @@ public class ControlFrmPrincipal {
      * @param nombre
      */
     public void asignaNombre(String nombre) {
-        
-        if (!nombre.isEmpty()) {
-            String padded = String.format("%-10s", nombre);
-            nombre = (padded);
-            modPrincipal.getJugador().setNombre(nombre);
+        String padded = String.format("%-10s", nombre);
+        nombre = (padded);
+        modPrincipal.getJugador().setNombre(nombre);
+        if (validaApodoIcono()) {
+            crearFrmCrearPartida();
+        } else {
+            modPrincipal.setMensaje("Tiene que agregar un nombre y un ícono");
         }
-        
+
+    }
+
+    public void validaTamanio(java.awt.event.KeyEvent evt, String nombre) {
+        if (nombre.length() == 10) {
+            evt.consume();
+            modPrincipal.setMensaje("Solo se permiten 10 caracteres");
+        }
     }
 
     /**
@@ -77,6 +88,7 @@ public class ControlFrmPrincipal {
      */
     public void despliegaPantallaPrincipal() {
         FrmPrincipal prin = FrmPrincipal.getInstance();
+        modPrincipal.attach(prin);
         prin.setVisible(true);
     }
 
@@ -86,9 +98,9 @@ public class ControlFrmPrincipal {
      * @param mensaje Mensaje que será desplegado
      */
     public void muestraMensaje(String mensaje) {
-        
-        JOptionPane.showMessageDialog(null, mensaje,
-                "", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, mensaje, "", JOptionPane.ERROR_MESSAGE);
+//        JOptionPane.showMessageDialog(null, mensaje,
+//                "", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**
@@ -98,5 +110,24 @@ public class ControlFrmPrincipal {
      */
     public Jugador getJugador() {
         return modPrincipal.getJugador();
+    }
+
+    public void despliegaPantallaIconos() {
+        FrmIconos fr = new FrmIconos();
+        fr.setVisible(true);
+    }
+
+    /*
+     * Método que valida para crear una partida
+     */
+    public void crearFrmCrearPartida() {
+        FrmPrincipal prin = FrmPrincipal.getInstance();
+        if (validaApodoIcono()) {
+            ctlCrearPartida.despliegaPantallaCrearPartida();
+            prin.dispose();
+        } else {
+            modPrincipal.setMensaje("Debe de poner su nombre y seleccionar un icono");
+//            muestraMensaje("Debe de poner su nombre y seleccionar un icono");
+        }
     }
 }

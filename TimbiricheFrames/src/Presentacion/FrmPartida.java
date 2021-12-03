@@ -540,22 +540,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver{
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(ModeloFrmIcono modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(ModeloFrmPrincipal modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(ModeloFrmPartida modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void update(ModeloFrmCrearPartida modelo) {
+    public void update(Object modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 }

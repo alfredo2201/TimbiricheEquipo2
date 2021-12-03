@@ -15,34 +15,42 @@ import sun.security.krb5.internal.ktab.KeyTabConstants;
  * @author Equipo gatazo
  */
 public class ControlFrmIconos {
-    
+
     ModeloFrmPrincipal princpial = ModeloFrmPrincipal.getInstance();
-    
+    private static ControlFrmIconos instance;
+
     /**
      * Metodo que añade ícono al jugador
+     *
      * @param avatar avatar que tendrá el jugador
      */
-    public void añadirIconos(String avatar){
+    public void añadirIconos(String avatar) {
         princpial.getJugador().setAvatar(avatar);
-        System.out.println(princpial.getJugador().getAvatar());
-        System.out.println(princpial.getJugador().getNombre());
+    }
+
+    public static ControlFrmIconos getInstance() {
+        if (instance == null) {
+            instance = new ControlFrmIconos();
+        }
+        return instance;
     }
 
     /**
      * Metodo que despliega el frame de Iconos
      */
-    public void despliegaPantalla(){
+    public void despliegaPantalla() {
         FrmIconos iconos = new FrmIconos();
         iconos.setVisible(true);
     }
 
     /**
      * Metodo que muestra el mensaje de parametro
-     * @param mensaje Mensaje que será desplegado 
+     *
+     * @param mensaje Mensaje que será desplegado
      */
-    public void muestraMensaje(String mensaje){
-        JOptionPane.showMessageDialog(null,mensaje,
-                            "", JOptionPane.INFORMATION_MESSAGE);
+    public void muestraMensaje(String mensaje) {
+        JOptionPane.showMessageDialog(null, mensaje,
+                "", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
 }

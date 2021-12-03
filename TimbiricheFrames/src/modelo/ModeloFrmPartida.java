@@ -18,21 +18,8 @@ public class ModeloFrmPartida implements IObservable{
     private static ModeloFrmPartida instancia;
     private Partida partida;
     private String mensaje;
+    private IObserver observador;
 
-    @Override
-    public void attach(IObserver observer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void detach(IObserver observer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void notificar() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
     
     public Partida getPartida() {
         return partida;
@@ -44,10 +31,12 @@ public class ModeloFrmPartida implements IObservable{
 
     public void setPartida(Partida partida) {
         this.partida = partida;
+        this.notificar();
     }
 
     public void setMensaje(String mensaje) {
         this.mensaje = mensaje;
+        this.notificar();
     }
     
     
@@ -57,6 +46,21 @@ public class ModeloFrmPartida implements IObservable{
             instancia = new ModeloFrmPartida();
         }
         return instancia;
+    }
+    
+        @Override
+    public void attach(IObserver observer) {
+        this.observador = observer;
+    }
+
+    @Override
+    public void detach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void notificar() {
+        this.observador.update(this);
     }
 
 }
