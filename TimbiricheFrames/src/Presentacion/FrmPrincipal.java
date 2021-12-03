@@ -181,8 +181,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
-       
-        ctlPrincipal.asignaNombre(txtNombre.getText().trim());
+     ctlPrincipal.asignaNombre(txtNombre.getText().trim());
     }//GEN-LAST:event_btnIngresar1ActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed

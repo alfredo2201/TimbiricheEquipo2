@@ -7,7 +7,11 @@ package control;
 
 import Presentacion.FrmIconos;
 import Presentacion.FrmPrincipal;
+import SocketCliente.SocketCliente;
 import dominio.Jugador;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.ModeloFrmPrincipal;
 import javax.swing.JOptionPane;
 
@@ -20,6 +24,7 @@ public class ControlFrmPrincipal {
     private static ControlFrmPrincipal instance;
     private ModeloFrmPrincipal modPrincipal = ModeloFrmPrincipal.getInstance();
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
+    private SocketCliente cliente = new SocketCliente();
 
     public static ControlFrmPrincipal getInstance() {
         if (instance == null) {
@@ -37,7 +42,13 @@ public class ControlFrmPrincipal {
         String padded = String.format("%-10s", nombre);
         nombre = (padded);
         modPrincipal.getJugador().setNombre(nombre);
-        if (validaApodoIcono()) {
+        if (validaApodoIcono()) {            
+            try {
+                cliente.conectarServidor();
+                cliente.enviarAlServidor(modPrincipal.getJugador());
+            } catch (IOException ex) {
+                Logger.getLogger(ControlFrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
             crearFrmCrearPartida();
         } else {
             modPrincipal.setMensaje("Tiene que agregar un nombre y un ícono");
@@ -87,8 +98,7 @@ public class ControlFrmPrincipal {
      * Método que despliega frame de Principal
      */
     public void despliegaPantallaPrincipal() {
-        FrmPrincipal prin = FrmPrincipal.getInstance();
-        modPrincipal.attach(prin);
+        FrmPrincipal prin = FrmPrincipal.getInstance();        
         prin.setVisible(true);
     }
 
@@ -113,7 +123,7 @@ public class ControlFrmPrincipal {
     }
 
     public void despliegaPantallaIconos() {
-        FrmIconos fr = new FrmIconos();
+        FrmIconos fr = FrmIconos.getInstance();
         fr.setVisible(true);
     }
 
