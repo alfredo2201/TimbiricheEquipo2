@@ -13,7 +13,7 @@ import observador.IObserver;
  *
  * @author Equipo gatazo
  */
-public class ModeloFrmPrincipal implements IObservable {
+public class ModeloFrmPrincipal implements IObservable{
 
     private static ModeloFrmPrincipal instancia;
     private IObserver observadores;
@@ -52,6 +52,8 @@ public class ModeloFrmPrincipal implements IObservable {
         observadores.update(this);
         //Segregación de interfaces
     }
+
+
     
     
 

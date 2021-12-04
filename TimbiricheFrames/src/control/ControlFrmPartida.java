@@ -33,7 +33,6 @@ public class ControlFrmPartida {
      * Aquí se le agregó el parámetro
      */
     public void despliegaPantallaPartida(Tablero tablero) {
-        tablero.setTamanio(10);
         partida = FrmPartida.getInstance(tablero);
         partida.setVisible(true);
     }

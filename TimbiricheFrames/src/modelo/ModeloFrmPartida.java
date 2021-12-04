@@ -13,7 +13,7 @@ import observador.IObserver;
  *
  * @author Equipo Gatazo
  */
-public class ModeloFrmPartida implements IObservable,IObserver{
+public class ModeloFrmPartida implements IObservable,IObserver<Partida>{
     private static ModeloFrmPartida instancia;
     private Partida partida;
     private String mensaje;
@@ -59,8 +59,9 @@ public class ModeloFrmPartida implements IObservable,IObserver{
     }
 
     @Override
-    public void update(Object modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(Partida partida) {
+        this.setPartida(partida);
+        notificar();
     }
 
 }

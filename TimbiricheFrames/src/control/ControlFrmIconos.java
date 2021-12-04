@@ -7,8 +7,6 @@ package control;
 
 import Presentacion.FrmIconos;
 import javax.swing.JOptionPane;
-import modelo.ModeloFrmPrincipal;
-import sun.security.krb5.internal.ktab.KeyTabConstants;
 
 /**
  *
@@ -16,7 +14,7 @@ import sun.security.krb5.internal.ktab.KeyTabConstants;
  */
 public class ControlFrmIconos {
 
-    ModeloFrmPrincipal princpial = ModeloFrmPrincipal.getInstance();
+    ControlFrmPrincipal ctlPrincipal = ControlFrmPrincipal.getInstance();
     private static ControlFrmIconos instance;
 
     /**
@@ -25,7 +23,7 @@ public class ControlFrmIconos {
      * @param avatar avatar que tendrá el jugador
      */
     public void añadirIconos(String avatar) {
-        princpial.getJugador().setAvatar(avatar);
+        ctlPrincipal.añadirIcono(avatar);
     }
 
     public static ControlFrmIconos getInstance() {
@@ -39,7 +37,7 @@ public class ControlFrmIconos {
      * Metodo que despliega el frame de Iconos
      */
     public void despliegaPantalla() {
-        FrmIconos iconos = new FrmIconos();
+        FrmIconos iconos = FrmIconos.getInstance();
         iconos.setVisible(true);
     }
 

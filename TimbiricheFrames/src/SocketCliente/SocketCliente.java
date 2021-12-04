@@ -40,11 +40,11 @@ public class SocketCliente implements IObservable {
 
     public void enviarAlServidor(Jugador jugador) throws IOException {
         objetoSaliente.writeObject(jugador);
-        try {
-            procesaObjeto(objetoEntrante.readObject());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
+//        try {
+//            procesaObjeto(objetoEntrante.readObject());
+//        } catch (ClassNotFoundException ex) {
+//            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
+//        }
     }
 
     public void enviarAlServidor(Partida partida) throws IOException {
@@ -84,8 +84,6 @@ public class SocketCliente implements IObservable {
         }
         notificar();
     }
-
-    
 
     @Override
     public void notificar() {

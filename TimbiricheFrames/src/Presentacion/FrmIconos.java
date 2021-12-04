@@ -6,10 +6,8 @@
 package Presentacion;
 
 import control.ControlFrmIconos;
-import modelo.ModeloFrmCrearPartida;
+import control.ControlFrmPrincipal;
 import modelo.ModeloFrmIcono;
-import modelo.ModeloFrmPartida;
-import modelo.ModeloFrmPrincipal;
 import negocios.Fabrica;
 import negocios.iConexion;
 import observador.IObserver;
@@ -18,25 +16,25 @@ import observador.IObserver;
  *
  * @author Equipo gatazo
  */
-public class FrmIconos extends javax.swing.JFrame implements IObserver {
+public class FrmIconos extends javax.swing.JFrame implements IObserver<ModeloFrmIcono> {
 
     /**
      * Creates new form FrmIconos
      */
-    private iConexion conexion = Fabrica.getInstance();
-    private ControlFrmIconos control = new ControlFrmIconos();
-    private static ModeloFrmIcono instancia;
+    private ControlFrmIconos ctlIconos = new ControlFrmIconos();
+    private static ModeloFrmIcono modeloIcono = ModeloFrmIcono.getInstance();
+    private static FrmIconos instancia;
      
 
-    public FrmIconos() {
+    private FrmIconos() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
     
-    public static ModeloFrmIcono getInstance() {
+    public static FrmIconos getInstance() {
         if (instancia == null) {
-            instancia = new ModeloFrmIcono();
+            instancia = new FrmIconos();
         }
         return instancia;
     }
@@ -236,57 +234,57 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnOpcionIcono4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono4ActionPerformed
-        control.añadirIconos("/img/btnIcono4.png");
+        ctlIconos.añadirIconos(modeloIcono.getIconos().get(0));
 //        conexion.getJugador().setAvatar("/img/btnIcono4.png");
         dispose();
     }//GEN-LAST:event_btnOpcionIcono4ActionPerformed
 
     private void btnOpcionIcono1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono1ActionPerformed
 //        conexion.getJugador().setAvatar("/img/btnIcono1.png");
-        control.añadirIconos("/img/btnIcono1.png");
+        ctlIconos.añadirIconos(modeloIcono.getIconos().get(1));
         dispose();
 
     }//GEN-LAST:event_btnOpcionIcono1ActionPerformed
 
     private void btnOpcionIcono2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono2ActionPerformed
 //        conexion.getJugador().setAvatar("/img/btnIcono2.png");
-        control.añadirIconos("/img/btnIcono2.png");
+        ctlIconos.añadirIconos(modeloIcono.getIconos().get(2));
         dispose();
     }//GEN-LAST:event_btnOpcionIcono2ActionPerformed
 
     private void btnOpcionIcono3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono3ActionPerformed
 //        conexion.getJugador().setAvatar("/img/btnIcono3.png");
-        control.añadirIconos("/img/btnIcono3.png");
+        ctlIconos.añadirIconos(modeloIcono.getIconos().get(3));
         dispose();
     }//GEN-LAST:event_btnOpcionIcono3ActionPerformed
 
     private void btnOpcionIcono8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono8ActionPerformed
 //        conexion.getJugador().setAvatar("/img/btnIcono8.png");
-        control.añadirIconos("/img/btnIcono8.png");
+        ctlIconos.añadirIconos(modeloIcono.getIconos().get(4));
         dispose();
     }//GEN-LAST:event_btnOpcionIcono8ActionPerformed
 
     private void btnOpcionIcono5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono5ActionPerformed
 //       conexion.getJugador().setAvatar("/img/btnIcono5.png");
-        control.añadirIconos("/img/btnIcono5.png");
+        ctlIconos.añadirIconos(modeloIcono.getIconos().get(5));
         dispose();
     }//GEN-LAST:event_btnOpcionIcono5ActionPerformed
 
     private void btnOpcionIcono6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono6ActionPerformed
 //        conexion.getJugador().setAvatar("/img/btnIcono6.png");
-        control.añadirIconos("/img/btnIcono6.png");
+        ctlIconos.añadirIconos(modeloIcono.getIconos().get(6));
         dispose();
     }//GEN-LAST:event_btnOpcionIcono6ActionPerformed
 
     private void btnOpcionIcono7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnOpcionIcono7ActionPerformed
 //        conexion.getJugador().setAvatar("/img/btnIcono7.png");
-        control.añadirIconos("/img/btnIcono7.png");
+        ctlIconos.añadirIconos(modeloIcono.getIconos().get(7));
         dispose();
     }//GEN-LAST:event_btnOpcionIcono7ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        FrmPrincipal fP = FrmPrincipal.getInstance();
-        fP.setVisible(true);
+        ControlFrmPrincipal ctlPrincipal = ControlFrmPrincipal.getInstance();
+        ctlPrincipal.despliegaPantallaPrincipal();
         dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
@@ -307,7 +305,7 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver {
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(Object modelo) {
+    public void update(ModeloFrmIcono modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 

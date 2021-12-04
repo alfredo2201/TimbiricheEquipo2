@@ -99,9 +99,9 @@ public class ControlFrmPrincipal {
      * Método que despliega frame de Principal
      */
     public void despliegaPantallaPrincipal() {
-        FrmPrincipal prin = FrmPrincipal.getInstance();
+        FrmPrincipal frmPrincipal = FrmPrincipal.getInstance();
 //        modPrincipal.attach(prin);
-        prin.setVisible(true);
+        frmPrincipal.setVisible(true);
     }
 
     /**
@@ -125,7 +125,7 @@ public class ControlFrmPrincipal {
     }
 
     public void despliegaPantallaIconos() {
-        FrmIconos fr = new FrmIconos();
+        FrmIconos fr = FrmIconos.getInstance();
         fr.setVisible(true);
     }
 
@@ -139,5 +139,9 @@ public class ControlFrmPrincipal {
         } else {
             modPrincipal.setMensaje("Debe de poner su nombre y seleccionar un icono");
         }
+    }
+
+    public void añadirIcono(String icono) {
+        modPrincipal.getJugador().setAvatar(icono);
     }
 }
