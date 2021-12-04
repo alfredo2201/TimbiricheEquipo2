@@ -24,10 +24,13 @@ public class ControlFrmCrearPartida {
      * Método para crea el deminio de partida
      * @param tamanioTablero
      */
-    public Tablero crearPartida(int tamanioTablero) {
+    public void crearPartida(int tamanioTablero) {
         Tablero tableroNuevo = new Tablero();
         tableroNuevo.setTamanio(tamanioTablero);  
-        return tableroNuevo;
+        Partida partida = new Partida();
+        partida.setTablero(tableroNuevo);
+        ctlPartida.crearPartida(partida);       
+        ctlPartida.despliegaPantallaPartida();
     }
 
     /**

@@ -6,8 +6,10 @@
 package control;
 
 import Presentacion.FrmPartida;
+import Presentacion.pnJuego;
 import dominio.Partida;
 import dominio.Tablero;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.ModeloFrmPartida;
 
@@ -19,7 +21,8 @@ public class ControlFrmPartida {
 
     private static ControlFrmPartida instance;
     private ModeloFrmPartida modeloPartida = ModeloFrmPartida.getInstance();
-    private FrmPartida partida;
+    private FrmPartida frmPartida;
+    
     
     public static ControlFrmPartida getInstance() {
         if (instance == null) {
@@ -28,13 +31,18 @@ public class ControlFrmPartida {
         return instance;
     }
 
+    public void crearPartida(Partida partida) {
+        modeloPartida.crearPartida(partida);
+    }
+    
+    
     /**
      * Método que despliega el frame de Partida
      * Aquí se le agregó el parámetro
      */
-    public void despliegaPantallaPartida(Tablero tablero) {
-        partida = FrmPartida.getInstance(tablero);
-        partida.setVisible(true);
+    public void despliegaPantallaPartida() {
+        frmPartida = FrmPartida.getInstance();
+        frmPartida.setVisible(true);
     }
 
     /**

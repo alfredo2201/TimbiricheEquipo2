@@ -1,6 +1,7 @@
 package Presentacion;
 
 import Control.Control;
+import control.ControlFrmPartida;
 import dominio.Jugador;
 import dominio.Tablero;
 import java.awt.Color;
@@ -10,8 +11,6 @@ import javax.swing.JColorChooser;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
-import modelo.ModeloFrmCrearPartida;
-import modelo.ModeloFrmIcono;
 import modelo.ModeloFrmPartida;
 import modelo.ModeloFrmPrincipal;
 import negocios.Fabrica;
@@ -27,7 +26,7 @@ import observador.IObserver;
  *
  * @author Equipo gatazo
  */
-public class FrmPartida extends javax.swing.JFrame implements IObserver{
+public class FrmPartida extends javax.swing.JFrame implements IObserver {
 
     /**
      * Creates new form FrmSala
@@ -36,50 +35,55 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver{
     private final Graphics g;
     private JPanel lienzo;
     private Timer tiempo;
-    private final Control control;
+    private final ControlFrmPartida control;
     private final ModeloFrmPrincipal principal = ModeloFrmPrincipal.getInstance();
+    private final ModeloFrmPartida modeloPartida = ModeloFrmPartida.getInstance();
     private final iConexion conexion = Fabrica.getInstance();
 
-    private FrmPartida(Tablero tablero) {
+    private FrmPartida() {
         initComponents();
+        control = new ControlFrmPartida();
         this.setExtendedState(MAXIMIZED_BOTH);
-        configuracionLienzo(tablero);
-        g = lienzo.getGraphics();
-        this.setResizable(false);
-        control = new Control();
-//        cargaJugador();
-        btnPreparado.setEnabled(false);
-    }
-
-    /**
-     * Configura el tablero
-     * @param tablero tablero con las caracteristicas
-     */
-    private void configuracionLienzo(Tablero tablero) {
-
-        lienzo = new pnJuego(tablero);//se inicializa el lienzo
+        lienzo = new pnJuego(modeloPartida.getPartida().getTablero());//se inicializa el lienzo
         lienzo.setLocation(200, 0); //se establece su posición
         lienzo.setSize(1010, 1010); //establece el tamaño del panel
         lienzo.setVisible(true);
         add(lienzo); //se agrega al frame principal
         pack();
+        g = lienzo.getGraphics();
+        this.setResizable(false);
+        btnPreparado.setEnabled(false);
     }
 
     /**
-     * Carga a los jugadores
+     * Configura el tablero
+     *
+     * @param tablero tablero con las caracteristicas
      */
-    private void cargaJugador() {
-        lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(conexion.getJugador().getAvatar())));
-        lblNombreJugador1.setText(conexion.getJugador().getNombre());
-        lblTurnoNombreJugador.setText(conexion.getJugador().getNombre());
-
-        control.cargarJugador(lblIconoJugador2, lblNombreJugador2, control.getJ1(), 2000);
-        control.cargarJugador(lblIconoJugador3, lblNombreJugador3, control.getJ2(), 3000);
-        control.cargarJugador(lblIconoJugador4, lblNombreJugador4, control.getJ3(), 4000);
-    }
-
+//    private void configuracionLienzo(Tablero tablero) {
+//
+//        lienzo = new pnJuego(tablero);//se inicializa el lienzo
+//        lienzo.setLocation(200, 0); //se establece su posición
+//        lienzo.setSize(1010, 1010); //establece el tamaño del panel
+//        lienzo.setVisible(true);
+//        add(lienzo); //se agrega al frame principal
+//        pack();
+//    }
+    /**
+     * Carga a los jugadores //
+     */
+//    private void cargaJugador() {
+//        lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(conexion.getJugador().getAvatar())));
+//        lblNombreJugador1.setText(conexion.getJugador().getNombre());
+//        lblTurnoNombreJugador.setText(conexion.getJugador().getNombre());
+//
+//        control.cargarJugador(lblIconoJugador2, lblNombreJugador2, control.getJ1(), 2000);
+//        control.cargarJugador(lblIconoJugador3, lblNombreJugador3, control.getJ2(), 3000);
+//        control.cargarJugador(lblIconoJugador4, lblNombreJugador4, control.getJ3(), 4000);
+//    }
     /**
      * Verifica el tipo de jugador
+     *
      * @param tipoJugador Tipo de jugador
      */
     public void boton(boolean tipoJugador) {
@@ -93,12 +97,13 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver{
 
     /**
      * Crea instancia de FrmPartida
+     *
      * @param tablero Tablero que tendrá
      * @return regresa una instancia de FrmPartida
      */
-    public static FrmPartida getInstance(Tablero tablero) {
+    public static FrmPartida getInstance() {
         if (instance == null) {
-            instance = new FrmPartida(tablero);
+            instance = new FrmPartida();
         }
         return instance;
     }
@@ -405,13 +410,13 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCambiaColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColorActionPerformed
-        
+
         Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
         if (c != null) {
             lblNombreJugador1.setForeground(c);
             conexion.getJugador().setColor(c);
         }
-        
+
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed

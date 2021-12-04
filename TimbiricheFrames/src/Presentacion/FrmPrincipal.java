@@ -213,10 +213,10 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
                 private void operacion() {
                     JOptionPane.showMessageDialog(null, "Has sido aceptado en el juego",
                             "", JOptionPane.INFORMATION_MESSAGE);
-                    FrmPartida sala = FrmPartida.getInstance(conexion.getTablero());
-                    sala.setVisible(true);
-                    tiempo.stop();
-                    sala.boton(false);
+                    //FrmPartida sala = FrmPartida.getInstance(conexion.getTablero());
+//                    sala.setVisible(true);
+//                    tiempo.stop();
+//                    sala.boton(false);
                     dispose();
                 }
             });

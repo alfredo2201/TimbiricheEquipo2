@@ -134,7 +134,7 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        partida.despliegaPantallaPartida(ctlCrearPartida.crearPartida((int) cmbTamanio.getSelectedItem()));   
+        ctlCrearPartida.crearPartida((int) cmbTamanio.getSelectedItem());   
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

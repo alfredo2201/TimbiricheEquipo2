@@ -5,6 +5,7 @@
  */
 package modelo;
 
+import Presentacion.FrmPartida;
 import dominio.Partida;
 import observador.IObservable;
 import observador.IObserver;
@@ -13,13 +14,13 @@ import observador.IObserver;
  *
  * @author Equipo Gatazo
  */
-public class ModeloFrmPartida implements IObservable,IObserver<Partida>{
+public class ModeloFrmPartida implements IObservable, IObserver<Partida> {
+
     private static ModeloFrmPartida instancia;
-    private Partida partida;
+    private Partida partida = null;
     private String mensaje;
     private IObserver observador;
 
-    
     public Partida getPartida() {
         return partida;
     }
@@ -27,7 +28,9 @@ public class ModeloFrmPartida implements IObservable,IObserver<Partida>{
     public String getMensaje() {
         return mensaje;
     }
-
+    public void crearPartida(Partida partida){
+        this.partida = partida;
+    }
     public void setPartida(Partida partida) {
         this.partida = partida;
         this.notificar();
@@ -37,21 +40,13 @@ public class ModeloFrmPartida implements IObservable,IObserver<Partida>{
         this.mensaje = mensaje;
         this.notificar();
     }
-    
-    
-    
-    public static ModeloFrmPartida getInstance(){
-        if (instancia==null) {
+
+    public static ModeloFrmPartida getInstance() {
+        if (instancia == null) {
             instancia = new ModeloFrmPartida();
         }
         return instancia;
     }
-    
-//        @Override
-//    public void attach(IObserver observer) {
-//        this.observador = observer;
-//    }
-
 
     @Override
     public void notificar() {
