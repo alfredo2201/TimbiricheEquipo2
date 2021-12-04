@@ -34,8 +34,8 @@ public class ControlFrmPrincipal {
      * @param nombre
      */
     public void asignaNombre(String nombre) {
-        String padded = String.format("%-10s", nombre);
-        nombre = (padded);
+//        String padded = String.format("%-10s", nombre);
+//        nombre = (padded);
         modPrincipal.getJugador().setNombre(nombre);
         if (validaApodoIcono()) {
             crearFrmCrearPartida();
@@ -59,7 +59,8 @@ public class ControlFrmPrincipal {
      */
     public boolean validaApodoIcono() {
         return !(modPrincipal.getJugador().getAvatar() == null
-                || modPrincipal.getJugador().getNombre() == null);
+                || modPrincipal.getJugador().getNombre() == null 
+                || modPrincipal.getJugador().getNombre().equalsIgnoreCase(""));
     }
 
     /**
@@ -127,7 +128,6 @@ public class ControlFrmPrincipal {
             prin.dispose();
         } else {
             modPrincipal.setMensaje("Debe de poner su nombre y seleccionar un icono");
-//            muestraMensaje("Debe de poner su nombre y seleccionar un icono");
         }
     }
 }

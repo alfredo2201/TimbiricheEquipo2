@@ -237,11 +237,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped
         ctlPrincipal.validaTamanio(evt, txtNombre.getText().trim());
-//        if (txtNombre.getText().length() == 10) {
-//            evt.consume();
-////            ctlPrincipal.asignarMensaje("Solo se permiten 10 caracteres uwu");
-////            JOptionPane.showMessageDialog(this, "Solo se permiten 10 caracteres");
-//        }
     }//GEN-LAST:event_txtNombreKeyTyped
 
 
