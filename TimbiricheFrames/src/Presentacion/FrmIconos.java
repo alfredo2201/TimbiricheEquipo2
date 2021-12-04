@@ -25,22 +25,21 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver {
      */
     private iConexion conexion = Fabrica.getInstance();
     private ControlFrmIconos control = new ControlFrmIconos();
-    private ModeloFrmIcono modeloIcono = ModeloFrmIcono.getInstance();
-    private static FrmIconos instance;
+    private static ModeloFrmIcono instancia;
      
 
-    protected FrmIconos() {
+    public FrmIconos() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
+
     
-    public static FrmIconos getInstance(){
-        if (instance ==null) {
-            instance = new FrmIconos();
+    public static ModeloFrmIcono getInstance() {
+        if (instancia == null) {
+            instancia = new ModeloFrmIcono();
         }
-        return instance;
+        return instancia;
     }
-        
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

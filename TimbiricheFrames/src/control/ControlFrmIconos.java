@@ -39,7 +39,7 @@ public class ControlFrmIconos {
      * Metodo que despliega el frame de Iconos
      */
     public void despliegaPantalla() {
-        FrmIconos iconos =FrmIconos.getInstance();
+        FrmIconos iconos = new FrmIconos();
         iconos.setVisible(true);
     }
 

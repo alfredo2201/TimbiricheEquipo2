@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import Presentacion.frmCrearPartida;
+import java.util.Observer;
 import observador.IObservable;
 import observador.IObserver;
 
@@ -16,14 +16,11 @@ import observador.IObserver;
 public class ModeloFrmCrearPartida implements IObservable{
 
     private static ModeloFrmCrearPartida instancia;
-    private IObserver observador;
     private int[]tamanioTabla;
     private String[]listaIconos;
 
-    
     public ModeloFrmCrearPartida() {
         this.tamanioTabla = new int[]{10, 20, 40};
-        attach();
     }
 
     public int[] getTamanioTabla() {
@@ -42,14 +39,19 @@ public class ModeloFrmCrearPartida implements IObservable{
     }
 
     @Override
-    public void attach() {
-        observador = frmCrearPartida.getInstance();
+    public void attach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
+    @Override
+    public void detach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public void notificar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
+
 
 }

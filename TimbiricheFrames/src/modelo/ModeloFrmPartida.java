@@ -5,9 +5,8 @@
  */
 package modelo;
 
-import Presentacion.FrmPartida;
 import dominio.Partida;
-import dominio.Tablero;
+import java.util.Observer;
 import observador.IObservable;
 import observador.IObserver;
 
@@ -15,16 +14,12 @@ import observador.IObserver;
  *
  * @author Equipo Gatazo
  */
-public class ModeloFrmPartida implements IObservable,IObserver<Partida>{
+public class ModeloFrmPartida implements IObservable{
     private static ModeloFrmPartida instancia;
     private Partida partida;
     private String mensaje;
-    private IObserver observador = FrmPartida.getInstance(new Tablero());;
-    
+    private IObserver observador;
 
-    protected ModeloFrmPartida(){
-        attach();
-    }
     
     public Partida getPartida() {
         return partida;
@@ -53,20 +48,19 @@ public class ModeloFrmPartida implements IObservable,IObserver<Partida>{
         return instancia;
     }
     
-    @Override
-    public void attach() {
-       // this.observador = FrmPartida.getInstance(tablero);
+        @Override
+    public void attach(IObserver observer) {
+        this.observador = observer;
     }
 
+    @Override
+    public void detach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 
     @Override
     public void notificar() {
         this.observador.update(this);
-    }
-
-    @Override
-    public void update(Partida partida) {
-        
     }
 
 }

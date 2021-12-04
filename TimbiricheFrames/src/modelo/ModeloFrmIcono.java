@@ -5,7 +5,7 @@
  */
 package modelo;
 
-import Presentacion.FrmIconos;
+import java.util.Observer;
 import observador.IObservable;
 import observador.IObserver;
 
@@ -13,17 +13,18 @@ import observador.IObserver;
  *
  * @author Equipo gatazo
  */
-public class ModeloFrmIcono implements IObservable,IObserver {
+public class ModeloFrmIcono implements IObservable {
 
     private static ModeloFrmIcono instancia;
-    private IObserver observador;
 
-    public ModeloFrmIcono() {
-        attach();
-    }
     @Override
-    public void attach() {
-        observador = FrmIconos.getInstance();
+    public void attach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void detach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
     @Override
@@ -36,11 +37,6 @@ public class ModeloFrmIcono implements IObservable,IObserver {
             instancia = new ModeloFrmIcono();
         }
         return instancia;
-    }
-
-    @Override
-    public void update(Object modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 

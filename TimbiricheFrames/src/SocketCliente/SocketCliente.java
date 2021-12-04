@@ -33,7 +33,7 @@ public class SocketCliente implements IObservable {
     private IObserver observador;
 
     public SocketCliente() {
-        attach();
+//        attach();
     }
 
     public void enviarAlServidor(Jugador jugador) throws IOException {
@@ -83,15 +83,25 @@ public class SocketCliente implements IObservable {
         notificar();
     }
 
-    @Override
-    public void attach() {
-         observador = ModeloFrmPartida.getInstance();
-         
-    }
+//    @Override
+//    public void attach() {
+//         observador = ModeloFrmPartida.getInstance();
+//         
+//    }
 
     @Override
     public void notificar() {
         this.observador.update(observador);
+    }
+
+    @Override
+    public void attach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void detach(IObserver observer) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
 }
