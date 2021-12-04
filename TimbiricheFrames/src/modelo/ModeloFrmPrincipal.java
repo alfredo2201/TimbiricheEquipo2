@@ -6,8 +6,6 @@
 package modelo;
 
 import dominio.Jugador;
-import java.util.ArrayList;
-import java.util.Observer;
 import observador.IObservable;
 import observador.IObserver;
 
@@ -41,17 +39,13 @@ public class ModeloFrmPrincipal implements IObservable {
         this.mensaje = mensaje;
         this.notificar();
     }
+//
+//    @Override
+//    public void attach(IObserver observer) {
+//        observadores = observer; 
+////        observadores.add(observer);
+//    }
 
-    @Override
-    public void attach(IObserver observer) {
-        observadores = observer; 
-//        observadores.add(observer);
-    }
-
-    @Override
-    public void detach(IObserver observer) {
-//        observadores.remove(observer);
-    }
 
     @Override
     public void notificar() {

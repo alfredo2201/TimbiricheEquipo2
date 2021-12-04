@@ -5,16 +5,11 @@
  */
 package observador;
 
-import Presentacion.FrmPrincipal;
-
 /**
  *
  * @author Angel
  */
 public interface IObservable {
-     
-    
-     public void attach(IObserver observer);
-     public void detach(IObserver observer);
+         
      public void notificar();
 }

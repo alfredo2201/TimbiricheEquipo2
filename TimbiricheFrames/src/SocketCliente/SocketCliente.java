@@ -5,6 +5,7 @@
  */
 package SocketCliente;
 
+import Presentacion.FrmPartida;
 import dominio.Jugador;
 import dominio.Partida;
 import java.io.IOException;
@@ -31,9 +32,10 @@ public class SocketCliente implements IObservable {
     private ObjectInputStream objetoEntrante;
     private ObjectOutputStream objetoSaliente;    
     private IObserver observador;
+    
 
     public SocketCliente() {
-//        attach();
+        observador = ModeloFrmPartida.getInstance();
     }
 
     public void enviarAlServidor(Jugador jugador) throws IOException {
@@ -83,25 +85,12 @@ public class SocketCliente implements IObservable {
         notificar();
     }
 
-//    @Override
-//    public void attach() {
-//         observador = ModeloFrmPartida.getInstance();
-//         
-//    }
+    
 
     @Override
     public void notificar() {
-        this.observador.update(observador);
+        this.observador.update(partida);
     }
 
-    @Override
-    public void attach(IObserver observer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void detach(IObserver observer) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
 
 }

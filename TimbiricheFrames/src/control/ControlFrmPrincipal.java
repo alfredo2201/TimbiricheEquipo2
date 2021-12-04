@@ -7,7 +7,12 @@ package control;
 
 import Presentacion.FrmIconos;
 import Presentacion.FrmPrincipal;
+import SocketCliente.SocketCliente;
 import dominio.Jugador;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JFrame;
 import modelo.ModeloFrmPrincipal;
 import javax.swing.JOptionPane;
 
@@ -20,6 +25,7 @@ public class ControlFrmPrincipal {
     private static ControlFrmPrincipal instance;
     private ModeloFrmPrincipal modPrincipal = ModeloFrmPrincipal.getInstance();
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
+    private SocketCliente cliente = new SocketCliente();
 
     public static ControlFrmPrincipal getInstance() {
         if (instance == null) {
@@ -33,16 +39,21 @@ public class ControlFrmPrincipal {
      *
      * @param nombre
      */
-    public void asignaNombre(String nombre) {
-//        String padded = String.format("%-10s", nombre);
-//        nombre = (padded);
+    public void asignaNombre(String nombre, JFrame frame) {
+        String padded = String.format("%-10s", nombre);
+        nombre = (padded);
         modPrincipal.getJugador().setNombre(nombre);
         if (validaApodoIcono()) {
-            crearFrmCrearPartida();
+            try {
+                cliente.conectarServidor();
+                cliente.enviarAlServidor(modPrincipal.getJugador());
+            } catch (IOException ex) {
+                Logger.getLogger(ControlFrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            crearFrmCrearPartida(frame);
         } else {
             modPrincipal.setMensaje("Tiene que agregar un nombre y un ícono");
         }
-
     }
 
     public void validaTamanio(java.awt.event.KeyEvent evt, String nombre) {
@@ -59,7 +70,7 @@ public class ControlFrmPrincipal {
      */
     public boolean validaApodoIcono() {
         return !(modPrincipal.getJugador().getAvatar() == null
-                || modPrincipal.getJugador().getNombre() == null 
+                || modPrincipal.getJugador().getNombre() == null
                 || modPrincipal.getJugador().getNombre().equalsIgnoreCase(""));
     }
 
@@ -89,7 +100,7 @@ public class ControlFrmPrincipal {
      */
     public void despliegaPantallaPrincipal() {
         FrmPrincipal prin = FrmPrincipal.getInstance();
-        modPrincipal.attach(prin);
+//        modPrincipal.attach(prin);
         prin.setVisible(true);
     }
 
@@ -121,11 +132,10 @@ public class ControlFrmPrincipal {
     /*
      * Método que valida para crear una partida
      */
-    public void crearFrmCrearPartida() {
-        FrmPrincipal prin = FrmPrincipal.getInstance();
+    public void crearFrmCrearPartida(JFrame frame) {
         if (validaApodoIcono()) {
             ctlCrearPartida.despliegaPantallaCrearPartida();
-            prin.dispose();
+            frame.dispose();
         } else {
             modPrincipal.setMensaje("Debe de poner su nombre y seleccionar un icono");
         }
