@@ -6,15 +6,7 @@
 package Presentacion;
 
 import control.ControlFrmCrearPartida;
-import control.ControlFrmPartida;
-import dominio.Tablero;
 import javax.swing.DefaultComboBoxModel;
-import modelo.ModeloFrmCrearPartida;
-import modelo.ModeloFrmIcono;
-import modelo.ModeloFrmPartida;
-import modelo.ModeloFrmPrincipal;
-import negocios.Fabrica;
-import negocios.iConexion;
 import observador.IObserver;
 
 /**
@@ -29,8 +21,6 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
     private static frmCrearPartida instancia;
     private DefaultComboBoxModel cmbModelTamanio = this.cmbModelTamanio;
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
-    private iConexion conexion = Fabrica.getInstance();
-    private ControlFrmPartida partida = ControlFrmPartida.getInstance();
     
     private frmCrearPartida() {
         initComponents();
@@ -80,11 +70,6 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
         });
 
         cmbTamanio.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
-        cmbTamanio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTamanioActionPerformed(evt);
-            }
-        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoIconos.png"))); // NOI18N
 
@@ -137,10 +122,6 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
         ctlCrearPartida.crearPartida((int) cmbTamanio.getSelectedItem());   
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void cmbTamanioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTamanioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTamanioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;

@@ -27,7 +27,7 @@ public class ControlFrmCrearPartida {
     public void crearPartida(int tamanioTablero) {
         Tablero tableroNuevo = new Tablero();
         tableroNuevo.setTamanio(tamanioTablero);  
-        Partida partida = new Partida();
+        Partida partida = new Partida();        
         partida.setTablero(tableroNuevo);
         ctlPartida.crearPartida(partida);       
         ctlPartida.despliegaPantallaPartida();
@@ -46,10 +46,7 @@ public class ControlFrmCrearPartida {
      * Método para mostrar el frame de partida
      * POR SI ACADO
      */ 
-//    public void mostrarPartida() {
-//        
-//    }
-    
+   
     /**
      * Método que muestra mensaje cuando haya algún error
      * @param mensaje Mensaje que será desplegado 

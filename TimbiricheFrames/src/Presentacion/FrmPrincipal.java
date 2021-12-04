@@ -31,7 +31,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
     private static FrmPrincipal instancia;
     Timer tiempo;
     private iConexion conexion = Fabrica.getInstance();
-    private ControlFrmPrincipal ctlPrincipal = new ControlFrmPrincipal();
+    private ControlFrmPrincipal ctlPrincipal = ControlFrmPrincipal.getInstance();
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
     private ModeloFrmPrincipal modeloPrincipal = ModeloFrmPrincipal.getInstance();
     private ControlFrmIconos controlIconos = ControlFrmIconos.getInstance();
@@ -231,7 +231,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
 
     private void btnAvatarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAvatarActionPerformed
         controlIconos.despliegaPantalla();
-
     }//GEN-LAST:event_btnAvatarActionPerformed
 
     private void txtNombreKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyTyped

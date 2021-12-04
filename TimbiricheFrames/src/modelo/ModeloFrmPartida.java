@@ -55,8 +55,7 @@ public class ModeloFrmPartida implements IObservable, IObserver<Partida> {
 
     @Override
     public void update(Partida partida) {
-        this.setPartida(partida);
-        notificar();
+        this.setPartida(partida);     
     }
 
 }

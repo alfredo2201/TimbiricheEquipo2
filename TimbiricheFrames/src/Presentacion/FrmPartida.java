@@ -42,7 +42,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver {
 
     private FrmPartida() {
         initComponents();
-        control = new ControlFrmPartida();
+        control = ControlFrmPartida.getInstance();
         this.setExtendedState(MAXIMIZED_BOTH);
         lienzo = new pnJuego(modeloPartida.getPartida().getTablero());//se inicializa el lienzo
         lienzo.setLocation(200, 0); //se establece su posición

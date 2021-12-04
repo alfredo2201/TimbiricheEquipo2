@@ -25,7 +25,13 @@ public class ControlFrmPrincipal {
     private static ControlFrmPrincipal instance;
     private ModeloFrmPrincipal modPrincipal = ModeloFrmPrincipal.getInstance();
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
-    private SocketCliente cliente = new SocketCliente();
+    private SocketCliente cliente;
+
+    private ControlFrmPrincipal() {
+        this.cliente = new SocketCliente();
+    }
+
+
 
     public static ControlFrmPrincipal getInstance() {
         if (instance == null) {

@@ -16,7 +16,7 @@ import control.ControlFrmPrincipal;
 public class main {
 
     public static void main(String[] args) {
-        ControlFrmPrincipal principal = new ControlFrmPrincipal();
+        ControlFrmPrincipal principal = ControlFrmPrincipal.getInstance();
         principal.despliegaPantallaPrincipal();
     }
     

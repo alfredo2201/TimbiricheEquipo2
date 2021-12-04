@@ -5,7 +5,6 @@
  */
 package SocketCliente;
 
-import Presentacion.FrmPartida;
 import dominio.Jugador;
 import dominio.Partida;
 import java.io.IOException;
@@ -30,21 +29,28 @@ public class SocketCliente implements IObservable {
     private Jugador jugador;
     private static SocketCliente instance;
     private ObjectInputStream objetoEntrante;
-    private ObjectOutputStream objetoSaliente;    
+    private ObjectOutputStream objetoSaliente;
     private IObserver observador;
-    
 
     public SocketCliente() {
         observador = ModeloFrmPartida.getInstance();
+
+        try {
+            cliente = new Socket(HOST, PORT);
+            objetoSaliente = new ObjectOutputStream(cliente.getOutputStream());
+            objetoEntrante = new ObjectInputStream(cliente.getInputStream());
+        } catch (IOException ex) {
+            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void enviarAlServidor(Jugador jugador) throws IOException {
         objetoSaliente.writeObject(jugador);
-//        try {
-//            procesaObjeto(objetoEntrante.readObject());
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+        try {
+            procesaObjeto(objetoEntrante.readObject());
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void enviarAlServidor(Partida partida) throws IOException {
@@ -57,9 +63,7 @@ public class SocketCliente implements IObservable {
     }
 
     public void conectarServidor() throws IOException {
-        cliente = new Socket(HOST, PORT);
-        objetoSaliente = new ObjectOutputStream(cliente.getOutputStream());
-        objetoEntrante = new ObjectInputStream(cliente.getInputStream());
+
     }
 
     public void desconectarServidor() throws IOException {
@@ -77,18 +81,16 @@ public class SocketCliente implements IObservable {
     public void procesaObjeto(Object objeto) {
         if (objeto instanceof Partida) {
             partida = (Partida) objeto;
-
-        } 
-        else if (objeto instanceof Jugador) {
+            notificar();
+        } else if (objeto instanceof Jugador) {
             jugador = (Jugador) objeto;
         }
-        notificar();
+
     }
 
     @Override
     public void notificar() {
         this.observador.update(partida);
     }
-
 
 }

@@ -6,10 +6,11 @@
 package control;
 
 import Presentacion.FrmPartida;
-import Presentacion.pnJuego;
+import SocketCliente.SocketCliente;
 import dominio.Partida;
-import dominio.Tablero;
-import javax.swing.JFrame;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.ModeloFrmPartida;
 
@@ -22,6 +23,11 @@ public class ControlFrmPartida {
     private static ControlFrmPartida instance;
     private ModeloFrmPartida modeloPartida = ModeloFrmPartida.getInstance();
     private FrmPartida frmPartida;
+    private SocketCliente cliente;
+
+    private ControlFrmPartida() {
+        this.cliente = SocketCliente.getInstance();
+    }
     
     
     public static ControlFrmPartida getInstance() {
@@ -33,6 +39,11 @@ public class ControlFrmPartida {
 
     public void crearPartida(Partida partida) {
         modeloPartida.crearPartida(partida);
+        try {
+            cliente.enviarAlServidor(partida);
+        } catch (IOException ex) {
+            Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
     
     
