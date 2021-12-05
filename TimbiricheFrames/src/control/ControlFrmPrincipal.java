@@ -62,6 +62,7 @@ public class ControlFrmPrincipal {
         }
     }
 
+    
     public void validaTamanio(java.awt.event.KeyEvent evt, String nombre) {
         if (nombre.length() == 10) {
             evt.consume();
@@ -81,13 +82,6 @@ public class ControlFrmPrincipal {
     }
 
     /**
-     * Método que envía solicitud para ingresar a la partida
-     */
-    public void enviaSolicitud() {
-        // i don't know
-    }
-
-    /**
      * Método que recupera la partida cuando se acepta la solicitud
      */
     public void recuperarPartida() {
@@ -97,7 +91,7 @@ public class ControlFrmPrincipal {
     /**
      * Método que despliega el frame de partida
      */
-    public void despliegaPartida() {
+    public void despliegaPantallaPartida() {
         //llamr control de partida
     }
 
@@ -106,7 +100,6 @@ public class ControlFrmPrincipal {
      */
     public void despliegaPantallaPrincipal() {
         FrmPrincipal frmPrincipal = FrmPrincipal.getInstance();
-//        modPrincipal.attach(prin);
         frmPrincipal.setVisible(true);
     }
 
@@ -128,11 +121,6 @@ public class ControlFrmPrincipal {
      */
     public Jugador getJugador() {
         return modPrincipal.getJugador();
-    }
-
-    public void despliegaPantallaIconos() {
-        FrmIconos fr = FrmIconos.getInstance();
-        fr.setVisible(true);
     }
 
     /*

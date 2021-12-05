@@ -10,6 +10,7 @@ import modelo.*;
 /**
  *
  * @author Angel
+ * @param <T>
  */
 public interface IObserver <T>{
     public void update(T modelo);

@@ -3,22 +3,10 @@ package Presentacion;
 import control.ControlFrmCrearPartida;
 import control.ControlFrmIconos;
 import control.ControlFrmPrincipal;
-import java.awt.event.ActionEvent;
-import javax.swing.JOptionPane;
 import javax.swing.Timer;
-import modelo.ModeloFrmCrearPartida;
-import modelo.ModeloFrmIcono;
-import modelo.ModeloFrmPartida;
 import modelo.ModeloFrmPrincipal;
-import negocios.Fabrica;
-import negocios.iConexion;
 import observador.IObserver;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Equipo gatazo
@@ -30,7 +18,6 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
      */
     private static FrmPrincipal instancia;
     Timer tiempo;
-    private iConexion conexion = Fabrica.getInstance();
     private ControlFrmPrincipal ctlPrincipal = ControlFrmPrincipal.getInstance();
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
     private ModeloFrmPrincipal modeloPrincipal = ModeloFrmPrincipal.getInstance();
@@ -68,7 +55,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
         txtNombre = new javax.swing.JTextField();
         btnAvatar = new javax.swing.JButton();
         btnIngresar = new javax.swing.JButton();
-        btnIngresar1 = new javax.swing.JButton();
+        btnCrearPartida = new javax.swing.JButton();
         lblImagen = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -115,17 +102,17 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
             }
         });
 
-        btnIngresar1.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
-        btnIngresar1.setForeground(new java.awt.Color(255, 255, 255));
-        btnIngresar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/partidaBtn.png"))); // NOI18N
-        btnIngresar1.setBorder(null);
-        btnIngresar1.setContentAreaFilled(false);
-        btnIngresar1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        btnIngresar1.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/partidaBtnC.png"))); // NOI18N
-        btnIngresar1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/partidaBtnC.png"))); // NOI18N
-        btnIngresar1.addActionListener(new java.awt.event.ActionListener() {
+        btnCrearPartida.setFont(new java.awt.Font("Fugaz One", 0, 14)); // NOI18N
+        btnCrearPartida.setForeground(new java.awt.Color(255, 255, 255));
+        btnCrearPartida.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/partidaBtn.png"))); // NOI18N
+        btnCrearPartida.setBorder(null);
+        btnCrearPartida.setContentAreaFilled(false);
+        btnCrearPartida.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        btnCrearPartida.setPressedIcon(new javax.swing.ImageIcon(getClass().getResource("/img/partidaBtnC.png"))); // NOI18N
+        btnCrearPartida.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/img/partidaBtnC.png"))); // NOI18N
+        btnCrearPartida.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnIngresar1ActionPerformed(evt);
+                btnCrearPartidaActionPerformed(evt);
             }
         });
 
@@ -137,7 +124,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(185, 185, 185)
-                .addComponent(btnIngresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnCrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(540, 540, 540)
                 .addComponent(btnAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 80, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -153,7 +140,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
             panelPrincipalLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(390, 390, 390)
-                .addComponent(btnIngresar1, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(btnCrearPartida, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(panelPrincipalLayout.createSequentialGroup()
                 .addGap(320, 320, 320)
                 .addComponent(btnAvatar, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -180,48 +167,48 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnIngresar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresar1ActionPerformed
+    private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
     ctlPrincipal.asignaNombre(txtNombre.getText().trim(), this);
-    }//GEN-LAST:event_btnIngresar1ActionPerformed
+    }//GEN-LAST:event_btnCrearPartidaActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-        tiempo = new Timer(2000, null);
-        tiempo.start();
-
-        String nombre = txtNombre.getText();
-        if (txtNombre.getText().length() < 10) {
-            String padded = String.format("%-10s", nombre);
-            nombre = (padded);
-        }
-
-        conexion.getTablero().setTamanio(40);
-//        ct.getJ4().setNombre(nombre);
-//        String icono = ct.getJ4().getAvatar();
-
-        conexion.getJugador().setNombre(nombre);
-        String icono = conexion.getJugador().getAvatar();
-        if (nombre.equalsIgnoreCase("") || icono == null) {
-            JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
-                    "Error", JOptionPane.ERROR_MESSAGE);
-        } else {
-            tiempo.addActionListener(new java.awt.event.ActionListener() {
-                @Override
-                public void actionPerformed(ActionEvent ae) {
-                    operacion();
-                }
-
-                private void operacion() {
-                    JOptionPane.showMessageDialog(null, "Has sido aceptado en el juego",
-                            "", JOptionPane.INFORMATION_MESSAGE);
-                    //FrmPartida sala = FrmPartida.getInstance(conexion.getTablero());
-//                    sala.setVisible(true);
-//                    tiempo.stop();
-//                    sala.boton(false);
-                    dispose();
-                }
-            });
-
-        }
+//        tiempo = new Timer(2000, null);
+//        tiempo.start();
+//
+//        String nombre = txtNombre.getText();
+//        if (txtNombre.getText().length() < 10) {
+//            String padded = String.format("%-10s", nombre);
+//            nombre = (padded);
+//        }
+//
+//        conexion.getTablero().setTamanio(40);
+////        ct.getJ4().setNombre(nombre);
+////        String icono = ct.getJ4().getAvatar();
+//
+//        conexion.getJugador().setNombre(nombre);
+//        String icono = conexion.getJugador().getAvatar();
+//        if (nombre.equalsIgnoreCase("") || icono == null) {
+//            JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
+//                    "Error", JOptionPane.ERROR_MESSAGE);
+//        } else {
+//            tiempo.addActionListener(new java.awt.event.ActionListener() {
+//                @Override
+//                public void actionPerformed(ActionEvent ae) {
+//                    operacion();
+//                }
+//
+//                private void operacion() {
+//                    JOptionPane.showMessageDialog(null, "Has sido aceptado en el juego",
+//                            "", JOptionPane.INFORMATION_MESSAGE);
+//                    //FrmPartida sala = FrmPartida.getInstance(conexion.getTablero());
+////                    sala.setVisible(true);
+////                    tiempo.stop();
+////                    sala.boton(false);
+//                    dispose();
+//                }
+//            });
+//
+//        }
 
     }//GEN-LAST:event_btnIngresarActionPerformed
 
@@ -240,8 +227,8 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAvatar;
+    private javax.swing.JButton btnCrearPartida;
     private javax.swing.JButton btnIngresar;
-    private javax.swing.JButton btnIngresar1;
     private javax.swing.JLabel lblImagen;
     private javax.swing.JPanel panelPrincipal;
     private javax.swing.JTextField txtNombre;

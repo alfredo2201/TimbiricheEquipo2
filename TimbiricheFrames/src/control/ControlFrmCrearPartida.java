@@ -9,6 +9,7 @@ import Presentacion.frmCrearPartida;
 import dominio.Partida;
 import dominio.Tablero;
 import javax.swing.JComboBox;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import modelo.ModeloFrmCrearPartida;
 
@@ -19,6 +20,7 @@ import modelo.ModeloFrmCrearPartida;
 public class ControlFrmCrearPartida {
     private static ControlFrmCrearPartida instance;
     private ControlFrmPartida ctlPartida = ControlFrmPartida.getInstance();
+    private ControlFrmPrincipal ctlPrincipal = ControlFrmPrincipal.getInstance();
     private ModeloFrmCrearPartida modCrearPartida = ModeloFrmCrearPartida.getInstance();
     /** 
      * Método para crea el deminio de partida
@@ -29,7 +31,7 @@ public class ControlFrmCrearPartida {
         tableroNuevo.setTamanio(tamanioTablero);  
         Partida partida = new Partida();        
         partida.setTablero(tableroNuevo);
-        ctlPartida.crearPartida(partida);               
+        ctlPartida.crearPartida(partida);  
     }
 
     /**
@@ -75,6 +77,11 @@ public class ControlFrmCrearPartida {
         for (int i = 0; i < modCrearPartida.getTamanioTabla().length; i++) {
             cmbTamanio.addItem(modCrearPartida.getTamanioTabla()[i]);
         }
+    }
+    
+    public void cierraPantalla(JFrame frame){
+        ctlPrincipal.despliegaPantallaPrincipal();
+        frame.dispose();
     }
 
 }

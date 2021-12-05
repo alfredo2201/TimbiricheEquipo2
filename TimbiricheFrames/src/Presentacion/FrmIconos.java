@@ -8,8 +8,6 @@ package Presentacion;
 import control.ControlFrmIconos;
 import control.ControlFrmPrincipal;
 import modelo.ModeloFrmIcono;
-import negocios.Fabrica;
-import negocios.iConexion;
 import observador.IObserver;
 
 /**
@@ -283,9 +281,7 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver<ModeloFrm
     }//GEN-LAST:event_btnOpcionIcono7ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-        ControlFrmPrincipal ctlPrincipal = ControlFrmPrincipal.getInstance();
-        ctlPrincipal.despliegaPantallaPrincipal();
-        dispose();
+       ctlIconos.cierraPantalla(this);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 

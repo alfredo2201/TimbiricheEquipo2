@@ -6,6 +6,7 @@
 package control;
 
 import Presentacion.FrmIconos;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 
 /**
@@ -49,6 +50,15 @@ public class ControlFrmIconos {
     public void muestraMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje,
                 "", JOptionPane.INFORMATION_MESSAGE);
+    }
+    
+    /**
+     *
+     * @param frame
+     */
+    public void cierraPantalla(JFrame frame){
+        ctlPrincipal.despliegaPantallaPrincipal();
+        frame.dispose();
     }
 
 }
