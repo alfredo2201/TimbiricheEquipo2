@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import control.ControlFrmIconos;
-import control.ControlFrmPrincipal;
 import modelo.ModeloFrmIcono;
 import observador.IObserver;
 
@@ -22,20 +16,19 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver<ModeloFrm
     private ControlFrmIconos ctlIconos = new ControlFrmIconos();
     private static ModeloFrmIcono modeloIcono = ModeloFrmIcono.getInstance();
     private static FrmIconos instancia;
-     
 
     private FrmIconos() {
         initComponents();
         this.setLocationRelativeTo(null);
     }
 
-    
     public static FrmIconos getInstance() {
         if (instancia == null) {
             instancia = new FrmIconos();
         }
         return instancia;
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -281,7 +274,7 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver<ModeloFrm
     }//GEN-LAST:event_btnOpcionIcono7ActionPerformed
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
-       ctlIconos.cierraPantalla(this);
+        ctlIconos.cierraPantalla(this);
     }//GEN-LAST:event_btnCancelarActionPerformed
 
 
@@ -304,6 +297,5 @@ public class FrmIconos extends javax.swing.JFrame implements IObserver<ModeloFrm
     public void update(ModeloFrmIcono modelo) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
 }

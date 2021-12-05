@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package SocketCliente;
 
 import dominio.Jugador;
@@ -32,6 +27,9 @@ public class SocketCliente extends Thread implements IObservable {
     private ObjectOutputStream objetoSaliente;
     private IObserver observador;
 
+    /**
+     * Crea un socket cleinte y corre hilos para datos salientes o entrantes
+     */
     private SocketCliente() {
         try {
             cliente = new Socket(HOST, PORT);
@@ -43,19 +41,41 @@ public class SocketCliente extends Thread implements IObservable {
         }
     }
 
+    /**
+     * Envia un jugador al servidor
+     *
+     * @param jugador Jugador enviado
+     * @throws IOException En caso de haber un error, arroja IOException
+     */
     public void enviarAlServidor(Jugador jugador) throws IOException {
         objetoSaliente.writeObject(jugador);
     }
 
+    /**
+     * Envia una partida al servidor
+     *
+     * @param partida Partida enviada
+     * @throws IOException En caso de haber un error, arroja IOException
+     */
     public void enviarAlServidor(Partida partida) throws IOException {
         objetoSaliente.writeObject(partida);
     }
 
+    /**
+     * Cierra el servidor
+     *
+     * @throws IOException En caso de haber un error, arroja IOException
+     */
     public void desconectarServidor() throws IOException {
         objetoSaliente.close();
         cliente.close();
     }
 
+    /**
+     * Obitene la isntancia de SocketCliente
+     *
+     * @return Instancia de SocketCliente
+     */
     public static SocketCliente getInstance() {
         if (instance == null) {
             instance = new SocketCliente();
@@ -63,6 +83,11 @@ public class SocketCliente extends Thread implements IObservable {
         return instance;
     }
 
+    /**
+     * Procesa un objeto para determinarlo como Partida o Jugador
+     *
+     * @param objeto Objeto que será evaluado
+     */
     public void procesaObjeto(Object objeto) {
         if (objeto instanceof Partida) {
             partida = (Partida) objeto;
@@ -72,6 +97,9 @@ public class SocketCliente extends Thread implements IObservable {
         }
     }
 
+    /**
+     * Corre los hilos
+     */
     @Override
     public void run() {
         try {
@@ -84,6 +112,9 @@ public class SocketCliente extends Thread implements IObservable {
         }
     }
 
+    /**
+     * Notifica los cambios de la partida la observador
+     */
     @Override
     public void notificar() {
         observador = ModeloFrmPartida.getInstance();

@@ -1,38 +1,49 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package modelo;
 
-import java.util.Observer;
 import observador.IObservable;
-import observador.IObserver;
 
 /**
  *
  * @author Equipo gatazo
  */
-public class ModeloFrmCrearPartida implements IObservable{
+public class ModeloFrmCrearPartida implements IObservable {
 
     private static ModeloFrmCrearPartida instancia;
-    private int[]tamanioTabla;
-    private String[]listaIconos;
+    private int[] tamanioTabla;
+    private String[] listaIconos;
 
+    /**
+     * Constructor que da los valores de la tabla al arreglo tamanioTabla
+     */
     public ModeloFrmCrearPartida() {
         this.tamanioTabla = new int[]{10, 20, 40};
     }
 
+    /**
+     * Metodo que regresa el array con los tamanios de la tabla
+     *
+     * @return tamanioTable con los int de los tamanios
+     */
     public int[] getTamanioTabla() {
         return tamanioTabla;
     }
 
+    /**
+     * Metodo que regresa el array con los Strings de los iconos
+     *
+     * @return listaIconos con Strings de iconos
+     */
     public String[] getListaIconos() {
         return listaIconos;
-    } 
-    
-    public static ModeloFrmCrearPartida getInstance(){
-        if (instancia==null) {
+    }
+
+    /**
+     * Metodo que regresa la instancia de ModeloFrmCrearPartida
+     *
+     * @return instancia de ModeloFrmCrearPartida
+     */
+    public static ModeloFrmCrearPartida getInstance() {
+        if (instancia == null) {
             instancia = new ModeloFrmCrearPartida();
         }
         return instancia;
@@ -47,11 +58,12 @@ public class ModeloFrmCrearPartida implements IObservable{
 //    public void detach(IObserver observer) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
 //    }
-
+    /**
+     * Metodo que notifica al observador
+     */
     @Override
     public void notificar() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-
 
 }

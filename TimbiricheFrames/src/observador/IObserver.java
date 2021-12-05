@@ -9,7 +9,7 @@ import modelo.*;
 
 /**
  *
- * @author Angel
+ * @author Equipo gatazo
  * @param <T>
  */
 public interface IObserver <T>{

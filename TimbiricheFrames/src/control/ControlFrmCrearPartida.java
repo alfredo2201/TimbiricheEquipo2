@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import Presentacion.frmCrearPartida;
@@ -18,20 +13,23 @@ import modelo.ModeloFrmCrearPartida;
  * @author Equipo gatazo
  */
 public class ControlFrmCrearPartida {
+
     private static ControlFrmCrearPartida instance;
     private ControlFrmPartida ctlPartida = ControlFrmPartida.getInstance();
     private ControlFrmPrincipal ctlPrincipal = ControlFrmPrincipal.getInstance();
     private ModeloFrmCrearPartida modCrearPartida = ModeloFrmCrearPartida.getInstance();
-    /** 
+
+    /**
      * Método para crea el deminio de partida
+     *
      * @param tamanioTablero
      */
     public void crearPartida(int tamanioTablero) {
         Tablero tableroNuevo = new Tablero();
-        tableroNuevo.setTamanio(tamanioTablero);  
-        Partida partida = new Partida();        
+        tableroNuevo.setTamanio(tamanioTablero);
+        Partida partida = new Partida();
         partida.setTablero(tableroNuevo);
-        ctlPartida.crearPartida(partida);  
+        ctlPartida.crearPartida(partida);
     }
 
     /**
@@ -42,44 +40,45 @@ public class ControlFrmCrearPartida {
         frmCrearPartida crearPartida = frmCrearPartida.getInstance();
         crearPartida.setVisible(true);
     }
-    
+
     /**
-     * Método para mostrar el frame de partida
-     * POR SI ACADO
-     */ 
-   
+     * Método para mostrar el frame de partida POR SI ACADO
+     */
     /**
      * Método que muestra mensaje cuando haya algún error
-     * @param mensaje Mensaje que será desplegado 
+     *
+     * @param mensaje Mensaje que será desplegado
      */
     public void muestraMensaje(String mensaje) {
-        JOptionPane.showMessageDialog(null,mensaje,
-                            "", JOptionPane.INFORMATION_MESSAGE);
+        JOptionPane.showMessageDialog(null, mensaje,
+                "", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     /**
      * Método que regresa la instancia de esta clase
+     *
      * @return instance Instancia de ControlFrmCrearPartida
      */
-    public static ControlFrmCrearPartida getInstance(){
-        if (instance ==null) {
+    public static ControlFrmCrearPartida getInstance() {
+        if (instance == null) {
             instance = new ControlFrmCrearPartida();
         }
         return instance;
     }
-    
+
     /**
      * Método que agrega los tamaños disponibles para el tablero.
-     * @param cmbTamanio La lista de selección para seleccionar
-     * el tamaño del tablero
+     *
+     * @param cmbTamanio La lista de selección para seleccionar el tamaño del
+     * tablero
      */
     public void agregarTamanioLista(JComboBox<Integer> cmbTamanio) {
         for (int i = 0; i < modCrearPartida.getTamanioTabla().length; i++) {
             cmbTamanio.addItem(modCrearPartida.getTamanioTabla()[i]);
         }
     }
-    
-    public void cierraPantalla(JFrame frame){
+
+    public void cierraPantalla(JFrame frame) {
         ctlPrincipal.despliegaPantallaPrincipal();
         frame.dispose();
     }

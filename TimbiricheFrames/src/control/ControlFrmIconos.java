@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import Presentacion.FrmIconos;
@@ -27,6 +22,11 @@ public class ControlFrmIconos {
         ctlPrincipal.añadirIcono(avatar);
     }
 
+    /**
+     * Metodo que regresa la instancia de ControlFrmIconos
+     *
+     * @return Instancia ControlFrmIconos
+     */
     public static ControlFrmIconos getInstance() {
         if (instance == null) {
             instance = new ControlFrmIconos();
@@ -51,12 +51,12 @@ public class ControlFrmIconos {
         JOptionPane.showMessageDialog(null, mensaje,
                 "", JOptionPane.INFORMATION_MESSAGE);
     }
-    
+
     /**
      *
      * @param frame
      */
-    public void cierraPantalla(JFrame frame){
+    public void cierraPantalla(JFrame frame) {
         ctlPrincipal.despliegaPantallaPrincipal();
         frame.dispose();
     }

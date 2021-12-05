@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Control;
 
 import dominio.Jugador;
@@ -12,7 +7,7 @@ import javax.swing.JLabel;
 
 /**
  *
- * @author crist
+ * @author Equipo Gatazo
  */
 public class Control {
 
@@ -73,6 +68,7 @@ public class Control {
 
     /**
      * Envia al jugador 4
+     *
      * @param j4 recibe a jugador 4
      */
     public void setJ4(Jugador j4) {

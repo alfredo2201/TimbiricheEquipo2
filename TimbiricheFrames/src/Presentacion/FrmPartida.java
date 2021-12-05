@@ -3,8 +3,6 @@ package Presentacion;
 import Control.Control;
 import control.ControlFrmPartida;
 import dominio.Jugador;
-import dominio.Partida;
-import dominio.Tablero;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
@@ -13,16 +11,10 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import modelo.ModeloFrmPartida;
-import modelo.ModeloFrmPrincipal;
 import negocios.Fabrica;
 import negocios.iConexion;
 import observador.IObserver;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
  * @author Equipo gatazo
@@ -41,7 +33,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     private final iConexion conexion = Fabrica.getInstance();
 
     public FrmPartida() {
-        initComponents();        
+        initComponents();
         control = ControlFrmPartida.getInstance();
         this.setExtendedState(MAXIMIZED_BOTH);
         lienzo = control.configurarLienzo(lienzo);
@@ -541,11 +533,10 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     private javax.swing.JPanel pnTurnos;
     // End of variables declaration//GEN-END:variables
 
- 
     @Override
-    public void update(ModeloFrmPartida modelo) {        
+    public void update(ModeloFrmPartida modelo) {
         modeloPartida = ModeloFrmPartida.getInstance();
-        
+
     }
 
 }

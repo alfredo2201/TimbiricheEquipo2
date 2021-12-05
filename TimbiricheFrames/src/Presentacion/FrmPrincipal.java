@@ -168,7 +168,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCrearPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearPartidaActionPerformed
-    ctlPrincipal.asignaNombre(txtNombre.getText().trim(), this);
+        ctlPrincipal.asignaNombre(txtNombre.getText().trim(), this);
     }//GEN-LAST:event_btnCrearPartidaActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
@@ -234,24 +234,20 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
-   
- 
 //    public void uwu(ModeloFrmPrincipal modelo) {
 //        this.modeloPrincipal = modelo;
 //        actualizar();
 //    }
-
     @Override
     public void update(ModeloFrmPrincipal modelo) {
         this.modeloPrincipal = modelo;
         this.actualizar();
     }
-    
-    public void actualizar(){
-        if(modeloPrincipal.getMensaje() != null){
+
+    public void actualizar() {
+        if (modeloPrincipal.getMensaje() != null) {
             ctlCrearPartida.muestraMensaje(modeloPrincipal.getMensaje());
         }
     }
-
 
 }

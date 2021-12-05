@@ -7,7 +7,7 @@ package observador;
 
 /**
  *
- * @author Angel
+ * @author Equipo gatazo
  */
 public interface IObservable {
          

@@ -51,7 +51,7 @@ public class ControlFrmPrincipal {
         nombre = (padded);
         modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setNombre(nombre);
-        if (validaApodoIcono()) {
+        if (validaApodoIcono() && !(nombre.length() >10) ){
             try {
                 cliente.enviarAlServidor(modPrincipal.getJugador());
             } catch (IOException ex) {

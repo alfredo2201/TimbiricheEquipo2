@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import Control.Control;
@@ -10,7 +5,6 @@ import dominio.Cuadro;
 import dominio.Linea;
 import dominio.Punto;
 import dominio.Tablero;
-
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
@@ -23,7 +17,7 @@ import negocios.iConexion;
 
 /**
  *
- * @author crist
+ * @author Equipo gatazo
  */
 public class pnJuego extends javax.swing.JPanel {
 
@@ -58,6 +52,7 @@ public class pnJuego extends javax.swing.JPanel {
 
     /**
      * Dibuja los puntos en la tabla
+     *
      * @param g Graphics
      */
     @Override
@@ -85,6 +80,7 @@ public class pnJuego extends javax.swing.JPanel {
 
     /**
      * Asigna el valor de Graphics
+     *
      * @param g Valor que tendrá Graphics
      */
     public void setG(Graphics g) {
@@ -112,16 +108,18 @@ public class pnJuego extends javax.swing.JPanel {
 
     /**
      * Se verifica que no se cree la misma linea
+     *
      * @param lin Linea a verificar
      * @return Verdadero si existe y falso en caso contrario
      */
     private boolean comprobarLinea(Linea lin) {
 
-        return conexion.compruebaLinea(lin, lineasList) ;
+        return conexion.compruebaLinea(lin, lineasList);
     }
 
     /**
      * Dibuja la linea en la tabla y crea los cuadros
+     *
      * @param g Grágico del panel
      */
     public void dibujarLinea(Graphics g) {
@@ -170,7 +168,7 @@ public class pnJuego extends javax.swing.JPanel {
                         }
                     }
                 }
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Linea ya existente",
                         "", JOptionPane.ERROR_MESSAGE);
             }
@@ -179,8 +177,8 @@ public class pnJuego extends javax.swing.JPanel {
 
             // Linea de arriba para abajo
             Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, conexion.getTablero().getSeparacion());
-             Linea linea = new Linea(p1, p2, grosor, conexion.getTablero().getSeparacion(), conexion.getTablero());
-             for (Linea linea1 : lineasList) {
+            Linea linea = new Linea(p1, p2, grosor, conexion.getTablero().getSeparacion(), conexion.getTablero());
+            for (Linea linea1 : lineasList) {
                 System.out.println(linea1);
             }
             if (!comprobarLinea(linea)) {
@@ -209,7 +207,7 @@ public class pnJuego extends javax.swing.JPanel {
 
                 }
 
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(null, "Linea ya existente",
                         "", JOptionPane.ERROR_MESSAGE);
             }
@@ -219,7 +217,8 @@ public class pnJuego extends javax.swing.JPanel {
 
     /**
      * Verifica que se haya creado un cuadrado
-     * @param linea Linea a verificar si crea el cuadro 
+     *
+     * @param linea Linea a verificar si crea el cuadro
      * @return true si se crea y false en caso contrario
      */
     public Cuadro verificarCuadro(Linea linea) {
@@ -229,6 +228,7 @@ public class pnJuego extends javax.swing.JPanel {
 
     /**
      * Verifica si se han creado dos cuadrados
+     *
      * @param cuadro Cuadrado a verificar
      * @return true si se creó y false en caso contrario
      */
@@ -287,7 +287,7 @@ public class pnJuego extends javax.swing.JPanel {
 
                 if (punto.getX() <= evt.getX()) {
                     if (punto.getY() <= evt.getY()) {
-                        p1= new Punto();
+                        p1 = new Punto();
                         p1.setX(punto.getX());
                         p1.setY(punto.getY());
                         p1.setRadio(punto.getRadio());
@@ -302,7 +302,7 @@ public class pnJuego extends javax.swing.JPanel {
 
                 if (punto.getX() <= evt.getX()) {
                     if (punto.getY() <= evt.getY()) {
-                        p2= new Punto();
+                        p2 = new Punto();
                         p2.setX(punto.getX());
                         p2.setY(punto.getY());
                         p2.setRadio(punto.getRadio());

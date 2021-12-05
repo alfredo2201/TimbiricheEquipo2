@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
 import control.ControlFrmCrearPartida;
@@ -13,7 +8,7 @@ import observador.IObserver;
  *
  * @author Equipo gatazo
  */
-public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
+public class frmCrearPartida extends javax.swing.JFrame implements IObserver {
 
     /**
      * Creates new form frmCrearPartida
@@ -21,7 +16,7 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
     private static frmCrearPartida instancia;
     private DefaultComboBoxModel cmbModelTamanio = this.cmbModelTamanio;
     private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
-    
+
     private frmCrearPartida() {
         initComponents();
         ctlCrearPartida.agregarTamanioLista(cmbTamanio);
@@ -30,6 +25,7 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
 
     /**
      * Crea una instancia de frmCrearPartida
+     *
      * @return Regresa una instancia de frmCrearPartida
      */
     public static frmCrearPartida getInstance() {
@@ -38,8 +34,6 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
         }
         return instancia;
     }
-
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -119,7 +113,7 @@ public class frmCrearPartida extends javax.swing.JFrame implements IObserver{
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        ctlCrearPartida.crearPartida((int) cmbTamanio.getSelectedItem());   
+        ctlCrearPartida.crearPartida((int) cmbTamanio.getSelectedItem());
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
 

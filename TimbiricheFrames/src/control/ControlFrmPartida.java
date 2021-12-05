@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package control;
 
 import Presentacion.FrmPartida;
@@ -29,10 +24,20 @@ public class ControlFrmPartida {
     private SocketCliente cliente;
     private Tablero tablero;
 
+    /**
+     * Constructor que inicialisa el SocketCliente
+     */
     private ControlFrmPartida() {
         this.cliente = SocketCliente.getInstance();
     }
 
+    /**
+     * Metodo para actualiza rlos valores del lienzo
+     *
+     * @param lienzo Objeto JPanel con los valores con los que se actualizara el
+     * lienzo
+     * @return Lienzo con los cambios aplciados
+     */
     public JPanel configurarLienzo(JPanel lienzo) {
         lienzo = new pnJuego(tablero);//se inicializa el lienzo
         lienzo.setLocation(200, 0); //se establece su posición
@@ -41,6 +46,11 @@ public class ControlFrmPartida {
         return lienzo;
     }
 
+    /**
+     * Metodo que regresa la instancia de ControlFrmPartida
+     *
+     * @return Instancia de ControlFrmPartida
+     */
     public static ControlFrmPartida getInstance() {
         if (instance == null) {
             instance = new ControlFrmPartida();
@@ -48,9 +58,14 @@ public class ControlFrmPartida {
         return instance;
     }
 
+    /**
+     * Metodo que crea una partida enciandola al servidor
+     *
+     * @param partida Objeto partida con el que la partida sera creada
+     */
     public void crearPartida(Partida partida) {
         this.tablero = partida.getTablero();
-        modeloPartida = ModeloFrmPartida.getInstance();        
+        modeloPartida = ModeloFrmPartida.getInstance();
         modeloPartida.crearPartida(partida);
         try {
             cliente.enviarAlServidor(partida);
@@ -196,14 +211,29 @@ public class ControlFrmPartida {
         JOptionPane.showMessageDialog(null, mensaje, "", JOptionPane.INFORMATION_MESSAGE);
     }
 
+    /**
+     * Metodo que regresa la partida de modeloPartida
+     *
+     * @return Partoda de ModeloPartida
+     */
     public Partida getPartida() {
         return modeloPartida.getPartida();
     }
 
+    /**
+     * Metodo que otorga un valor a la partida de ModeloPartida
+     *
+     * @param partida Partida que actualizara la partida de ModeloPartida
+     */
     public void setPartida(Partida partida) {
         this.modeloPartida.setPartida(partida);
     }
 
+    /**
+     * Metodo que otorga un valor al mensaje de ModeloPartida
+     *
+     * @param mensaje Mensaje que actualizara el mensaje de ModeloPartida
+     */
     public void setMensaje(String mensaje) {
         this.modeloPartida.setMensaje(mensaje);
     }
