@@ -23,8 +23,8 @@ import javax.swing.JOptionPane;
 public class ControlFrmPrincipal {
 
     private static ControlFrmPrincipal instance;
-    private ModeloFrmPrincipal modPrincipal = ModeloFrmPrincipal.getInstance();
-    private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
+    private ModeloFrmPrincipal modPrincipal ;
+    private ControlFrmCrearPartida ctlCrearPartida;
     private SocketCliente cliente;
 
     private ControlFrmPrincipal() {
@@ -49,6 +49,7 @@ public class ControlFrmPrincipal {
     public void asignaNombre(String nombre, JFrame frame) {
         String padded = String.format("%-10s", nombre);
         nombre = (padded);
+        modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setNombre(nombre);
         if (validaApodoIcono()) {
             try {
@@ -66,6 +67,7 @@ public class ControlFrmPrincipal {
     public void validaTamanio(java.awt.event.KeyEvent evt, String nombre) {
         if (nombre.length() == 10) {
             evt.consume();
+            modPrincipal = ModeloFrmPrincipal.getInstance();
             modPrincipal.setMensaje("Solo se permiten 10 caracteres");
         }
     }
@@ -128,6 +130,7 @@ public class ControlFrmPrincipal {
      */
     public void crearFrmCrearPartida(JFrame frame) {
         if (validaApodoIcono()) {
+            ctlCrearPartida = ControlFrmCrearPartida.getInstance();
             ctlCrearPartida.despliegaPantallaCrearPartida();
             frame.dispose();
         } else {
@@ -136,6 +139,7 @@ public class ControlFrmPrincipal {
     }
 
     public void añadirIcono(String icono) {
+        modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setAvatar(icono);
     }
 }
