@@ -20,7 +20,7 @@ import observador.*;
  *
  * @author Equipo Gatazo
  */
-public class SocketCliente implements IObservable {
+public class SocketCliente extends Thread implements IObservable {
 
     private final String HOST = "localhost";
     private final int PORT = 6666;
@@ -32,13 +32,12 @@ public class SocketCliente implements IObservable {
     private ObjectOutputStream objetoSaliente;
     private IObserver observador;
 
-    public SocketCliente() {
-        observador = ModeloFrmPartida.getInstance();
-
+    private SocketCliente() {
         try {
             cliente = new Socket(HOST, PORT);
             objetoSaliente = new ObjectOutputStream(cliente.getOutputStream());
             objetoEntrante = new ObjectInputStream(cliente.getInputStream());
+
         } catch (IOException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -46,24 +45,10 @@ public class SocketCliente implements IObservable {
 
     public void enviarAlServidor(Jugador jugador) throws IOException {
         objetoSaliente.writeObject(jugador);
-        try {
-            procesaObjeto(objetoEntrante.readObject());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 
     public void enviarAlServidor(Partida partida) throws IOException {
         objetoSaliente.writeObject(partida);
-        try {
-            procesaObjeto(objetoEntrante.readObject());
-        } catch (ClassNotFoundException ex) {
-            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-
-    public void conectarServidor() throws IOException {
-
     }
 
     public void desconectarServidor() throws IOException {
@@ -85,11 +70,23 @@ public class SocketCliente implements IObservable {
         } else if (objeto instanceof Jugador) {
             jugador = (Jugador) objeto;
         }
+    }
 
+    @Override
+    public void run() {
+        try {
+            Object objeto;
+            while ((objeto = objetoEntrante.readObject()) != null) {
+                procesaObjeto(objeto);
+            }
+        } catch (ClassNotFoundException | IOException ex) {
+            Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     @Override
     public void notificar() {
+        observador = ModeloFrmPartida.getInstance();
         this.observador.update(partida);
     }
 

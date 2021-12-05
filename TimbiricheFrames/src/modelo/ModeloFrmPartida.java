@@ -21,6 +21,9 @@ public class ModeloFrmPartida implements IObservable, IObserver<Partida> {
     private String mensaje;
     private IObserver observador;
 
+    private ModeloFrmPartida() {
+        observador = new FrmPartida();
+    }    
     public Partida getPartida() {
         return partida;
     }
@@ -41,11 +44,15 @@ public class ModeloFrmPartida implements IObservable, IObserver<Partida> {
         this.notificar();
     }
 
-    public static ModeloFrmPartida getInstance() {
+    public static ModeloFrmPartida getInstance(){
         if (instancia == null) {
             instancia = new ModeloFrmPartida();
         }
         return instancia;
+    }
+    
+    public void attach(IObserver observer){
+        this.observador = observer;
     }
 
     @Override

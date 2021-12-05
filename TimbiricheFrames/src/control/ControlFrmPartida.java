@@ -6,12 +6,15 @@
 package control;
 
 import Presentacion.FrmPartida;
+import Presentacion.pnJuego;
 import SocketCliente.SocketCliente;
 import dominio.Partida;
+import dominio.Tablero;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import modelo.ModeloFrmPartida;
 
 /**
@@ -21,15 +24,23 @@ import modelo.ModeloFrmPartida;
 public class ControlFrmPartida {
 
     private static ControlFrmPartida instance;
-    private ModeloFrmPartida modeloPartida = ModeloFrmPartida.getInstance();
+    private ModeloFrmPartida modeloPartida;
     private FrmPartida frmPartida;
     private SocketCliente cliente;
+    private Tablero tablero;
 
     private ControlFrmPartida() {
         this.cliente = SocketCliente.getInstance();
     }
-    
-    
+
+    public JPanel configurarLienzo(JPanel lienzo) {
+        lienzo = new pnJuego(tablero);//se inicializa el lienzo
+        lienzo.setLocation(200, 0); //se establece su posición
+        lienzo.setSize(1010, 1010); //establece el tamaño del panel
+        lienzo.setVisible(true);
+        return lienzo;
+    }
+
     public static ControlFrmPartida getInstance() {
         if (instance == null) {
             instance = new ControlFrmPartida();
@@ -38,20 +49,22 @@ public class ControlFrmPartida {
     }
 
     public void crearPartida(Partida partida) {
+        this.tablero = partida.getTablero();
+        modeloPartida = ModeloFrmPartida.getInstance();        
         modeloPartida.crearPartida(partida);
         try {
             cliente.enviarAlServidor(partida);
         } catch (IOException ex) {
             Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
         }
+        despliegaPantallaPartida();
     }
-    
-    
+
     /**
-     * Método que despliega el frame de Partida
-     * Aquí se le agregó el parámetro
+     * Método que despliega el frame de Partida Aquí se le agregó el parámetro
      */
     public void despliegaPantallaPartida() {
+        modeloPartida = ModeloFrmPartida.getInstance();
         frmPartida = FrmPartida.getInstance();
         frmPartida.setVisible(true);
     }
@@ -118,7 +131,7 @@ public class ControlFrmPartida {
      * Metodo que muestra la informacion de los jugadores de la partida
      */
     public void muestraInformacionJugadores() {
-        
+
     }
 
     /**

@@ -3,6 +3,7 @@ package Presentacion;
 import Control.Control;
 import control.ControlFrmPartida;
 import dominio.Jugador;
+import dominio.Partida;
 import dominio.Tablero;
 import java.awt.Color;
 import java.awt.Graphics;
@@ -26,7 +27,7 @@ import observador.IObserver;
  *
  * @author Equipo gatazo
  */
-public class FrmPartida extends javax.swing.JFrame implements IObserver {
+public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFrmPartida> {
 
     /**
      * Creates new form FrmSala
@@ -35,19 +36,15 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver {
     private final Graphics g;
     private JPanel lienzo;
     private Timer tiempo;
-    private final ControlFrmPartida control;
-    private final ModeloFrmPrincipal principal = ModeloFrmPrincipal.getInstance();
-    private final ModeloFrmPartida modeloPartida = ModeloFrmPartida.getInstance();
+    private ControlFrmPartida control;
+    private ModeloFrmPartida modeloPartida;
     private final iConexion conexion = Fabrica.getInstance();
 
-    private FrmPartida() {
-        initComponents();
+    public FrmPartida() {
+        initComponents();        
         control = ControlFrmPartida.getInstance();
         this.setExtendedState(MAXIMIZED_BOTH);
-        lienzo = new pnJuego(modeloPartida.getPartida().getTablero());//se inicializa el lienzo
-        lienzo.setLocation(200, 0); //se establece su posición
-        lienzo.setSize(1010, 1010); //establece el tamaño del panel
-        lienzo.setVisible(true);
+        lienzo = control.configurarLienzo(lienzo);
         add(lienzo); //se agrega al frame principal
         pack();
         g = lienzo.getGraphics();
@@ -544,8 +541,11 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver {
     private javax.swing.JPanel pnTurnos;
     // End of variables declaration//GEN-END:variables
 
+ 
     @Override
-    public void update(Object modelo) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    public void update(ModeloFrmPartida modelo) {        
+        modeloPartida = ModeloFrmPartida.getInstance();
+        
     }
+
 }

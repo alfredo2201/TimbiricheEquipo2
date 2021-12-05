@@ -28,7 +28,7 @@ public class ControlFrmPrincipal {
     private SocketCliente cliente;
 
     private ControlFrmPrincipal() {
-        this.cliente = new SocketCliente();
+        this.cliente = SocketCliente.getInstance();
     }
 
 
@@ -44,6 +44,7 @@ public class ControlFrmPrincipal {
      * Método que asigna nombre al jugador
      *
      * @param nombre
+     * @param frame
      */
     public void asignaNombre(String nombre, JFrame frame) {
         String padded = String.format("%-10s", nombre);
@@ -51,7 +52,6 @@ public class ControlFrmPrincipal {
         modPrincipal.getJugador().setNombre(nombre);
         if (validaApodoIcono()) {
             try {
-                cliente.conectarServidor();
                 cliente.enviarAlServidor(modPrincipal.getJugador());
             } catch (IOException ex) {
                 Logger.getLogger(ControlFrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);

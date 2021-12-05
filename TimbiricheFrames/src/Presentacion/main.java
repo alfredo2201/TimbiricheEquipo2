@@ -1,6 +1,5 @@
 package Presentacion;
 
-import Control.Control;
 import control.ControlFrmPrincipal;
 
 /*
