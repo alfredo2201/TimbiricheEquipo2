@@ -3,8 +3,10 @@ package control;
 import Presentacion.FrmPartida;
 import Presentacion.pnJuego;
 import SocketCliente.SocketCliente;
+import dominio.Jugador;
 import dominio.Partida;
 import dominio.Tablero;
+import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -39,11 +41,21 @@ public class ControlFrmPartida {
      * @return Lienzo con los cambios aplciados
      */
     public JPanel configurarLienzo(JPanel lienzo) {
-        lienzo = new pnJuego(tablero);//se inicializa el lienzo
-        lienzo.setLocation(200, 0); //se establece su posición
-        lienzo.setSize(1010, 1010); //establece el tamaño del panel
-        lienzo.setVisible(true);
-        return lienzo;
+        modeloPartida =  ModeloFrmPartida.getInstance();
+        if (tablero != null) {
+            lienzo = new pnJuego(tablero);//se inicializa el lienzo
+            lienzo.setLocation(200, 0); //se establece su posición
+            lienzo.setSize(1010, 1010); //establece el tamaño del panel
+            lienzo.setVisible(true);
+            return lienzo;
+        } else if (modeloPartida.getPartida()!=null) {
+            lienzo = new pnJuego(modeloPartida.getPartida().getTablero());//se inicializa el lienzo
+            lienzo.setLocation(200, 0); //se establece su posición
+            lienzo.setSize(1010, 1010); //establece el tamaño del panel
+            lienzo.setVisible(true);
+            return lienzo;
+        }
+        return null;
     }
 
     /**
@@ -82,6 +94,14 @@ public class ControlFrmPartida {
         modeloPartida = ModeloFrmPartida.getInstance();
         frmPartida = FrmPartida.getInstance();
         frmPartida.setVisible(true);
+        frmPartida.setExtendedState(MAXIMIZED_BOTH);
+        frmPartida.setLienzo(configurarLienzo(frmPartida.getLienzo()));
+        frmPartida.add(frmPartida.getLienzo()); //se agrega al frame principal
+        frmPartida.pack();
+        frmPartida.setG(frmPartida.getLienzo().getGraphics());
+        frmPartida.setResizable(false);
+        //btnPreparado.setEnabled(false);
+        muestraInformacionJugadores(frmPartida);
     }
 
     /**
@@ -144,8 +164,40 @@ public class ControlFrmPartida {
 
     /**
      * Metodo que muestra la informacion de los jugadores de la partida
+     *
+     * @param frmPartida
      */
-    public void muestraInformacionJugadores() {
+    public void muestraInformacionJugadores(FrmPartida frmPartida) {
+        if (modeloPartida != null) {
+            ControlFrmPrincipal ctlPrincipal = ControlFrmPrincipal.getInstance();
+            int iterar = 0;
+            for (Jugador jugador : modeloPartida.getPartida().getJugadores()) {
+                switch (iterar) {
+                    case 0:
+                        frmPartida.setLblIconoJugador1(jugador.getAvatar());
+                        frmPartida.setLblNombreJugador1(jugador.getNombre());
+                        iterar++;
+                        break;
+                    case 1:
+                        frmPartida.setLblIconoJugador2(jugador.getAvatar());
+                        frmPartida.setLblNombreJugador2(jugador.getNombre());
+                        iterar++;
+                        break;
+                    case 2:
+                        frmPartida.setLblIconoJugador3(jugador.getAvatar());
+                        frmPartida.setLblNombreJugador3(jugador.getNombre());
+                        iterar++;
+                        break;
+                    case 3:
+                        frmPartida.setLblIconoJugador4(jugador.getAvatar());
+                        frmPartida.setLblNombreJugador4(jugador.getNombre());
+                        iterar++;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
     }
 
@@ -217,6 +269,7 @@ public class ControlFrmPartida {
      * @return Partoda de ModeloPartida
      */
     public Partida getPartida() {
+        modeloPartida = ModeloFrmPartida.getInstance();
         return modeloPartida.getPartida();
     }
 

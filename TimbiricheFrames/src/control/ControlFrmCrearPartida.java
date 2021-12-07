@@ -28,7 +28,8 @@ public class ControlFrmCrearPartida {
         Tablero tableroNuevo = new Tablero();
         tableroNuevo.setTamanio(tamanioTablero);
         Partida partida = new Partida();
-        partida.setTablero(tableroNuevo);
+        partida.setTablero(tableroNuevo);   
+        partida.setJugador(ctlPrincipal.getJugador());
         ctlPartida.crearPartida(partida);
     }
 

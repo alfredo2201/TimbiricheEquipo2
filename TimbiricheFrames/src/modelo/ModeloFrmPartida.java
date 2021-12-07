@@ -11,7 +11,7 @@ import observador.IObserver;
  */
 public class ModeloFrmPartida implements IObservable, IObserver<Partida> {
 
-    private static ModeloFrmPartida instancia;
+    private static ModeloFrmPartida instancia = null;
     private Partida partida = null;
     private String mensaje;
     private IObserver observador;
@@ -20,7 +20,7 @@ public class ModeloFrmPartida implements IObservable, IObserver<Partida> {
      * Constructor que inicializa el observador
      */
     private ModeloFrmPartida() {
-        observador = new FrmPartida();
+        observador = FrmPartida.getInstance();
     }
 
     /**

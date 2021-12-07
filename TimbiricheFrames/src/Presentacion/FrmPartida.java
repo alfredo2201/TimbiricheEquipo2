@@ -6,7 +6,9 @@ import dominio.Jugador;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import javax.swing.Icon;
 import javax.swing.JColorChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
@@ -25,7 +27,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
      * Creates new form FrmSala
      */
     private static FrmPartida instance;
-    private final Graphics g;
+    private Graphics g;
     private JPanel lienzo;
     private Timer tiempo;
     private ControlFrmPartida control;
@@ -34,14 +36,6 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
 
     public FrmPartida() {
         initComponents();
-        control = ControlFrmPartida.getInstance();
-        this.setExtendedState(MAXIMIZED_BOTH);
-        lienzo = control.configurarLienzo(lienzo);
-        add(lienzo); //se agrega al frame principal
-        pack();
-        g = lienzo.getGraphics();
-        this.setResizable(false);
-        btnPreparado.setEnabled(false);
     }
 
     /**
@@ -405,7 +399,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
             lblNombreJugador1.setForeground(c);
             conexion.getJugador().setColor(c);
         }
-
+        
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
@@ -536,7 +530,45 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     @Override
     public void update(ModeloFrmPartida modelo) {
         modeloPartida = ModeloFrmPartida.getInstance();
+        //control.muestraInformacionJugadores(this);
 
     }
 
+    public void setLblIconoJugador1(String lblIconoJugador1) {
+        this.lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador1)));
+    }
+    public void setLblIconoJugador2(String lblIconoJugador2) {
+        this.lblIconoJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador2)));
+    }
+    public void setLblIconoJugador3(String lblIconoJugador3) {
+        this.lblIconoJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador3)));
+    }
+    public void setLblIconoJugador4(String lblIconoJugador4) {
+        this.lblIconoJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador4)));
+    }
+
+    public void setLblNombreJugador1(String nombre) {
+        this.lblNombreJugador1.setText(nombre);
+    }
+
+    public void setLblNombreJugador2(String nombre) {
+        this.lblNombreJugador2.setText(nombre);
+    }
+    public void setLblNombreJugador3(String nombre) {
+        this.lblNombreJugador3.setText(nombre);
+    }
+    public void setLblNombreJugador4(String nombre) {
+        this.lblNombreJugador4.setText(nombre);
+    }
+
+    public void setLienzo(JPanel lienzo) {
+        this.lienzo = lienzo;
+    }
+
+    public JPanel getLienzo() {
+        return lienzo;
+    }
+    public void setG(Graphics g){
+        this.g = g;
+    }
 }

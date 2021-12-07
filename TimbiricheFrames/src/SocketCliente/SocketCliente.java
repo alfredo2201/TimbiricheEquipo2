@@ -35,6 +35,7 @@ public class SocketCliente extends Thread implements IObservable {
             cliente = new Socket(HOST, PORT);
             objetoSaliente = new ObjectOutputStream(cliente.getOutputStream());
             objetoEntrante = new ObjectInputStream(cliente.getInputStream());
+            this.start();
 
         } catch (IOException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);

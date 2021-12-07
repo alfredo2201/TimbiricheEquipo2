@@ -5,16 +5,18 @@
  */
 package control;
 
-import Presentacion.FrmIconos;
 import Presentacion.FrmPrincipal;
 import SocketCliente.SocketCliente;
 import dominio.Jugador;
+import dominio.Partida;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import modelo.ModeloFrmPrincipal;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -23,15 +25,14 @@ import javax.swing.JOptionPane;
 public class ControlFrmPrincipal {
 
     private static ControlFrmPrincipal instance;
-    private ModeloFrmPrincipal modPrincipal ;
+    private ModeloFrmPrincipal modPrincipal;
     private ControlFrmCrearPartida ctlCrearPartida;
+    private ControlFrmPartida ctlPartida;
     private SocketCliente cliente;
 
     private ControlFrmPrincipal() {
         this.cliente = SocketCliente.getInstance();
     }
-
-
 
     public static ControlFrmPrincipal getInstance() {
         if (instance == null) {
@@ -51,19 +52,31 @@ public class ControlFrmPrincipal {
         nombre = (padded);
         modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setNombre(nombre);
-        if (validaApodoIcono() && !(nombre.length() >10) ){
+        ctlPartida = ControlFrmPartida.getInstance();
+        if (validaApodoIcono() && !(nombre.length() > 10)) {
             try {
                 cliente.enviarAlServidor(modPrincipal.getJugador());
+                ctlPartida.getPartida();
+                Partida p = ctlPartida.getPartida();
+                try {
+                    TimeUnit.SECONDS.sleep(1);
+                    System.out.println("Cargando.....");
+                } catch (Exception e) {
+                }
+                if (ctlPartida.getPartida() != null) {
+                    System.out.println(ctlPartida.getPartida().getEstado());
+                    ctlPartida.despliegaPantallaPartida();
+                } else {
+                    crearFrmCrearPartida(frame);
+                }
             } catch (IOException ex) {
                 Logger.getLogger(ControlFrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
-            crearFrmCrearPartida(frame);
         } else {
             modPrincipal.setMensaje("Tiene que agregar un nombre y un ícono");
         }
     }
 
-    
     public void validaTamanio(java.awt.event.KeyEvent evt, String nombre) {
         if (nombre.length() == 10) {
             evt.consume();
@@ -87,7 +100,7 @@ public class ControlFrmPrincipal {
      * Método que recupera la partida cuando se acepta la solicitud
      */
     public void recuperarPartida() {
-        //Recuperar la clase de partida
+
     }
 
     /**
