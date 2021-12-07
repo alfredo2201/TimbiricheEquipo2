@@ -65,13 +65,13 @@
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
-                  <Component id="cmbTamanio" min="-2" max="-2" attributes="0"/>
-              </Group>
-              <Group type="102" attributes="0">
-                  <EmptySpace min="130" pref="130" max="-2" attributes="0"/>
                   <Component id="lblTamanio" min="-2" max="-2" attributes="0"/>
               </Group>
               <Component id="jLabel1" min="-2" pref="320" max="-2" attributes="0"/>
+              <Group type="102" alignment="0" attributes="0">
+                  <EmptySpace min="-2" pref="130" max="-2" attributes="0"/>
+                  <Component id="cmbTamanio" min="-2" max="-2" attributes="0"/>
+              </Group>
           </Group>
         </DimensionLayout>
       </Layout>
@@ -116,9 +116,6 @@
               <StringArray count="0"/>
             </Property>
           </Properties>
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cmbTamanioActionPerformed"/>
-          </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;Integer&gt;"/>
           </AuxValues>

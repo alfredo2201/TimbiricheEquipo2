@@ -13,15 +13,16 @@ import dominio.Tablero;
 import java.awt.Color;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Equipo Gatazo
+ */
 public class Fachada implements iConexion {
 
     private CtrlJuego ctrlJuego;
     private CtrlJugador ctrlJugador;
     private CtrlTablero ctrlTablero;
 
-    /**
-     * Constructor que inicializa los objetos ctrlJuego, ctrlJugador y ctrlTablero
-     */
     public Fachada() {
         ctrlJuego = new CtrlJuego();
         ctrlJugador = new CtrlJugador();

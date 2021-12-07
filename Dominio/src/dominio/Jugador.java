@@ -1,81 +1,78 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package dominio;
 
 import java.awt.Color;
 import java.util.ArrayList;
 
+/**
+ *
+ * @author Equipo Gatazo
+ */
 public class Jugador {
 
     private String nombre;
     private String avatar;
     private Color color;
+    private ArrayList<Linea> linea;
+    private ArrayList<Cuadro> cuadro;
 
-    /**
-     * Constructor que inicialisa el nombre del jugador
-     *
-     * @param nombre nombre del jugador
-     */
     public Jugador(String nombre) {
         this.nombre = nombre;
+        //lineas = new ArrayList<>();
     }
 
-    /**
-     * Constructor por defecto
-     */
     public Jugador() {
     }
 
-    /**
-     * Metodo que regresa el nombre del jugador
-     *
-     * @return nombre
-     */
     public String getNombre() {
         return nombre;
     }
 
-    /**
-     * metodo para dar nombre al jugador
-     *
-     * @param nombre
-     */
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
 
-    /**
-     * Metodo que regresa el avatar del jugador
-     *
-     * @return avatar
-     */
     public String getAvatar() {
         return avatar;
     }
 
-    /**
-     * Metodo para dar un avatar al jugador
-     *
-     * @param avatar
-     */
     public void setAvatar(String avatar) {
         this.avatar = avatar;
     }
 
-    /**
-     * Metodo que regresa el color del jugador
-     *
-     * @return color
-     */
     public Color getColor() {
         return color;
     }
 
-    /**
-     * Metodo para dar un color al jugador
-     *
-     * @param color
-     */
     public void setColor(Color color) {
         this.color = color;
     }
 
+    public ArrayList<Linea> getLinea() {
+        return linea;
+    }
+
+    public void setLinea(ArrayList<Linea> linea) {
+        this.linea = linea;
+    }
+
+    public ArrayList<Cuadro> getCuadro() {
+        return cuadro;
+    }
+
+    public void setCuadro(ArrayList<Cuadro> cuadro) {
+        this.cuadro = cuadro;
+    }
+
+    @Override
+    public String toString() {
+        return "Jugador{" + "nombre=" + nombre + '}';
+    }
+
+    
+    
 }

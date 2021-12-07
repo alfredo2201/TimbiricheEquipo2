@@ -15,7 +15,7 @@ import java.util.ArrayList;
 
 /**
  *
- * @author Angel
+ * @author Equipo Gatazo
  */
 public interface iConexion {
 

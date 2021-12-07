@@ -1,3 +1,8 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
 package negocios;
 
 import dominio.Cuadro;
@@ -5,66 +10,50 @@ import dominio.Linea;
 import dominio.Punto;
 import dominio.Tablero;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
+/**
+ *
+ * @author Equipo Gatazo
+ */
 public class CtrlJuego {
-
-    /**
-     * Constructor por defecto
-     */
     public CtrlJuego() {
 
     }
 
-    /**
-     * Metodo para comprobar que una linea exista
-     *
-     * @param linea Linea a comprobar
-     * @param lineasList Lista de lineas en las que se buscará
-     * @return regresa true si se encuentra la linea, regresa false si no se
-     * encuentra
-     */
     public boolean compruebaLinea(Linea linea, ArrayList<Linea> lineasList) {
 
         for (Linea l : lineasList) {
             if (l.equals(linea)) {
+//                JOptionPane.showMessageDialog(null, "Linea ya existente",
+//                        "", JOptionPane.ERROR_MESSAGE);
                 return true;
             }
         }
         return false;
     }
 
-    /**
-     * Metodo para comparar dos puntos
-     *
-     * @param p1 punto 1
-     * @param p2 punto 2
-     * @return regresa true si son iguales, regresa false si no
-     */
     public boolean compruebaPunto(Punto p1, Punto p2) {
         if (p1.equals(p2)) {
+//            JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
+//                    "", JOptionPane.ERROR_MESSAGE);
             return true;
         }
         return false;
     }
 
-    /**
-     * Metodo para verificar que un cuadro se haya completado
-     *
-     * @param linea linea que terminó el cuadro
-     * @param lineasList lineas con las que se compara para saber si hay un
-     * cuadro
-     * @param tabla tabla donde se encuentran las lineas
-     * @return regresa un cuadro en caso de que lo haya, si no, regresa null
-     */
     public Cuadro verificarCuadro(Linea linea, ArrayList<Linea> lineasList, Tablero tabla) {
         Cuadro cuadro = new Cuadro();
+        //listaLineasPositivasHorizontales.add(linea);
         for (Linea line : lineasList) {
+            // Si es linea superior
             if (linea.getP1().getX() == line.getP2().getX() && linea.getP1().getY() == line.getP2().getY() && linea.getP1().getX() - tabla.getSeparacion() == line.getP2().getX() && linea.getP2().getY() == line.getP1().getY()
                     || linea.getP2().getX() == line.getP2().getX() && linea.getP2().getY() - tabla.getSeparacion() == line.getP2().getY() && linea.getP1().getX() - tabla.getSeparacion() == line.getP1().getX() && linea.getP1().getY() == line.getP1().getY()
                     || linea.getP1().getX() == line.getP1().getX() && linea.getP1().getY() == line.getP1().getY() && linea.getP1().getX() + tabla.getSeparacion() == line.getP2().getX() && linea.getP1().getY() == line.getP2().getY()) {
 
                 cuadro.setSuperior(line);
             }
+            // Si es linea inferior 
             if (linea.getP1().getX() == line.getP1().getX() && linea.getP1().getY() + tabla.getSeparacion() == line.getP1().getY() && linea.getP2().getX() == line.getP2().getX() && linea.getP2().getY() + tabla.getSeparacion() == line.getP2().getY()
                     || linea.getP1().getX() == line.getP1().getX() && linea.getP1().getY() - tabla.getSeparacion() == line.getP1().getY() && linea.getP2().getX() == line.getP2().getX() && linea.getP2().getY() - tabla.getSeparacion() == line.getP2().getY()
                     || linea.getP2().getX() == line.getP2().getX() && linea.getP2().getY() == line.getP2().getY() && linea.getP2().getX() - tabla.getSeparacion() == line.getP1().getX() && linea.getP1().getY() == line.getP1().getY()
@@ -142,17 +131,6 @@ public class CtrlJuego {
         return null;
     }
 
-    /**
-     * Metodo para verificar que un cuadro se haya completado 2 veces con 1
-     * linea
-     *
-     * @param cuadro cuadro para verificar
-     * @param lineasList lineas con las que se compara para saber si hay un
-     * cuadro doble
-     * @param tabla tabla donde se encuentran las lineas
-     * @return regresa verificar cuadro en caso de contener un doble cuadro, si
-     * no, regresa null
-     */
     public Cuadro verificarCuadroDoble(Cuadro cuadro, ArrayList<Linea> lineasList, Tablero tabla) {
         for (Linea line : lineasList) {
             if (cuadro.getSuperior().getP1().getY() - tabla.getSeparacion() == line.getP1().getY() && cuadro.getSuperior().getP1().getX() == line.getP1().getX()

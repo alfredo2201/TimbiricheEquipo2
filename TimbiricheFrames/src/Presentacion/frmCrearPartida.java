@@ -1,37 +1,31 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Presentacion;
 
+import control.ControlFrmCrearPartida;
 import javax.swing.DefaultComboBoxModel;
-import negocios.Fabrica;
-import negocios.iConexion;
+import observador.IObserver;
 
 /**
  *
- * @author crist
+ * @author Equipo gatazo
  */
-public class frmCrearPartida extends javax.swing.JFrame {
+public class frmCrearPartida extends javax.swing.JFrame implements IObserver {
 
     /**
      * Creates new form frmCrearPartida
      */
     private static frmCrearPartida instancia;
     private DefaultComboBoxModel cmbModelTamanio = this.cmbModelTamanio;
-    private final int[] lista;
-    private iConexion conexion = Fabrica.getInstance();
-    
+    private ControlFrmCrearPartida ctlCrearPartida = ControlFrmCrearPartida.getInstance();
+
     private frmCrearPartida() {
-        this.lista = new int[]{10, 20, 40};
         initComponents();
-        agregarTamanioLista();
+        ctlCrearPartida.agregarTamanioLista(cmbTamanio);
         this.setLocationRelativeTo(null);
     }
 
     /**
      * Crea una instancia de frmCrearPartida
+     *
      * @return Regresa una instancia de frmCrearPartida
      */
     public static frmCrearPartida getInstance() {
@@ -39,23 +33,6 @@ public class frmCrearPartida extends javax.swing.JFrame {
             instancia = new frmCrearPartida();
         }
         return instancia;
-    }
-
-    /**
-     * Regresa el tamaño del tablero
-     * @return Regresa el tamaño del tablero
-     */
-    public int tamanioTablero() {
-        return (int) cmbTamanio.getSelectedItem();
-    }
-
-    /**
-     * Agrega los tamaños de la tabla en una lista
-     */
-    private void agregarTamanioLista() {
-        for (int i = 0; i < lista.length; i++) {
-            cmbTamanio.addItem(lista[i]);
-        }
     }
 
     @SuppressWarnings("unchecked")
@@ -87,11 +64,6 @@ public class frmCrearPartida extends javax.swing.JFrame {
         });
 
         cmbTamanio.setFont(new java.awt.Font("OCR A Extended", 1, 20)); // NOI18N
-        cmbTamanio.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbTamanioActionPerformed(evt);
-            }
-        });
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/fondoIconos.png"))); // NOI18N
 
@@ -117,11 +89,11 @@ public class frmCrearPartida extends javax.swing.JFrame {
                 .addComponent(btnAceptar, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(130, 130, 130)
-                .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(130, 130, 130)
                 .addComponent(lblTamanio))
             .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 320, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(130, 130, 130)
+                .addComponent(cmbTamanio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -141,15 +113,9 @@ public class frmCrearPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnAceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarActionPerformed
-        conexion.getTablero().setTamanio(this.tamanioTablero());
-        FrmPartida partida = FrmPartida.getInstance(conexion.getTablero());
-        partida.setVisible(true);
+        ctlCrearPartida.crearPartida((int) cmbTamanio.getSelectedItem());
         dispose();
     }//GEN-LAST:event_btnAceptarActionPerformed
-
-    private void cmbTamanioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbTamanioActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbTamanioActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
@@ -158,4 +124,9 @@ public class frmCrearPartida extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel lblTamanio;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(Object modelo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

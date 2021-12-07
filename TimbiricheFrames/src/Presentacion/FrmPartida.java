@@ -1,79 +1,72 @@
 package Presentacion;
 
 import Control.Control;
+import control.ControlFrmPartida;
 import dominio.Jugador;
-import dominio.Tablero;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import javax.swing.Icon;
 import javax.swing.JColorChooser;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+import modelo.ModeloFrmPartida;
 import negocios.Fabrica;
 import negocios.iConexion;
+import observador.IObserver;
 
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 /**
  *
- * @author crist
+ * @author Equipo gatazo
  */
-public class FrmPartida extends javax.swing.JFrame {
+public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFrmPartida> {
 
     /**
      * Creates new form FrmSala
      */
     private static FrmPartida instance;
-    private final Graphics g;
+    private Graphics g;
     private JPanel lienzo;
     private Timer tiempo;
-    private final Control control;
+    private ControlFrmPartida control;
+    private ModeloFrmPartida modeloPartida;
     private final iConexion conexion = Fabrica.getInstance();
 
-    private FrmPartida(Tablero tablero) {
+    public FrmPartida() {
         initComponents();
-        this.setExtendedState(MAXIMIZED_BOTH);
-        configuracionLienzo(tablero);
-        g = lienzo.getGraphics();
-        this.setResizable(false);
-        control = new Control();
-        cargaJugador();
-        btnPreparado.setEnabled(false);
     }
 
     /**
      * Configura el tablero
+     *
      * @param tablero tablero con las caracteristicas
      */
-    private void configuracionLienzo(Tablero tablero) {
-
-        lienzo = new pnJuego(tablero);//se inicializa el lienzo
-        lienzo.setLocation(200, 0); //se establece su posición
-        lienzo.setSize(1010, 1010); //establece el tamaño del panel
-        lienzo.setVisible(true);
-        add(lienzo); //se agrega al frame principal
-        pack();
-    }
-
+//    private void configuracionLienzo(Tablero tablero) {
+//
+//        lienzo = new pnJuego(tablero);//se inicializa el lienzo
+//        lienzo.setLocation(200, 0); //se establece su posición
+//        lienzo.setSize(1010, 1010); //establece el tamaño del panel
+//        lienzo.setVisible(true);
+//        add(lienzo); //se agrega al frame principal
+//        pack();
+//    }
     /**
-     * Carga a los jugadores
+     * Carga a los jugadores //
      */
-    private void cargaJugador() {
-        lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(conexion.getJugador().getAvatar())));
-        lblNombreJugador1.setText(conexion.getJugador().getNombre());
-        lblTurnoNombreJugador.setText(conexion.getJugador().getNombre());
-
-        control.cargarJugador(lblIconoJugador2, lblNombreJugador2, control.getJ1(), 2000);
-        control.cargarJugador(lblIconoJugador3, lblNombreJugador3, control.getJ2(), 3000);
-        control.cargarJugador(lblIconoJugador4, lblNombreJugador4, control.getJ3(), 4000);
-    }
-
+//    private void cargaJugador() {
+//        lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(conexion.getJugador().getAvatar())));
+//        lblNombreJugador1.setText(conexion.getJugador().getNombre());
+//        lblTurnoNombreJugador.setText(conexion.getJugador().getNombre());
+//
+//        control.cargarJugador(lblIconoJugador2, lblNombreJugador2, control.getJ1(), 2000);
+//        control.cargarJugador(lblIconoJugador3, lblNombreJugador3, control.getJ2(), 3000);
+//        control.cargarJugador(lblIconoJugador4, lblNombreJugador4, control.getJ3(), 4000);
+//    }
     /**
      * Verifica el tipo de jugador
+     *
      * @param tipoJugador Tipo de jugador
      */
     public void boton(boolean tipoJugador) {
@@ -87,12 +80,13 @@ public class FrmPartida extends javax.swing.JFrame {
 
     /**
      * Crea instancia de FrmPartida
+     *
      * @param tablero Tablero que tendrá
      * @return regresa una instancia de FrmPartida
      */
-    public static FrmPartida getInstance(Tablero tablero) {
+    public static FrmPartida getInstance() {
         if (instance == null) {
-            instance = new FrmPartida(tablero);
+            instance = new FrmPartida();
         }
         return instance;
     }
@@ -399,12 +393,13 @@ public class FrmPartida extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCambiaColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColorActionPerformed
+
         Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
         if (c != null) {
             lblNombreJugador1.setForeground(c);
             conexion.getJugador().setColor(c);
-
         }
+        
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
@@ -531,4 +526,49 @@ public class FrmPartida extends javax.swing.JFrame {
     private javax.swing.JPanel pnJugadores;
     private javax.swing.JPanel pnTurnos;
     // End of variables declaration//GEN-END:variables
+
+    @Override
+    public void update(ModeloFrmPartida modelo) {
+        modeloPartida = ModeloFrmPartida.getInstance();
+        //control.muestraInformacionJugadores(this);
+
+    }
+
+    public void setLblIconoJugador1(String lblIconoJugador1) {
+        this.lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador1)));
+    }
+    public void setLblIconoJugador2(String lblIconoJugador2) {
+        this.lblIconoJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador2)));
+    }
+    public void setLblIconoJugador3(String lblIconoJugador3) {
+        this.lblIconoJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador3)));
+    }
+    public void setLblIconoJugador4(String lblIconoJugador4) {
+        this.lblIconoJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador4)));
+    }
+
+    public void setLblNombreJugador1(String nombre) {
+        this.lblNombreJugador1.setText(nombre);
+    }
+
+    public void setLblNombreJugador2(String nombre) {
+        this.lblNombreJugador2.setText(nombre);
+    }
+    public void setLblNombreJugador3(String nombre) {
+        this.lblNombreJugador3.setText(nombre);
+    }
+    public void setLblNombreJugador4(String nombre) {
+        this.lblNombreJugador4.setText(nombre);
+    }
+
+    public void setLienzo(JPanel lienzo) {
+        this.lienzo = lienzo;
+    }
+
+    public JPanel getLienzo() {
+        return lienzo;
+    }
+    public void setG(Graphics g){
+        this.g = g;
+    }
 }

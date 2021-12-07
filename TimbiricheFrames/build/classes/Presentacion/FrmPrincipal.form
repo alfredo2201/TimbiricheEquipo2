@@ -45,7 +45,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="185" pref="185" max="-2" attributes="0"/>
-                  <Component id="btnIngresar1" min="-2" pref="199" max="-2" attributes="0"/>
+                  <Component id="btnCrearPartida" min="-2" pref="199" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="540" pref="540" max="-2" attributes="0"/>
@@ -66,7 +66,7 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" attributes="0">
                   <EmptySpace min="390" pref="390" max="-2" attributes="0"/>
-                  <Component id="btnIngresar1" min="-2" pref="56" max="-2" attributes="0"/>
+                  <Component id="btnCrearPartida" min="-2" pref="56" max="-2" attributes="0"/>
               </Group>
               <Group type="102" attributes="0">
                   <EmptySpace min="320" pref="320" max="-2" attributes="0"/>
@@ -154,7 +154,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresarActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnIngresar1">
+        <Component class="javax.swing.JButton" name="btnCrearPartida">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Fugaz One" size="14" style="0"/>
@@ -180,7 +180,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnIngresar1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCrearPartidaActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="lblImagen">
