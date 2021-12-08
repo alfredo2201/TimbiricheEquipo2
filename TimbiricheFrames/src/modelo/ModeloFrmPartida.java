@@ -56,7 +56,7 @@ public class ModeloFrmPartida implements IObservable, IObserver<Partida> {
      * @param partida Valor que será otorgado a partida
      */
     public void setPartida(Partida partida) {
-        this.partida = partida;
+        this.partida = partida;        
         this.notificar();
     }
 

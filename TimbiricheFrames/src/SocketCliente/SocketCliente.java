@@ -118,6 +118,7 @@ public class SocketCliente extends Thread implements IObservable {
      */
     @Override
     public void notificar() {
+        
         observador = ModeloFrmPartida.getInstance();
         this.observador.update(partida);
     }

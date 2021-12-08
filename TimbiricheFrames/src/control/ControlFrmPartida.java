@@ -23,6 +23,7 @@ public class ControlFrmPartida {
     private static ControlFrmPartida instance;
     private ModeloFrmPartida modeloPartida;
     private FrmPartida frmPartida;
+    private ControlFrmPrincipal ctlPrincipal;
     private SocketCliente cliente;
     private Tablero tablero;
 
@@ -168,8 +169,7 @@ public class ControlFrmPartida {
      * @param frmPartida
      */
     public void muestraInformacionJugadores(FrmPartida frmPartida) {
-        if (modeloPartida != null) {
-            ControlFrmPrincipal ctlPrincipal = ControlFrmPrincipal.getInstance();
+        if (modeloPartida != null) {           
             int iterar = 0;
             for (Jugador jugador : modeloPartida.getPartida().getJugadores()) {
                 switch (iterar) {
@@ -258,6 +258,7 @@ public class ControlFrmPartida {
 
     /**
      * Metodo que despliega un mensaje
+     * @param mensaje
      */
     public void muestraMensaje(String mensaje) {
         JOptionPane.showMessageDialog(null, mensaje, "", JOptionPane.INFORMATION_MESSAGE);
@@ -290,5 +291,5 @@ public class ControlFrmPartida {
     public void setMensaje(String mensaje) {
         this.modeloPartida.setMensaje(mensaje);
     }
-
+    
 }

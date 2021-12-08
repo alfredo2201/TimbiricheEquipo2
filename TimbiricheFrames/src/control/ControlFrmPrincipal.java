@@ -10,13 +10,11 @@ import SocketCliente.SocketCliente;
 import dominio.Jugador;
 import dominio.Partida;
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import modelo.ModeloFrmPrincipal;
 import javax.swing.JOptionPane;
-import javax.swing.Timer;
 
 /**
  *
@@ -28,10 +26,16 @@ public class ControlFrmPrincipal {
     private ModeloFrmPrincipal modPrincipal;
     private ControlFrmCrearPartida ctlCrearPartida;
     private ControlFrmPartida ctlPartida;
+    private Partida partida;
     private SocketCliente cliente;
 
     private ControlFrmPrincipal() {
         this.cliente = SocketCliente.getInstance();
+        try {
+            cliente.enviarAlServidor(new Jugador());
+        } catch (IOException ex) {
+            Logger.getLogger(ControlFrmPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public static ControlFrmPrincipal getInstance() {
@@ -47,25 +51,19 @@ public class ControlFrmPrincipal {
      * @param nombre
      * @param frame
      */
-    public void asignaNombre(String nombre, JFrame frame) {
+    public synchronized void asignaNombre(String nombre, JFrame frame) {
+        
         String padded = String.format("%-10s", nombre);
         nombre = (padded);
         modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setNombre(nombre);
-        ctlPartida = ControlFrmPartida.getInstance();
+        ctlPartida = ControlFrmPartida.getInstance(); 
         if (validaApodoIcono() && !(nombre.length() > 10)) {
             try {
-                cliente.enviarAlServidor(modPrincipal.getJugador());
-                ctlPartida.getPartida();
-                Partida p = ctlPartida.getPartida();
-                try {
-                    TimeUnit.SECONDS.sleep(1);
-                    System.out.println("Cargando.....");
-                } catch (Exception e) {
-                }
-                if (ctlPartida.getPartida() != null) {
-                    System.out.println(ctlPartida.getPartida().getEstado());
+                cliente.enviarAlServidor(modPrincipal.getJugador()); 
+                if (this.partida != null) {                                        
                     ctlPartida.despliegaPantallaPartida();
+                    frame.setVisible(false);
                 } else {
                     crearFrmCrearPartida(frame);
                 }
@@ -145,7 +143,7 @@ public class ControlFrmPrincipal {
         if (validaApodoIcono()) {
             ctlCrearPartida = ControlFrmCrearPartida.getInstance();
             ctlCrearPartida.despliegaPantallaCrearPartida();
-            frame.dispose();
+            frame.setVisible(false);
         } else {
             modPrincipal.setMensaje("Debe de poner su nombre y seleccionar un icono");
         }
@@ -155,4 +153,9 @@ public class ControlFrmPrincipal {
         modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setAvatar(icono);
     }
+
+    public void setPartida(Partida partida) {
+        this.partida = partida;
+    }
+    
 }

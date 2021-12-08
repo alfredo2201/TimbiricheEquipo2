@@ -530,7 +530,8 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     @Override
     public void update(ModeloFrmPartida modelo) {
         modeloPartida = ModeloFrmPartida.getInstance();
-        //control.muestraInformacionJugadores(this);
+        control = ControlFrmPartida.getInstance();
+        control.muestraInformacionJugadores(this);
 
     }
 
