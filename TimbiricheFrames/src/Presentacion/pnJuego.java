@@ -1,7 +1,10 @@
 package Presentacion;
 
 import Control.Control;
+import control.ControlFrmPartida;
+import control.ControlFrmPrincipal;
 import dominio.Cuadro;
+import dominio.Estados;
 import dominio.Linea;
 import dominio.Punto;
 import dominio.Tablero;
@@ -36,6 +39,7 @@ public class pnJuego extends javax.swing.JPanel {
     private final Control control;
     private final ArrayList<Linea> lineasList;
     private final iConexion conexion = Fabrica.getInstance();
+    private ControlFrmPartida ctrlPartida;
 
     public pnJuego(Tablero tablero) {
         initComponents();
@@ -281,6 +285,7 @@ public class pnJuego extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
+
         if (pulsacion == 1) {
             for (Punto punto : puntosList) {
 

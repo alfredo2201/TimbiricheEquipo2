@@ -260,7 +260,6 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
                                 .addComponent(btnCambiaColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(49, 49, 49)))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnJugadoresLayout.createSequentialGroup()
                         .addComponent(lblIconoJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -278,7 +277,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
                             .addGroup(pnJugadoresLayout.createSequentialGroup()
                                 .addGap(103, 103, 103)
                                 .addComponent(btnCambiaColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(30, Short.MAX_VALUE))
+                .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnJugadoresLayout.createSequentialGroup()
                     .addGap(72, 72, 72)
@@ -362,7 +361,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(1292, Short.MAX_VALUE)
+                .addContainerGap(1355, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(btnAbandonarPartida)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
@@ -401,6 +400,9 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
+
+        control.actualizaEstado();
+
 //        tiempo = new Timer(5000, null);
 //        tiempo.start();
 //        Color myWhite = new Color(255, 255, 255); // Color white
@@ -453,34 +455,8 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
 
     private void btnPreparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreparadoActionPerformed
-//        tiempo = new Timer(5000, null);
-//        tiempo.start();
-//        Color myWhite = new Color(255, 255, 255); // Color white
-//
-//        if (lblNombreJugador1.getForeground().equals(myWhite) || lblNombreJugador2.getForeground().equals(myWhite)
-//                || lblNombreJugador3.getForeground().equals(myWhite) || lblNombreJugador4.getForeground().equals(myWhite)) {
-//            JOptionPane.showMessageDialog(null, "Escoge el color de tus contrincantes",
-//                    "", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "El juego comenzará en breve cuando los demás participantes estén preparados",
-//                    "", JOptionPane.INFORMATION_MESSAGE);
-//            tiempo.addActionListener(new java.awt.event.ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent ae) {
-//                    operacion();
-//                }
-//
-//                private void operacion() {
-//                    tiempo.stop();
-//                    btnPreparado.setEnabled(false);
-//                    btnCambiaColor1.setEnabled(false);
-//                    btnCambiaColor2.setEnabled(false);
-//                    btnCambiaColor3.setEnabled(false);
-//                    btnCambiaColor.setEnabled(false);
-//
-//                }
-//            });
-//        }
+
+          control.boton(btnComenzarPartida, true);        
 
     }//GEN-LAST:event_btnPreparadoActionPerformed
 

@@ -15,6 +15,7 @@ import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -46,6 +47,31 @@ public class ControlFrmPartida {
         this.modeloPartida = modeloPartida;
     }
 
+    public void boton(JButton btnComenzarPartida, boolean tipoJugador) {
+        if (tipoJugador == false) {
+            btnComenzarPartida.setEnabled(false);
+            
+        } else {
+            btnComenzarPartida.setEnabled(true);
+            Jugador ju = ctlPrincipal.getJugador();
+            
+            for(Jugador jugador : modeloPartida.getPartida().getJugadores()){
+                if(ju.equals(jugador)){
+                    jugador.setIniciar(true);
+                    break;
+                }
+            }
+            
+            try{
+                cliente.enviarAlServidor(modeloPartida.getPartida());
+            }catch(Exception e){
+                System.out.println("uwu");
+            }
+            
+        }
+    }
+
+
     /**
      * Metodo para actualiza rlos valores del lienzo
      *
@@ -55,17 +81,20 @@ public class ControlFrmPartida {
      */
     public JPanel configurarLienzo(JPanel lienzo) {
         modeloPartida = ModeloFrmPartida.getInstance();
+        
         if (tablero != null) {
             lienzo = new pnJuego(tablero);//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
-            lienzo.setVisible(true);
+            lienzo.setVisible(false);
+            lienzo.setEnabled(false);
             return lienzo;
         } else if (modeloPartida.getPartida() != null) {
             lienzo = new pnJuego(modeloPartida.getPartida().getTablero());//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
-            lienzo.setVisible(true);
+            lienzo.setVisible(false);
+            lienzo.setEnabled(false);
             return lienzo;
         }
         return null;
@@ -113,6 +142,7 @@ public class ControlFrmPartida {
         frmPartida.pack();
         frmPartida.setG(frmPartida.getLienzo().getGraphics());
         frmPartida.setResizable(false);
+        frmPartida.getLienzo().setEnabled(false);
         muestraInformacionJugadores(frmPartida);
     }
 
