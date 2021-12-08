@@ -36,6 +36,10 @@ public class ControlFrmPartida {
         this.cliente = SocketCliente.getInstance();
     }
 
+    public void setModeloPartida(ModeloFrmPartida modeloPartida) {
+        this.modeloPartida = modeloPartida;
+    }
+    
     /**
      * Metodo para actualiza rlos valores del lienzo
      *
@@ -94,7 +98,7 @@ public class ControlFrmPartida {
      * Método que despliega el frame de Partida Aquí se le agregó el parámetro
      */
     public void despliegaPantallaPartida() {
-        modeloPartida = ModeloFrmPartida.getInstance();
+        modeloPartida = ModeloFrmPartida.getInstance(); 
         frmPartida = FrmPartida.getInstance();
         frmPartida.setVisible(true);
         frmPartida.setExtendedState(MAXIMIZED_BOTH);
@@ -103,7 +107,6 @@ public class ControlFrmPartida {
         frmPartida.pack();
         frmPartida.setG(frmPartida.getLienzo().getGraphics());
         frmPartida.setResizable(false);
-        //btnPreparado.setEnabled(false);
         muestraInformacionJugadores(frmPartida);
     }
 

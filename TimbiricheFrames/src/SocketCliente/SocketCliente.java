@@ -36,7 +36,6 @@ public class SocketCliente extends Thread implements IObservable {
             objetoSaliente = new ObjectOutputStream(cliente.getOutputStream());
             objetoEntrante = new ObjectInputStream(cliente.getInputStream());
             this.start();
-
         } catch (IOException ex) {
             Logger.getLogger(SocketCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -48,7 +47,7 @@ public class SocketCliente extends Thread implements IObservable {
      * @param jugador Jugador enviado
      * @throws IOException En caso de haber un error, arroja IOException
      */
-    public void enviarAlServidor(Jugador jugador) throws IOException {
+    public synchronized void enviarAlServidor(Jugador jugador) throws IOException {
         objetoSaliente.writeObject(jugador);
     }
 
@@ -58,7 +57,7 @@ public class SocketCliente extends Thread implements IObservable {
      * @param partida Partida enviada
      * @throws IOException En caso de haber un error, arroja IOException
      */
-    public void enviarAlServidor(Partida partida) throws IOException {
+    public synchronized void enviarAlServidor(Partida partida) throws IOException {
         objetoSaliente.writeObject(partida);
     }
 
@@ -89,7 +88,7 @@ public class SocketCliente extends Thread implements IObservable {
      *
      * @param objeto Objeto que será evaluado
      */
-    public void procesaObjeto(Object objeto) {
+    public synchronized void procesaObjeto(Object objeto) {
         if (objeto instanceof Partida) {
             partida = (Partida) objeto;
             notificar();
@@ -118,7 +117,6 @@ public class SocketCliente extends Thread implements IObservable {
      */
     @Override
     public void notificar() {
-        
         observador = ModeloFrmPartida.getInstance();
         this.observador.update(partida);
     }

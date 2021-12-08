@@ -528,11 +528,10 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     // End of variables declaration//GEN-END:variables
 
     @Override
-    public void update(ModeloFrmPartida modelo) {
-        modeloPartida = ModeloFrmPartida.getInstance();
+    public void update(ModeloFrmPartida modelo) {               
         control = ControlFrmPartida.getInstance();
+        control.setModeloPartida(modelo);
         control.muestraInformacionJugadores(this);
-
     }
 
     public void setLblIconoJugador1(String lblIconoJugador1) {

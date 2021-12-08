@@ -61,7 +61,8 @@ public class ControlFrmPrincipal {
         if (validaApodoIcono() && !(nombre.length() > 10)) {
             try {
                 cliente.enviarAlServidor(modPrincipal.getJugador()); 
-                if (this.partida != null) {                                        
+                if (this.partida != null) {   
+                    recuperarPartida();
                     ctlPartida.despliegaPantallaPartida();
                     frame.setVisible(false);
                 } else {
@@ -96,9 +97,11 @@ public class ControlFrmPrincipal {
 
     /**
      * Método que recupera la partida cuando se acepta la solicitud
+     * @throws java.io.IOException
      */
-    public void recuperarPartida() {
-
+    public void recuperarPartida() throws IOException {
+        this.partida.setJugador(modPrincipal.getJugador());
+        cliente.enviarAlServidor(partida);
     }
 
     /**
