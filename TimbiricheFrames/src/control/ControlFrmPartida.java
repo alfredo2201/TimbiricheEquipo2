@@ -1,17 +1,23 @@
 package control;
 
 import Presentacion.FrmPartida;
+import Presentacion.FrmPrincipal;
 import Presentacion.pnJuego;
 import SocketCliente.SocketCliente;
+import dominio.Estados;
 import dominio.Jugador;
 import dominio.Partida;
 import dominio.Tablero;
 import forma.Linea;
+import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.ModeloFrmPartida;
@@ -39,7 +45,7 @@ public class ControlFrmPartida {
     public void setModeloPartida(ModeloFrmPartida modeloPartida) {
         this.modeloPartida = modeloPartida;
     }
-    
+
     /**
      * Metodo para actualiza rlos valores del lienzo
      *
@@ -48,14 +54,14 @@ public class ControlFrmPartida {
      * @return Lienzo con los cambios aplciados
      */
     public JPanel configurarLienzo(JPanel lienzo) {
-        modeloPartida =  ModeloFrmPartida.getInstance();
+        modeloPartida = ModeloFrmPartida.getInstance();
         if (tablero != null) {
             lienzo = new pnJuego(tablero);//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
             lienzo.setVisible(true);
             return lienzo;
-        } else if (modeloPartida.getPartida()!=null) {
+        } else if (modeloPartida.getPartida() != null) {
             lienzo = new pnJuego(modeloPartida.getPartida().getTablero());//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
@@ -98,7 +104,7 @@ public class ControlFrmPartida {
      * Método que despliega el frame de Partida Aquí se le agregó el parámetro
      */
     public void despliegaPantallaPartida() {
-        modeloPartida = ModeloFrmPartida.getInstance(); 
+        modeloPartida = ModeloFrmPartida.getInstance();
         frmPartida = FrmPartida.getInstance();
         frmPartida.setVisible(true);
         frmPartida.setExtendedState(MAXIMIZED_BOTH);
@@ -112,9 +118,20 @@ public class ControlFrmPartida {
 
     /**
      * Método que muestra la configuración de los contrincantes
+     *
+     * @param label nombre del jugador
+     * @param frame frame en uso
+     * @param jugador número de identificación del jugador
      */
-    public void muestraConfigurarContrincantes() {
-
+    public void muestraConfigurarContrincantes(JLabel label, JFrame frame, int jugador) {
+        Color c = JColorChooser.showDialog(frame, "Color de jugador", Color.white);
+        if (c != null) {
+            Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
+            if (j != null) {
+                j.setColor(c);
+                label.setForeground(c);
+            }
+        }
     }
 
     /**
@@ -143,7 +160,7 @@ public class ControlFrmPartida {
     /**
      * Metodo que elimina la informacion del usuario de la pantalla
      */
-    public void quitarInforamcionPantalla() {
+    public void quitarInformacionPantalla() {
 
     }
 
@@ -165,7 +182,9 @@ public class ControlFrmPartida {
      * Metodo que muestra el frame Pantalla Principal
      */
     public void mostrarPantallaPrincipal() {
-
+        FrmPrincipal pr = FrmPrincipal.getInstance();
+        pr.setVisible(true);
+        frmPartida.getInstance().dispose();
     }
 
     /**
@@ -174,7 +193,7 @@ public class ControlFrmPartida {
      * @param frmPartida
      */
     public void muestraInformacionJugadores(FrmPartida frmPartida) {
-        if (modeloPartida != null) {           
+        if (modeloPartida != null) {
             int iterar = 0;
             for (Jugador jugador : modeloPartida.getPartida().getJugadores()) {
                 switch (iterar) {
@@ -221,8 +240,7 @@ public class ControlFrmPartida {
     public void dibujaLinea() {
         frmPartida = FrmPartida.getInstance();
         Linea linea = new Linea(MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, (Graphics2D) frmPartida.getLienzo().getGraphics());
-        
-        
+
     }
 
     /**
@@ -261,11 +279,30 @@ public class ControlFrmPartida {
      * Metodo para actualizar los estados de la partida
      */
     public void actualizaEstado() {
-
+        modeloPartida = ModeloFrmPartida.getInstance();
+        Partida p = modeloPartida.getPartida();
+        if (modeloPartida.getPartida().getEstado() == Estados.EN_ESPERA) {
+            p.setEstado(Estados.INICIADO);
+            modeloPartida.setPartida(p);
+            try {
+                cliente.enviarAlServidor(p);
+            } catch (Exception e) {
+                System.out.println("Chales");
+            }
+        } else if (modeloPartida.getPartida().getEstado() == Estados.INICIADO) {
+            p.setEstado(Estados.FINALIZADO);
+            modeloPartida.setPartida(p);
+            try {
+                cliente.enviarAlServidor(p);
+            } catch (Exception e) {
+                System.out.println("Chales");
+            }
+        }
     }
 
     /**
      * Metodo que despliega un mensaje
+     *
      * @param mensaje
      */
     public void muestraMensaje(String mensaje) {
@@ -299,5 +336,5 @@ public class ControlFrmPartida {
     public void setMensaje(String mensaje) {
         this.modeloPartida.setMensaje(mensaje);
     }
-    
+
 }
