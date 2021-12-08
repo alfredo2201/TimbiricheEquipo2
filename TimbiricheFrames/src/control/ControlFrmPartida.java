@@ -6,7 +6,9 @@ import SocketCliente.SocketCliente;
 import dominio.Jugador;
 import dominio.Partida;
 import dominio.Tablero;
+import forma.Linea;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -214,7 +216,10 @@ public class ControlFrmPartida {
      * Metodo que dibuja la linea en el tablero
      */
     public void dibujaLinea() {
-
+        frmPartida = FrmPartida.getInstance();
+        Linea linea = new Linea(MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, (Graphics2D) frmPartida.getLienzo().getGraphics());
+        
+        
     }
 
     /**

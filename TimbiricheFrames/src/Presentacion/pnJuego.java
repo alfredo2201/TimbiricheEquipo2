@@ -47,7 +47,6 @@ public class pnJuego extends javax.swing.JPanel {
         this.lineasList = new ArrayList<>();
         control = Control.getInstance();
         grosor();
-//        dibujaCirculos(this.getGraphics());
     }
 
     /**
