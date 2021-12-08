@@ -17,6 +17,8 @@ public class main {
             principal.setPartida(partida.getPartida());
         }
         
+        
+        
     }
 
 }

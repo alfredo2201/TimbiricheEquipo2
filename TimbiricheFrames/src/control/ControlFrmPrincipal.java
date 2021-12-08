@@ -61,7 +61,8 @@ public class ControlFrmPrincipal {
         if (validaApodoIcono() && !(nombre.length() > 10)) {
             try {
                 cliente.enviarAlServidor(modPrincipal.getJugador()); 
-                if (this.partida != null) {                                        
+                if (this.partida != null) {
+                    
                     ctlPartida.despliegaPantallaPartida();
                     frame.setVisible(false);
                 } else {

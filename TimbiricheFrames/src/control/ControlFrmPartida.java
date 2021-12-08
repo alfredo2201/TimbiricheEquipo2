@@ -1,17 +1,22 @@
 package control;
 
 import Presentacion.FrmPartida;
+import Presentacion.FrmPrincipal;
 import Presentacion.pnJuego;
 import SocketCliente.SocketCliente;
 import dominio.Jugador;
 import dominio.Partida;
 import dominio.Tablero;
 import forma.Linea;
+import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JColorChooser;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import modelo.ModeloFrmPartida;
@@ -29,6 +34,12 @@ public class ControlFrmPartida {
     private SocketCliente cliente;
     private Tablero tablero;
 
+    
+    public void abandonarPartida(){
+        FrmPrincipal pr = FrmPrincipal.getInstance();
+        pr.setVisible(true);
+    }
+    
     /**
      * Constructor que inicialisa el SocketCliente
      */
@@ -44,14 +55,14 @@ public class ControlFrmPartida {
      * @return Lienzo con los cambios aplciados
      */
     public JPanel configurarLienzo(JPanel lienzo) {
-        modeloPartida =  ModeloFrmPartida.getInstance();
+        modeloPartida = ModeloFrmPartida.getInstance();
         if (tablero != null) {
             lienzo = new pnJuego(tablero);//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
             lienzo.setVisible(true);
             return lienzo;
-        } else if (modeloPartida.getPartida()!=null) {
+        } else if (modeloPartida.getPartida() != null) {
             lienzo = new pnJuego(modeloPartida.getPartida().getTablero());//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
@@ -105,20 +116,29 @@ public class ControlFrmPartida {
         frmPartida.setResizable(false);
         //btnPreparado.setEnabled(false);
         muestraInformacionJugadores(frmPartida);
+        System.out.println(modeloPartida.getPartida().getJugadores().toString());
     }
 
     /**
      * Método que muestra la configuración de los contrincantes
      */
-    public void muestraConfigurarContrincantes() {
+    public void muestraConfigurarContrincantes(JLabel label, JFrame frame, int jugador) {
+        Color c = JColorChooser.showDialog(frame, "Color de jugador", Color.white);
+        if (c != null) {
+            Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
 
+            if (j != null) {
+                j.setColor(c);
+                label.setForeground(c);
+            }
+        }
     }
 
     /**
      * Metodo que muestra la partida con los jugadores
      */
     public void muestraPartida() {
-
+        
     }
 
     /**
@@ -162,7 +182,7 @@ public class ControlFrmPartida {
      * Metodo que muestra el frame Pantalla Principal
      */
     public void mostrarPantallaPrincipal() {
-
+        
     }
 
     /**
@@ -171,34 +191,28 @@ public class ControlFrmPartida {
      * @param frmPartida
      */
     public void muestraInformacionJugadores(FrmPartida frmPartida) {
-        if (modeloPartida != null) {           
+        if (modeloPartida != null) {
             int iterar = 0;
             for (Jugador jugador : modeloPartida.getPartida().getJugadores()) {
-                switch (iterar) {
-                    case 0:
-                        frmPartida.setLblIconoJugador1(jugador.getAvatar());
-                        frmPartida.setLblNombreJugador1(jugador.getNombre());
-                        iterar++;
-                        break;
-                    case 1:
-                        frmPartida.setLblIconoJugador2(jugador.getAvatar());
-                        frmPartida.setLblNombreJugador2(jugador.getNombre());
-                        iterar++;
-                        break;
-                    case 2:
-                        frmPartida.setLblIconoJugador3(jugador.getAvatar());
-                        frmPartida.setLblNombreJugador3(jugador.getNombre());
-                        iterar++;
-                        break;
-                    case 3:
-                        frmPartida.setLblIconoJugador4(jugador.getAvatar());
-                        frmPartida.setLblNombreJugador4(jugador.getNombre());
-                        iterar++;
-                        break;
-                    default:
-                        break;
+                if (iterar == 0) {
+                    frmPartida.setLblIconoJugador1(jugador.getAvatar());
+                    frmPartida.setLblNombreJugador1(jugador.getNombre());
+                    iterar++;
+                } else if (iterar == 1) {
+                    frmPartida.setLblIconoJugador2(jugador.getAvatar());
+                    frmPartida.setLblNombreJugador2(jugador.getNombre());
+                    iterar++;
+                } else if (iterar == 2) {
+                    frmPartida.setLblIconoJugador3(jugador.getAvatar());
+                    frmPartida.setLblNombreJugador3(jugador.getNombre());
+                    iterar++;
+                } else if (iterar == 3) {
+                    frmPartida.setLblIconoJugador4(jugador.getAvatar());
+                    frmPartida.setLblNombreJugador4(jugador.getNombre());
+                    iterar++;
                 }
             }
+            
         }
 
     }
@@ -218,8 +232,7 @@ public class ControlFrmPartida {
     public void dibujaLinea() {
         frmPartida = FrmPartida.getInstance();
         Linea linea = new Linea(MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, (Graphics2D) frmPartida.getLienzo().getGraphics());
-        
-        
+
     }
 
     /**
@@ -263,6 +276,7 @@ public class ControlFrmPartida {
 
     /**
      * Metodo que despliega un mensaje
+     *
      * @param mensaje
      */
     public void muestraMensaje(String mensaje) {
@@ -297,4 +311,17 @@ public class ControlFrmPartida {
         this.modeloPartida.setMensaje(mensaje);
     }
     
+    /**
+     * Se agrega un nuevo jugador y se actualiza la pantalla
+     * @param j 
+     */
+    public void nuevoJugador(Jugador j){
+        Partida p = modeloPartida.getPartida();
+        p.setJugador(j);
+        
+        this.modeloPartida.setPartida(p);
+        
+        
+    }
+
 }

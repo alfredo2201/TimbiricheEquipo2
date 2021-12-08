@@ -32,7 +32,6 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     private Timer tiempo;
     private ControlFrmPartida control;
     private ModeloFrmPartida modeloPartida;
-    private final iConexion conexion = Fabrica.getInstance();
 
     public FrmPartida() {
         initComponents();
@@ -69,15 +68,14 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
      *
      * @param tipoJugador Tipo de jugador
      */
-    public void boton(boolean tipoJugador) {
-        if (tipoJugador == false) {
-            btnComenzarPartida.setEnabled(false);
-        } else {
-
-            btnComenzarPartida.setEnabled(true);
-        }
-    }
-
+//    public void boton(boolean tipoJugador) {
+//        if (tipoJugador == false) {
+//            btnComenzarPartida.setEnabled(false);
+//        } else {
+//
+//            btnComenzarPartida.setEnabled(true);
+//        }
+//    }
     /**
      * Crea instancia de FrmPartida
      *
@@ -393,13 +391,10 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnCambiaColorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColorActionPerformed
+        control = ControlFrmPartida.getInstance();
+//        Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
+        control.muestraConfigurarContrincantes(lblNombreJugador1, this, 0);
 
-        Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
-        if (c != null) {
-            lblNombreJugador1.setForeground(c);
-            conexion.getJugador().setColor(c);
-        }
-        
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
@@ -434,42 +429,26 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnComenzarPartidaActionPerformed
 
     private void btnCambiaColor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColor1ActionPerformed
-        Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
-        if (c != null) {
-            lblNombreJugador2.setForeground(c);
-            Control ct = Control.getInstance();
-            ct.getJ2().setColor(c);
-        }
+        control = ControlFrmPartida.getInstance();
+        control.muestraConfigurarContrincantes(lblNombreJugador2, this, 1);
 
     }//GEN-LAST:event_btnCambiaColor1ActionPerformed
 
     private void btnCambiaColor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColor2ActionPerformed
+        control = ControlFrmPartida.getInstance();
+        control.muestraConfigurarContrincantes(lblNombreJugador3, this, 2);
 
-        Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
-        if (c != null) {
-            lblNombreJugador3.setForeground(c);
-            Jugador jugador = new Jugador();
-            Control ct = Control.getInstance();
-            ct.getJ2().setColor(c);
-            jugador.setColor(c);
-        }
     }//GEN-LAST:event_btnCambiaColor2ActionPerformed
 
     private void btnCambiaColor3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColor3ActionPerformed
-        Color c = JColorChooser.showDialog(this, "Color de jugador", Color.white);
-        if (c != null) {
-            lblNombreJugador4.setForeground(c);
-            Jugador jugador = new Jugador();
-            Control ct = Control.getInstance();
-            ct.getJ3().setColor(c);
-            jugador.setColor(c);
+        control = ControlFrmPartida.getInstance();
+        control.muestraConfigurarContrincantes(lblNombreJugador4, this, 3);
 
-        }
     }//GEN-LAST:event_btnCambiaColor3ActionPerformed
 
     private void btnAbandonarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaActionPerformed
-        FrmPrincipal pr = FrmPrincipal.getInstance();
-        pr.setVisible(true);
+
+        control.abandonarPartida();
         dispose();
     }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
 
@@ -529,7 +508,8 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
 
     @Override
     public void update(ModeloFrmPartida modelo) {
-        modeloPartida = ModeloFrmPartida.getInstance();
+//        modeloPartida = ModeloFrmPartida.getInstance();
+        modeloPartida = modelo;
         control = ControlFrmPartida.getInstance();
         control.muestraInformacionJugadores(this);
 
@@ -538,12 +518,15 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     public void setLblIconoJugador1(String lblIconoJugador1) {
         this.lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador1)));
     }
+
     public void setLblIconoJugador2(String lblIconoJugador2) {
         this.lblIconoJugador2.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador2)));
     }
+
     public void setLblIconoJugador3(String lblIconoJugador3) {
         this.lblIconoJugador3.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador3)));
     }
+
     public void setLblIconoJugador4(String lblIconoJugador4) {
         this.lblIconoJugador4.setIcon(new javax.swing.ImageIcon(getClass().getResource(lblIconoJugador4)));
     }
@@ -555,9 +538,11 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     public void setLblNombreJugador2(String nombre) {
         this.lblNombreJugador2.setText(nombre);
     }
+
     public void setLblNombreJugador3(String nombre) {
         this.lblNombreJugador3.setText(nombre);
     }
+
     public void setLblNombreJugador4(String nombre) {
         this.lblNombreJugador4.setText(nombre);
     }
@@ -569,7 +554,8 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     public JPanel getLienzo() {
         return lienzo;
     }
-    public void setG(Graphics g){
+
+    public void setG(Graphics g) {
         this.g = g;
     }
 }
