@@ -103,7 +103,7 @@ public class ControlFrmPrincipal {
         this.partida.setJugador(modPrincipal.getJugador());
         cliente.enviarAlServidor(partida);
     }
-
+    
     /**
      * Método que despliega el frame de partida
      */

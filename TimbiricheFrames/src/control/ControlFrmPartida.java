@@ -7,10 +7,12 @@ import SocketCliente.SocketCliente;
 import dominio.Estados;
 import dominio.Jugador;
 import dominio.Partida;
+import dominio.Punto;
 import dominio.Tablero;
 import forma.Linea;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
+import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
 import java.util.logging.Level;
@@ -264,10 +266,73 @@ public class ControlFrmPartida {
         return true;
     }
 
+    public void ordenaPuntos(pnJuego lienzo, Punto p1, Punto p2) {
+        if (p1.getX() == p2.getX()) {
+            if (p1.getY() > p2.getY()) {
+                Punto aux;
+                aux = p1;
+                p1 = p2;
+                p2 = aux;
+                lienzo.setP1(p1);
+                lienzo.setP2(p2);
+            }
+        } else if (p1.getY() == p2.getY()) {
+            if (p1.getX() > p2.getX()) {
+                Punto aux;
+                aux = p1;
+                p1 = p2;
+                p2 = aux;
+                lienzo.setP1(p1);
+                lienzo.setP2(p2);
+            }
+        }
+
+    }
+    
+    public void agregaPuntos(pnJuego lienzo, Punto p1, Punto p2,java.awt.event.MouseEvent evt){
+        int pulsacion = 0;
+         if (pulsacion == 1) {
+            for (Punto punto : lienzo.getPuntosList()) {
+
+                if (punto.getX() <= evt.getX()) {
+                    if (punto.getY() <= evt.getY()) {
+                        p1 = new Punto();
+                        p1.setX(punto.getX());
+                        p1.setY(punto.getY());
+                        p1.setRadio(punto.getRadio());
+                    }
+                }
+
+            }
+            pulsacion++;
+        } else {
+
+            for (Punto punto : lienzo.getPuntosList()) {
+
+                if (punto.getX() <= evt.getX()) {
+                    if (punto.getY() <= evt.getY()) {
+                        p2 = new Punto();
+                        p2.setX(punto.getX());
+                        p2.setY(punto.getY());
+                        p2.setRadio(punto.getRadio());
+                    }
+                }
+
+            }
+            pulsacion--;
+            ordenaPuntos(lienzo, p1, p2);
+            //System.out.println(p1 + " - " + p2);
+            dibujaLinea(lienzo.getGraphics());
+        }
+    }
+    
+    
+
     /**
      * Metodo que dibuja la linea en el tablero
+     * @param g
      */
-    public void dibujaLinea() {
+    public void dibujaLinea(Graphics g) {
         frmPartida = FrmPartida.getInstance();
         Linea linea = new Linea(MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, (Graphics2D) frmPartida.getLienzo().getGraphics());
 

@@ -90,6 +90,19 @@ public class pnJuego extends javax.swing.JPanel {
         this.g = g;
     }
 
+    public ArrayList<Punto> getPuntosList() {
+        return puntosList;
+    }
+
+    public void setP1(Punto p1) {
+        this.p1 = p1;
+    }
+
+    public void setP2(Punto p2) {
+        this.p2 = p2;
+    }
+    
+
     /**
      * Asina el grosor de la linea
      */
