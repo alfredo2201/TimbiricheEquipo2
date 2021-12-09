@@ -298,42 +298,8 @@ public class pnJuego extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-
-        if (pulsacion == 1) {
-            for (Punto punto : puntosList) {
-
-                if (punto.getX() <= evt.getX()) {
-                    if (punto.getY() <= evt.getY()) {
-                        p1 = new Punto();
-                        p1.setX(punto.getX());
-                        p1.setY(punto.getY());
-                        p1.setRadio(punto.getRadio());
-                    }
-                }
-
-            }
-            pulsacion++;
-        } else {
-
-            for (Punto punto : puntosList) {
-
-                if (punto.getX() <= evt.getX()) {
-                    if (punto.getY() <= evt.getY()) {
-                        p2 = new Punto();
-                        p2.setX(punto.getX());
-                        p2.setY(punto.getY());
-                        p2.setRadio(punto.getRadio());
-                    }
-                }
-
-            }
-            pulsacion--;
-            ordenaPuntos();
-            System.out.println(p1 + " - " + p2);
-            this.dibujarLinea(this.getGraphics());
-        }
-
-
+        ctrlPartida = ControlFrmPartida.getInstance();
+        ctrlPartida.agregaPuntos(this, p1, p2, evt);
     }//GEN-LAST:event_formMouseClicked
 
 
