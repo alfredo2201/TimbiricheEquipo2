@@ -252,27 +252,6 @@ public class pnJuego extends javax.swing.JPanel {
         return conexion.verificarCuadroDoble(cuadro, lineasList, conexion.getTablero());
     }
 
-    /**
-     * Ordena los puntos en la tabla
-     */
-    private void ordenaPuntos() {
-        if (p1.getX() == p2.getX()) {
-            if (p1.getY() > p2.getY()) {
-                Punto aux;
-                aux = p1;
-                p1 = p2;
-                p2 = aux;
-            }
-        } else if (p1.getY() == p2.getY()) {
-            if (p1.getX() > p2.getX()) {
-                Punto aux;
-                aux = p1;
-                p1 = p2;
-                p2 = aux;
-            }
-        }
-
-    }
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
