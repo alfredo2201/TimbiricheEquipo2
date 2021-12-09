@@ -4,13 +4,7 @@ import Presentacion.FrmPartida;
 import Presentacion.FrmPrincipal;
 import Presentacion.pnJuego;
 import SocketCliente.SocketCliente;
-import dominio.Cuadro;
-import dominio.Estados;
-import dominio.Jugador;
-import dominio.Linea;
-import dominio.Partida;
-import dominio.Punto;
-import dominio.Tablero;
+import dominio.*;
 import forma.FCuadro;
 import forma.FLinea;
 import java.awt.Color;
@@ -183,7 +177,7 @@ public class ControlFrmPartida {
      * Metodo que muestra la partida con los jugadores
      */
     public void muestraPartida() {
-        
+
     }
 
     /**
@@ -352,8 +346,8 @@ public class ControlFrmPartida {
      * @param p2
      */
     public void dibujarLinea(Graphics g, pnJuego lienzo, Punto p1, Punto p2) {
+        Partida partida = modeloPartida.getPartida();
         Graphics2D g2d = (Graphics2D) g;
-//        jugador.setColor(Color.yellow);
         g2d.setColor(jugador.getColor());
         float grosor = modeloPartida.getPartida().getTablero().getGrosor();
         float separacion = modeloPartida.getPartida().getTablero().getSeparacion();
@@ -361,8 +355,6 @@ public class ControlFrmPartida {
         //Se comprueba que no se hayan seleccionado dos veces el mismo punto
         Cuadro cd;
         if (this.compruebaPunto(p1, p2)) {
-//            JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
-//                    "", JOptionPane.ERROR_MESSAGE);
             modeloPartida.setMensaje("Seleccione dos puntos distintos");
             return;
         }
@@ -375,34 +367,40 @@ public class ControlFrmPartida {
 
             // Linea de izquierda a derecha
             FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), separacion, grosor, g2d);
-//            Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)),separacion, grosor);
             Linea linea = new Linea(p1, p2, grosor, separacion, tab);
+            linea.setJugador(jugador);
             System.out.println(linea);
-            if (!comprobarLinea(linea, lineasList)) {
-                lineasList.add(linea);
-
+            if (!comprobarLinea(linea, partida.getLinea())) {
+                partida.setLinea(linea);
                 lineaNueva.dibujar();
 
-                cd = this.verificarCuadro(linea, lineasList, separacion);
-
+                cd = this.verificarCuadro(linea, partida.getLinea(), separacion);                
                 if (cd != null) {
-                    FCuadro cuadradito;
-                    listaCuadros.add(cd);
-                    cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-                    cuadradito.dibujar();
-                    Cuadro cdDoble = verificarCuadroDoble(cd, lineasList, separacion);
+                    cd.setJugador(jugador);
+                    FCuadro cuadroSimple;
+                    partida.setCuadro(cd);
+                    cuadroSimple = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                    cuadroSimple.dibujar();
+                    Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);                    
                     if (cdDoble != null) {
+                        cdDoble.setJugador(jugador);
                         if (cdDoble.getSuperior() != null
                                 && cdDoble.getInferior() != null
                                 && cdDoble.getDer() != null
                                 && cdDoble.getIzq() != null) {
                             System.out.println(cdDoble);
-                            FCuadro cuadradito2;
-                            cuadradito2 = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-                            cuadradito2.dibujar();
+                            partida.setCuadro(cdDoble);
+                            FCuadro cuadroDoble;
+                            cuadroDoble = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                            cuadroDoble.dibujar();
 
                         }
                     }
+                }
+                try {
+                    cliente.enviarAlServidor(partida);
+                } catch (IOException ex) {
+                    Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
 //                JOptionPane.showMessageDialog(null, "Linea ya existente",
@@ -410,40 +408,80 @@ public class ControlFrmPartida {
                 modeloPartida.setMensaje("Linea ya existente");
             }
         } else {
-
             // Linea de arriba para abajo
             FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, separacion, g2d);
-
             Linea linea = new Linea(p1, p2, grosor, separacion, tab);
-            if (!comprobarLinea(linea, lineasList)) {
+            linea.setJugador(jugador);
 
-                lineasList.add(linea);
+            if (!comprobarLinea(linea, partida.getLinea())) {
+
+                partida.setLinea(linea);
                 lineaNueva.dibujar();
 
-                cd = this.verificarCuadro(linea, lineasList, separacion);
+                cd = this.verificarCuadro(linea, partida.getLinea(), separacion);               
                 if (cd != null) {
+                    cd.setJugador(jugador);
                     FCuadro cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
                     cuadradito.dibujar();
-                    Cuadro cdDoble = verificarCuadroDoble(cd, lineasList, separacion);
+                    partida.setCuadro(cd);
+                    Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
                     if (cdDoble != null) {
+                        cdDoble.setJugador(jugador);
                         if (cdDoble.getSuperior() != null
                                 && cdDoble.getInferior() != null
                                 && cdDoble.getDer() != null
                                 && cdDoble.getIzq() != null) {
                             System.out.println(cdDoble);
+                            partida.setCuadro(cdDoble);
                             FCuadro cuadradito2 = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
                             cuadradito2.dibujar();
                         }
                     }
 
                 }
-
+                try {
+                    cliente.enviarAlServidor(partida);
+                } catch (IOException ex) {
+                    Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Linea ya existente",
                         "", JOptionPane.ERROR_MESSAGE);
             }
         }
 
+    }
+
+    public void dibujarLineasPartida() {
+        Partida partida = modeloPartida.getPartida();
+        Graphics2D g2d = (Graphics2D) frmPartida.getLienzo().getGraphics();
+        if (partida.getLinea().size() > 0) {
+            for (Linea linea : partida.getLinea()) {
+                g2d.setColor(linea.getJugador().getColor());
+                if (linea.getP1().getX() == linea.getP2().getX()) {
+                    FLinea fLinea = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getW() / 2)), linea.getW(), linea.getH(), g2d);
+                    fLinea.dibujar();
+                } else if (linea.getP1().getY() == linea.getP2().getY()) {
+                    FLinea fLinea = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getH(), linea.getW(), g2d);
+                    fLinea.dibujar();
+                }
+            }
+        }
+    }
+
+    public void dibujarCuadrosPartida() {
+        Partida partida = modeloPartida.getPartida();
+        Graphics2D g2d = (Graphics2D) frmPartida.getLienzo().getGraphics();
+        if (partida.getCuadro().size() > 0) {
+            for (Cuadro cuadro : partida.getCuadro()) {
+                g2d.setColor(cuadro.getJugador().getColor());
+                    FCuadro fLinea = new FCuadro(cuadro.getSuperior().getP1().getX() 
+                            + (cuadro.getDer().getP1().getRadio() / 2), 
+                            cuadro.getSuperior().getP1().getY() + (cuadro.getDer().getP1().getRadio() / 2), 
+                            partida.getTablero().getSeparacion(),  partida.getTablero().getSeparacion(), g2d);
+                    fLinea.dibujar();                
+            }
+        }
     }
 
     public Cuadro verificarCuadroDoble(Cuadro cuadro, ArrayList<Linea> lineasList, Float separacion) {

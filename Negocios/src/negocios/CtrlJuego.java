@@ -10,7 +10,6 @@ import dominio.Linea;
 import dominio.Punto;
 import dominio.Tablero;
 import java.util.ArrayList;
-import javax.swing.JOptionPane;
 
 /**
  *

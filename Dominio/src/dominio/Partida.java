@@ -24,9 +24,9 @@ public class Partida implements Serializable {
 
     private Tablero tablero;
 
-    private ArrayList<Linea> lineas;
+    private ArrayList<Linea> lineas = new ArrayList<>();
     
-    private ArrayList<Cuadro> cuadros;
+    private ArrayList<Cuadro> cuadros = new ArrayList<>();
 
     public void setJugador(Jugador jugador) {
         if (this.jugadores.size() < 4) {

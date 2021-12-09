@@ -13,9 +13,6 @@ public class FLinea extends Forma {
         super(x, y, a, h, g);
     }
 
-
-  
-
     @Override
     public void dibujar() {
         Rectangle2D rec = new Rectangle2D.Double(getX(),getY(),getA(),getH());
