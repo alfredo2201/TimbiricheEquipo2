@@ -44,6 +44,8 @@ public class ControlFrmPartida {
     private Tablero tablero;
     private final ArrayList<Linea> lineasList;
     private final ArrayList<Cuadro> listaCuadros;
+    private Punto p1 = null;
+    private Punto p2 = null;
 
     /**
      * Constructor que inicialisa el SocketCliente
@@ -552,17 +554,16 @@ public class ControlFrmPartida {
         return null;
     }
 
-    public void agregaPuntos(pnJuego lienzo, Punto p1, Punto p2, java.awt.event.MouseEvent evt) {
-        int pulsacion = 1;
+    public void agregaPuntos(pnJuego lienzo, int pulsacion, java.awt.event.MouseEvent evt) {
         if (pulsacion == 1) {
-            for (Punto punto : lienzo.getPuntosList()) {
+            for (int i = 0; i < (lienzo.getPuntosList().size() / 2); i++) {
 
-                if (punto.getX() <= evt.getX()) {
-                    if (punto.getY() <= evt.getY()) {
+                if (lienzo.getPuntosList().get(i).getX() <= evt.getX()) {
+                    if (lienzo.getPuntosList().get(i).getY() <= evt.getY()) {
                         p1 = new Punto();
-                        p1.setX(punto.getX());
-                        p1.setY(punto.getY());
-                        p1.setRadio(punto.getRadio());
+                        p1.setX(lienzo.getPuntosList().get(i).getX());
+                        p1.setY(lienzo.getPuntosList().get(i).getY());
+                        p1.setRadio(lienzo.getPuntosList().get(i).getRadio());
                     }
                 }
 
@@ -570,14 +571,14 @@ public class ControlFrmPartida {
             pulsacion++;
         } else {
 
-            for (Punto punto : lienzo.getPuntosList()) {
+            for (int i = 0; i < (lienzo.getPuntosList().size() / 2); i++) {
 
-                if (punto.getX() <= evt.getX()) {
-                    if (punto.getY() <= evt.getY()) {
+                if (lienzo.getPuntosList().get(i).getX() <= evt.getX()) {
+                    if (lienzo.getPuntosList().get(i).getY() <= evt.getY()) {
                         p2 = new Punto();
-                        p2.setX(punto.getX());
-                        p2.setY(punto.getY());
-                        p2.setRadio(punto.getRadio());
+                        p2.setX(lienzo.getPuntosList().get(i).getX());
+                        p2.setY(lienzo.getPuntosList().get(i).getY());
+                        p2.setRadio(lienzo.getPuntosList().get(i).getRadio());
                     }
                 }
 

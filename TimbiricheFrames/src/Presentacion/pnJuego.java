@@ -96,7 +96,6 @@ public class pnJuego extends javax.swing.JPanel {
     public void setP2(Punto p2) {
         this.p2 = p2;
     }
-    
 
     /**
      * Asina el grosor de la linea
@@ -127,7 +126,6 @@ public class pnJuego extends javax.swing.JPanel {
 //
 //        return conexion.compruebaLinea(lin, lineasList);
 //    }
-
     /**
      * Dibuja la linea en la tabla y crea los cuadros
      *
@@ -225,7 +223,6 @@ public class pnJuego extends javax.swing.JPanel {
 //        }
 //
 //    }
-
 //    /**
 //     * Verifica que se haya creado un cuadrado
 //     *
@@ -236,8 +233,6 @@ public class pnJuego extends javax.swing.JPanel {
 //
 //        return conexion.verificarCuadro(linea, lineasList, conexion.getTablero());
 //    }
-    
-    
 //    /**
 //     * Verifica si se han creado dos cuadrados
 //     *
@@ -247,8 +242,6 @@ public class pnJuego extends javax.swing.JPanel {
 //    public Cuadro verificaCuadroDoble(Cuadro cuadro) {
 //        return conexion.verificarCuadroDoble(cuadro, lineasList, conexion.getTablero());
 //    }
-
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -273,8 +266,14 @@ public class pnJuego extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
-        ctrlPartida = ControlFrmPartida.getInstance();
-        ctrlPartida.agregaPuntos(this, p1, p2, evt);
+        ctrlPartida = ControlFrmPartida.getInstance();        
+        if (pulsacion == 1) {
+            ctrlPartida.agregaPuntos(this, pulsacion, evt);
+            pulsacion++;
+        } else {
+            ctrlPartida.agregaPuntos(this, pulsacion, evt);
+            pulsacion--;
+        }
     }//GEN-LAST:event_formMouseClicked
 
 

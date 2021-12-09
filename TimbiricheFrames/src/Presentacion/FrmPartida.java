@@ -520,8 +520,8 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         this.lienzo = lienzo;
     }
 
-    public JPanel getLienzo() {
-        return lienzo;
+    public pnJuego getLienzo() {
+        return (pnJuego) lienzo;
     }
 
     public void setG(Graphics g) {
