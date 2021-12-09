@@ -1,6 +1,5 @@
 package Presentacion;
 
-import Control.Control;
 import control.ControlFrmPartida;
 import control.ControlFrmPrincipal;
 import dominio.Jugador;
@@ -8,6 +7,7 @@ import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import javax.swing.Icon;
+import javax.swing.JButton;
 import javax.swing.JColorChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -30,7 +30,6 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     private static FrmPartida instance;
     private Graphics g;
     private JPanel lienzo;
-    private Timer tiempo;
     private ControlFrmPartida control;
     private ControlFrmPrincipal controlP;
     private ModeloFrmPartida modeloPartida;
@@ -83,7 +82,6 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     /**
      * Crea instancia de FrmPartida
      *
-     * @param tablero Tablero que tendrá
      * @return regresa una instancia de FrmPartida
      */
     public static FrmPartida getInstance() {
@@ -400,7 +398,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
-
+        
         control.actualizaEstado();
 
 //        tiempo = new Timer(5000, null);
@@ -436,7 +434,6 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     private void btnCambiaColor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColor1ActionPerformed
         control = ControlFrmPartida.getInstance();
         control.muestraConfigurarContrincantes(lblNombreJugador2, this, 1);
-
     }//GEN-LAST:event_btnCambiaColor1ActionPerformed
 
     private void btnCambiaColor2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColor2ActionPerformed
@@ -455,9 +452,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
 
     private void btnPreparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreparadoActionPerformed
-
-          control.boton(btnComenzarPartida, true);        
-
+        control.confirmarInicioJugador(true);
     }//GEN-LAST:event_btnPreparadoActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -532,4 +527,9 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     public void setG(Graphics g) {
         this.g = g;
     }
+
+    public JButton getBtnComenzarPartida() {
+        return btnComenzarPartida;
+    }
+    
 }

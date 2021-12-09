@@ -39,6 +39,7 @@ public class ControlFrmPartida {
     private ModeloFrmPartida modeloPartida;
     private FrmPartida frmPartida;
     private ControlFrmPrincipal ctlPrincipal;
+    private Jugador jugador;
     private SocketCliente cliente;
     private Tablero tablero;
     private final ArrayList<Linea> lineasList;
@@ -65,16 +66,16 @@ public class ControlFrmPartida {
             btnComenzarPartida.setEnabled(true);
             Jugador ju = ctlPrincipal.getJugador();
 
-            for (Jugador jugador : modeloPartida.getPartida().getJugadores()) {
-                if (ju.equals(jugador)) {
-                    jugador.setIniciar(true);
+            for (Jugador jug : modeloPartida.getPartida().getJugadores()) {
+                if (ju.equals(jug)) {
+                    jug.setIniciar(true);
                     break;
                 }
             }
 
             try {
                 cliente.enviarAlServidor(modeloPartida.getPartida());
-            } catch (Exception e) {
+            } catch (IOException e) {
                 System.out.println("uwu");
             }
 
@@ -95,15 +96,15 @@ public class ControlFrmPartida {
             lienzo = new pnJuego(tablero);//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
-            lienzo.setVisible(false);
-            lienzo.setEnabled(false);
+            lienzo.setVisible(true);
+            lienzo.setEnabled(true);
             return lienzo;
         } else if (modeloPartida.getPartida() != null) {
             lienzo = new pnJuego(modeloPartida.getPartida().getTablero());//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
-            lienzo.setVisible(false);
-            lienzo.setEnabled(false);
+            lienzo.setVisible(true);
+            lienzo.setEnabled(true);
             return lienzo;
         }
         return null;
@@ -142,16 +143,19 @@ public class ControlFrmPartida {
      * Método que despliega el frame de Partida Aquí se le agregó el parámetro
      */
     public void despliegaPantallaPartida() {
+        ctlPrincipal = ControlFrmPrincipal.getInstance();
         modeloPartida = ModeloFrmPartida.getInstance();
         frmPartida = FrmPartida.getInstance();
+        jugador = ctlPrincipal.getJugador();
         frmPartida.setVisible(true);
+        habilitaBotonComenzar(frmPartida.getBtnComenzarPartida());
         frmPartida.setExtendedState(MAXIMIZED_BOTH);
         frmPartida.setLienzo(configurarLienzo(frmPartida.getLienzo()));
         frmPartida.add(frmPartida.getLienzo()); //se agrega al frame principal
         frmPartida.pack();
         frmPartida.setG(frmPartida.getLienzo().getGraphics());
         frmPartida.setResizable(false);
-        frmPartida.getLienzo().setEnabled(false);
+        frmPartida.getLienzo().setEnabled(true);
         muestraInformacionJugadores(frmPartida);
     }
 
@@ -196,6 +200,15 @@ public class ControlFrmPartida {
 
     }
 
+    public void habilitaBotonComenzar(JButton boton) {
+        Partida partida = modeloPartida.getPartida();
+        if (jugador.equals(partida.getJugadores().get(0))) {
+            boton.setEnabled(true);
+        } else {
+            boton.setEnabled(false);
+        }
+    }
+
     /**
      * Metodo que elimina la informacion del usuario de la pantalla
      */
@@ -212,9 +225,22 @@ public class ControlFrmPartida {
 
     /**
      * Metodo que confirma la selección de inicio del jugador
+     *
+     * @param confirmacion
      */
-    public void confirmarInicioJugador() {
-
+    public void confirmarInicioJugador(boolean confirmacion) {
+        Partida partida = modeloPartida.getPartida();
+        for (Jugador j : partida.getJugadores()) {
+            if (j.equals(jugador)) {
+                j.setIniciar(confirmacion);
+                break;
+            }
+        }
+        try {
+            cliente.enviarAlServidor(partida);
+        } catch (IOException ex) {
+            System.err.println("Trono al enviar la confirmacion: " + ex.getMessage());
+        }
     }
 
     /**
@@ -223,7 +249,7 @@ public class ControlFrmPartida {
     public void mostrarPantallaPrincipal() {
         FrmPrincipal pr = FrmPrincipal.getInstance();
         pr.setVisible(true);
-        frmPartida.getInstance().dispose();
+        FrmPartida.getInstance().dispose();
     }
 
     /**
@@ -234,26 +260,26 @@ public class ControlFrmPartida {
     public void muestraInformacionJugadores(FrmPartida frmPartida) {
         if (modeloPartida != null) {
             int iterar = 0;
-            for (Jugador jugador : modeloPartida.getPartida().getJugadores()) {
+            for (Jugador jugad : modeloPartida.getPartida().getJugadores()) {
                 switch (iterar) {
                     case 0:
-                        frmPartida.setLblIconoJugador1(jugador.getAvatar());
-                        frmPartida.setLblNombreJugador1(jugador.getNombre());
+                        frmPartida.setLblIconoJugador1(jugad.getAvatar());
+                        frmPartida.setLblNombreJugador1(jugad.getNombre());
                         iterar++;
                         break;
                     case 1:
-                        frmPartida.setLblIconoJugador2(jugador.getAvatar());
-                        frmPartida.setLblNombreJugador2(jugador.getNombre());
+                        frmPartida.setLblIconoJugador2(jugad.getAvatar());
+                        frmPartida.setLblNombreJugador2(jugad.getNombre());
                         iterar++;
                         break;
                     case 2:
-                        frmPartida.setLblIconoJugador3(jugador.getAvatar());
-                        frmPartida.setLblNombreJugador3(jugador.getNombre());
+                        frmPartida.setLblIconoJugador3(jugad.getAvatar());
+                        frmPartida.setLblNombreJugador3(jugad.getNombre());
                         iterar++;
                         break;
                     case 3:
-                        frmPartida.setLblIconoJugador4(jugador.getAvatar());
-                        frmPartida.setLblNombreJugador4(jugador.getNombre());
+                        frmPartida.setLblIconoJugador4(jugad.getAvatar());
+                        frmPartida.setLblNombreJugador4(jugad.getNombre());
                         iterar++;
                         break;
                     default:
@@ -320,25 +346,29 @@ public class ControlFrmPartida {
      *
      * @param g Grágico del panel
      * @param lienzo
+     * @param p1
+     * @param p2
      */
     public void dibujarLinea(Graphics g, pnJuego lienzo, Punto p1, Punto p2) {
         Graphics2D g2d = (Graphics2D) g;
-        g2d.setColor(ctlPrincipal.getJugador().getColor());
-        Control con = Control.getInstance();
+        jugador.setColor(Color.yellow);
+        g2d.setColor(jugador.getColor());
         float grosor = modeloPartida.getPartida().getTablero().getGrosor();
         float separacion = modeloPartida.getPartida().getTablero().getGrosor();
         Tablero tab = modeloPartida.getPartida().getTablero();
         //Se comprueba que no se hayan seleccionado dos veces el mismo punto
         Cuadro cd;
         if (this.compruebaPunto(p1, p2)) {
-            JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
-                    "", JOptionPane.ERROR_MESSAGE);
+//            JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
+//                    "", JOptionPane.ERROR_MESSAGE);
+            modeloPartida.setMensaje("Seleccione dos puntos distintos");
             return;
         }
 
         if (p1.getX() != p2.getX() && p1.getY() != p2.getY()) {
             JOptionPane.showMessageDialog(null, "Puntos seleccionados no válidos",
                     "", JOptionPane.ERROR_MESSAGE);
+            modeloPartida.setMensaje("Puntos seleccionados no válidos");
         } else if (p1.getY() == p2.getY()) {
 
             // Linea de izquierda a derecha
@@ -373,10 +403,10 @@ public class ControlFrmPartida {
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Linea ya existente",
-                        "", JOptionPane.ERROR_MESSAGE);
+//                JOptionPane.showMessageDialog(null, "Linea ya existente",
+//                        "", JOptionPane.ERROR_MESSAGE);
+                modeloPartida.setMensaje("Linea ya existente");
             }
-
         } else {
 
             // Linea de arriba para abajo
@@ -391,7 +421,7 @@ public class ControlFrmPartida {
                 cd = this.verificarCuadro(linea, lineasList, separacion);
                 if (cd != null) {
                     FCuadro cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-
+                    cuadradito.dibujar();
                     Cuadro cdDoble = verificarCuadroDoble(cd, lineasList, separacion);
                     if (cdDoble != null) {
                         if (cdDoble.getSuperior() != null
@@ -523,7 +553,7 @@ public class ControlFrmPartida {
     }
 
     public void agregaPuntos(pnJuego lienzo, Punto p1, Punto p2, java.awt.event.MouseEvent evt) {
-        int pulsacion = 0;
+        int pulsacion = 1;
         if (pulsacion == 1) {
             for (Punto punto : lienzo.getPuntosList()) {
 
@@ -602,16 +632,16 @@ public class ControlFrmPartida {
             modeloPartida.setPartida(p);
             try {
                 cliente.enviarAlServidor(p);
-            } catch (Exception e) {
-                System.out.println("Chales");
+            } catch (IOException e) {
+                System.out.println("Chales: " + e.getMessage());
             }
         } else if (modeloPartida.getPartida().getEstado() == Estados.INICIADO) {
             p.setEstado(Estados.FINALIZADO);
             modeloPartida.setPartida(p);
             try {
                 cliente.enviarAlServidor(p);
-            } catch (Exception e) {
-                System.out.println("Chales");
+            } catch (IOException e) {
+                System.out.println("Chales: " + e.getMessage());
             }
         }
     }
