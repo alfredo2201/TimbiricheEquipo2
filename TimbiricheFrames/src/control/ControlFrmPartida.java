@@ -356,7 +356,7 @@ public class ControlFrmPartida {
         jugador.setColor(Color.yellow);
         g2d.setColor(jugador.getColor());
         float grosor = modeloPartida.getPartida().getTablero().getGrosor();
-        float separacion = modeloPartida.getPartida().getTablero().getGrosor();
+        float separacion = modeloPartida.getPartida().getTablero().getSeparacion();
         Tablero tab = modeloPartida.getPartida().getTablero();
         //Se comprueba que no se hayan seleccionado dos veces el mismo punto
         Cuadro cd;
