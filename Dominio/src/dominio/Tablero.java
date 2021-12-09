@@ -1,27 +1,24 @@
 package dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Equipo Gatazo
  */
-public class Tablero {
+public class Tablero implements Serializable {
+
+    private final Punto punto = new Punto();
+
+    private int grosor = 0;
 
     private int tamanio;
-    private int separacion;
-    private final Punto punto;
-    private int grosor;
-    private ArrayList<Jugador> jugadores;
 
-    public Tablero() {
-        punto = new Punto();
-        jugadores = new ArrayList<>();
-        grosor = 0;
-    }
+    private int separacion;
 
     public int getTamanio() {
-        return tamanio;
+        return this.tamanio;
     }
 
     public void setTamanio(int tamanio) {
@@ -29,56 +26,53 @@ public class Tablero {
     }
 
     public Punto getPuntos() {
-        switch (tamanio) {
+        switch (this.tamanio) {
             case 10:
-                punto.setX(15);
-                punto.setY(15);
-                punto.setRadio(30);
+                this.punto.setX(15);
+                this.punto.setY(15);
+                this.punto.setRadio(30);
                 break;
             case 20:
-                punto.setX(15);
-                punto.setY(15);
-                punto.setRadio(20);
+                this.punto.setX(15);
+                this.punto.setY(15);
+                this.punto.setRadio(20);
                 break;
             case 40:
-                punto.setX(15);
-                punto.setY(15);
-                punto.setRadio(8);
+                this.punto.setX(15);
+                this.punto.setY(15);
+                this.punto.setRadio(8);
                 break;
         }
-        return punto;
+        return this.punto;
     }
 
     public int getSeparacion() {
-        switch (tamanio) {
+        switch (this.tamanio) {
             case 10:
-                separacion = 100;
+                this.separacion = 100;
                 break;
             case 20:
-                separacion = 50;
+                this.separacion = 50;
                 break;
             case 40:
-                separacion = 25;
+                this.separacion = 25;
                 break;
         }
-        return separacion;
-    }
-    
-    public int getGrosor() {
-        switch (tamanio) {
-            case 10:
-                grosor = 10;
-                break;
-            case 20:
-                grosor = 8;
-                break;
-            case 40:
-                grosor = 4;
-                break;
-            default:
-                break;
-        }
-        return grosor;
+        return this.separacion;
     }
 
+    public int getGrosor() {
+        switch (this.tamanio) {
+            case 10:
+                this.grosor = 10;
+                break;
+            case 20:
+                this.grosor = 8;
+                break;
+            case 40:
+                this.grosor = 4;
+                break;
+        }
+        return this.grosor;
+    }
 }

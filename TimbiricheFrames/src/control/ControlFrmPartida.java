@@ -78,7 +78,7 @@ public class ControlFrmPartida {
             try {
                 cliente.enviarAlServidor(modeloPartida.getPartida());
             } catch (IOException e) {
-                System.out.println("uwu");
+                System.out.println("ta mal");
             }
 
         }
@@ -183,7 +183,7 @@ public class ControlFrmPartida {
      * Metodo que muestra la partida con los jugadores
      */
     public void muestraPartida() {
-
+        
     }
 
     /**
@@ -353,7 +353,7 @@ public class ControlFrmPartida {
      */
     public void dibujarLinea(Graphics g, pnJuego lienzo, Punto p1, Punto p2) {
         Graphics2D g2d = (Graphics2D) g;
-        jugador.setColor(Color.yellow);
+//        jugador.setColor(Color.yellow);
         g2d.setColor(jugador.getColor());
         float grosor = modeloPartida.getPartida().getTablero().getGrosor();
         float separacion = modeloPartida.getPartida().getTablero().getSeparacion();

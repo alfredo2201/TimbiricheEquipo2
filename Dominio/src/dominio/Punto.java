@@ -1,25 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package dominio;
 
 import java.awt.Graphics;
+import java.io.Serializable;
 
 /**
  *
  * @author Equipo Gatazo
  */
-public class Punto implements Forma{
-    private int x =0;
+public class Punto implements Serializable {
+
+    private int x = 0;
     private int y = 0;
     private int radio = 0;
 
     public Punto() {
     }
-    
-    
-    public Punto(int x, int y, int radio){
+
+    public Punto(int x, int y, int radio) {
         this.x = x;
         this.y = y;
         this.radio = radio;
@@ -81,14 +78,4 @@ public class Punto implements Forma{
         return "x=" + x + ", y=" + y;
     }
 
-    @Override
-    public void dibujar(Graphics g) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-
-  
-    
-    
 }

@@ -5,10 +5,14 @@
  */
 package dominio;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Angel
  */
-public enum Estados {
+public enum Estados implements Serializable{
     EN_ESPERA, INICIADO, FINALIZADO;
+    
+    
 }

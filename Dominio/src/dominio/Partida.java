@@ -5,34 +5,37 @@
  */
 package dominio;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Equipo gatazo
  */
-public class Partida {
+public class Partida implements Serializable {
 
-    private ArrayList<Jugador> jugadores;
-    //creo que estado debe ser un int y no una clase de estado
-    private Estados estado;
+    private Estados estado = Estados.EN_ESPERA;
+
+    private ArrayList<Jugador> jugadores = new ArrayList<>();
+
+    private ArrayList<Jugador> turnos = new ArrayList<>();
+
+    private boolean cambioTurno;
+
     private Tablero tablero;
-    private ArrayList<Jugador> turnos;
 
-    public Partida() {
-        estado = Estados.EN_ESPERA;
-        jugadores = new ArrayList<>();
-        turnos = new ArrayList<>();
-    }
+    private ArrayList<Linea> lineas;
+    
+    private ArrayList<Cuadro> cuadros;
 
     public void setJugador(Jugador jugador) {
-        if (jugadores.size() < 4) {
-            jugadores.add(jugador);
+        if (this.jugadores.size() < 4) {
+            this.jugadores.add(jugador);
         }
     }
 
     public ArrayList<Jugador> getJugadores() {
-        return jugadores;
+        return this.jugadores;
     }
 
     public void setJugadores(ArrayList<Jugador> jugadores) {
@@ -40,7 +43,7 @@ public class Partida {
     }
 
     public Estados getEstado() {
-        return estado;
+        return this.estado;
     }
 
     public void setEstado(Estados estado) {
@@ -48,7 +51,7 @@ public class Partida {
     }
 
     public Tablero getTablero() {
-        return tablero;
+        return this.tablero;
     }
 
     public void setTablero(Tablero tablero) {
@@ -56,11 +59,35 @@ public class Partida {
     }
 
     public ArrayList<Jugador> getTurnos() {
-        return turnos;
+        return this.turnos;
     }
 
     public void setTurnos(ArrayList<Jugador> turnos) {
         this.turnos = turnos;
+    }
+
+    public boolean isCambioTurno() {
+        return this.cambioTurno;
+    }
+
+    public void setCambioTurno(boolean cambioTurno) {
+        this.cambioTurno = cambioTurno;
+    }
+
+    public ArrayList<Linea> getLinea() {
+        return lineas;
+    }
+
+    public void setLinea(Linea linea) {
+        lineas.add(linea);
+    }
+
+    public ArrayList<Cuadro> getCuadro() {
+        return cuadros;
+    }
+
+    public void setCuadro(Cuadro cuadro) {
+        cuadros.add(cuadro);
     }
 
 }

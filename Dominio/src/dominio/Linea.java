@@ -8,19 +8,21 @@ package dominio;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.io.Serializable;
 import java.util.Objects;
 
 /**
  *
  * @author Equipo Gatazo
  */
-public class Linea implements Forma {
+public class Linea implements Serializable {
 
     private Punto p1;
     private Punto p2;
     private double ancho;
     private double alto;
     private Tablero tablero;
+    private Jugador jugador;
 
     public Linea(Punto p1, Punto p2, double w, double h, Tablero tablero) {
         this.p1 = p1;
@@ -93,17 +95,25 @@ public class Linea implements Forma {
         return true;
     }
 
-    @Override
-    public String toString() {
-        return "Linea{" + "p1=" + p1 + ", p2=" + p2;
+    public double getAncho() {
+        return ancho;
+    }
+
+//    public void setAncho(double ancho) {
+//        this.ancho = ancho;
+//    }
+
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
     }
 
     @Override
-    public void dibujar(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-//        Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getWeidt() / 2)),
-//                ((p1.getY() + (p1.getWeidt() / 2)) - (Double.valueOf(tablero.getGrosor()) / 2)), 
-//                Double.valueOf(tablero.getSeparacion()), Double.valueOf(tablero.getGrosor()));
+    public String toString() {
+        return "Linea{" + "p1=" + p1 + ", p2=" + p2;
     }
 
 }

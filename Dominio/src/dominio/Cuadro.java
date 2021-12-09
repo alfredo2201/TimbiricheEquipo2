@@ -3,17 +3,19 @@ package dominio;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.geom.Rectangle2D;
+import java.io.Serializable;
 
 /**
  *
  * @author Equipo Gatazo
  */
-public class Cuadro implements Forma{
+public class Cuadro implements Serializable {
 
     private Linea superior;
     private Linea inferior;
     private Linea izq;
     private Linea der;
+    private Jugador jugador;
 
     public Cuadro(Linea superior, Linea inferior, Linea izq, Linea der) {
         this.superior = superior;
@@ -23,7 +25,7 @@ public class Cuadro implements Forma{
     }
 
     public Cuadro() {
-        
+
     }
 
     public Linea getSuperior() {
@@ -58,21 +60,17 @@ public class Cuadro implements Forma{
         this.der = der;
     }
 
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
+    }
+
     @Override
     public String toString() {
         return "Cuadro{" + "superior=" + superior + ", inferior=" + inferior + ", izq=" + izq + ", der=" + der + '}';
     }
 
-    @Override
-    public void dibujar(Graphics g) {
-        Graphics2D g2d = (Graphics2D) g;
-        
-//        Rectangle2D rec = new Rectangle2D.Double(superior.getP1().getX() + (superior.getW() / 2), superior.getP1().getY() + (superior.getW() / 2)
-//                , conexion.getTablero().getSeparacion(), conexion.getTablero().getSeparacion())
-    }
-
-
-
-    
-    
 }

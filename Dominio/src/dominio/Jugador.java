@@ -6,19 +6,36 @@
 package dominio;
 
 import java.awt.Color;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  *
  * @author Equipo Gatazo
  */
-public class Jugador {
+public class Jugador implements Serializable{
 
     private String nombre;
     private String avatar;
     private Color color;
-    private ArrayList<Linea> linea;
-    private ArrayList<Cuadro> cuadro;
+    private boolean esMiTurno;
+    private boolean iniciar;
+
+    public boolean isEsMiTurno() {
+        return esMiTurno;
+    }
+
+    public void setEsMiTurno(boolean esMiTurno) {
+        this.esMiTurno = esMiTurno;
+    }
+
+    public boolean isIniciar() {
+        return iniciar;
+    }
+
+    public void setIniciar(boolean iniciar) {
+        this.iniciar = iniciar;
+    }
 
     public Jugador(String nombre) {
         this.nombre = nombre;
@@ -52,27 +69,9 @@ public class Jugador {
         this.color = color;
     }
 
-    public ArrayList<Linea> getLinea() {
-        return linea;
-    }
-
-    public void setLinea(ArrayList<Linea> linea) {
-        this.linea = linea;
-    }
-
-    public ArrayList<Cuadro> getCuadro() {
-        return cuadro;
-    }
-
-    public void setCuadro(ArrayList<Cuadro> cuadro) {
-        this.cuadro = cuadro;
-    }
-
     @Override
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + '}';
     }
 
-    
-    
 }

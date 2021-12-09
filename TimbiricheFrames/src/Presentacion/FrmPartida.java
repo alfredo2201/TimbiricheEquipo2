@@ -275,7 +275,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
                             .addGroup(pnJugadoresLayout.createSequentialGroup()
                                 .addGap(103, 103, 103)
                                 .addComponent(btnCambiaColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(44, Short.MAX_VALUE))
+                .addContainerGap(43, Short.MAX_VALUE))
             .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnJugadoresLayout.createSequentialGroup()
                     .addGap(72, 72, 72)
