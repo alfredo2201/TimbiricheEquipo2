@@ -4,17 +4,21 @@ import Presentacion.FrmPartida;
 import Presentacion.FrmPrincipal;
 import Presentacion.pnJuego;
 import SocketCliente.SocketCliente;
+import dominio.Cuadro;
 import dominio.Estados;
 import dominio.Jugador;
+import dominio.Linea;
 import dominio.Partida;
 import dominio.Punto;
 import dominio.Tablero;
-import forma.Linea;
+import forma.FCuadro;
+import forma.FLinea;
 import java.awt.Color;
 import static java.awt.Frame.MAXIMIZED_BOTH;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JButton;
@@ -37,12 +41,16 @@ public class ControlFrmPartida {
     private ControlFrmPrincipal ctlPrincipal;
     private SocketCliente cliente;
     private Tablero tablero;
+    private final ArrayList<Linea> lineasList;
+    private final ArrayList<Cuadro> listaCuadros;
 
     /**
      * Constructor que inicialisa el SocketCliente
      */
     private ControlFrmPartida() {
         this.cliente = SocketCliente.getInstance();
+        this.lineasList = new ArrayList<>();
+        this.listaCuadros = new ArrayList<>();
     }
 
     public void setModeloPartida(ModeloFrmPartida modeloPartida) {
@@ -52,27 +60,26 @@ public class ControlFrmPartida {
     public void boton(JButton btnComenzarPartida, boolean tipoJugador) {
         if (tipoJugador == false) {
             btnComenzarPartida.setEnabled(false);
-            
+
         } else {
             btnComenzarPartida.setEnabled(true);
             Jugador ju = ctlPrincipal.getJugador();
-            
-            for(Jugador jugador : modeloPartida.getPartida().getJugadores()){
-                if(ju.equals(jugador)){
+
+            for (Jugador jugador : modeloPartida.getPartida().getJugadores()) {
+                if (ju.equals(jugador)) {
                     jugador.setIniciar(true);
                     break;
                 }
             }
-            
-            try{
+
+            try {
                 cliente.enviarAlServidor(modeloPartida.getPartida());
-            }catch(Exception e){
+            } catch (Exception e) {
                 System.out.println("uwu");
             }
-            
+
         }
     }
-
 
     /**
      * Metodo para actualiza rlos valores del lienzo
@@ -83,7 +90,7 @@ public class ControlFrmPartida {
      */
     public JPanel configurarLienzo(JPanel lienzo) {
         modeloPartida = ModeloFrmPartida.getInstance();
-        
+
         if (tablero != null) {
             lienzo = new pnJuego(tablero);//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
@@ -288,10 +295,236 @@ public class ControlFrmPartida {
         }
 
     }
-    
-    public void agregaPuntos(pnJuego lienzo, Punto p1, Punto p2,java.awt.event.MouseEvent evt){
+
+    public boolean comprobarLinea(Linea linea, ArrayList<Linea> lineasList) {
+
+        for (Linea l : lineasList) {
+            if (l.equals(linea)) {
+//                JOptionPane.showMessageDialog(null, "Linea ya existente",
+//                        "", JOptionPane.ERROR_MESSAGE);
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean compruebaPunto(Punto p1, Punto p2) {
+//            JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
+//                    "", JOptionPane.ERROR_MESSAGE);
+
+        return p1.equals(p2);
+    }
+
+    /**
+     * Dibuja la linea en la tabla y crea los cuadros
+     *
+     * @param g Grágico del panel
+     * @param lienzo
+     */
+    public void dibujarLinea(Graphics g, pnJuego lienzo, Punto p1, Punto p2) {
+        Graphics2D g2d = (Graphics2D) g;
+        g2d.setColor(ctlPrincipal.getJugador().getColor());
+        Control con = Control.getInstance();
+        float grosor = modeloPartida.getPartida().getTablero().getGrosor();
+        float separacion = modeloPartida.getPartida().getTablero().getGrosor();
+        Tablero tab = modeloPartida.getPartida().getTablero();
+        //Se comprueba que no se hayan seleccionado dos veces el mismo punto
+        Cuadro cd;
+        if (this.compruebaPunto(p1, p2)) {
+            JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
+                    "", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+
+        if (p1.getX() != p2.getX() && p1.getY() != p2.getY()) {
+            JOptionPane.showMessageDialog(null, "Puntos seleccionados no válidos",
+                    "", JOptionPane.ERROR_MESSAGE);
+        } else if (p1.getY() == p2.getY()) {
+
+            // Linea de izquierda a derecha
+            FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), separacion, grosor, g2d);
+//            Rectangle2D rec = new Rectangle2D.Double((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)),separacion, grosor);
+            Linea linea = new Linea(p1, p2, grosor, separacion, tab);
+            System.out.println(linea);
+            if (!comprobarLinea(linea, lineasList)) {
+                lineasList.add(linea);
+
+                lineaNueva.dibujar();
+
+                cd = this.verificarCuadro(linea, lineasList, separacion);
+
+                if (cd != null) {
+                    FCuadro cuadradito;
+                    listaCuadros.add(cd);
+                    cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                    cuadradito.dibujar();
+                    Cuadro cdDoble = verificarCuadroDoble(cd, lineasList, separacion);
+                    if (cdDoble != null) {
+                        if (cdDoble.getSuperior() != null
+                                && cdDoble.getInferior() != null
+                                && cdDoble.getDer() != null
+                                && cdDoble.getIzq() != null) {
+                            System.out.println(cdDoble);
+                            FCuadro cuadradito2;
+                            cuadradito2 = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                            cuadradito2.dibujar();
+
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Linea ya existente",
+                        "", JOptionPane.ERROR_MESSAGE);
+            }
+
+        } else {
+
+            // Linea de arriba para abajo
+            FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, separacion, g2d);
+
+            Linea linea = new Linea(p1, p2, grosor, separacion, tab);
+            if (!comprobarLinea(linea, lineasList)) {
+
+                lineasList.add(linea);
+                lineaNueva.dibujar();
+
+                cd = this.verificarCuadro(linea, lineasList, separacion);
+                if (cd != null) {
+                    FCuadro cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+
+                    Cuadro cdDoble = verificarCuadroDoble(cd, lineasList, separacion);
+                    if (cdDoble != null) {
+                        if (cdDoble.getSuperior() != null
+                                && cdDoble.getInferior() != null
+                                && cdDoble.getDer() != null
+                                && cdDoble.getIzq() != null) {
+                            System.out.println(cdDoble);
+                            FCuadro cuadradito2 = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                            cuadradito2.dibujar();
+                        }
+                    }
+
+                }
+
+            } else {
+                JOptionPane.showMessageDialog(null, "Linea ya existente",
+                        "", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+
+    }
+
+    public Cuadro verificarCuadroDoble(Cuadro cuadro, ArrayList<Linea> lineasList, Float separacion) {
+        for (Linea line : lineasList) {
+            if (cuadro.getSuperior().getP1().getY() - separacion == line.getP1().getY() && cuadro.getSuperior().getP1().getX() == line.getP1().getX()
+                    && cuadro.getSuperior().getP2().getY() - separacion == line.getP2().getY() && cuadro.getSuperior().getP2().getX() == line.getP2().getX()) {
+                return verificarCuadro(line, lineasList, separacion);
+            } else if (cuadro.getInferior().getP1().getY() + separacion == line.getP1().getY() && cuadro.getInferior().getP1().getX() == line.getP1().getX()
+                    && cuadro.getInferior().getP2().getY() + separacion == line.getP2().getY() && cuadro.getInferior().getP2().getX() == line.getP2().getX()) {
+                return verificarCuadro(line, lineasList, separacion);
+            } else if (cuadro.getIzq().getP1().getX() - separacion == line.getP1().getX() && cuadro.getIzq().getP1().getY() == line.getP1().getY()
+                    && cuadro.getIzq().getP2().getX() - separacion == line.getP2().getX() && cuadro.getIzq().getP2().getY() == line.getP2().getY()) {
+                return verificarCuadro(line, lineasList, separacion);
+            } else if (cuadro.getDer().getP1().getX() + separacion == line.getP1().getX() && cuadro.getDer().getP1().getY() == line.getP1().getY()
+                    && cuadro.getDer().getP2().getX() + separacion == line.getP2().getX() && cuadro.getDer().getP2().getY() == line.getP2().getY()) {
+                return verificarCuadro(line, lineasList, separacion);
+            }
+        }
+        return null;
+    }
+
+    public Cuadro verificarCuadro(Linea linea, ArrayList<Linea> lineasList, Float separacion) {
+        Cuadro cuadro = new Cuadro();
+        //listaLineasPositivasHorizontales.add(linea);
+        for (Linea line : lineasList) {
+            // Si es linea superior
+            if (linea.getP1().getX() == line.getP2().getX() && linea.getP1().getY() == line.getP2().getY() && linea.getP1().getX() - separacion == line.getP2().getX() && linea.getP2().getY() == line.getP1().getY()
+                    || linea.getP2().getX() == line.getP2().getX() && linea.getP2().getY() - separacion == line.getP2().getY() && linea.getP1().getX() - separacion == line.getP1().getX() && linea.getP1().getY() == line.getP1().getY()
+                    || linea.getP1().getX() == line.getP1().getX() && linea.getP1().getY() == line.getP1().getY() && linea.getP1().getX() + separacion == line.getP2().getX() && linea.getP1().getY() == line.getP2().getY()) {
+
+                cuadro.setSuperior(line);
+            }
+            // Si es linea inferior 
+            if (linea.getP1().getX() == line.getP1().getX() && linea.getP1().getY() + separacion == line.getP1().getY() && linea.getP2().getX() == line.getP2().getX() && linea.getP2().getY() + separacion == line.getP2().getY()
+                    || linea.getP1().getX() == line.getP1().getX() && linea.getP1().getY() - separacion == line.getP1().getY() && linea.getP2().getX() == line.getP2().getX() && linea.getP2().getY() - separacion == line.getP2().getY()
+                    || linea.getP2().getX() == line.getP2().getX() && linea.getP2().getY() == line.getP2().getY() && linea.getP2().getX() - separacion == line.getP1().getX() && linea.getP1().getY() == line.getP1().getY()
+                    || linea.getP2().getX() == line.getP1().getX() && linea.getP2().getY() == line.getP1().getY() && linea.getP2().getX() + separacion == line.getP2().getX() && linea.getP1().getY() == line.getP1().getY()) {
+                if (cuadro.getSuperior() != null && !cuadro.getSuperior().equals(line)) {
+                    cuadro.setInferior(line);
+                }
+                if (cuadro.getInferior() == cuadro.getSuperior()) {
+                    for (Linea ln1 : lineasList) {
+                        if (linea.getP1().getX() == ln1.getP1().getX() && linea.getP1().getY() + separacion == ln1.getP1().getY() && linea.getP2().getX() == ln1.getP2().getX() && linea.getP2().getY() + separacion == ln1.getP2().getY()
+                                || linea.getP1().getX() == ln1.getP1().getX() && linea.getP1().getY() - separacion == ln1.getP1().getY() && linea.getP2().getX() == ln1.getP2().getX() && linea.getP2().getY() - separacion == ln1.getP2().getY()
+                                || linea.getP2().getX() == ln1.getP2().getX() && linea.getP2().getY() == ln1.getP2().getY() && linea.getP2().getX() - separacion == ln1.getP1().getX() && linea.getP2().getY() == ln1.getP1().getY()
+                                || linea.getP2().getX() == ln1.getP1().getX() && linea.getP2().getY() == ln1.getP1().getY() && linea.getP2().getX() + separacion == ln1.getP2().getX() && linea.getP2().getY() == ln1.getP2().getY()) {
+                            if (linea != ln1) {
+                                cuadro.setInferior(ln1);
+                            }
+
+                        }
+                    }
+                }
+            }
+
+        }
+
+        if (cuadro.getSuperior() != null && cuadro.getInferior() != null) {
+            if (cuadro.getInferior().getP1().getY() < cuadro.getSuperior().getP1().getY()) {
+                Linea aux = cuadro.getInferior();
+                cuadro.setInferior(cuadro.getSuperior());
+                cuadro.setSuperior(aux);
+            }
+            for (Linea lnl : lineasList) {
+
+                if (lnl.getP1().getX() == cuadro.getSuperior().getP1().getX() && lnl.getP1().getY() == cuadro.getSuperior().getP1().getY()
+                        && lnl.getP2().getX() == cuadro.getInferior().getP1().getX() && lnl.getP2().getY() == cuadro.getInferior().getP1().getY()) {
+                    cuadro.setIzq(lnl);
+                } else if (linea.getP1().getX() == cuadro.getSuperior().getP1().getX() && linea.getP1().getY() == cuadro.getSuperior().getP1().getY()
+                        && linea.getP2().getX() == cuadro.getInferior().getP1().getX() && linea.getP2().getY() == cuadro.getInferior().getP1().getY()) {
+                    if (cuadro.getIzq() == null) {
+                        for (Linea ln2 : lineasList) {
+                            if (ln2.getP1().getX() == cuadro.getSuperior().getP1().getX() && ln2.getP1().getY() == cuadro.getSuperior().getP1().getY()
+                                    && ln2.getP2().getX() == cuadro.getInferior().getP1().getX() && ln2.getP2().getY() == cuadro.getInferior().getP1().getY()) {
+                                cuadro.setIzq(ln2);
+                            }
+                        }
+                    }
+                    cuadro.setIzq(linea);
+                }
+                if (lnl.getP1().getX() == cuadro.getSuperior().getP2().getX() && lnl.getP1().getY() == cuadro.getSuperior().getP2().getY()
+                        && lnl.getP2().getX() == cuadro.getInferior().getP2().getX() && lnl.getP2().getY() == cuadro.getInferior().getP2().getY()) {
+                    cuadro.setDer(lnl);
+                } else if (linea.getP1().getX() == cuadro.getSuperior().getP2().getX() && linea.getP1().getY() == cuadro.getSuperior().getP2().getY()
+                        && linea.getP2().getX() == cuadro.getInferior().getP2().getX() && linea.getP2().getY() == cuadro.getInferior().getP2().getY()) {
+                    cuadro.setDer(linea);
+                }
+            }
+        }
+        if (cuadro.getSuperior() != null & cuadro.getInferior() != null && cuadro.getIzq() != null && cuadro.getDer() != null) {
+            if (cuadro.getSuperior().getP1().getX() == cuadro.getInferior().getP1().getX()
+                    && cuadro.getSuperior().getP1().getY() + separacion == cuadro.getInferior().getP1().getY()
+                    && cuadro.getSuperior().getP2().getX() == cuadro.getInferior().getP2().getX()
+                    && cuadro.getSuperior().getP2().getY() + separacion == cuadro.getInferior().getP2().getY()) {
+                if (cuadro.getIzq().getP1().getX() + separacion == cuadro.getDer().getP1().getX()
+                        && cuadro.getIzq().getP1().getY() == cuadro.getDer().getP1().getY()
+                        && cuadro.getIzq().getP2().getX() + separacion == cuadro.getDer().getP2().getX()
+                        && cuadro.getIzq().getP2().getY() == cuadro.getDer().getP2().getY()) {
+                    return cuadro;
+                }
+
+            }
+        }
+
+        System.out.println("---------------------------------------------------------------------------------------------------------------------------");
+        System.out.println("S: " + cuadro.getSuperior() + "< - > I: " + cuadro.getInferior() + "\nIzq: " + cuadro.getIzq() + " < - > Der:" + cuadro.getDer() + "\n");
+
+        return null;
+    }
+
+    public void agregaPuntos(pnJuego lienzo, Punto p1, Punto p2, java.awt.event.MouseEvent evt) {
         int pulsacion = 0;
-         if (pulsacion == 1) {
+        if (pulsacion == 1) {
             for (Punto punto : lienzo.getPuntosList()) {
 
                 if (punto.getX() <= evt.getX()) {
@@ -322,20 +555,8 @@ public class ControlFrmPartida {
             pulsacion--;
             ordenaPuntos(lienzo, p1, p2);
             //System.out.println(p1 + " - " + p2);
-            dibujaLinea(lienzo.getGraphics());
+            dibujarLinea(lienzo.getGraphics(), lienzo, p1, p2);
         }
-    }
-    
-    
-
-    /**
-     * Metodo que dibuja la linea en el tablero
-     * @param g
-     */
-    public void dibujaLinea(Graphics g) {
-        frmPartida = FrmPartida.getInstance();
-        Linea linea = new Linea(MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, MAXIMIZED_BOTH, (Graphics2D) frmPartida.getLienzo().getGraphics());
-
     }
 
     /**

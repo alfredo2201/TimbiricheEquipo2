@@ -7,9 +7,9 @@ import java.awt.geom.Rectangle2D;
  *
  * @author Equipo gatazo
  */
-public class Cuadro extends Forma {
+public class FCuadro extends Forma {
 
-    public Cuadro(float x, float y, float a, float h, Graphics2D g) {
+    public FCuadro(float x, float y, float a, float h, Graphics2D g) {
         super(x, y, a, h, g);
     }
 

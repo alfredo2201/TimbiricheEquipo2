@@ -7,9 +7,9 @@ import java.awt.geom.Rectangle2D;
  *
  * @author Equipo gatazo
  */
-public class Linea extends Forma {
+public class FLinea extends Forma {
 
-    public Linea(float x, float y, float a, float h, Graphics2D g) {
+    public FLinea(float x, float y, float a, float h, Graphics2D g) {
         super(x, y, a, h, g);
     }
 

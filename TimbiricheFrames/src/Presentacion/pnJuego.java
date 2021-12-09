@@ -2,9 +2,7 @@ package Presentacion;
 
 import Control.Control;
 import control.ControlFrmPartida;
-import control.ControlFrmPrincipal;
 import dominio.Cuadro;
-import dominio.Estados;
 import dominio.Linea;
 import dominio.Punto;
 import dominio.Tablero;

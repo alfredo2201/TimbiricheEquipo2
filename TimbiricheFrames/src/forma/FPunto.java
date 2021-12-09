@@ -7,9 +7,9 @@ import java.awt.geom.Ellipse2D;
  *
  * @author Equipo gatazo
  */
-public class Punto extends Forma{
+public class FPunto extends Forma{
 
-    public Punto(float x, float y, float a, float h, Graphics2D g) {
+    public FPunto(float x, float y, float a, float h, Graphics2D g) {
         super(x, y, a, h, g);
     }
 
