@@ -19,12 +19,12 @@ public class Linea implements Serializable {
 
     private Punto p1;
     private Punto p2;
-    private double ancho;
-    private double alto;
+    private float ancho;
+    private float alto;
     private Tablero tablero;
     private Jugador jugador;
 
-    public Linea(Punto p1, Punto p2, double w, double h, Tablero tablero) {
+    public Linea(Punto p1, Punto p2, float w, float h, Tablero tablero) {
         this.p1 = p1;
         this.p2 = p2;
         this.ancho = w;
@@ -52,19 +52,19 @@ public class Linea implements Serializable {
         this.p2 = p2;
     }
 
-    public double getW() {
+    public float getW() {
         return ancho;
     }
 
-    public void setW(double w) {
+    public void setW(float w) {
         this.ancho = w;
     }
 
-    public double getH() {
+    public float getH() {
         return alto;
     }
 
-    public void setH(double h) {
+    public void setH(float h) {
         this.alto = h;
     }
 

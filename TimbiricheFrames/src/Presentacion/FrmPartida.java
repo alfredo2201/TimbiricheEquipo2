@@ -398,7 +398,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
-        
+
         control.actualizaEstado();
 
 //        tiempo = new Timer(5000, null);
@@ -482,8 +482,10 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         control = ControlFrmPartida.getInstance();
         control.setModeloPartida(modelo);
         control.muestraInformacionJugadores(this);
-        control.dibujarLineasPartida();
-        control.dibujarCuadrosPartida();
+        if (lienzo != null) {
+            control.dibujarLineasPartida(lienzo.getGraphics());
+            control.dibujarCuadrosPartida(lienzo.getGraphics());
+        }
     }
 
     public void setLblIconoJugador1(String lblIconoJugador1) {
@@ -526,6 +528,10 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         return (pnJuego) lienzo;
     }
 
+    public JPanel lienzo() {
+        return lienzo;
+    }
+
     public void setG(Graphics g) {
         this.g = g;
     }
@@ -533,5 +539,5 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     public JButton getBtnComenzarPartida() {
         return btnComenzarPartida;
     }
-    
+
 }

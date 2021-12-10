@@ -374,14 +374,14 @@ public class ControlFrmPartida {
                 partida.setLinea(linea);
                 lineaNueva.dibujar();
 
-                cd = this.verificarCuadro(linea, partida.getLinea(), separacion);                
+                cd = this.verificarCuadro(linea, partida.getLinea(), separacion);
                 if (cd != null) {
                     cd.setJugador(jugador);
                     FCuadro cuadroSimple;
                     partida.setCuadro(cd);
                     cuadroSimple = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
                     cuadroSimple.dibujar();
-                    Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);                    
+                    Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
                     if (cdDoble != null) {
                         cdDoble.setJugador(jugador);
                         if (cdDoble.getSuperior() != null
@@ -396,7 +396,9 @@ public class ControlFrmPartida {
 
                         }
                     }
-                }
+                }else{
+                    partida.setCambioTurno(true);
+                }                
                 try {
                     cliente.enviarAlServidor(partida);
                 } catch (IOException ex) {
@@ -418,7 +420,7 @@ public class ControlFrmPartida {
                 partida.setLinea(linea);
                 lineaNueva.dibujar();
 
-                cd = this.verificarCuadro(linea, partida.getLinea(), separacion);               
+                cd = this.verificarCuadro(linea, partida.getLinea(), separacion);
                 if (cd != null) {
                     cd.setJugador(jugador);
                     FCuadro cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
@@ -438,6 +440,8 @@ public class ControlFrmPartida {
                         }
                     }
 
+                }else{
+                    partida.setCambioTurno(true);
                 }
                 try {
                     cliente.enviarAlServidor(partida);
@@ -452,34 +456,35 @@ public class ControlFrmPartida {
 
     }
 
-    public void dibujarLineasPartida() {
+    public void dibujarLineasPartida(Graphics g) {
         Partida partida = modeloPartida.getPartida();
-        Graphics2D g2d = (Graphics2D) frmPartida.getLienzo().getGraphics();
+        frmPartida = FrmPartida.getInstance();
+        Graphics2D g2d = (Graphics2D) g;
         if (partida.getLinea().size() > 0) {
             for (Linea linea : partida.getLinea()) {
                 g2d.setColor(linea.getJugador().getColor());
                 if (linea.getP1().getX() == linea.getP2().getX()) {
-                    FLinea fLinea = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getW() / 2)), linea.getW(), linea.getH(), g2d);
-                    fLinea.dibujar();
+                    FLinea fLinea1 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getW() / 2)), linea.getW(), linea.getH(), g2d);
+                    fLinea1.dibujar();
                 } else if (linea.getP1().getY() == linea.getP2().getY()) {
-                    FLinea fLinea = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getH(), linea.getW(), g2d);
-                    fLinea.dibujar();
+                    FLinea fLinea2 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getH(), linea.getW(), g2d);
+                    fLinea2.dibujar();
                 }
             }
         }
     }
 
-    public void dibujarCuadrosPartida() {
+    public void dibujarCuadrosPartida(Graphics g) {
         Partida partida = modeloPartida.getPartida();
-        Graphics2D g2d = (Graphics2D) frmPartida.getLienzo().getGraphics();
+        Graphics2D g2d = (Graphics2D) g;
         if (partida.getCuadro().size() > 0) {
             for (Cuadro cuadro : partida.getCuadro()) {
                 g2d.setColor(cuadro.getJugador().getColor());
-                    FCuadro fLinea = new FCuadro(cuadro.getSuperior().getP1().getX() 
-                            + (cuadro.getDer().getP1().getRadio() / 2), 
-                            cuadro.getSuperior().getP1().getY() + (cuadro.getDer().getP1().getRadio() / 2), 
-                            partida.getTablero().getSeparacion(),  partida.getTablero().getSeparacion(), g2d);
-                    fLinea.dibujar();                
+                FCuadro fLinea = new FCuadro(cuadro.getSuperior().getP1().getX()
+                        + (cuadro.getDer().getP1().getRadio() / 2),
+                        cuadro.getSuperior().getP1().getY() + (cuadro.getDer().getP1().getRadio() / 2),
+                        partida.getTablero().getSeparacion(), partida.getTablero().getSeparacion(), g2d);
+                fLinea.dibujar();
             }
         }
     }
@@ -637,12 +642,6 @@ public class ControlFrmPartida {
         return true;
     }
 
-    /**
-     * Metodo que dibuja la cuadro en el tablero
-     */
-    public void dibujaCuadro() {
-
-    }
 
     /**
      * Metodo que verifica el numero de cuadros restantes
@@ -655,9 +654,12 @@ public class ControlFrmPartida {
 
     /**
      * Metodo que reasigna el turno a otro jugador
+     * @param cambio
      */
-    public void cambiaTurno() {
-
+    public void cambiaTurno(boolean cambio) {
+        if (cambio) {
+            
+        }
     }
 
     /**

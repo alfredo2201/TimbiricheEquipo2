@@ -99,7 +99,7 @@ public class ControlFrmPrincipal {
      * Método que recupera la partida cuando se acepta la solicitud
      * @throws java.io.IOException
      */
-    public void recuperarPartida() throws IOException {
+    public synchronized void recuperarPartida() throws IOException {
         this.partida.setJugador(modPrincipal.getJugador());
         cliente.enviarAlServidor(partida);
     }
