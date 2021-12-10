@@ -66,7 +66,9 @@ public class SocketCliente extends Thread implements IObservable {
      *
      * @throws IOException En caso de haber un error, arroja IOException
      */
-    public void desconectarServidor() throws IOException {
+    public synchronized void desconectarServidor() throws IOException {
+        this.stop();
+        objetoEntrante.close();               
         objetoSaliente.close();
         cliente.close();
     }
@@ -103,8 +105,8 @@ public class SocketCliente extends Thread implements IObservable {
     @Override
     public void run() {
         try {
-            Object objeto;
-            while ((objeto = objetoEntrante.readObject()) != null) {
+            Object objeto;           
+            while (!cliente.isClosed() && ((objeto = objetoEntrante.readObject()) != null)) {
                 procesaObjeto(objeto);
             }
         } catch (ClassNotFoundException | IOException ex) {

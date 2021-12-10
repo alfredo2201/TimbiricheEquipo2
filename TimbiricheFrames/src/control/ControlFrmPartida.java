@@ -232,18 +232,30 @@ public class ControlFrmPartida {
         }
     }
 
-    /**
-     * Metodo que elimina la informacion del usuario de la pantalla
-     */
-    public void quitarInformacionPantalla() {
-
-    }
+//    /**
+//     * Metodo que elimina la informacion del usuario de la pantalla
+//     */
+//    public void quitarInformacionPantalla() {
+//
+//    }
 
     /**
      * Metodo que borra los datos del jugador
      */
     public void borrarDatosJugador() {
-
+        Partida partida = modeloPartida.getPartida();
+        ArrayList<Jugador>jugadores = partida.getJugadores();        
+        for (Jugador jugadore : jugadores) {
+            if (jugadore.equals(jugador)) {
+                jugadores.remove(jugadores.indexOf(jugadore));
+                break;
+            }
+        }        
+        try {
+            cliente.enviarAlServidor(jugador);
+        } catch (IOException ex) {
+            Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -270,6 +282,11 @@ public class ControlFrmPartida {
      * Metodo que muestra el frame Pantalla Principal
      */
     public void mostrarPantallaPrincipal() {
+        try {
+            cliente.desconectarServidor();
+        } catch (IOException ex) {
+            Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FrmPrincipal pr = FrmPrincipal.getInstance();
         pr.setVisible(true);
         FrmPartida.getInstance().dispose();

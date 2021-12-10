@@ -445,6 +445,8 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
 
     private void btnAbandonarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaActionPerformed
         controlP = ControlFrmPrincipal.getInstance();
+        control =ControlFrmPartida.getInstance();
+        control.borrarDatosJugador();
         control.mostrarPantallaPrincipal();
     }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
 
