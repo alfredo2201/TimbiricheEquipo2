@@ -120,15 +120,6 @@ public class ControlFrmPartida {
         Color c = JColorChooser.showDialog(frame, "Color de jugador", Color.white);
         Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
         guardaConfiguracion(label, jugador, j, c);
-//        if (c != null) {
-//            Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
-//            if (j != null) {
-//                  guardaConfiguracion(label, jugador, j, c);
-////                j.setColor(c);
-////                label.setForeground(c);
-//                
-//            }
-//        }
     }
 
     /**
@@ -200,17 +191,17 @@ public class ControlFrmPartida {
 
     /**
      * Método que guarda la configuración de los usuarios
+     *
+     * @param label
+     * @param jugador
+     * @param j
+     * @param c
      */
     public void guardaConfiguracion(JLabel label, int jugador, Jugador j, Color c) {
 
         if (c != null) {
             j = modeloPartida.getPartida().getJugadores().get(jugador);
             if (j != null) {
-                
-//                guardaConfiguracion(label, jugador, j, c);
-//                j.setColor(c);
-//                label.setForeground(c);
-                
                 if (label.getText().equalsIgnoreCase(this.jugador.getNombre())) {
                     modeloPartida.getPartida().getJugadores().get(jugador).setColor(c);
                     label.setForeground(c);
@@ -226,20 +217,7 @@ public class ControlFrmPartida {
 
             }
         }
-//        frmPartida = FrmPartida.getInstance();
-//         Color c = JColorChooser.showDialog(this.frmPartida, "Color de jugador", Color.white);
-//        if (c != null) {
-//            if(label.getText().equalsIgnoreCase(this.jugador.getNombre())){
-//                modeloPartida.getPartida().getJugadores().get(jugador);
-//            }else{
-//                
-//            }
-//        }
-//        Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
-//            if (j != null) {
-//                j.setColor(c);
-//                label.setForeground(c);
-//            }
+
 
     }
 
@@ -256,14 +234,14 @@ public class ControlFrmPartida {
      * Metodo que elimina la informacion del usuario de la pantalla
      */
     public void quitarInformacionPantalla() {
-
+        
     }
 
     /**
      * Metodo que borra los datos del jugador
      */
     public void borrarDatosJugador() {
-
+        
     }
 
     /**
@@ -350,18 +328,15 @@ public class ControlFrmPartida {
                 p1 = p2;
                 p2 = aux;
                 this.p1 = p1;
-                this.p2 = p2;;
+                this.p2 = p2;
             }
         }
 
     }
 
     public boolean comprobarLinea(Linea linea, ArrayList<Linea> lineasList) {
-
         for (Linea l : lineasList) {
             if (l.equals(linea)) {
-//                JOptionPane.showMessageDialog(null, "Linea ya existente",
-//                        "", JOptionPane.ERROR_MESSAGE);
                 return true;
             }
         }
@@ -369,19 +344,18 @@ public class ControlFrmPartida {
     }
 
     public boolean compruebaPunto(Punto p1, Punto p2) {
-//            JOptionPane.showMessageDialog(null, "Seleccione dos puntos distintos",
-//                    "", JOptionPane.ERROR_MESSAGE);
-
         return p1.equals(p2);
     }
 
     /**
      * Metodo que valida que una linea pueda ser dibujada
      *
+     * @param p1
+     * @param p2
      * @return True si es posible dibujar la linea, false si no es posible
      */
     public boolean validaLinea(Punto p1, Punto p2) {
-        return !(p1.getX() != p2.getX() && p1.getY() != p2.getY());
+        return (p1.getX() != p2.getX() && p1.getY() != p2.getY());
     }
 
     /**
@@ -441,7 +415,7 @@ public class ControlFrmPartida {
                         }
                     }
                 } else {
-                    partida.setCambioTurno(true);
+                 cambiaTurno(true, partida);
                 }
                 try {
                     cliente.enviarAlServidor(partida);
@@ -449,8 +423,6 @@ public class ControlFrmPartida {
                     Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
                 }
             } else {
-//                JOptionPane.showMessageDialog(null, "Linea ya existente",
-//                        "", JOptionPane.ERROR_MESSAGE);
                 modeloPartida.setMensaje("Linea ya existente");
             }
         } else {
@@ -485,7 +457,7 @@ public class ControlFrmPartida {
                     }
 
                 } else {
-                    partida.setCambioTurno(true);
+                    cambiaTurno(true, partida);
                 }
                 try {
                     cliente.enviarAlServidor(partida);
@@ -673,7 +645,6 @@ public class ControlFrmPartida {
             }
             pulsacion--;
             ordenaPuntos(lienzo, p1, p2);
-            //System.out.println(p1 + " - " + p2);
             dibujarLinea(lienzo.getGraphics(), lienzo, p1, p2);
         }
     }
@@ -684,18 +655,18 @@ public class ControlFrmPartida {
      * @return True en caso de que queden cuadros, False si ya no quedan
      */
     public boolean validaNumeroCuadros() {
-        return true;
+        Partida partida = modeloPartida.getPartida();
+        return partida.getCuadro().size() != ((partida.getTablero().getTamanio() * partida.getTablero().getTamanio()) / 4);
     }
 
     /**
      * Metodo que reasigna el turno a otro jugador
      *
      * @param cambio
+     * @param partida
      */
-    public void cambiaTurno(boolean cambio) {
-        if (cambio) {
-
-        }
+    public void cambiaTurno(boolean cambio, Partida partida) {
+        partida.setCambioTurno(cambio);
     }
 
     /**
