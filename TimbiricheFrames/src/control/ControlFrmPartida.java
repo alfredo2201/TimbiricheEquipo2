@@ -43,6 +43,7 @@ public class ControlFrmPartida {
     private Color color1 = Color.BLUE;
     private Color color2 = Color.PINK;
     private Color color3 = Color.green;
+    private Color color4 = Color.green;
 
     /**
      * Constructor que inicialisa el SocketCliente
@@ -117,15 +118,19 @@ public class ControlFrmPartida {
      */
     public void muestraConfigurarContrincantes(JLabel label, JFrame frame, int jugador) {
         Color c = JColorChooser.showDialog(frame, "Color de jugador", Color.white);
-        if (c != null) {
-            Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
-            if (j != null) {
-                j.setColor(c);
-                label.setForeground(c);
-            }
-        }
+        Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
+        guardaConfiguracion(label, jugador, j, c);
+//        if (c != null) {
+//            Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
+//            if (j != null) {
+//                  guardaConfiguracion(label, jugador, j, c);
+////                j.setColor(c);
+////                label.setForeground(c);
+//                
+//            }
+//        }
     }
-    
+
     /**
      * Metodo para actualiza rlos valores del lienzo
      *
@@ -189,13 +194,52 @@ public class ControlFrmPartida {
      * @return true si se vaido con exito, false si no se acepto la validación
      */
     public boolean validaConfiguracion() {
+
         return true;
     }
 
     /**
      * Método que guarda la configuración de los usuarios
      */
-    public void guardaConfiguracion() {
+    public void guardaConfiguracion(JLabel label, int jugador, Jugador j, Color c) {
+
+        if (c != null) {
+            j = modeloPartida.getPartida().getJugadores().get(jugador);
+            if (j != null) {
+                
+//                guardaConfiguracion(label, jugador, j, c);
+//                j.setColor(c);
+//                label.setForeground(c);
+                
+                if (label.getText().equalsIgnoreCase(this.jugador.getNombre())) {
+                    modeloPartida.getPartida().getJugadores().get(jugador).setColor(c);
+                    label.setForeground(c);
+                } else if (jugador == 0) {
+                    this.color1 = c;
+                } else if (jugador == 1) {
+                    this.color2 = c;
+                } else if (jugador == 2) {
+                    this.color3 = c;
+                } else if (jugador == 3) {
+                    this.color4 = c;
+                }
+
+            }
+        }
+//        frmPartida = FrmPartida.getInstance();
+//         Color c = JColorChooser.showDialog(this.frmPartida, "Color de jugador", Color.white);
+//        if (c != null) {
+//            if(label.getText().equalsIgnoreCase(this.jugador.getNombre())){
+//                modeloPartida.getPartida().getJugadores().get(jugador);
+//            }else{
+//                
+//            }
+//        }
+//        Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
+//            if (j != null) {
+//                j.setColor(c);
+//                label.setForeground(c);
+//            }
 
     }
 
@@ -330,7 +374,8 @@ public class ControlFrmPartida {
 
         return p1.equals(p2);
     }
-        /**
+
+    /**
      * Metodo que valida que una linea pueda ser dibujada
      *
      * @return True si es posible dibujar la linea, false si no es posible
@@ -677,8 +722,8 @@ public class ControlFrmPartida {
             }
         }
     }
-    
-    public void finalizaPartida(){
+
+    public void finalizaPartida() {
         this.actualizaEstado();
     }
 
@@ -718,16 +763,16 @@ public class ControlFrmPartida {
     public void setMensaje(String mensaje) {
         this.modeloPartida.setMensaje(mensaje);
     }
-    
-    public void dibujaLinea(FLinea linea){
+
+    public void dibujaLinea(FLinea linea) {
         linea.dibujar();
     }
-    
-    public void dibujaCuadro(FCuadro cuadro){
+
+    public void dibujaCuadro(FCuadro cuadro) {
         cuadro.dibujar();
     }
-    
-    public void dibujaCuadroDoble(FCuadro cuadro){
+
+    public void dibujaCuadroDoble(FCuadro cuadro) {
         cuadro.dibujar();
     }
 
