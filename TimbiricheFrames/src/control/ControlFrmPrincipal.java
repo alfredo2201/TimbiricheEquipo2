@@ -9,6 +9,7 @@ import Presentacion.FrmPrincipal;
 import SocketCliente.SocketCliente;
 import dominio.Jugador;
 import dominio.Partida;
+import java.awt.Color;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -57,6 +58,7 @@ public class ControlFrmPrincipal {
         nombre = (padded);
         modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setNombre(nombre);
+        modPrincipal.getJugador().setColor(Color.BLACK);
         ctlPartida = ControlFrmPartida.getInstance(); 
         if (validaApodoIcono() && !(nombre.length() > 10)) {
             try {

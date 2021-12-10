@@ -34,7 +34,7 @@ public class pnJuego extends javax.swing.JPanel {
     private Graphics g;
     private int grosor;
     private final ArrayList<Linea> lineasList;
-    private final iConexion conexion = Fabrica.getInstance();
+    
     private ControlFrmPartida ctrlPartida;
 
     public pnJuego(Tablero tablero) {
@@ -44,8 +44,7 @@ public class pnJuego extends javax.swing.JPanel {
         this.posicion_x = tablero.getPuntos().getX();
         this.posicion_y = tablero.getPuntos().getY();
         this.radio = tablero.getPuntos().getRadio();
-        this.lineasList = new ArrayList<>();
-        grosor();
+        this.lineasList = new ArrayList<>();        
     }
 
     /**
@@ -73,7 +72,7 @@ public class pnJuego extends javax.swing.JPanel {
             posicion_y += separacion;
         }
         posicion_y = puntoInicialy;
-
+            
     }
 
     /**
@@ -97,24 +96,7 @@ public class pnJuego extends javax.swing.JPanel {
         this.p2 = p2;
     }
 
-    /**
-     * Asina el grosor de la linea
-     */
-    private void grosor() {
-        switch (conexion.getTablero().getTamanio()) {
-            case 10:
-                grosor = 10;
-                break;
-            case 20:
-                grosor = 8;
-                break;
-            case 40:
-                grosor = 4;
-                break;
-            default:
-                break;
-        }
-    }
+
 
 //    /**
 //     * Se verifica que no se cree la misma linea
