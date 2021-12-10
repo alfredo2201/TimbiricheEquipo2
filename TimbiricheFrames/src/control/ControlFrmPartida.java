@@ -238,21 +238,21 @@ public class ControlFrmPartida {
 //    public void quitarInformacionPantalla() {
 //
 //    }
-
     /**
      * Metodo que borra los datos del jugador
      */
     public void borrarDatosJugador() {
         Partida partida = modeloPartida.getPartida();
-        ArrayList<Jugador>jugadores = partida.getJugadores();        
+        ArrayList<Jugador> jugadores = partida.getJugadores();
         for (Jugador jugadore : jugadores) {
             if (jugadore.equals(jugador)) {
                 jugadores.remove(jugadores.indexOf(jugadore));
                 break;
             }
-        }        
+        }
+        partida.setJugadores(jugadores);
         try {
-            cliente.enviarAlServidor(jugador);
+            cliente.enviarAlServidor(partida);
         } catch (IOException ex) {
             Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -286,9 +286,9 @@ public class ControlFrmPartida {
             cliente.desconectarServidor();
         } catch (IOException ex) {
             Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        FrmPrincipal pr = FrmPrincipal.getInstance();
-        pr.setVisible(true);
+        }       
+        ctlPrincipal = ControlFrmPrincipal.getInstance();
+        ctlPrincipal.despliegaPantallaPrincipal();
         FrmPartida.getInstance().dispose();
     }
 
@@ -781,12 +781,12 @@ public class ControlFrmPartida {
         float grosor = modeloPartida.getPartida().getTablero().getGrosor();
         float separacion = modeloPartida.getPartida().getTablero().getSeparacion();
         FLinea lineaNueva = null;
-        if(p1.getY() == p2.getY()){
+        if (p1.getY() == p2.getY()) {
             lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), separacion, grosor, g2d);
-        }else{
-           lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, separacion, g2d); 
+        } else {
+            lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, separacion, g2d);
         }
-         
+
 //        FLinea lineaNueva = new FLinea((
 //                p1.getX() + (p1.getRadio())), 
 //                ((p1.getY() + (p1.getRadio())) - (grosor)), 

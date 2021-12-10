@@ -172,44 +172,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
     }//GEN-LAST:event_btnCrearPartidaActionPerformed
 
     private void btnIngresarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIngresarActionPerformed
-//        tiempo = new Timer(2000, null);
-//        tiempo.start();
-//
-//        String nombre = txtNombre.getText();
-//        if (txtNombre.getText().length() < 10) {
-//            String padded = String.format("%-10s", nombre);
-//            nombre = (padded);
-//        }
-//
-//        conexion.getTablero().setTamanio(40);
-////        ct.getJ4().setNombre(nombre);
-////        String icono = ct.getJ4().getAvatar();
-//
-//        conexion.getJugador().setNombre(nombre);
-//        String icono = conexion.getJugador().getAvatar();
-//        if (nombre.equalsIgnoreCase("") || icono == null) {
-//            JOptionPane.showMessageDialog(null, "Debe de poner su nombre o seleccionar un icono",
-//                    "Error", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            tiempo.addActionListener(new java.awt.event.ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent ae) {
-//                    operacion();
-//                }
-//
-//                private void operacion() {
-//                    JOptionPane.showMessageDialog(null, "Has sido aceptado en el juego",
-//                            "", JOptionPane.INFORMATION_MESSAGE);
-//                    //FrmPartida sala = FrmPartida.getInstance(conexion.getTablero());
-////                    sala.setVisible(true);
-////                    tiempo.stop();
-////                    sala.boton(false);
-//                    dispose();
-//                }
-//            });
-//
-//        }
-
+        ctlPrincipal.asignaNombre(txtNombre.getText().trim(), this);
     }//GEN-LAST:event_btnIngresarActionPerformed
 
     private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed

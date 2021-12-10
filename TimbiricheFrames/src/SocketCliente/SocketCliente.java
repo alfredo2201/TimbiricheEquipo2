@@ -68,6 +68,7 @@ public class SocketCliente extends Thread implements IObservable {
      */
     public synchronized void desconectarServidor() throws IOException {
         this.stop();
+        instance = null;
         objetoEntrante.close();               
         objetoSaliente.close();
         cliente.close();
