@@ -5,6 +5,7 @@
  */
 package control;
 
+import Presentacion.FrmPartida;
 import Presentacion.FrmPrincipal;
 import SocketCliente.SocketCliente;
 import dominio.Jugador;
@@ -30,6 +31,9 @@ public class ControlFrmPrincipal {
     private Partida partida;
     private SocketCliente cliente;
 
+    /**
+     * Constructor que inicializa el SocketCliente
+     */
     private ControlFrmPrincipal() {
         this.cliente = SocketCliente.getInstance();
         try {
@@ -39,6 +43,11 @@ public class ControlFrmPrincipal {
         }
     }
 
+    /**
+     * Regresa la instancia de ControlFrmPrincipal
+     *
+     * @return ControlFrmPrincipal
+     */
     public static ControlFrmPrincipal getInstance() {
         if (instance == null) {
             instance = new ControlFrmPrincipal();
@@ -53,17 +62,17 @@ public class ControlFrmPrincipal {
      * @param frame
      */
     public synchronized void asignaNombre(String nombre, JFrame frame) {
-        
+
         String padded = String.format("%-10s", nombre);
         nombre = (padded);
         modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setNombre(nombre);
         modPrincipal.getJugador().setColor(Color.BLACK);
-        ctlPartida = ControlFrmPartida.getInstance(); 
+        ctlPartida = ControlFrmPartida.getInstance();
         if (validaApodoIcono() && !(nombre.length() > 10)) {
             try {
-                cliente.enviarAlServidor(modPrincipal.getJugador()); 
-                if (this.partida != null) {   
+                cliente.enviarAlServidor(modPrincipal.getJugador());
+                if (this.partida != null) {
                     recuperarPartida();
                     ctlPartida.despliegaPantallaPartida();
                     frame.setVisible(false);
@@ -99,18 +108,20 @@ public class ControlFrmPrincipal {
 
     /**
      * Método que recupera la partida cuando se acepta la solicitud
+     *
      * @throws java.io.IOException
      */
     public synchronized void recuperarPartida() throws IOException {
         this.partida.setJugador(modPrincipal.getJugador());
         cliente.enviarAlServidor(partida);
     }
-    
+
     /**
      * Método que despliega el frame de partida
      */
     public void despliegaPantallaPartida() {
-        //llamr control de partida
+        FrmPartida frmPartida = FrmPartida.getInstance();
+        frmPartida.setVisible(true);
     }
 
     /**
@@ -154,13 +165,23 @@ public class ControlFrmPrincipal {
         }
     }
 
+    /**
+     * Otorga el valor de avatar al jugador
+     *
+     * @param icono Avatar que será asignado
+     */
     public void añadirIcono(String icono) {
         modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setAvatar(icono);
     }
 
+    /**
+     * Otogra el valor a la partida
+     *
+     * @param partida Partida que será asignada
+     */
     public void setPartida(Partida partida) {
         this.partida = partida;
     }
-    
+
 }

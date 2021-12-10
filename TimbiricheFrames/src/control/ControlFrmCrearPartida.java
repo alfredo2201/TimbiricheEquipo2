@@ -28,7 +28,7 @@ public class ControlFrmCrearPartida {
         Tablero tableroNuevo = new Tablero();
         tableroNuevo.setTamanio(tamanioTablero);
         Partida partida = new Partida();
-        partida.setTablero(tableroNuevo);   
+        partida.setTablero(tableroNuevo);
         partida.setJugador(ctlPrincipal.getJugador());
         ctlPartida.crearPartida(partida);
     }
@@ -79,6 +79,11 @@ public class ControlFrmCrearPartida {
         }
     }
 
+    /**
+     * Cierra la pantalla
+     *
+     * @param frame Pantalla que será cerrada
+     */
     public void cierraPantalla(JFrame frame) {
         ctlPrincipal.despliegaPantallaPrincipal();
         frame.dispose();

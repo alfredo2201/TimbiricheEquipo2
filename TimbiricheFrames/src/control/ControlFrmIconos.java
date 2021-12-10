@@ -53,8 +53,9 @@ public class ControlFrmIconos {
     }
 
     /**
+     * Cierra la pantalla
      *
-     * @param frame
+     * @param frame Pantalla que será cerrada
      */
     public void cierraPantalla(JFrame frame) {
         ctlPrincipal.despliegaPantallaPrincipal();

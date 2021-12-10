@@ -14,8 +14,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 import modelo.ModeloFrmPartida;
-import negocios.Fabrica;
-import negocios.iConexion;
 import observador.IObserver;
 
 /**
@@ -33,7 +31,6 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     private ControlFrmPartida control;
     private ControlFrmPrincipal controlP;
     private ModeloFrmPartida modeloPartida;
-    private final iConexion conexion = Fabrica.getInstance();
 
     public FrmPartida() {
         initComponents();
