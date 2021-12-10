@@ -40,6 +40,9 @@ public class ControlFrmPartida {
     private final ArrayList<Cuadro> listaCuadros;
     private Punto p1 = null;
     private Punto p2 = null;
+    private Color color1 = Color.BLUE;
+    private Color color2 = Color.PINK;
+    private Color color3 = Color.green;
 
     /**
      * Constructor que inicialisa el SocketCliente
@@ -48,6 +51,26 @@ public class ControlFrmPartida {
         this.cliente = SocketCliente.getInstance();
         this.lineasList = new ArrayList<>();
         this.listaCuadros = new ArrayList<>();
+    }
+
+    /**
+     * Método que despliega el frame de Partida Aquí se le agregó el parámetro
+     */
+    public void despliegaPantallaPartida() {
+        ctlPrincipal = ControlFrmPrincipal.getInstance();
+        modeloPartida = ModeloFrmPartida.getInstance();
+        frmPartida = FrmPartida.getInstance();
+        jugador = ctlPrincipal.getJugador();
+        frmPartida.setVisible(true);
+        habilitaBotonComenzar(frmPartida.getBtnComenzarPartida());
+        frmPartida.setExtendedState(MAXIMIZED_BOTH);
+        frmPartida.setLienzo(configurarLienzo(frmPartida.getLienzo()));
+        frmPartida.add(frmPartida.getLienzo()); //se agrega al frame principal
+        frmPartida.pack();
+        frmPartida.setG(frmPartida.getLienzo().getGraphics());
+        frmPartida.setResizable(false);
+        frmPartida.getLienzo().setEnabled(true);
+        muestraInformacionJugadores(frmPartida);
     }
 
     public void setModeloPartida(ModeloFrmPartida modeloPartida) {
@@ -78,6 +101,31 @@ public class ControlFrmPartida {
         }
     }
 
+    /**
+     * Metodo que muestra la partida con los jugadores
+     */
+    public void muestraPartida() {
+        frmPartida.getLienzo().setVisible(true);
+    }
+
+    /**
+     * Método que muestra la configuración de los contrincantes
+     *
+     * @param label nombre del jugador
+     * @param frame frame en uso
+     * @param jugador número de identificación del jugador
+     */
+    public void muestraConfigurarContrincantes(JLabel label, JFrame frame, int jugador) {
+        Color c = JColorChooser.showDialog(frame, "Color de jugador", Color.white);
+        if (c != null) {
+            Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
+            if (j != null) {
+                j.setColor(c);
+                label.setForeground(c);
+            }
+        }
+    }
+    
     /**
      * Metodo para actualiza rlos valores del lienzo
      *
@@ -133,51 +181,6 @@ public class ControlFrmPartida {
             Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
         }
         despliegaPantallaPartida();
-    }
-
-    /**
-     * Método que despliega el frame de Partida Aquí se le agregó el parámetro
-     */
-    public void despliegaPantallaPartida() {
-        ctlPrincipal = ControlFrmPrincipal.getInstance();
-        modeloPartida = ModeloFrmPartida.getInstance();
-        frmPartida = FrmPartida.getInstance();
-        jugador = ctlPrincipal.getJugador();
-        frmPartida.setVisible(true);
-        habilitaBotonComenzar(frmPartida.getBtnComenzarPartida());
-        frmPartida.setExtendedState(MAXIMIZED_BOTH);
-        frmPartida.setLienzo(configurarLienzo(frmPartida.getLienzo()));
-        frmPartida.add(frmPartida.getLienzo()); //se agrega al frame principal
-        frmPartida.pack();
-        frmPartida.setG(frmPartida.getLienzo().getGraphics());
-        frmPartida.setResizable(false);
-        frmPartida.getLienzo().setEnabled(true);
-        muestraInformacionJugadores(frmPartida);
-    }
-
-    /**
-     * Método que muestra la configuración de los contrincantes
-     *
-     * @param label nombre del jugador
-     * @param frame frame en uso
-     * @param jugador número de identificación del jugador
-     */
-    public void muestraConfigurarContrincantes(JLabel label, JFrame frame, int jugador) {
-        Color c = JColorChooser.showDialog(frame, "Color de jugador", Color.white);
-        if (c != null) {
-            Jugador j = modeloPartida.getPartida().getJugadores().get(jugador);
-            if (j != null) {
-                j.setColor(c);
-                label.setForeground(c);
-            }
-        }
-    }
-
-    /**
-     * Metodo que muestra la partida con los jugadores
-     */
-    public void muestraPartida() {
-
     }
 
     /**
@@ -286,15 +289,6 @@ public class ControlFrmPartida {
 
     }
 
-    /**
-     * Metodo que valida que una linea pueda ser dibujada
-     *
-     * @return True si es posible dibujar la linea, false si no es posible
-     */
-    public boolean validaLinea() {
-        return true;
-    }
-
     public void ordenaPuntos(pnJuego lienzo, Punto p1, Punto p2) {
         if (p1.getX() == p2.getX()) {
             if (p1.getY() > p2.getY()) {
@@ -336,6 +330,14 @@ public class ControlFrmPartida {
 
         return p1.equals(p2);
     }
+        /**
+     * Metodo que valida que una linea pueda ser dibujada
+     *
+     * @return True si es posible dibujar la linea, false si no es posible
+     */
+    public boolean validaLinea(Punto p1, Punto p2) {
+        return !(p1.getX() != p2.getX() && p1.getY() != p2.getY());
+    }
 
     /**
      * Dibuja la linea en la tabla y crea los cuadros
@@ -359,12 +361,9 @@ public class ControlFrmPartida {
             return;
         }
 
-        if (p1.getX() != p2.getX() && p1.getY() != p2.getY()) {
-            JOptionPane.showMessageDialog(null, "Puntos seleccionados no válidos",
-                    "", JOptionPane.ERROR_MESSAGE);
-            modeloPartida.setMensaje("Puntos seleccionados no válidos");
+        if (this.validaLinea(p1, p2)) {
+            modeloPartida.setMensaje("Linea no valida ugu");
         } else if (p1.getY() == p2.getY()) {
-
             // Linea de izquierda a derecha
             FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), separacion, grosor, g2d);
             Linea linea = new Linea(p1, p2, grosor, separacion, tab);
@@ -372,15 +371,14 @@ public class ControlFrmPartida {
             System.out.println(linea);
             if (!comprobarLinea(linea, partida.getLinea())) {
                 partida.setLinea(linea);
-                lineaNueva.dibujar();
-
+                this.dibujaLinea(lineaNueva);
                 cd = this.verificarCuadro(linea, partida.getLinea(), separacion);
                 if (cd != null) {
                     cd.setJugador(jugador);
                     FCuadro cuadroSimple;
                     partida.setCuadro(cd);
                     cuadroSimple = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-                    cuadroSimple.dibujar();
+                    this.dibujaCuadro(cuadroSimple);
                     Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
                     if (cdDoble != null) {
                         cdDoble.setJugador(jugador);
@@ -392,6 +390,7 @@ public class ControlFrmPartida {
                             partida.setCuadro(cdDoble);
                             FCuadro cuadroDoble;
                             cuadroDoble = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                            this.dibujaCuadroDoble(cuadroDoble);
                             cuadroDoble.dibujar();
 
                         }
@@ -418,13 +417,13 @@ public class ControlFrmPartida {
             if (!comprobarLinea(linea, partida.getLinea())) {
 
                 partida.setLinea(linea);
-                lineaNueva.dibujar();
+                this.dibujaLinea(lineaNueva);
 
                 cd = this.verificarCuadro(linea, partida.getLinea(), separacion);
                 if (cd != null) {
                     cd.setJugador(jugador);
                     FCuadro cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-                    cuadradito.dibujar();
+                    this.dibujaCuadro(cuadradito);
                     partida.setCuadro(cd);
                     Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
                     if (cdDoble != null) {
@@ -436,7 +435,7 @@ public class ControlFrmPartida {
                             System.out.println(cdDoble);
                             partida.setCuadro(cdDoble);
                             FCuadro cuadradito2 = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-                            cuadradito2.dibujar();
+                            this.dibujaCuadroDoble(cuadradito2);
                         }
                     }
 
@@ -465,10 +464,10 @@ public class ControlFrmPartida {
                 g2d.setColor(linea.getJugador().getColor());
                 if (linea.getP1().getX() == linea.getP2().getX()) {
                     FLinea fLinea1 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getW(), linea.getH(), g2d);
-                    fLinea1.dibujar();
+                    this.dibujaLinea(fLinea1);
                 } else if (linea.getP1().getY() == linea.getP2().getY()) {
                     FLinea fLinea2 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getH(), linea.getW(), g2d);
-                    fLinea2.dibujar();
+                    this.dibujaLinea(fLinea2);
                 }
             }
         }
@@ -635,15 +634,6 @@ public class ControlFrmPartida {
     }
 
     /**
-     * Metodo que valida que un cuadro pueda ser rellenado
-     *
-     * @return True si es posible rellenar el cuadro, false si no es posible
-     */
-    public boolean verificaCuadro() {
-        return true;
-    }
-
-    /**
      * Metodo que verifica el numero de cuadros restantes
      *
      * @return True en caso de que queden cuadros, False si ya no quedan
@@ -687,6 +677,10 @@ public class ControlFrmPartida {
             }
         }
     }
+    
+    public void finalizaPartida(){
+        this.actualizaEstado();
+    }
 
     /**
      * Metodo que despliega un mensaje
@@ -723,6 +717,18 @@ public class ControlFrmPartida {
      */
     public void setMensaje(String mensaje) {
         this.modeloPartida.setMensaje(mensaje);
+    }
+    
+    public void dibujaLinea(FLinea linea){
+        linea.dibujar();
+    }
+    
+    public void dibujaCuadro(FCuadro cuadro){
+        cuadro.dibujar();
+    }
+    
+    public void dibujaCuadroDoble(FCuadro cuadro){
+        cuadro.dibujar();
     }
 
 }
