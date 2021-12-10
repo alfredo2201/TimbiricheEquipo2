@@ -3,16 +3,18 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/forma/FLinea.java</file>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/SocketCliente/SocketCliente.java</file>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/main.java</file>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/modelo/ModeloFrmPartida.java</file>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/control/ControlFrmPrincipal.java</file>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/observador/IObserver.java</file>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/pnJuego.java</file>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/FrmPrincipal.java</file>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/FrmPartida.java</file>
-            <file>file:/C:/Users/Angel/Documents/GitHub/TimbiricheEquipo2/TimbiricheFrames/src/control/ControlFrmPartida.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/FrmIconos.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/modelo/ModeloFrmPartida.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/pnJuego.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/control/ControlFrmPartida.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/frmCrearPartida.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/control/ControlFrmPrincipal.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/FrmPartida.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/forma/FLinea.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/control/ControlFrmCrearPartida.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/main.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/Presentacion/FrmPrincipal.java</file>
+            <file>file:/D:/Documents/Arquitectura%20de%20Software/Proyecto/Timbiriche/TimbiricheEquipo2/TimbiricheFrames/src/SocketCliente/SocketCliente.java</file>
         </group>
     </open-files>
 </project-private>

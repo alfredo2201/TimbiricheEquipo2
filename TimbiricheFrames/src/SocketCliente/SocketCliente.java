@@ -58,6 +58,7 @@ public class SocketCliente extends Thread implements IObservable {
      * @throws IOException En caso de haber un error, arroja IOException
      */
     public synchronized void enviarAlServidor(Partida partida) throws IOException {
+        System.out.println("Tamaño jugadores: " + partida.getJugadores().size());
         objetoSaliente.writeObject(partida);
     }
 
@@ -69,7 +70,7 @@ public class SocketCliente extends Thread implements IObservable {
     public synchronized void desconectarServidor() throws IOException {
         this.stop();
         instance = null;
-        objetoEntrante.close();               
+        objetoEntrante.close();
         objetoSaliente.close();
         cliente.close();
     }
@@ -106,7 +107,7 @@ public class SocketCliente extends Thread implements IObservable {
     @Override
     public void run() {
         try {
-            Object objeto;           
+            Object objeto;
             while (!cliente.isClosed() && ((objeto = objetoEntrante.readObject()) != null)) {
                 procesaObjeto(objeto);
             }

@@ -232,12 +232,6 @@ public class ControlFrmPartida {
         }
     }
 
-//    /**
-//     * Metodo que elimina la informacion del usuario de la pantalla
-//     */
-//    public void quitarInformacionPantalla() {
-//
-//    }
     /**
      * Metodo que borra los datos del jugador
      */
@@ -246,13 +240,16 @@ public class ControlFrmPartida {
         ArrayList<Jugador> jugadores = partida.getJugadores();
         for (Jugador jugadore : jugadores) {
             if (jugadore.equals(jugador)) {
-                jugadores.remove(jugadores.indexOf(jugadore));
+                int indice =jugadores.indexOf(jugadore);
+                jugadores.remove(indice);
                 break;
             }
         }
-        partida.setJugadores(jugadores);
+        partida.setJugadores(jugadores);        
+        System.out.println("Tamaño jugadores: "+partida.getJugadores().size());
+        System.out.println("UWU"+partida.getJugadores().toString());
         try {
-            cliente.enviarAlServidor(partida);
+            cliente.enviarAlServidor(partida);            
         } catch (IOException ex) {
             Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
         }
