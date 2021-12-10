@@ -72,6 +72,9 @@ public class ControlFrmPartida {
         frmPartida.setResizable(false);
         frmPartida.getLienzo().setEnabled(true);
         muestraInformacionJugadores(frmPartida);
+//        modeloPartida = modeloPartida.getInstance();
+
+        System.out.println("Es turno de: " + modeloPartida.getPartida().getTurnos().toString());
     }
 
     public void setModeloPartida(ModeloFrmPartida modeloPartida) {
@@ -218,7 +221,6 @@ public class ControlFrmPartida {
             }
         }
 
-
     }
 
     public void habilitaBotonComenzar(JButton boton) {
@@ -234,14 +236,14 @@ public class ControlFrmPartida {
      * Metodo que elimina la informacion del usuario de la pantalla
      */
     public void quitarInformacionPantalla() {
-        
+
     }
 
     /**
      * Metodo que borra los datos del jugador
      */
     public void borrarDatosJugador() {
-        
+
     }
 
     /**
@@ -390,7 +392,10 @@ public class ControlFrmPartida {
             System.out.println(linea);
             if (!comprobarLinea(linea, partida.getLinea())) {
                 partida.setLinea(linea);
+
                 this.dibujaLinea(lineaNueva);
+                //hice este partida.getLinea para ver si se agrega, posiblemente faltó esto
+//                partida.getLinea().add(linea);
                 cd = this.verificarCuadro(linea, partida.getLinea(), separacion);
                 if (cd != null) {
                     cd.setJugador(jugador);
@@ -415,7 +420,8 @@ public class ControlFrmPartida {
                         }
                     }
                 } else {
-                 cambiaTurno(true, partida);
+
+                    cambiaTurno(true, partida);
                 }
                 try {
                     cliente.enviarAlServidor(partida);
@@ -476,18 +482,24 @@ public class ControlFrmPartida {
         Partida partida = modeloPartida.getPartida();
         frmPartida = FrmPartida.getInstance();
         Graphics2D g2d = (Graphics2D) g;
-        if (partida.getLinea().size() > 0) {
-            for (Linea linea : partida.getLinea()) {
-                g2d.setColor(linea.getJugador().getColor());
-                if (linea.getP1().getX() == linea.getP2().getX()) {
-                    FLinea fLinea1 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getW(), linea.getH(), g2d);
-                    this.dibujaLinea(fLinea1);
-                } else if (linea.getP1().getY() == linea.getP2().getY()) {
-                    FLinea fLinea2 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getH(), linea.getW(), g2d);
-                    this.dibujaLinea(fLinea2);
-                }
-            }
+        System.out.println("Hay lineas para dibujar?" + (partida.getLinea().isEmpty() ? "wtf sin lineas" : "uwu"));
+        for (Linea l : partida.getLinea()) {
+            g.setColor(l.getJugador().getColor());
+//            this.dibujarLinea(g, frmPartida.getLienzo(), p1, p2);
+            this.reDibujarLinea(g, frmPartida.getLienzo(), l.getP1(), l.getP2());
         }
+//        if (partida.getLinea().size() > 0) {
+//            for (Linea linea : partida.getLinea()) {
+//                g2d.setColor(linea.getJugador().getColor());
+//                if (linea.getP1().getX() == linea.getP2().getX()) {
+//                    FLinea fLinea1 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getW(), linea.getH(), g2d);
+//                    this.dibujaLinea(fLinea1);
+//                } else if (linea.getP1().getY() == linea.getP2().getY()) {
+//                    FLinea fLinea2 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getH(), linea.getW(), g2d);
+//                    this.dibujaLinea(fLinea2);
+//                }
+//            }
+//        }
     }
 
     public void dibujarCuadrosPartida(Graphics g) {
@@ -745,6 +757,25 @@ public class ControlFrmPartida {
 
     public void dibujaCuadroDoble(FCuadro cuadro) {
         cuadro.dibujar();
+    }
+
+    public void reDibujarLinea(Graphics g, pnJuego lienzo, Punto p1, Punto p2) {
+        Graphics2D g2d = (Graphics2D) g;
+        float grosor = modeloPartida.getPartida().getTablero().getGrosor();
+        float separacion = modeloPartida.getPartida().getTablero().getSeparacion();
+        FLinea lineaNueva = null;
+        if(p1.getY() == p2.getY()){
+            lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), separacion, grosor, g2d);
+        }else{
+           lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, separacion, g2d); 
+        }
+         
+//        FLinea lineaNueva = new FLinea((
+//                p1.getX() + (p1.getRadio())), 
+//                ((p1.getY() + (p1.getRadio())) - (grosor)), 
+//                separacion, grosor, g2d);
+        this.dibujaLinea(lineaNueva);
+
     }
 
 }

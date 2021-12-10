@@ -479,6 +479,9 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         control = ControlFrmPartida.getInstance();
         control.setModeloPartida(modelo);
         control.muestraInformacionJugadores(this);
+        if(modelo.getMensaje() != null && !(modelo.getMensaje().equals(""))){
+            control.muestraMensaje(modelo.getMensaje());
+        }
         if (lienzo != null) {
             control.dibujarLineasPartida(lienzo.getGraphics());
             control.dibujarCuadrosPartida(lienzo.getGraphics());
