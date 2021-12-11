@@ -62,13 +62,14 @@ public class ControlFrmPrincipal {
      * @param frame
      */
     public synchronized void asignaNombre(String nombre, JFrame frame) {
-        String padded = String.format("%-10s", nombre);
-        nombre = (padded);
         modPrincipal = ModeloFrmPrincipal.getInstance();
         modPrincipal.getJugador().setNombre(nombre);
         modPrincipal.getJugador().setColor(Color.BLACK);
         ctlPartida = ControlFrmPartida.getInstance();
         if (validaApodoIcono() && !(nombre.length() > 10)) {
+            String padded = String.format("%-10s", nombre);
+            nombre = (padded);
+            modPrincipal.getJugador().setNombre(nombre);
             try {
                 cliente.enviarAlServidor(modPrincipal.getJugador());
                 if (this.partida != null) {

@@ -197,10 +197,7 @@ public class FrmPrincipal extends javax.swing.JFrame implements IObserver<Modelo
     private javax.swing.JTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 
-//    public void uwu(ModeloFrmPrincipal modelo) {
-//        this.modeloPrincipal = modelo;
-//        actualizar();
-//    }
+
     @Override
     public void update(ModeloFrmPrincipal modelo) {
         this.modeloPrincipal = modelo;

@@ -49,15 +49,6 @@ public class ModeloFrmCrearPartida implements IObservable {
         return instancia;
     }
 
-//    @Override
-//    public void attach(IObserver observer) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public void detach(IObserver observer) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
     /**
      * Metodo que notifica al observador
      */

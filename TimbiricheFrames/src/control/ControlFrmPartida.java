@@ -72,15 +72,25 @@ public class ControlFrmPartida {
         frmPartida.setResizable(false);
         frmPartida.getLienzo().setEnabled(true);
         muestraInformacionJugadores(frmPartida);
-//        modeloPartida = modeloPartida.getInstance();
 
         System.out.println("Es turno de: " + modeloPartida.getPartida().getTurnos().toString());
     }
 
+    /**
+     * Envia el modelo de partida
+     *
+     * @param modeloPartida modelo de partida
+     */
     public void setModeloPartida(ModeloFrmPartida modeloPartida) {
         this.modeloPartida = modeloPartida;
     }
 
+    /**
+     * Metodo que comprueba si están preparados los jugadores
+     *
+     * @param btnComenzarPartida boton de comenzar la partida
+     * @param tipoJugador tipo de jugador
+     */
     public void boton(JButton btnComenzarPartida, boolean tipoJugador) {
         if (tipoJugador == false) {
             btnComenzarPartida.setEnabled(false);
@@ -195,10 +205,10 @@ public class ControlFrmPartida {
     /**
      * Método que guarda la configuración de los usuarios
      *
-     * @param label
-     * @param jugador
-     * @param j
-     * @param c
+     * @param label nombre del jugador
+     * @param jugador número de jugador
+     * @param j jugador
+     * @param c color del jugador
      */
     public void guardaConfiguracion(JLabel label, int jugador, Jugador j, Color c) {
 
@@ -223,6 +233,11 @@ public class ControlFrmPartida {
 
     }
 
+    /**
+     * Habilita el boton para comenzar la partida
+     *
+     * @param boton boton
+     */
     public void habilitaBotonComenzar(JButton boton) {
         Partida partida = modeloPartida.getPartida();
         if (jugador.equals(partida.getJugadores().get(0))) {
@@ -232,6 +247,9 @@ public class ControlFrmPartida {
         }
     }
 
+    /**
+     * Metodo que elimina la informacion del usuario de la pantalla
+     */
     public void quitarInformacion() {
         frmPartida = FrmPartida.getInstance();
         frmPartida.setLblIconoJugador1("");
@@ -261,22 +279,22 @@ public class ControlFrmPartida {
     /**
      * Metodo que confirma la selección de inicio del jugador
      *
-     * @param confirmacion
+     * @param confirmacion confirmacion del jugador
      */
     public void confirmarInicioJugador(boolean confirmacion) {
         Partida partida = modeloPartida.getPartida();
-        int i =0;
+        int i = 0;
         for (Jugador jugadore : partida.getJugadores()) {
             if (jugadore.getNombre().equalsIgnoreCase(jugador.getNombre())) {
                 partida.getJugadores().get(i).setIniciar(confirmacion);
             }
             i++;
         }
-        
+
         try {
             cliente.enviarAlServidor(partida);
         } catch (IOException ex) {
-            System.err.println("Trono al enviar la confirmacion: " + ex.getMessage());
+            System.err.println("Tronó al enviar la confirmacion: " + ex.getMessage());
         }
     }
 
@@ -338,6 +356,12 @@ public class ControlFrmPartida {
 
     }
 
+    /**
+     * Metodo que habilita la pantalla para dibujar
+     *
+     * @param partida partida
+     * @param panel panel de dibujo
+     */
     public void habilitaPantalla(Partida partida, pnJuego panel) {
         if (partida.getEstado().equals(Estados.INICIADO)) {
             panel.setVisible(true);
@@ -345,6 +369,13 @@ public class ControlFrmPartida {
 
     }
 
+    /**
+     * Orden de los puntos en el panel
+     *
+     * @param lienzo lienzo
+     * @param p1 punto 1
+     * @param p2 punto 2
+     */
     public void ordenaPuntos(pnJuego lienzo, Punto p1, Punto p2) {
         if (p1.getX() == p2.getX()) {
             if (p1.getY() > p2.getY()) {
@@ -368,6 +399,13 @@ public class ControlFrmPartida {
 
     }
 
+    /**
+     * Comrpeuba si la linea existe
+     *
+     * @param linea linea a comprobar
+     * @param lineasList lista a comparar
+     * @return true si ya existe, false si no
+     */
     public boolean comprobarLinea(Linea linea, ArrayList<Linea> lineasList) {
         for (Linea l : lineasList) {
             if (l.equals(linea)) {
@@ -377,6 +415,10 @@ public class ControlFrmPartida {
         return false;
     }
 
+    /**
+     * Comprueba se haya escogido punto diferente
+     *
+     */
     public boolean compruebaPunto(Punto p1, Punto p2) {
         return p1.equals(p2);
     }
@@ -395,10 +437,10 @@ public class ControlFrmPartida {
     /**
      * Dibuja la linea en la tabla y crea los cuadros
      *
-     * @param g Grágico del panel
-     * @param lienzo
-     * @param p1
-     * @param p2
+     * @param g Gráfico del panel
+     * @param lienzo lienzo
+     * @param p1 punto 1
+     * @param p2 punto 2
      */
     public void dibujarLinea(Graphics g, pnJuego lienzo, Punto p1, Punto p2) {
         Partida partida = modeloPartida.getPartida();
@@ -415,7 +457,7 @@ public class ControlFrmPartida {
         }
 
         if (this.validaLinea(p1, p2)) {
-            modeloPartida.setMensaje("Linea no valida ugu");
+            modeloPartida.setMensaje("Linea no valida");
         } else if (p1.getY() == p2.getY()) {
             // Linea de izquierda a derecha
             FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), separacion, grosor, g2d);
@@ -544,30 +586,27 @@ public class ControlFrmPartida {
 
     }
 
+    /**
+     * Dibuja las lineas en la partida
+     *
+     * @param g grafico
+     */
     public void dibujarLineasPartida(Graphics g) {
         Partida partida = modeloPartida.getPartida();
         frmPartida = FrmPartida.getInstance();
         Graphics2D g2d = (Graphics2D) g;
-        System.out.println("Hay lineas para dibujar?" + (partida.getLinea().isEmpty() ? "wtf sin lineas" : "uwu"));
         for (Linea l : partida.getLinea()) {
             g.setColor(l.getJugador().getColor());
 //            this.dibujarLinea(g, frmPartida.getLienzo(), p1, p2);
             this.reDibujarLinea(g, frmPartida.getLienzo(), l.getP1(), l.getP2());
         }
-//        if (partida.getLinea().size() > 0) {
-//            for (Linea linea : partida.getLinea()) {
-//                g2d.setColor(linea.getJugador().getColor());
-//                if (linea.getP1().getX() == linea.getP2().getX()) {
-//                    FLinea fLinea1 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getW(), linea.getH(), g2d);
-//                    this.dibujaLinea(fLinea1);
-//                } else if (linea.getP1().getY() == linea.getP2().getY()) {
-//                    FLinea fLinea2 = new FLinea((linea.getP1().getX() + (linea.getP1().getRadio() / 2)), ((linea.getP1().getY() + (linea.getP1().getRadio() / 2)) - (linea.getH() / 2)), linea.getH(), linea.getW(), g2d);
-//                    this.dibujaLinea(fLinea2);
-//                }
-//            }
-//        }
     }
 
+    /**
+     * Dibuja los cuadros en la partida
+     *
+     * @param g grafico
+     */
     public void dibujarCuadrosPartida(Graphics g) {
         Partida partida = modeloPartida.getPartida();
         Graphics2D g2d = (Graphics2D) g;
@@ -584,6 +623,14 @@ public class ControlFrmPartida {
         }
     }
 
+    /**
+     * Verifica si se han formado dos cuadros al dibujar lineas
+     *
+     * @param cuadro cuadro que se puede formar
+     * @param lineasList lista de las lineas
+     * @param separacion separacion entre ellos
+     * @return
+     */
     public Cuadro verificarCuadroDoble(Cuadro cuadro, ArrayList<Linea> lineasList, Float separacion) {
         for (Linea line : lineasList) {
             if (cuadro.getSuperior().getP1().getY() - separacion == line.getP1().getY() && cuadro.getSuperior().getP1().getX() == line.getP1().getX()
@@ -603,6 +650,14 @@ public class ControlFrmPartida {
         return null;
     }
 
+    /**
+     * Metodo que verifica el cuadro dibujado
+     *
+     * @param linea linea dibujar
+     * @param lineasList lista de lineas
+     * @param separacion separacion entre espacio
+     * @return dibujo de cuadro
+     */
     public Cuadro verificarCuadro(Linea linea, ArrayList<Linea> lineasList, Float separacion) {
         Cuadro cuadro = new Cuadro();
         //listaLineasPositivasHorizontales.add(linea);
@@ -692,6 +747,13 @@ public class ControlFrmPartida {
         return null;
     }
 
+    /**
+     * Agrega los puntos, los ordena y los dibuja
+     *
+     * @param lienzo lienzo del juego
+     * @param pulsacion pulsaciones
+     * @param evt evento
+     */
     public void agregaPuntos(pnJuego lienzo, int pulsacion, java.awt.event.MouseEvent evt) {
         if (pulsacion == 1) {
             for (int i = 0; i < (lienzo.getPuntosList().size() / 2); i++) {
@@ -772,6 +834,9 @@ public class ControlFrmPartida {
         }
     }
 
+    /**
+     * Método que finaliza la partida actualizando el estado
+     */
     public void finalizaPartida() {
         this.actualizaEstado();
     }
@@ -813,18 +878,41 @@ public class ControlFrmPartida {
         this.modeloPartida.setMensaje(mensaje);
     }
 
+    /**
+     * Metodo que dibuja lineas
+     *
+     * @param linea linea a dibujar
+     */
     public void dibujaLinea(FLinea linea) {
         linea.dibujar();
     }
 
+    /**
+     * Metodo que dibuja el cuadro
+     *
+     * @param cuadro cuadro a dibujar
+     */
     public void dibujaCuadro(FCuadro cuadro) {
         cuadro.dibujar();
     }
 
+    /**
+     * Metodo que dibuja dos cuadros
+     *
+     * @param cuadro cuadros a dibujar
+     */
     public void dibujaCuadroDoble(FCuadro cuadro) {
         cuadro.dibujar();
     }
 
+    /**
+     * Re dibuja las lineas que ya están en la partida.
+     *
+     * @param g grafico
+     * @param lienzo lienzo
+     * @param p1 punto 1
+     * @param p2 punto 2
+     */
     public void reDibujarLinea(Graphics g, pnJuego lienzo, Punto p1, Punto p2) {
         Graphics2D g2d = (Graphics2D) g;
         float grosor = modeloPartida.getPartida().getTablero().getGrosor();
@@ -835,11 +923,6 @@ public class ControlFrmPartida {
         } else {
             lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, separacion, g2d);
         }
-
-//        FLinea lineaNueva = new FLinea((
-//                p1.getX() + (p1.getRadio())), 
-//                ((p1.getY() + (p1.getRadio())) - (grosor)), 
-//                separacion, grosor, g2d);
         this.dibujaLinea(lineaNueva);
 
     }

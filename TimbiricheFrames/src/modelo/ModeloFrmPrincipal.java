@@ -55,12 +55,6 @@ public class ModeloFrmPrincipal implements IObservable {
         this.mensaje = mensaje;
         this.notificar();
     }
-//
-//    @Override
-//    public void attach(IObserver observer) {
-//        observadores = observer; 
-////        observadores.add(observer);
-//    }
 
     /**
      * Metodo que notifica al observador sobre cambios

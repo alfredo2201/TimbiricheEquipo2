@@ -85,6 +85,10 @@ public class Jugador implements Serializable {
         this.color = color;
     }
 
+    /**
+     * toString que regresa nombre del jugador
+     * @return nombre de jugador
+     */
     @Override
     public String toString() {
         return "Jugador{" + "nombre=" + nombre + '}';

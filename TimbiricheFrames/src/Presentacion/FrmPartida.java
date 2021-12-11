@@ -37,31 +37,17 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }
 
     /**
-     * Configura el tablero
+     * Crea instancia de FrmPartida
      *
-     * @param tablero tablero con las caracteristicas
+     * @return regresa una instancia de FrmPartida
      */
-//    private void configuracionLienzo(Tablero tablero) {
-//
-//        lienzo = new pnJuego(tablero);//se inicializa el lienzo
-//        lienzo.setLocation(200, 0); //se establece su posición
-//        lienzo.setSize(1010, 1010); //establece el tamaño del panel
-//        lienzo.setVisible(true);
-//        add(lienzo); //se agrega al frame principal
-//        pack();
-//    }
-    /**
-     * Carga a los jugadores //
-     */
-//    private void cargaJugador() {
-//        lblIconoJugador1.setIcon(new javax.swing.ImageIcon(getClass().getResource(conexion.getJugador().getAvatar())));
-//        lblNombreJugador1.setText(conexion.getJugador().getNombre());
-//        lblTurnoNombreJugador.setText(conexion.getJugador().getNombre());
-//
-//        control.cargarJugador(lblIconoJugador2, lblNombreJugador2, control.getJ1(), 2000);
-//        control.cargarJugador(lblIconoJugador3, lblNombreJugador3, control.getJ2(), 3000);
-//        control.cargarJugador(lblIconoJugador4, lblNombreJugador4, control.getJ3(), 4000);
-//    }
+    public static FrmPartida getInstance() {
+        if (instance == null) {
+            instance = new FrmPartida();
+        }
+        return instance;
+    }
+
     /**
      * Verifica el tipo de jugador
      *
@@ -74,18 +60,6 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
 
             btnComenzarPartida.setEnabled(true);
         }
-    }
-
-    /**
-     * Crea instancia de FrmPartida
-     *
-     * @return regresa una instancia de FrmPartida
-     */
-    public static FrmPartida getInstance() {
-        if (instance == null) {
-            instance = new FrmPartida();
-        }
-        return instance;
     }
 
     @SuppressWarnings("unchecked")
@@ -463,6 +437,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
+        control = ControlFrmPartida.getInstance();
         control.confirmarInicioJugador(true);
     }//GEN-LAST:event_btnComenzarPartidaActionPerformed
 
@@ -488,6 +463,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
 
     private void btnPreparadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPreparadoActionPerformed
+        control = ControlFrmPartida.getInstance();
         control.confirmarInicioJugador(true);
     }//GEN-LAST:event_btnPreparadoActionPerformed
 
@@ -526,7 +502,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         control = ControlFrmPartida.getInstance();
         control.setModeloPartida(modelo);
         control.quitarInformacion();
-        control.habilitaPantalla(modelo.getPartida(),this.getLienzo());
+        control.habilitaPantalla(modelo.getPartida(), this.getLienzo());
         control.muestraInformacionJugadores(this);
         if (modelo.getMensaje() != null && !(modelo.getMensaje().equals(""))) {
             control.muestraMensaje(modelo.getMensaje());
