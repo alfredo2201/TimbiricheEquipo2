@@ -597,4 +597,12 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         this.lbPuntosJ4.setText(texto);
     }
 
+    public JLabel getLblTurnoNombreJugador() {
+        return lblTurnoNombreJugador;
+    }
+
+    public void setLblTurnoNombreJugador(String jugador) {
+        this.lblTurnoNombreJugador.setText(jugador);
+    }
+    
 }

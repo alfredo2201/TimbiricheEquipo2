@@ -75,6 +75,7 @@ public class ServerSocketProtocol {
         }
         if (confirmaciones > 1 && partida.getJugadores().size() <= 4) {
             this.partida.setEstado(Estados.INICIADO);
+            asignarTurnos();
         }
     }
 
@@ -124,7 +125,7 @@ public class ServerSocketProtocol {
             cambiaTurno(partida);
         } else if (partida.getJugadores().get(0).isIniciar()) {
             iniciarPartida(partida);
-        } else {
+        } else {            
             this.partida = partida;
         }
     }

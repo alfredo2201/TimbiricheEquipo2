@@ -352,6 +352,9 @@ public class ControlFrmPartida {
                         break;
                 }
             }
+            if (!modeloPartida.getPartida().getTurnos().isEmpty()) {
+                frmPartida.setLblTurnoNombreJugador(modeloPartida.getPartida().getTurnos().get(0).getNombre());
+            }
         }
 
     }
@@ -418,6 +421,9 @@ public class ControlFrmPartida {
     /**
      * Comprueba se haya escogido punto diferente
      *
+     * @param p1
+     * @param p2
+     * @return
      */
     public boolean compruebaPunto(Punto p1, Punto p2) {
         return p1.equals(p2);
@@ -455,135 +461,128 @@ public class ControlFrmPartida {
             modeloPartida.setMensaje("Seleccione dos puntos distintos");
             return;
         }
-
-        if (this.validaLinea(p1, p2)) {
-            modeloPartida.setMensaje("Linea no valida");
-        } else if (p1.getY() == p2.getY()) {
-            // Linea de izquierda a derecha
-            FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), separacion, grosor, g2d);
-            Linea linea = new Linea(p1, p2, grosor, separacion, tab);
-            linea.setJugador(jugador);
-            System.out.println(linea);
-            if (!comprobarLinea(linea, partida.getLinea())) {
-                partida.setLinea(linea);
-
-                this.dibujaLinea(lineaNueva);
-                //hice este partida.getLinea para ver si se agrega, posiblemente faltó esto
-//                partida.getLinea().add(linea);
-                cd = this.verificarCuadro(linea, partida.getLinea(), separacion);
-                if (cd != null) {
-                    cd.setJugador(jugador);
-                    FCuadro cuadroSimple;
-                    partida.setCuadro(cd);
-
-                    //Se agrega un punto al jugador 
-                    for (Jugador j : modeloPartida.getPartida().getJugadores()) {
-                        if (j.equals(this.jugador)) {
-                            j.setPuntos(j.getPuntos() + 1);
-                            modeloPartida.setPartida(modeloPartida.getPartida());
-                            break;
-                        }
-                    }
-
-                    cuadroSimple = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-                    this.dibujaCuadro(cuadroSimple);
-                    Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
-                    if (cdDoble != null) {
-                        cdDoble.setJugador(jugador);
-                        if (cdDoble.getSuperior() != null
-                                && cdDoble.getInferior() != null
-                                && cdDoble.getDer() != null
-                                && cdDoble.getIzq() != null) {
-                            System.out.println(cdDoble);
-                            partida.setCuadro(cdDoble);
-                            FCuadro cuadroDoble;
-                            cuadroDoble = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-                            this.dibujaCuadroDoble(cuadroDoble);
-
-                            //2 puntos para el jugador
-                            for (Jugador j : modeloPartida.getPartida().getJugadores()) {
-                                if (j.equals(this.jugador)) {
-                                    j.setPuntos(j.getPuntos() + 2);
-                                    modeloPartida.setPartida(modeloPartida.getPartida());
-                                    break;
-                                }
+        try {
+            if (this.validaLinea(p1, p2)) {
+                modeloPartida.setMensaje("Linea no valida");
+            } else if (p1.getY() == p2.getY()) {
+                // Linea de izquierda a derecha
+                FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), separacion, grosor, g2d);
+                Linea linea = new Linea(p1, p2, grosor, separacion, tab);
+                linea.setJugador(jugador);
+                System.out.println(linea);
+                if (!comprobarLinea(linea, partida.getLinea())) {
+                    partida.setLinea(linea);
+                    this.dibujaLinea(lineaNueva);
+                    cd = this.verificarCuadro(linea, partida.getLinea(), separacion);
+                    if (cd != null) {
+                        cd.setJugador(jugador);
+                        FCuadro cuadroSimple;
+                        partida.setCuadro(cd);
+                        jugador.setPuntos(jugador.getPuntos() + 1);
+                        //Se agrega un punto al jugador 
+                        for (Jugador j : modeloPartida.getPartida().getJugadores()) {
+                            if (j.equals(this.jugador)) {
+                                j = jugador;
+                                break;
                             }
-
-                            cuadroDoble.dibujar();
-
                         }
-                    }
-                } else {
 
-                    cambiaTurno(true, partida);
-                }
-                try {
-                    cliente.enviarAlServidor(partida);
-                } catch (IOException ex) {
-                    Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            } else {
-                modeloPartida.setMensaje("Linea ya existente");
-            }
-        } else {
-            // Linea de arriba para abajo
-            FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, separacion, g2d);
-            Linea linea = new Linea(p1, p2, grosor, separacion, tab);
-            linea.setJugador(jugador);
-
-            if (!comprobarLinea(linea, partida.getLinea())) {
-
-                partida.setLinea(linea);
-                this.dibujaLinea(lineaNueva);
-
-                cd = this.verificarCuadro(linea, partida.getLinea(), separacion);
-                if (cd != null) {
-                    cd.setJugador(jugador);
-                    FCuadro cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-                    this.dibujaCuadro(cuadradito);
-                    for (Jugador j : modeloPartida.getPartida().getJugadores()) {
-                        if (j.equals(this.jugador)) {
-                            j.setPuntos(j.getPuntos() + 1);
-                            modeloPartida.setPartida(modeloPartida.getPartida());
-                            break;
-                        }
-                    }
-                    partida.setCuadro(cd);
-                    Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
-                    if (cdDoble != null) {
-                        cdDoble.setJugador(jugador);
-                        if (cdDoble.getSuperior() != null
-                                && cdDoble.getInferior() != null
-                                && cdDoble.getDer() != null
-                                && cdDoble.getIzq() != null) {
-                            System.out.println(cdDoble);
-                            partida.setCuadro(cdDoble);
-                            FCuadro cuadradito2 = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
-                            for (Jugador j : modeloPartida.getPartida().getJugadores()) {
-                                if (j.equals(this.jugador)) {
-                                    j.setPuntos(j.getPuntos() + 2);
-                                    modeloPartida.setPartida(modeloPartida.getPartida());
-                                    break;
+                        cuadroSimple = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                        this.dibujaCuadro(cuadroSimple);
+                        cliente.enviarAlServidor(partida);
+                        Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
+                        if (cdDoble != null) {
+                            cdDoble.setJugador(jugador);
+                            if (cdDoble.getSuperior() != null
+                                    && cdDoble.getInferior() != null
+                                    && cdDoble.getDer() != null
+                                    && cdDoble.getIzq() != null) {
+                                System.out.println(cdDoble);
+                                jugador.setPuntos(jugador.getPuntos() + 2);
+                                for (Jugador j : modeloPartida.getPartida().getJugadores()) {
+                                    if (j.equals(this.jugador)) {
+                                        j = jugador;
+                                        break;
+                                    }
                                 }
+                                partida.setCuadro(cdDoble);
+                                cliente.enviarAlServidor(partida);
+                                FCuadro cuadroDoble;
+                                cuadroDoble = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                                this.dibujaCuadroDoble(cuadroDoble);
+                                cuadroDoble.dibujar();
                             }
-                            this.dibujaCuadroDoble(cuadradito2);
                         }
+                        partida.setCambioTurno(true);
+                        cliente.enviarAlServidor(partida);
+                    } else {
+                        partida.setCambioTurno(true);
+                        cliente.enviarAlServidor(partida);
                     }
 
                 } else {
-                    cambiaTurno(true, partida);
-                }
-                try {
-                    cliente.enviarAlServidor(partida);
-                } catch (IOException ex) {
-                    Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
+                    modeloPartida.setMensaje("Linea ya existente");
                 }
             } else {
-                JOptionPane.showMessageDialog(null, "Linea ya existente",
-                        "", JOptionPane.ERROR_MESSAGE);
+                // Linea de arriba para abajo
+                FLinea lineaNueva = new FLinea((p1.getX() + (p1.getRadio() / 2)), ((p1.getY() + (p1.getRadio() / 2)) - (grosor / 2)), grosor, separacion, g2d);
+                Linea linea = new Linea(p1, p2, grosor, separacion, tab);
+                linea.setJugador(jugador);
+
+                if (!comprobarLinea(linea, partida.getLinea())) {
+
+                    partida.setLinea(linea);
+                    this.dibujaLinea(lineaNueva);
+                    cd = this.verificarCuadro(linea, partida.getLinea(), separacion);
+                    if (cd != null) {
+                        cd.setJugador(jugador);
+                        FCuadro cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                        this.dibujaCuadro(cuadradito);
+                        jugador.setPuntos(jugador.getPuntos() + 1);
+                        for (Jugador j : modeloPartida.getPartida().getJugadores()) {
+                            if (j.equals(this.jugador)) {
+                                j = jugador;
+                                break;
+                            }
+                        }
+                        cliente.enviarAlServidor(partida);
+                        partida.setCuadro(cd);
+                        Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
+                        if (cdDoble != null) {
+                            jugador.setPuntos(jugador.getPuntos() + 2);
+                            for (Jugador j : modeloPartida.getPartida().getJugadores()) {
+                                if (j.equals(this.jugador)) {
+                                    j = jugador;
+                                    break;
+                                }
+                            }
+                            cdDoble.setJugador(jugador);
+                            if (cdDoble.getSuperior() != null
+                                    && cdDoble.getInferior() != null
+                                    && cdDoble.getDer() != null
+                                    && cdDoble.getIzq() != null) {
+                                System.out.println(cdDoble);
+                                partida.setCuadro(cdDoble);
+
+                                FCuadro cuadradito2 = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+
+                                this.dibujaCuadroDoble(cuadradito2);
+                            }
+                        }
+                        partida.setCambioTurno(true);
+                        cliente.enviarAlServidor(partida);
+                    } else {
+                        partida.setCambioTurno(true);
+                        cliente.enviarAlServidor(partida);
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Linea ya existente",
+                            "", JOptionPane.ERROR_MESSAGE);
+                }
             }
+        } catch (IOException ex) {
+            Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
         }
-
     }
 
     /**
@@ -805,7 +804,7 @@ public class ControlFrmPartida {
      * @param cambio
      * @param partida
      */
-    public void cambiaTurno(boolean cambio, Partida partida) {
+    public void cambiaTurno(boolean cambio,Partida partida) {
         partida.setCambioTurno(cambio);
     }
 
