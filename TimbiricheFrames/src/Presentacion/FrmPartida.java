@@ -208,28 +208,24 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         lbPuntos1.setText("Puntos");
 
         lbPuntosJ1.setForeground(new java.awt.Color(255, 255, 255));
-        lbPuntosJ1.setText("jLabel1");
 
         lbPuntos2.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
         lbPuntos2.setForeground(new java.awt.Color(255, 255, 255));
         lbPuntos2.setText("Puntos");
 
         lbPuntosJ2.setForeground(new java.awt.Color(255, 255, 255));
-        lbPuntosJ2.setText("jLabel1");
 
         lbPuntos3.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
         lbPuntos3.setForeground(new java.awt.Color(255, 255, 255));
         lbPuntos3.setText("Puntos");
 
         lbPuntosJ3.setForeground(new java.awt.Color(255, 255, 255));
-        lbPuntosJ3.setText("jLabel1");
 
         lbPuntos4.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
         lbPuntos4.setForeground(new java.awt.Color(255, 255, 255));
         lbPuntos4.setText("Puntos");
 
         lbPuntosJ4.setForeground(new java.awt.Color(255, 255, 255));
-        lbPuntosJ4.setText("jLabel1");
 
         javax.swing.GroupLayout pnJugadoresLayout = new javax.swing.GroupLayout(pnJugadores);
         pnJugadores.setLayout(pnJugadoresLayout);
@@ -436,7 +432,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
                             .addComponent(btnComenzarPartida)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addComponent(btnPreparado, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addComponent(pnJugadores, javax.swing.GroupLayout.DEFAULT_SIZE, 426, Short.MAX_VALUE)
+                        .addComponent(pnJugadores, javax.swing.GroupLayout.PREFERRED_SIZE, 426, Short.MAX_VALUE)
                         .addComponent(pnTurnos, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(27, 27, 27))
         );
@@ -467,37 +463,7 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnCambiaColorActionPerformed
 
     private void btnComenzarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnComenzarPartidaActionPerformed
-
-        control.actualizaEstado();
-
-//        tiempo = new Timer(5000, null);
-//        tiempo.start();
-//        Color myWhite = new Color(255, 255, 255); // Color white
-//
-//        if (lblNombreJugador1.getForeground().equals(myWhite) || lblNombreJugador2.getForeground().equals(myWhite)
-//                || lblNombreJugador3.getForeground().equals(myWhite) || lblNombreJugador4.getForeground().equals(myWhite)) {
-//            JOptionPane.showMessageDialog(null, "Escoge el color de tus contrincantes",
-//                    "", JOptionPane.ERROR_MESSAGE);
-//        } else {
-//            JOptionPane.showMessageDialog(null, "Cargando...",
-//                    "", JOptionPane.INFORMATION_MESSAGE);
-//            tiempo.addActionListener(new java.awt.event.ActionListener() {
-//                @Override
-//                public void actionPerformed(ActionEvent ae) {
-//                    operacion();
-//                }
-//
-//                private void operacion() {
-//                    tiempo.stop();
-//                    btnPreparado.setEnabled(false);
-//                    btnCambiaColor1.setEnabled(false);
-//                    btnCambiaColor2.setEnabled(false);
-//                    btnCambiaColor3.setEnabled(false);
-//                    btnCambiaColor.setEnabled(false);
-//
-//                }
-//            });
-//        }
+        control.confirmarInicioJugador(true);
     }//GEN-LAST:event_btnComenzarPartidaActionPerformed
 
     private void btnCambiaColor1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCambiaColor1ActionPerformed
@@ -516,8 +482,8 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     }//GEN-LAST:event_btnCambiaColor3ActionPerformed
 
     private void btnAbandonarPartidaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbandonarPartidaActionPerformed
-        control =ControlFrmPartida.getInstance();
-        control.borrarDatosJugador();        
+        control = ControlFrmPartida.getInstance();
+        control.borrarDatosJugador();
         control.mostrarPantallaPrincipal();
     }//GEN-LAST:event_btnAbandonarPartidaActionPerformed
 
@@ -560,8 +526,9 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         control = ControlFrmPartida.getInstance();
         control.setModeloPartida(modelo);
         control.quitarInformacion();
+        control.habilitaPantalla(modelo.getPartida(),this.getLienzo());
         control.muestraInformacionJugadores(this);
-        if(modelo.getMensaje() != null && !(modelo.getMensaje().equals(""))){
+        if (modelo.getMensaje() != null && !(modelo.getMensaje().equals(""))) {
             control.muestraMensaje(modelo.getMensaje());
         }
         if (lienzo != null) {
@@ -653,7 +620,5 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     public void setLbPuntosJ4(String texto) {
         this.lbPuntosJ4.setText(texto);
     }
-    
-    
 
 }

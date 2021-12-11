@@ -139,14 +139,14 @@ public class ControlFrmPartida {
             lienzo = new pnJuego(tablero);//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
-            lienzo.setVisible(true);
+            lienzo.setVisible(false);
             lienzo.setEnabled(true);
             return lienzo;
         } else if (modeloPartida.getPartida() != null) {
             lienzo = new pnJuego(modeloPartida.getPartida().getTablero());//se inicializa el lienzo
             lienzo.setLocation(200, 0); //se establece su posición
             lienzo.setSize(1010, 1010); //establece el tamaño del panel
-            lienzo.setVisible(true);
+            lienzo.setVisible(false);
             lienzo.setEnabled(true);
             return lienzo;
         }
@@ -265,7 +265,14 @@ public class ControlFrmPartida {
      */
     public void confirmarInicioJugador(boolean confirmacion) {
         Partida partida = modeloPartida.getPartida();
-        partida.getJugadores().get(partida.getJugadores().indexOf(jugador)).setIniciar(confirmacion);
+        int i =0;
+        for (Jugador jugadore : partida.getJugadores()) {
+            if (jugadore.getNombre().equalsIgnoreCase(jugador.getNombre())) {
+                partida.getJugadores().get(i).setIniciar(confirmacion);
+            }
+            i++;
+        }
+        
         try {
             cliente.enviarAlServidor(partida);
         } catch (IOException ex) {
@@ -327,6 +334,13 @@ public class ControlFrmPartida {
                         break;
                 }
             }
+        }
+
+    }
+
+    public void habilitaPantalla(Partida partida, pnJuego panel) {
+        if (partida.getEstado().equals(Estados.INICIADO)) {
+            panel.setVisible(true);
         }
 
     }
