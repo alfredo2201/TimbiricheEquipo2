@@ -233,7 +233,7 @@ public class ControlFrmPartida {
     }
 
     public void quitarInformacion() {
-        frmPartida= FrmPartida.getInstance();
+        frmPartida = FrmPartida.getInstance();
         frmPartida.setLblIconoJugador1("");
         frmPartida.setLblNombreJugador1("Nombre Jugador");
         frmPartida.setLblIconoJugador2("");
@@ -277,13 +277,14 @@ public class ControlFrmPartida {
      * Metodo que muestra el frame Pantalla Principal
      */
     public synchronized void mostrarPantallaPrincipal() {
-//        try {
-//            cliente.desconectarServidor();
-//        } catch (IOException ex) {
-//            Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
-//        }
+
         ctlPrincipal = ControlFrmPrincipal.getInstance();
         ctlPrincipal.despliegaPantallaPrincipal();
+        try {
+            cliente.desconectarServidor();
+        } catch (IOException ex) {
+            Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
+        }
         FrmPartida.getInstance().dispose();
     }
 
@@ -301,21 +302,25 @@ public class ControlFrmPartida {
                     case 0:
                         frmPartida.setLblIconoJugador1(jugad.getAvatar());
                         frmPartida.setLblNombreJugador1(jugad.getNombre());
+                        frmPartida.setLbPuntosJ1(String.valueOf(jugad.getPuntos()));
                         iterar++;
                         break;
                     case 1:
                         frmPartida.setLblIconoJugador2(jugad.getAvatar());
                         frmPartida.setLblNombreJugador2(jugad.getNombre());
+                        frmPartida.setLbPuntosJ2(String.valueOf(jugad.getPuntos()));
                         iterar++;
                         break;
                     case 2:
                         frmPartida.setLblIconoJugador3(jugad.getAvatar());
                         frmPartida.setLblNombreJugador3(jugad.getNombre());
+                        frmPartida.setLbPuntosJ3(String.valueOf(jugad.getPuntos()));
                         iterar++;
                         break;
                     case 3:
                         frmPartida.setLblIconoJugador4(jugad.getAvatar());
                         frmPartida.setLblNombreJugador4(jugad.getNombre());
+                        frmPartida.setLbPuntosJ4(String.valueOf(jugad.getPuntos()));
                         iterar++;
                         break;
                     default:
@@ -414,6 +419,16 @@ public class ControlFrmPartida {
                     cd.setJugador(jugador);
                     FCuadro cuadroSimple;
                     partida.setCuadro(cd);
+
+                    //Se agrega un punto al jugador 
+                    for (Jugador j : modeloPartida.getPartida().getJugadores()) {
+                        if (j.equals(this.jugador)) {
+                            j.setPuntos(j.getPuntos() + 1);
+                            modeloPartida.setPartida(modeloPartida.getPartida());
+                            break;
+                        }
+                    }
+
                     cuadroSimple = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
                     this.dibujaCuadro(cuadroSimple);
                     Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
@@ -428,6 +443,16 @@ public class ControlFrmPartida {
                             FCuadro cuadroDoble;
                             cuadroDoble = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
                             this.dibujaCuadroDoble(cuadroDoble);
+
+                            //2 puntos para el jugador
+                            for (Jugador j : modeloPartida.getPartida().getJugadores()) {
+                                if (j.equals(this.jugador)) {
+                                    j.setPuntos(j.getPuntos() + 2);
+                                    modeloPartida.setPartida(modeloPartida.getPartida());
+                                    break;
+                                }
+                            }
+
                             cuadroDoble.dibujar();
 
                         }
@@ -460,6 +485,13 @@ public class ControlFrmPartida {
                     cd.setJugador(jugador);
                     FCuadro cuadradito = new FCuadro(cd.getSuperior().getP1().getX() + (p1.getRadio() / 2), cd.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
                     this.dibujaCuadro(cuadradito);
+                    for (Jugador j : modeloPartida.getPartida().getJugadores()) {
+                        if (j.equals(this.jugador)) {
+                            j.setPuntos(j.getPuntos() + 1);
+                            modeloPartida.setPartida(modeloPartida.getPartida());
+                            break;
+                        }
+                    }
                     partida.setCuadro(cd);
                     Cuadro cdDoble = verificarCuadroDoble(cd, partida.getLinea(), separacion);
                     if (cdDoble != null) {
@@ -471,6 +503,13 @@ public class ControlFrmPartida {
                             System.out.println(cdDoble);
                             partida.setCuadro(cdDoble);
                             FCuadro cuadradito2 = new FCuadro(cdDoble.getSuperior().getP1().getX() + (p1.getRadio() / 2), cdDoble.getSuperior().getP1().getY() + (p1.getRadio() / 2), separacion, separacion, g2d);
+                            for (Jugador j : modeloPartida.getPartida().getJugadores()) {
+                                if (j.equals(this.jugador)) {
+                                    j.setPuntos(j.getPuntos() + 2);
+                                    modeloPartida.setPartida(modeloPartida.getPartida());
+                                    break;
+                                }
+                            }
                             this.dibujaCuadroDoble(cuadradito2);
                         }
                     }

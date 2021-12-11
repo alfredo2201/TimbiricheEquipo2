@@ -1,13 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dominio;
 
-import java.awt.Graphics;
-import java.awt.Graphics2D;
-import java.awt.geom.Rectangle2D;
 import java.io.Serializable;
 import java.util.Objects;
 
@@ -24,6 +16,15 @@ public class Linea implements Serializable {
     private Tablero tablero;
     private Jugador jugador;
 
+    /**
+     * Constructor que inicializa las variables de la clase
+     *
+     * @param p1 Punto
+     * @param p2 Punto
+     * @param w float Anchura
+     * @param h float Altura
+     * @param tablero Tablero
+     */
     public Linea(Punto p1, Punto p2, float w, float h, Tablero tablero) {
         this.p1 = p1;
         this.p2 = p2;
@@ -32,46 +33,103 @@ public class Linea implements Serializable {
         this.tablero = tablero;
     }
 
+    /**
+     * Otorga un valor al tablero
+     *
+     * @param tablero Tablero que sera instanciado
+     */
     public void setTablero(Tablero tablero) {
         this.tablero = tablero;
     }
 
+    /**
+     * Regresa el punto 1
+     *
+     * @return Punto
+     */
     public Punto getP1() {
         return p1;
     }
 
+    /**
+     * Otorga un valor al punto 1
+     *
+     * @param p1 Punto
+     */
     public void setP1(Punto p1) {
         this.p1 = p1;
     }
 
+    /**
+     * Regresa el punto 2
+     *
+     * @return Punto
+     */
     public Punto getP2() {
         return p2;
     }
 
+    /**
+     * Otorga un valor al punto 2
+     *
+     * @param p2 Punto
+     */
     public void setP2(Punto p2) {
         this.p2 = p2;
     }
 
+    /**
+     * Regresa la anchura
+     *
+     * @return Float ancho
+     */
     public float getW() {
         return ancho;
     }
 
+    /**
+     * Otorga un valor a la anchura
+     *
+     * @param w Float ancho
+     */
     public void setW(float w) {
         this.ancho = w;
     }
 
+    /**
+     * Regresa lo alto
+     *
+     * @return Float alto
+     */
     public float getH() {
         return alto;
     }
 
+    /**
+     * Otorga un valor a la altura
+     *
+     * @param h Float altura
+     */
     public void setH(float h) {
         this.alto = h;
     }
 
-    @Override
-    public int hashCode() {
-        int hash = 7;
-        return hash;
+    /**
+     * Regresa al jugador
+     *
+     * @return Jugador
+     */
+    public Jugador getJugador() {
+        return jugador;
+    }
+
+    /**
+     * Otorga un valor al jugador
+     *
+     * @param jugador Jugador
+     */
+    public void setJugador(Jugador jugador) {
+        this.jugador = jugador;
     }
 
     @Override
@@ -95,20 +153,10 @@ public class Linea implements Serializable {
         return true;
     }
 
-    public double getAncho() {
-        return ancho;
-    }
-
-//    public void setAncho(double ancho) {
-//        this.ancho = ancho;
-//    }
-
-    public Jugador getJugador() {
-        return jugador;
-    }
-
-    public void setJugador(Jugador jugador) {
-        this.jugador = jugador;
+    @Override
+    public int hashCode() {
+        int hash = 7;
+        return hash;
     }
 
     @Override

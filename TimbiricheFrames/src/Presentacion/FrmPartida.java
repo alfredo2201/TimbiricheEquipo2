@@ -105,6 +105,14 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
         lblNombreJugador3 = new javax.swing.JLabel();
         lblNombreJugador4 = new javax.swing.JLabel();
         btnCambiaColor3 = new javax.swing.JButton();
+        lbPuntos1 = new javax.swing.JLabel();
+        lbPuntosJ1 = new javax.swing.JLabel();
+        lbPuntos2 = new javax.swing.JLabel();
+        lbPuntosJ2 = new javax.swing.JLabel();
+        lbPuntos3 = new javax.swing.JLabel();
+        lbPuntosJ3 = new javax.swing.JLabel();
+        lbPuntos4 = new javax.swing.JLabel();
+        lbPuntosJ4 = new javax.swing.JLabel();
         pnTurnos = new javax.swing.JPanel();
         lblTurno = new javax.swing.JLabel();
         lblTurnoNombreJugador = new javax.swing.JLabel();
@@ -195,6 +203,34 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
             }
         });
 
+        lbPuntos1.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        lbPuntos1.setForeground(new java.awt.Color(255, 255, 255));
+        lbPuntos1.setText("Puntos");
+
+        lbPuntosJ1.setForeground(new java.awt.Color(255, 255, 255));
+        lbPuntosJ1.setText("jLabel1");
+
+        lbPuntos2.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        lbPuntos2.setForeground(new java.awt.Color(255, 255, 255));
+        lbPuntos2.setText("Puntos");
+
+        lbPuntosJ2.setForeground(new java.awt.Color(255, 255, 255));
+        lbPuntosJ2.setText("jLabel1");
+
+        lbPuntos3.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        lbPuntos3.setForeground(new java.awt.Color(255, 255, 255));
+        lbPuntos3.setText("Puntos");
+
+        lbPuntosJ3.setForeground(new java.awt.Color(255, 255, 255));
+        lbPuntosJ3.setText("jLabel1");
+
+        lbPuntos4.setFont(new java.awt.Font("OCR A Extended", 1, 14)); // NOI18N
+        lbPuntos4.setForeground(new java.awt.Color(255, 255, 255));
+        lbPuntos4.setText("Puntos");
+
+        lbPuntosJ4.setForeground(new java.awt.Color(255, 255, 255));
+        lbPuntosJ4.setText("jLabel1");
+
         javax.swing.GroupLayout pnJugadoresLayout = new javax.swing.GroupLayout(pnJugadores);
         pnJugadores.setLayout(pnJugadoresLayout);
         pnJugadoresLayout.setHorizontalGroup(
@@ -202,18 +238,30 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
             .addGroup(pnJugadoresLayout.createSequentialGroup()
                 .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
-                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(lblNombreJugador1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnCambiaColor, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGroup(pnJugadoresLayout.createSequentialGroup()
                             .addGap(43, 43, 43)
                             .addComponent(lblIconoJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                            .addComponent(lblNombreJugador2)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(btnCambiaColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnJugadoresLayout.createSequentialGroup()
+                                    .addComponent(lblNombreJugador2)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnCambiaColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(pnJugadoresLayout.createSequentialGroup()
+                                    .addComponent(lbPuntos2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lbPuntosJ2))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
+                            .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(pnJugadoresLayout.createSequentialGroup()
+                                    .addComponent(lbPuntos1)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(lbPuntosJ1))
+                                .addGroup(pnJugadoresLayout.createSequentialGroup()
+                                    .addComponent(lblNombreJugador1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(btnCambiaColor, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
                         .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(lblIconoJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,7 +275,15 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
                             .addGroup(pnJugadoresLayout.createSequentialGroup()
                                 .addComponent(lblNombreJugador4)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnCambiaColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                .addComponent(btnCambiaColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(pnJugadoresLayout.createSequentialGroup()
+                                .addComponent(lbPuntos3)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbPuntosJ3))
+                            .addGroup(pnJugadoresLayout.createSequentialGroup()
+                                .addComponent(lbPuntos4)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbPuntosJ4)))))
                 .addContainerGap())
             .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnJugadoresLayout.createSequentialGroup()
@@ -242,16 +298,24 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
                 .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(lblNombreJugador1, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnCambiaColor, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(pnJugadoresLayout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addComponent(lblIconoJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(5, 5, 5)
+                        .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbPuntos1)
+                            .addComponent(lbPuntosJ1))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
                                 .addComponent(lblNombreJugador2, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(41, 41, 41))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbPuntos2)
+                                    .addComponent(lbPuntosJ2))
+                                .addGap(19, 19, 19))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnJugadoresLayout.createSequentialGroup()
                                 .addComponent(btnCambiaColor1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(49, 49, 49)))))
@@ -263,16 +327,24 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
                     .addGroup(pnJugadoresLayout.createSequentialGroup()
                         .addGap(36, 36, 36)
                         .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lblNombreJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(pnJugadoresLayout.createSequentialGroup()
+                                .addComponent(lblNombreJugador3, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(lbPuntos3)
+                                    .addComponent(lbPuntosJ3)))
                             .addComponent(btnCambiaColor2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(38, 38, 38)
                         .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblNombreJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(pnJugadoresLayout.createSequentialGroup()
-                                .addGap(95, 95, 95)
-                                .addComponent(lblNombreJugador4, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(pnJugadoresLayout.createSequentialGroup()
-                                .addGap(103, 103, 103)
-                                .addComponent(btnCambiaColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(43, Short.MAX_VALUE))
+                                .addGap(8, 8, 8)
+                                .addComponent(btnCambiaColor3, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(lbPuntos4)
+                            .addComponent(lbPuntosJ4))))
+                .addContainerGap(44, Short.MAX_VALUE))
             .addGroup(pnJugadoresLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(pnJugadoresLayout.createSequentialGroup()
                     .addGap(72, 72, 72)
@@ -461,6 +533,14 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     private javax.swing.JButton btnCambiaColor3;
     private javax.swing.JButton btnComenzarPartida;
     private javax.swing.JButton btnPreparado;
+    private javax.swing.JLabel lbPuntos1;
+    private javax.swing.JLabel lbPuntos2;
+    private javax.swing.JLabel lbPuntos3;
+    private javax.swing.JLabel lbPuntos4;
+    private javax.swing.JLabel lbPuntosJ1;
+    private javax.swing.JLabel lbPuntosJ2;
+    private javax.swing.JLabel lbPuntosJ3;
+    private javax.swing.JLabel lbPuntosJ4;
     private javax.swing.JLabel lblIconoJugador1;
     private javax.swing.JLabel lblIconoJugador2;
     private javax.swing.JLabel lblIconoJugador3;
@@ -541,5 +621,39 @@ public class FrmPartida extends javax.swing.JFrame implements IObserver<ModeloFr
     public JButton getBtnComenzarPartida() {
         return btnComenzarPartida;
     }
+
+    public JLabel getLbPuntosJ1() {
+        return lbPuntosJ1;
+    }
+
+    public void setLbPuntosJ1(String texto) {
+        this.lbPuntosJ1.setText(texto);
+    }
+
+    public JLabel getLbPuntosJ2() {
+        return lbPuntosJ2;
+    }
+
+    public void setLbPuntosJ2(String texto) {
+        this.lbPuntosJ2.setText(texto);
+    }
+
+    public JLabel getLbPuntosJ3() {
+        return lbPuntosJ3;
+    }
+
+    public void setLbPuntosJ3(String texto) {
+        this.lbPuntosJ3.setText(texto);
+    }
+
+    public JLabel getLbPuntosJ4() {
+        return lbPuntosJ4;
+    }
+
+    public void setLbPuntosJ4(String texto) {
+        this.lbPuntosJ4.setText(texto);
+    }
+    
+    
 
 }
