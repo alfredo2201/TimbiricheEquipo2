@@ -232,24 +232,27 @@ public class ControlFrmPartida {
         }
     }
 
+    public void quitarInformacion() {
+        frmPartida= FrmPartida.getInstance();
+        frmPartida.setLblIconoJugador1("");
+        frmPartida.setLblNombreJugador1("Nombre Jugador");
+        frmPartida.setLblIconoJugador2("");
+        frmPartida.setLblNombreJugador2("Nombre Jugador");
+        frmPartida.setLblIconoJugador3("");
+        frmPartida.setLblNombreJugador3("Nombre Jugador");
+        frmPartida.setLblIconoJugador4("");
+        frmPartida.setLblNombreJugador4("Nombre Jugador");
+    }
+
     /**
      * Metodo que borra los datos del jugador
      */
     public void borrarDatosJugador() {
-        Partida partida = modeloPartida.getPartida();
-        ArrayList<Jugador> jugadores = partida.getJugadores();
-        for (Jugador jugadore : jugadores) {
-            if (jugadore.equals(jugador)) {
-                int indice =jugadores.indexOf(jugadore);
-                jugadores.remove(indice);
-                break;
-            }
-        }
-        partida.setJugadores(jugadores);        
-        System.out.println("Tamaño jugadores: "+partida.getJugadores().size());
-        System.out.println("UWU"+partida.getJugadores().toString());
+        cliente = SocketCliente.getInstance();
+        Jugador jug = new Jugador(jugador.getNombre());
+        jug.setAvatar("eliminar");
         try {
-            cliente.enviarAlServidor(partida);            
+            cliente.enviarAlServidor(jug);
         } catch (IOException ex) {
             Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -262,12 +265,7 @@ public class ControlFrmPartida {
      */
     public void confirmarInicioJugador(boolean confirmacion) {
         Partida partida = modeloPartida.getPartida();
-        for (Jugador j : partida.getJugadores()) {
-            if (j.equals(jugador)) {
-                j.setIniciar(confirmacion);
-                break;
-            }
-        }
+        partida.getJugadores().get(partida.getJugadores().indexOf(jugador)).setIniciar(confirmacion);
         try {
             cliente.enviarAlServidor(partida);
         } catch (IOException ex) {
@@ -278,12 +276,12 @@ public class ControlFrmPartida {
     /**
      * Metodo que muestra el frame Pantalla Principal
      */
-    public void mostrarPantallaPrincipal() {
-        try {
-            cliente.desconectarServidor();
-        } catch (IOException ex) {
-            Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
-        }       
+    public synchronized void mostrarPantallaPrincipal() {
+//        try {
+//            cliente.desconectarServidor();
+//        } catch (IOException ex) {
+//            Logger.getLogger(ControlFrmPartida.class.getName()).log(Level.SEVERE, null, ex);
+//        }
         ctlPrincipal = ControlFrmPrincipal.getInstance();
         ctlPrincipal.despliegaPantallaPrincipal();
         FrmPartida.getInstance().dispose();
@@ -295,6 +293,7 @@ public class ControlFrmPartida {
      * @param frmPartida
      */
     public void muestraInformacionJugadores(FrmPartida frmPartida) {
+        modeloPartida = ModeloFrmPartida.getInstance();
         if (modeloPartida != null) {
             int iterar = 0;
             for (Jugador jugad : modeloPartida.getPartida().getJugadores()) {
